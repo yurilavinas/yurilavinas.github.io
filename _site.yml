@@ -10,7 +10,7 @@ navbar:
     - text: "Research"
       href: research.html
     - text: "Blog"
-      href: https://yclavinas.github.io/blog/
+      href: https://yclavinas.github.io/blog
   right:
     - icon: fa-envelope
       href: mailto:yclavinas@gmail.com
@@ -22,7 +22,3 @@ navbar:
 output:
   html_document:
     highlight: textmate
-    include:
-      after_body: _footer.html
-      in_header: _header.html
-    css: style.css
