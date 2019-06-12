@@ -1,16 +1,11 @@
 ---
-title: "About Me"
+title: "Profile"
 ---
 
-
-<div class="column-left">
  - __Name:__ Yuri Lavinas
 - __Ocupation:__ "Master Student"
 - __Hobbies:__ Sports and Movies.
-</div>
-<div class="column-right">
-![](imgs/myself.png)
-</div>
+
 
 # Short Bio
 
@@ -21,7 +16,3 @@ Now I am pursuing my master degree in Computer Science at the University of Tsuk
 I collaborate with the Department of Computer Science at the University of Brasilia.
 
 Among non-research activities, I teach physics to brazilian highschool students.
-
-# Publication List
-
-Feel free to contact me if you need any paper listed in my [publication list.](#research.html)

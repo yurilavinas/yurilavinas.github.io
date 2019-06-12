@@ -4,6 +4,14 @@
   
   Welcome!
 
+<div class="column-left">
+ - __Name:__ Yuri Lavinas
+- __Ocupation:__ "Master Student"
+- __Hobbies:__ Sports and Movies.
+</div>
+<div class="column-right">
+![](imgs/myself.png)
+</div>
 
 
 Currently, I'm a master student, second year, at the University of Tsukuba. I am very excited about any topic related to Artificial Intelligence, Evolutionary Computation, neuro-evolution for games and Data visualization. I'm exploring MOEA/D and Genetic Algorithms for some time now. My master research topic include refining Resource Allocation on the fly on MOEA/D and Parameter Analysis.  
