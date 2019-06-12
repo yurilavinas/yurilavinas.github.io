@@ -1,0 +1,41 @@
+---
+title: "Publication List"
+---
+
+
+Send me an e-mail if you have any questions about these publications!
+
+Publications are listed in cronological order, and the horizontal line separates peer-reviewed publications.
+
+# 2019
+1. Yuri Lavinas, Claus Aranha, Testuya Sakurai, "Using Diversity as a Priority Function for Resource Allocation on MOEA/D", In Genetic and Evolutionary Computation Conference Companion (GECCO '19 Companion), https://doi.org/10.1145/3319619.3321948, 2019.7
+
+-----
+
+# 2018
+
+1. Yuri Lavinas, Claus Aranha, Tetsuya Sakurai, Marcelo Ladeira, "Experimental Analysis of the Tournament Size on Genetic Algorithms", IEEE International Conference on Systems, Man and Cybernetics, pp.3647-3653, 2018.10.
+
+-----
+
+2. Yuri Lavinas, Claus Aranha, Tetsuya Sakurai, "Resource Allocation by Diversity" Symposium of the Japanese Society of Evolutionary Computation (2018.12)
+
+
+# 2017
+
+-----
+
+1. Yuri Lavinas, Claus Aranha, Marcelo Ladeira, "Experimental Analysis of the Tournament Size on Evolutionary Algorithms" Symposium of the Japanese Society of Evolutionary Computation (2017.12)
+
+# 2016
+
+-----
+
+1. Yuri Lavinas, Marcelo Ladeira, Claus Aranha, "Inducao de Modelo de Risco de Sismos com Tecnicas de Algoritmos Geneticos" - 68th Annual Meeting of the Brazilian Science Society (SBC) (2016.7) (Poster, in Portuguese)
+
+# 2014
+
+-----
+
+1. Claus Aranha, Yuri Cossich Lavinas, Marcelo Ladeira and Bogdan Enescu: "Is it possible to generate good Earthquake Risk Models using Genetic Algorithms?", 6th International Conference on Evolutionary Computation Theory and Applications (ECTA), Rome, 2014.
+

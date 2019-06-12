@@ -21,10 +21,10 @@ navbar:
 
 output:
   html_document:
-    theme: cosmo
     highlight: textmate
     include:
       after_body: _footer.html
       in_header: _header.html
-    css: ../styles.css
-    self_contained: false
+    output:
+    theme: flatly
+    css: style.css
