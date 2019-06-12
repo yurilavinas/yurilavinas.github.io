@@ -25,6 +25,4 @@ output:
     include:
       after_body: _footer.html
       in_header: _header.html
-    output:
-    theme: flatly
     css: style.css
