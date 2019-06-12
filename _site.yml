@@ -1,4 +1,5 @@
 name: "Yuri Lavinas' Research Page"
+output_dir: "."
 navbar:
   title: "Yuri Lavinas' Research Page"
   left:
