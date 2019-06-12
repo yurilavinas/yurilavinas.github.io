@@ -1,0 +1,29 @@
+name: "Yuri Lavinas' Research Page"
+navbar:
+  title: "Yuri Lavinas' Research Page"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Profile"
+      href: profile.html
+    - text: "Research"
+      href: research.html
+    - text: "Blog"
+      href: blog.html
+  right:
+    - icon: fa-envelope
+      href: mailto:yclavinas@gmail.com
+    - icon: fa-google
+      href: https://scholar.google.co.jp/citations?user=-hdeQYcAAAAJ&hl=en
+    - icon: fa-twitter
+      href: https://twitter.com/yurilavinas
+
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate
+    include:
+      after_body: _footer.html
+      in_header: _header.html
+    css: ../styles.css
+    self_contained: false
