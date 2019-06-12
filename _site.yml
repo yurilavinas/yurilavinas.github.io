@@ -10,7 +10,7 @@ navbar:
     - text: "Research"
       href: research.html
     - text: "Blog"
-      href: blog.html
+      href: https://yclavinas.github.io/blog/
   right:
     - icon: fa-envelope
       href: mailto:yclavinas@gmail.com

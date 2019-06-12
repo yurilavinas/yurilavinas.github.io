@@ -2,7 +2,7 @@
 title: "Profile"
 ---
 
- - __Name:__ Yuri Lavinas
+- __Name:__ Yuri Lavinas
 - __Ocupation:__ "Master Student"
 - __Hobbies:__ Sports and Movies.
 
