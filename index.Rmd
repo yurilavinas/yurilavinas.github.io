@@ -16,5 +16,5 @@ Currently, I'm a master student, second year, at the University of Tsukuba. I am
 </div>
 
 
-- Check my [Publication List](profile.html)
+- Check my [Publication List](https://yclavinas.github.io/webpage/research.html)
 - You can find my contact information at the top of the page.
