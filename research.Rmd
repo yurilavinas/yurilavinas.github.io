@@ -14,7 +14,7 @@ Publications are listed in cronological order, and the horizontal line separates
 
 -----
 
-1. Yuri Lavinas, Claus Aranha, Marcelo Ladeira, Tetsuya Sakurai, "Resource Allocation in MOEA/D: What is important?" Symposium of the Japanese Society of Evolutionary Computation (2019.09)(papers/what_is_important_in_ResourceAllocation.pdf)
+1. [Yuri Lavinas, Claus Aranha, Marcelo Ladeira, Tetsuya Sakurai, "Resource Allocation in MOEA/D: What is important?" Symposium of the Japanese Society of Evolutionary Computation (2019.09)](papers/what_is_important_in_ResourceAllocation.pdf)
 
 
 -----
