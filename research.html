@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -86,7 +87,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -247,18 +247,6 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
@@ -337,7 +325,12 @@ $(document).ready(function () {
 <div id="section" class="section level1">
 <h1>2019</h1>
 <ol style="list-style-type: decimal">
-<li>Yuri Lavinas, Claus Aranha, Testuya Sakurai, “Using Diversity as a Priority Function for Resource Allocation on MOEA/D”, In Genetic and Evolutionary Computation Conference Companion (GECCO ’19 Companion), <a href="https://doi.org/10.1145/3319619.3321948" class="uri">https://doi.org/10.1145/3319619.3321948</a>, 2019.7</li>
+<li><p>Yuri Lavinas, Claus Aranha, Testuya Sakurai, “Using Diversity as a Priority Function for Resource Allocation on MOEA/D”, In Genetic and Evolutionary Computation Conference Companion (GECCO ’19 Companion), <a href="https://doi.org/10.1145/3319619.3321948" class="uri">https://doi.org/10.1145/3319619.3321948</a>, 2019.7</p></li>
+<li><p>Yuri Lavinas, Claus Aranha and Marcelo Ladeira. “Improving Resource Allocation in MOEA/D with Decision-space Diversity Metrics”. To appear.</p></li>
+</ol>
+<hr />
+<ol style="list-style-type: decimal">
+<li>Yuri Lavinas, Claus Aranha, Marcelo Ladeira, Tetsuya Sakurai, “Resource Allocation in MOEA/D: What is important?” Symposium of the Japanese Society of Evolutionary Computation (2019.09)(papers/what_is_important_in_ResourceAllocation.pdf)</li>
 </ol>
 <hr />
 </div>
@@ -390,6 +383,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
