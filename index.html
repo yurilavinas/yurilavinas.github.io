@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
 
-<title>Yuri Lavinas’ Research Page</title>
+<title>Research Page</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -235,6 +234,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -278,10 +278,10 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="profile.html">Profile</a>
+  <a href="profile.html">Research Projects</a>
 </li>
 <li>
-  <a href="research.html">Research</a>
+  <a href="Research.html">Publications</a>
 </li>
 <li>
   <a href="https://yclavinas.github.io/blog">Blog</a>
@@ -289,7 +289,7 @@ $(document).ready(function () {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="mailto:yclavinas@gmail.com">
+  <a href="mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp">
     <span class="fa fa-envelope"></span>
      
   </a>
@@ -301,7 +301,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li>
-  <a href="https://twitter.com/yurilavinas">
+  <a href="https://twitter.com/yclavinas">
     <span class="fa fa-twitter"></span>
      
   </a>
@@ -315,14 +315,14 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Yuri Lavinas’ Research Page</h1>
+<h1 class="title toc-ignore">Research Page</h1>
 
 </div>
 
 
-<p>Welcome! )</p>
 <div class="column-left">
-<p>Currently, I’m a master student, second year, at the University of Tsukuba. I am very excited about any topic related to Artificial Intelligence, Evolutionary Computation, neuro-evolution for games and Data visualization. I’m exploring MOEA/D and Genetic Algorithms for some time My master research topic include refining Resource Allocation on the fly on MOEA/D and Parameter Analysis.</p>
+<h1 id="about-me">About me</h1>
+<p>Currently, I’m a PhD student, first year, at the University of Tsukuba. I am very excited about any topic related to Artificial Intelligence, Evolutionary Computation, neuro-evolution and Artificial Life. My master research topic include refining Resource Allocation on the fly on MOEA/D and Parameter Analysis, which I am currently expading by analysing a component-wise approach for Resource Allocation in MOEA/D. In parallel</p>
 </div>
 <div class="column-right">
 <p><img src="imgs/myself.jpg" /></p>
@@ -331,6 +331,28 @@ $(document).ready(function () {
 <li>Check my <a href="https://yclavinas.github.io/webpage/research.html">Publication List</a></li>
 <li>You can find my contact information at the top of the page.</li>
 </ul>
+<div id="summary-of-research-projects" class="section level2">
+<h2>Summary of Research Projects</h2>
+<div id="moead-and-resource-allocation" class="section level3">
+<h3>MOEA/D and Resource Allocation</h3>
+<p>The Multi-Objective Evolutionary Algorithm Based on Decomposition (MOEA/D) generally is considered an effective algorithm for solving MOPs. The key idea of the MOEA/D is to decompose the multiple objectives into a large number of single-objective subproblems, and then solving these subproblems in by a population-based evolutionary approach. It has since become clear that focusing computational effort on certain subsets of these subproblems can substantially improve the performance of MOEA/D, for which, Resource Allocation techniques are used for consistently improve the performance of MOEA/D.</p>
+<ol style="list-style-type: decimal">
+<li>What should be the criteria for allocating more computational effort on one problem or another? Convergence? Diversity? Robustness?</li>
+<li>What are the components of MOEA/D that show better synergy with the Resource Allocation techniques? Decomposition techniques? Number of sub-problems?</li>
+</ol>
+</div>
+<div id="human-computer-collaboration-for-the-generation-of-soccer-strategies-using-multi-agent-simulations" class="section level3">
+<h3>Human-Computer Collaboration for the Generation of Soccer Strategies using Multi-Agent Simulations</h3>
+<p>How close are football (soccer) video games similar to real life football matches? What real games can learn from video games? What video games can learn from real games? Which aspects do they share and which they do not? Our group is focusing on answering these questions, by comparing video games matches with data from real matches in Brazil.</p>
+<p>Ongoing work refers to deepening our understanding regarding the different simulation variations, aiming to address the following research questions:</p>
+<ol style="list-style-type: decimal">
+<li>How to “calibrate” simulated matches in order to properly handle sampling issues and interruptions?</li>
+<li>How do different simulations differ from each other?</li>
+<li>Which kinds of simulated matches are more similar to professional matches?</li>
+<li>Which kinds of simulated matches better encode intrinsic tactical relationships (coordination) between teams?</li>
+</ol>
+</div>
+</div>
 
 
 

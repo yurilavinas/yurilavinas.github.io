@@ -5,21 +5,54 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Profile"
+    - text: "Research Projects"
       href: profile.html
-    - text: "Research"
-      href: research.html
+    - text: "Publications"
+      href: Research.html
     - text: "Blog"
       href: https://yclavinas.github.io/blog
   right:
     - icon: fa-envelope
-      href: mailto:yclavinas@gmail.com
+      href: mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp
     - icon: fa-google
       href: https://scholar.google.co.jp/citations?user=-hdeQYcAAAAJ&hl=en
     - icon: fa-twitter
-      href: https://twitter.com/yurilavinas
+      href: https://twitter.com/yclavinas
 
 output:
   html_document:
     highlight: textmate
     css: style.css
+    
+author:
+  name   : "Yuri Lavinas"
+  avatar : "imgs/myself.jpg"
+  bio    : "Yuri Lavinas' Research Page"
+  links:
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/_yclavinas"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/yclavinas"
+    - label: "Google Scholar"
+      icon: "fas fa-fw fa-link"
+      url: "https://scholar.google.com/citations?user=-hdeQYcAAAAJ&hl=en&oi=ao"
+    - label: "CV Lattes [PT]"
+      icon: "fas fa-fw fa-link"
+      url: "http://lattes.cnpq.br/1380714019237028"
+
+footer:
+  links:
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/_yclavinas"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/yclavinas"
+    - label: "Google Scholar"
+      icon: "fas fa-fw fa-link"
+      url: "https://scholar.google.com/citations?user=-hdeQYcAAAAJ&hl=en&oi=ao"
+    - label: "CV Lattes [PT]"
+      icon: "fas fa-fw fa-link"
+      url: "http://lattes.cnpq.br/1380714019237028"

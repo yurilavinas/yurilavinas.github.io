@@ -5,8 +5,10 @@ utils
 grDevices
 graphics
 stats
-distill
 rmarkdown
 knitr
 beepr
 dplyr
+usethis
+devtools
+ChocoLattes

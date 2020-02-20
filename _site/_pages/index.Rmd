@@ -1,0 +1,10 @@
+---
+  #title: "Yuri Lavinas' Research Page"
+  #site: distill::distill_website
+  #listing: posts
+  layout: home
+  author_profile: true
+---
+  
+
+
