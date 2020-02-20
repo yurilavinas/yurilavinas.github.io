@@ -8,7 +8,7 @@ navbar:
     - text: "Home"
       href: index.html
     - text: "Research Projects"
-      href: profile.html
+      href: reseach_projects.html
     - text: "Publications"
       href: Research.html
     - text: "Blog"

@@ -11,7 +11,7 @@
 
 
 
-<title>Research Page</title>
+<title>Current Projects</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -315,43 +315,70 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Research Page</h1>
+<h1 class="title toc-ignore">Current Projects</h1>
 
 </div>
 
 
-<div class="column-left">
-<h1 id="about-me">About me</h1>
-<p>Currently, I’m a PhD student, first year, at the University of Tsukuba. I am very excited about any topic related to Artificial Intelligence, Evolutionary Computation, neuro-evolution and Artificial Life. My master research topic include refining Resource Allocation on the fly on MOEA/D and Parameter Analysis, which I am currently expading by analysing a component-wise approach for Resource Allocation in MOEA/D. In parallel</p>
+<div id="moead-and-resource-allocation" class="section level1">
+<h1>MOEA/D and Resource Allocation</h1>
+<div>
+<p>Multi objective optimization algorithms (MOP solvers) are hard problems, since finding the best solutions for multi-objective problems can be very computationally expensive. One common approach that MOP solvers use when trying to solve MOP is to decompose the MOP into many subproblems. In general, those MOP solvers give the same computational effort to them all. This has some drawbacks: (1) Some subproblems are harder than others, thus the MOP solver requires more computational effort to find better solutions; (2) The MOP solvers might waste computational effort improving solutions that require much effort to improve.</p>
+<p>To minimize the effect of these drawbacks, I focus my research on: 1) minimizing computational effort on multi-objective optimization algorithms and 2) improving the performance of multi objective optimization algorithms (MOP solvers) by making them adapt to the characteristics of the problems.</p>
+<div class="figure">
+<img src="imgs/boxplot_hv_dtlz7.png" title="Logo Title Text 1" alt="MOEA/D benefits from updating a sub-set of solutions with Resource Allocation (RA)." />
+<p class="caption">MOEA/D benefits from updating a sub-set of solutions with Resource Allocation (RA).</p>
 </div>
-<div class="column-right">
-<p><img src="imgs/myself.jpg" /></p>
+<p>I studied methods to guide the distribution of computational effort adaptatively in a based-on information the features of the MOP, using priority functions. I proposed different priority functions that allow MOEA/D to explore better the search space, thus MOEA/D can find different and better solutions more efficiently. I observed that MOEA/D improves its performance when only a subset of the solution set is updated on each iteration.</p>
+<p><img src="imgs/norm_uf7.png" alt="Resource allocation on the UF7 function. The horizontal axis indicates the subproblems, while the vertical axis indicate the number of updates accumulated over the optimization. Higher values on the vertical axis indicate higher priority for that subproblem. The horizontal red line indicates the default number of updates (with no Resource Allocation)." /> <!-- {#id .class width=100% height=100%} --></p>
+<p>I am studying in details what are the reasons for the improvement in performance in MOEA/D with priority functions to specify a theoretical justification for the efficacy of MOEA/D with priority functions, careful examining MOEA/D relates to important issues, such as the ability to find solutions closer to the optima and the ability to find different near-optimal solution. To improve our understand of MOEA/D I am studying which components interact well with priority functions to provide a recommendation of MOEA/D component configuration for the community. This will be achieved by a comprehensive and systematic anytime analysis conducted on the combined effect of components, MOEA/D and priority functions.</p>
+<p><img src="imgs/DTLZ6hv_evolution.png" alt="Anytime HV (higher is better) performance of MOEA/D-PS for different values of ps on DTL6. MOEA/D-PS defines an expected amount of solutions updated at each iteration, regulated by acontrol parameter, ps" /> <!-- </div> --></p>
+<!-- <div class="column-right"> -->
 </div>
-<ul>
-<li>Check my <a href="https://yclavinas.github.io/webpage/research.html">Publication List</a></li>
-<li>You can find my contact information at the top of the page.</li>
-</ul>
-<div id="summary-of-research-projects" class="section level2">
-<h2>Summary of Research Projects</h2>
-<div id="moead-and-resource-allocation" class="section level3">
-<h3>MOEA/D and Resource Allocation</h3>
-<p>The Multi-Objective Evolutionary Algorithm Based on Decomposition (MOEA/D) generally is considered an effective algorithm for solving MOPs. The key idea of the MOEA/D is to decompose the multiple objectives into a large number of single-objective subproblems, and then solving these subproblems in by a population-based evolutionary approach. It has since become clear that focusing computational effort on certain subsets of these subproblems can substantially improve the performance of MOEA/D, for which, Resource Allocation techniques are used for consistently improve the performance of MOEA/D.</p>
-<ol style="list-style-type: decimal">
-<li>What should be the criteria for allocating more computational effort on one problem or another? Convergence? Diversity? Robustness?</li>
-<li>What are the components of MOEA/D that show better synergy with the Resource Allocation techniques? Decomposition techniques? Number of sub-problems?</li>
-</ol>
 </div>
-<div id="human-computer-collaboration-for-the-generation-of-soccer-strategies-using-multi-agent-simulations" class="section level3">
-<h3>Human-Computer Collaboration for the Generation of Soccer Strategies using Multi-Agent Simulations</h3>
-<p>How close are football (soccer) video games similar to real life football matches? What real games can learn from video games? What video games can learn from real games? Which aspects do they share and which they do not? Our group is focusing on answering these questions, by comparing video games matches with data from real matches in Brazil.</p>
+<div id="human-computer-collaboration-for-the-generation-of-soccer-strategies-using-multi-agentsimulations" class="section level1">
+<h1>Human-Computer Collaboration for the Generation of Soccer Strategies using Multi-AgentSimulations</h1>
+<div>
+<p>This project proposes the simulation of football players and games, using Multi-AgentSystem technologies and based on the graph models developed. The Multi-Agent Simulation will allow the visualization, validation, and explorationof the football player models, leading to a greater understanding of the relationship between themodels and the real world data, and extrapolations of many different scenarios using the rulesderived from the models.</p>
+<div class="figure">
+<img src="imgs/picture_full_game_main.png" alt="Example of a full simulated game on the Google Research Football environment, a open-source soccer simulator, from GRF Game Server." />
+<p class="caption">Example of a full simulated game on the Google Research Football environment, a open-source soccer simulator, from GRF Game Server.</p>
+</div>
+<p>The resulting simulator will also be used to help coach and educators. The simulator will assistthem with planning and decision making, by giving these professionals the tools to simulate fictionalscenarios in the simulation and observer how these scenarios play out. The simulator will also allowthese professionals to obtain easily understandable outputs from the model in the form of videosof games between simulated agents, leading to an interactive process of trial, error and discovery.</p>
+<div class="figure">
+<img src="imgs/2D_representation_video.png" alt="Example of a real output of a game where 1 player is controlled by a artificial NeuralNetwork using the Proximal Policy Optimization" />
+<p class="caption">Example of a real output of a game where 1 player is controlled by a artificial NeuralNetwork using the Proximal Policy Optimization<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+</div>
+<p>Preliminary results are very promising and achieved results are expected to be of interest for bothsimulator developers and those interested in improving team and player performance based onsimulated data.</p>
+<div class="figure">
+<img src="imgs/spread-NN-full.png" alt="spread time series for team A and B in a match style where one player is controlled by a artificial Neural Network using the Proximal Policy Optimization." />
+<p class="caption">spread time series for team A and B in a match style where one player is controlled by a artificial Neural Network using the Proximal Policy Optimization.</p>
+</div>
 <p>Ongoing work refers to deepening our understanding regarding the different simulation variations, aiming to address the following research questions:</p>
 <ol style="list-style-type: decimal">
 <li>How to “calibrate” simulated matches in order to properly handle sampling issues and interruptions?</li>
 <li>How do different simulations differ from each other?</li>
 <li>Which kinds of simulated matches are more similar to professional matches?</li>
-<li>Which kinds of simulated matches better encode intrinsic tactical relationships (coordination) between teams?</li>
+<li>Which kinds of simulated matches better encode intrinsic tactical relationships (coordination) between teams? <!-- </div> --></li>
 </ol>
+<!-- <div class="column-right"> -->
 </div>
+</div>
+<div id="collaboration" class="section level1">
+<h1>Collaboration</h1>
+<p>Current active collaborations:</p>
+<ol style="list-style-type: decimal">
+<li>With the <strong>University of Brasilia</strong>, with Prof. Marcelo Ladeira.</li>
+<li>With the <strong>Univeristy of Lille</strong>, with Geoffrey Pruvost together with Profs Bilel Derbel and Arnaud Liefooghe.</li>
+<li>With the <strong>Univeristy of Norwegian University of Science and Technology</strong>, with Prof. Ricardo Torres, <strong>Londrina State University</strong>, with Prof. Felipe Moura and <strong>Univeristy of Campinas</strong>, with Prof. Sergio Moura.</li>
+</ol>
+<p>and I’m looking foward to more!</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>John Schulman, Filip Wolski, Prafulla Dhariwal, Alec Radford, and Oleg Klimov. Proximalpolicy optimization algorithms.arXiv preprint arXiv:1707.06347, 2017.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
 </div>
 
 
