@@ -10,7 +10,7 @@ navbar:
     - text: "Research Projects"
       href: reseach_projects.html
     - text: "Publications"
-      href: Research.html
+      href: publications.html
     - text: "Blog"
       href: https://yclavinas.github.io/blog
   right:
