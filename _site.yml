@@ -1,7 +1,7 @@
 name: "Yuri Lavinas' Research Page"
 output_dir: "."
 base_url: https://yclavinas.github.io
-repository_url: https://github.com/yclavinas/webpage/
+google_analytics: "UA-158808753-1"
 navbar:
   title: "Yuri Lavinas' Research Page"
   left:
