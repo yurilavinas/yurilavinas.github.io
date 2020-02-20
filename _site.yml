@@ -11,8 +11,8 @@ navbar:
       href: reseach_projects.html
     - text: "Publications"
       href: publications.html
-    - text: "Blog"
-      href: https://yclavinas.github.io/blog
+    #- text: "Blog"
+    #  href: https://yclavinas.github.io/blog
   right:
     - icon: fa-envelope
       href: mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp

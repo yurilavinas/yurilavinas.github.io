@@ -11,14 +11,12 @@
 
 Currently, I'm a PhD student, first year, at the University of Tsukuba. I am very excited about any topic related to Artificial Intelligence, Evolutionary Computation, neuro-evolution and Artificial Life. My master research topic include refining Resource Allocation on the fly on MOEA/D and Parameter Analysis, which I am currently expading by analysing a component-wise approach for Resource Allocation in MOEA/D. In parallel
 
-</div>
-<div class="column-right">
-![](imgs/myself.jpg)
-</div>
 
 
-- Check my [Publication List](https://yclavinas.github.io/webpage/research.html)
+- Check my [Publication List](https://yclavinas.github.io/publications.html)
 - You can find my contact information at the top of the page.
+
+
 
 ## Summary of Research Projects
 
@@ -39,3 +37,11 @@ Ongoing work refers to deepening our understanding regarding the different simul
 2. How do different simulations differ from each other?
 3. Which kinds of simulated matches are more similar to professional matches?
 4. Which kinds of simulated matches better encode intrinsic tactical relationships (coordination) between teams?
+</div>
+<div class="column-right">
+![](imgs/myself.jpg)
+</div>
+
+</div>
+
+</div>
