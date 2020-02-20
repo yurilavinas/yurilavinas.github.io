@@ -1,5 +1,6 @@
 name: "Yuri Lavinas' Research Page"
 output_dir: "."
+
 navbar:
   title: "Yuri Lavinas' Research Page"
   left:
@@ -23,36 +24,6 @@ output:
   html_document:
     highlight: textmate
     css: style.css
-    
-author:
-  name   : "Yuri Lavinas"
-  avatar : "imgs/myself.jpg"
-  bio    : "Yuri Lavinas' Research Page"
-  links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/_yclavinas"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/yclavinas"
-    - label: "Google Scholar"
-      icon: "fas fa-fw fa-link"
-      url: "https://scholar.google.com/citations?user=-hdeQYcAAAAJ&hl=en&oi=ao"
-    - label: "CV Lattes [PT]"
-      icon: "fas fa-fw fa-link"
-      url: "http://lattes.cnpq.br/1380714019237028"
 
-footer:
-  links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/_yclavinas"
-    - label: "GitHub"
-      icon: "fab fa-fw fa-github"
-      url: "https://github.com/yclavinas"
-    - label: "Google Scholar"
-      icon: "fas fa-fw fa-link"
-      url: "https://scholar.google.com/citations?user=-hdeQYcAAAAJ&hl=en&oi=ao"
-    - label: "CV Lattes [PT]"
-      icon: "fas fa-fw fa-link"
-      url: "http://lattes.cnpq.br/1380714019237028"
+base_url: https://yclavinas.github.io/
+repository_url: https://github.com/yclavinas/webpage/
