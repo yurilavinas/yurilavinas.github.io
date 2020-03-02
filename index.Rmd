@@ -5,7 +5,7 @@
  
 ---
  
-<div class="column-left">
+<div class="column-right">
 
 # About me
 
@@ -15,10 +15,12 @@ Currently, I'm a PhD student, first year, at the University of Tsukuba. I am ver
 
 - Check my [Publication List](https://yclavinas.github.io/publications.html)
 Send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp). You can find my contact information at the top of the page.
-
+</div>
 
 
 ## Summary of Research Projects
+
+Here I give a summary of my research projects. For more information check my [Research Projects page](https://yclavinas.github.io/reseach_projects.html) or send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp).
 
 ### MOEA/D and Resource Allocation
 
@@ -37,11 +39,5 @@ Ongoing work refers to deepening our understanding regarding the different simul
 2. How do different simulations differ from each other?
 3. Which kinds of simulated matches are more similar to professional matches?
 4. Which kinds of simulated matches better encode intrinsic tactical relationships (coordination) between teams?
-</div>
-<div class="column-right">
-![](imgs/myself.jpg)
-</div>
 
-</div>
 
-</div>
