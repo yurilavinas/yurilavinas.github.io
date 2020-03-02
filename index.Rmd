@@ -1,11 +1,17 @@
 ---
- title: "Research Page"
+ title: "Yuri Lavinas"
  site: distill::distill_website
  listing: posts
  
 ---
+
+<div style="width: 30%; float: left;">
+<br/>
+<br/>
+![](imgs/myself.jpg)
+</div>
  
-<div class="column-right">
+<div style="width: 65%; float: right;">
 
 # About me
 
@@ -15,7 +21,8 @@ Currently, I'm a PhD student, first year, at the University of Tsukuba. I am ver
 
 - Check my [Publication List](https://yclavinas.github.io/publications.html)
 Send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp). You can find my contact information at the top of the page.
-</div>
+
+
 
 ## Summary of Research Projects
 
@@ -38,3 +45,5 @@ Ongoing work refers to deepening our understanding regarding the different simul
 2. How do different simulations differ from each other?
 3. Which kinds of simulated matches are more similar to professional matches?
 4. Which kinds of simulated matches better encode intrinsic tactical relationships (coordination) between teams?
+
+</div>
