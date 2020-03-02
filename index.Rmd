@@ -17,7 +17,6 @@ Currently, I'm a PhD student, first year, at the University of Tsukuba. I am ver
 Send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp). You can find my contact information at the top of the page.
 </div>
 
-
 ## Summary of Research Projects
 
 Here I give a summary of my research projects. For more information check my [Research Projects page](https://yclavinas.github.io/reseach_projects.html) or send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp).
@@ -41,3 +40,9 @@ Ongoing work refers to deepening our understanding regarding the different simul
 4. Which kinds of simulated matches better encode intrinsic tactical relationships (coordination) between teams?
 
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 40256e90d2065eeb9ecc8d7ca5af015e7976d289
