@@ -18,6 +18,12 @@ Send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp). You can find m
 
 
 
+
+</div>
+<div class="column-left">
+![](imgs/myself.jpg)
+</div>
+
 ## Summary of Research Projects
 
 ### MOEA/D and Resource Allocation
@@ -37,7 +43,3 @@ Ongoing work refers to deepening our understanding regarding the different simul
 2. How do different simulations differ from each other?
 3. Which kinds of simulated matches are more similar to professional matches?
 4. Which kinds of simulated matches better encode intrinsic tactical relationships (coordination) between teams?
-</div>
-<div class="column-left">
-![](imgs/myself.jpg)
-</div>
