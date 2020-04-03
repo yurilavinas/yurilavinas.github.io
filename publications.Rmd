@@ -9,6 +9,8 @@ Publications are listed in cronological order, and the horizontal line separates
 # 2020
 1. Yuri Lavinas, Claus Aranha, Marcelo Ladeira, and Felipe Campelo. "MOEA/D with Random Partial Update Strategy." In: Proceedings of the IEEE congress on evolutionary computation, to appear. [Preprint.](https://arxiv.org/abs/2001.06980)
 
+-----
+
 # 2019
 1. Yuri Lavinas, Claus Aranha, Testuya Sakurai, "Using Diversity as a Priority Function for Resource Allocation on MOEA/D", In Genetic and Evolutionary Computation Conference Companion (GECCO '19 Companion), https://doi.org/10.1145/3319619.3321948, 2019.7
 
