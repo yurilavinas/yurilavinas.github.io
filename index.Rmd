@@ -8,7 +8,7 @@
 <div style="width: 30%; float: left;">
 <br/>
 <br/>
-![](imgs/myself.jpg)
+![](imgs/myself3.png)
 </div>
  
 <div style="width: 65%; float: right;">
