@@ -9,7 +9,7 @@ Publications are listed in chronological order, and the horizontal line separate
 # 2020
 1. **Yuri Lavinas**, C. Aranha, M. Ladeira and F. Campelo, "MOEA/D with Random Partial Update Strategy," 2020 IEEE Congress on Evolutionary Computation (CEC), Glasgow, United Kingdom, 2020, pp. 1-8, doi: 10.1109/CEC48606.2020.9185527. [Preprint.](https://arxiv.org/abs/2001.06980)
 
-2. Nicolò Vago, **Yuri Lavinas**, Daniele Rodrigues, Felipe Moura,Sergio Cunha, Claus Aranha, Ricardo Torres "INTEGRA: an open tool to support graph-based change pattern analyses in simulated football matches." In: 34th INTERNATIONAL ECMS Conference on Modelling and Simulation, to appear.
+2. Nicolo Oreste Pinciroli Vago, **Yuri Lavinas**, Daniele Rodrigues, Felipe Moura, Sergio Cunha, Claus Aranha, and Ricardo da Silva Torres, "INTEGRA: An Open Tool To Support Graph-Based Change Pattern Analyses In Simulated Football Matches", 34th International ECMS Conference on Modeling and Simulation, 2020.06 DOI: 10.7148/2020-0228
 
 -----
 
