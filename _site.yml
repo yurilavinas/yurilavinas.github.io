@@ -19,7 +19,7 @@ navbar:
     - icon: fa-google
       href: https://scholar.google.co.jp/citations?user=-hdeQYcAAAAJ&hl=en
     - icon: fa-twitter
-      href: https://twitter.com/yclavinas
+      href: https://twitter.com/yurilavinas
   html_document:
     highlight: textmate
     css: style.css
