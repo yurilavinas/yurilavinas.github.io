@@ -5,17 +5,7 @@
  
 ---
 
-<div style="width: 30%; float: left;">
-<br/>
-<br/>
-![](imgs/myself3.png)
-<H4> "Do not promote what you can't explain, simplify, and prove early." <br>
--- Louis Pasteur 
-
-</div>
- 
-<div style="width: 65%; float: right;">
-
+<div style="width: 65%; float: left;">
 # About me
 
 Currently, I'm a Ph.D. student, first year, at the University of Tsukuba. I am very excited about any topic related to Artificial Intelligence, Evolutionary Computation, neuro-evolution, and Artificial Life. My master's research topic includes refining Resource Allocation on the fly on MOEA/D and Parameter Analysis, which I am currently expanding by analyzing a component-wise approach for Resource Allocation in MOEA/D in parallel.
@@ -48,5 +38,18 @@ Ongoing work refers to deepening our understanding regarding the different simul
 2. How do different simulations differ from each other?
 3. Which kinds of simulated games are more similar to professional games?
 4. Which types of simulated games better encode intrinsic tactical relationships (coordination) between teams?
+
+</div>
+ 
+
+
+<div style="width: 30%; float: right;">
+
+<br/>
+<br/>
+![](imgs/myself3.png)
+<H4> "Do not promote what you can't explain, simplify, and prove early." <br>
+-- Louis Pasteur 
+
 
 </div>
