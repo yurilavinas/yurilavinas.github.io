@@ -4,6 +4,3 @@ description: |
   Some additional details about the blog
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
