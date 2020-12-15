@@ -1,10 +1,12 @@
 ---
-title: "About me"
+# title: "About me"
 description: |
   Some additional details about the blog
 ---
 
-<!-- TODO: Expand this page in onder to give more interesting information. -->
+<br>
+
+# About me
 
 ### BIO {.tabset .tabset-pills}
 
