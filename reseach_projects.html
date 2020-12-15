@@ -293,6 +293,9 @@ $(document).ready(function () {
 <li>
   <a href="publications.html">Publications</a>
 </li>
+<li>
+  <a href="About.html">About me</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -352,31 +355,42 @@ $(document).ready(function () {
 </ul>
 <div id="moead-and-partial-update-of-the-population" class="section level4">
 <h4>MOEA/D and Partial Update of the Population</h4>
-<p>Multi-objective optimization algorithms (MOP solvers) are hard problems, since finding the best solutions for multi-objective problems can be very computationally expensive. One common approach that MOP solvers use when trying to solve MOP is to decompose the MOP into many subproblems. In general, those MOP solvers give the same computational effort to them all. This has some drawbacks: (1) Some subproblems are harder than others; thus, the MOP solver requires more computational effort to find better solutions; (2) The MOP solvers might waste computational effort improving solutions that require much effort to improve.</p>
-<p>To minimize the effect of these drawbacks, I focus my research on 1) minimizing computational effort on multi-objective optimization algorithms and 2) improving the performance of multi-objective optimization algorithms (MOP solvers) by making them adapt to the characteristics of the problems.</p>
+<p>Multi-objective optimization algorithms (MOP solvers) are hard problems, since finding the best solutions for multi-objective problems can be very computationally expensive. One common approach that MOP solvers use when trying to solve MOP is to decompose the MOP into many subproblems. In general, those MOP solvers give the same computational effort to them all. This has some drawbacks:</p>
+<ol style="list-style-type: decimal">
+<li>Some subproblems are harder than others; thus, the MOP solver requires more computational effort to find better solutions;</li>
+<li>The MOP solvers might waste computational effort improving solutions that require much effort to improve.</li>
+</ol>
+<p>To minimize the effect of these drawbacks, I focus my research on</p>
+<ul>
+<li>minimizing computational effort on multi-objective optimization algorithms and</li>
+<li>improving the performance of multi-objective optimization algorithms (MOP solvers) by making them adapt to the characteristics of the problems.</li>
+</ul>
 <div class="figure">
-<img src="imgs/boxplot_hv_dtlz7.png" title="Logo Title Text 1" alt="MOEA/D benefits from updating a sub-set of solutions with Resource Allocation (RA)." />
-<p class="caption">MOEA/D benefits from updating a sub-set of solutions with Resource Allocation (RA).</p>
+<img src="imgs/boxplot_hv_dtlz7.png" title="Logo Title Text 1" alt="Fig. 1: Hypevolume values (Higher is better) of MOEA/D with different resource allocation techniques. Limiting the computational effort to 10% of the standard amount each iteration improves MOEA/D. Results are superior than those from MOEA/D (100%) and MOEA/D with R.I. (the most used metric for resource allocation.)" />
+<p class="caption"><strong><em>Fig. 1: Hypevolume values (Higher is better) of MOEA/D with different resource allocation techniques. Limiting the computational effort to 10% of the standard amount each iteration improves MOEA/D. Results are superior than those from MOEA/D (100%) and MOEA/D with R.I. (the most used metric for resource allocation.)</em></strong></p>
 </div>
 <p>I studied methods to guide the distribution of computational effort adaptatively in based-on information on the features of the MOP, using priority functions. I proposed different priority functions that allow MOEA/D to explore better the search space; thus, MOEA/D can find different and better solutions more efficiently. I observed that MOEA/D improves its performance when only a subset of the solution set is updated on each iteration.</p>
-<p><img src="imgs/norm_uf7.png" alt="Resource allocation on the UF7 function. The horizontal axis indicates the subproblems, while the vertical axis indicates the number of updates accumulated over the optimization. Higher values on the vertical axis indicate higher priority for that subproblem. The horizontal red line indicates the default number of updates (with no Resource Allocation)." /> <!-- {#id .class width=100% height=100%} --></p>
+<div class="figure">
+<img src="imgs/norm_uf7.png" alt="Fig. 2: Resource allocation on the UF7 function. The horizontal axis indicates the subproblems, while the vertical axis indicates the number of updates accumulated over the optimization. Higher values on the vertical axis indicate higher priority for that subproblem. The horizontal red line indicates the default number of updates (with no Resource Allocation)." />
+<p class="caption"><strong><em>Fig. 2: Resource allocation on the UF7 function. The horizontal axis indicates the subproblems, while the vertical axis indicates the number of updates accumulated over the optimization. Higher values on the vertical axis indicate higher priority for that subproblem. The horizontal red line indicates the default number of updates (with no Resource Allocation).</em></strong></p>
+</div>
 <p>I am studying in details what are the reasons for the improvement in performance in MOEA/D with priority functions to specify a theoretical justification for the efficacy of MOEA/D with priority functions, careful examining MOEA/D relates to important issues, such as the ability to find solutions closer to the optima and the ability to find different near-optimal solutions. To improve our understanding of MOEA/D I am studying which components interact well with priority functions to provide a recommendation of MOEA/D component configuration for the community. This will be achieved by a comprehensive and systematic anytime analysis conducted on the combined effect of components, MOEA/D, and priority functions.</p>
 <div class="figure">
-<img src="imgs/DTLZ6hv_evolution.png" alt="Anytime HV (higher is better) performance of MOEA/D-PS for different values of ps on DTL6. MOEA/D-PS defines an expected amount of solutions updated at each iteration, regulated by a control parameter, ps." />
-<p class="caption">Anytime HV (higher is better) performance of MOEA/D-PS for different values of <strong>ps</strong> on DTL6. MOEA/D-PS defines an expected amount of solutions updated at each iteration, regulated by a control parameter, <strong>ps</strong>.</p>
+<img src="imgs/DTLZ6hv_evolution.png" alt="Fig. 3: Anytime HV (higher is better) performance of MOEA/D-PS for different values of ps on DTLZ6. MOEA/D-PS defines an expected amount of solutions updated at each iteration, regulated by a control parameter, ps. Using 10% of the standard computational effort (number of functions evaluations) is better than using the standard computational effort (100%)." />
+<p class="caption"><em><strong>Fig. 3: Anytime HV (higher is better) performance of MOEA/D-PS for different values of </strong>ps<strong> on DTLZ6. MOEA/D-PS defines an expected amount of solutions updated at each iteration, regulated by a control parameter, </strong>ps<strong>. Using 10% of the standard computational effort (number of functions evaluations) is better than using the standard computational effort (100%).</strong></em></p>
 </div>
-<p>Future works also include finding ways to improve the performance of MOEA/D on simulated real-world problems using MOEA/D variants that use resource allocation (RA)  since they show promising results in MOP without constraints.</p>
+<p>Future works also include finding ways to improve the performance of MOEA/D on simulated real-world problems using MOEA/D variants that use resource allocation since they show promising results in MOP without constraints.</p>
 </div>
 <div id="exploring-constraint-handling-techniques-in-real-world-problems" class="section level4">
 <h4>Exploring Constraint Handling Techniques in Real-world Problems</h4>
 <p>This work aims to investigate and explore the effects and behavior of constraint handling techniques (CHTs) in MOEA/D when solving real-world MOPs with a limited budget of evaluations. For that, we compare real-world analytic MOPs and two simulated MOPs: (1) the problem of selecting landing sites for a lunar exploration robot; and (2) the problem of optimization of car designs. To further enhance the performance of MOEA/D, we propose an efficient CHT that works well with problems that require an exploration of the unfeasible search space.</p>
 <div class="figure">
-<img src="imgs/MAZDA_HV.png" alt="Anytime mean hypervolume (HV, higher is better) performance of the different CHT in MOEA/D in the MAZDA car problem. Our newly proposed Constraint Handling Technique, the Three Stage CHT, achieves the best values at the end of the search execution." />
-<p class="caption">Anytime mean hypervolume (HV, higher is better) performance of the different CHT in MOEA/D in the MAZDA car problem. Our newly proposed Constraint Handling Technique, the Three Stage CHT, achieves the best values at the end of the search execution.</p>
+<img src="imgs/MAZDA_HV.png" alt="Fig. 1: Anytime mean hypervolume (HV, higher is better) performance of the different CHT in MOEA/D in the MAZDA car problem. Our newly proposed Constraint Handling Technique, the Three Stage CHT, achieves the best values at the end of the search execution." />
+<p class="caption"><strong><em>Fig. 1: Anytime mean hypervolume (HV, higher is better) performance of the different CHT in MOEA/D in the MAZDA car problem. Our newly proposed Constraint Handling Technique, the Three Stage CHT, achieves the best values at the end of the search execution.</em></strong></p>
 </div>
 <div class="figure">
-<img src="imgs/MOON_HV.jpg" alt="Anytime mean HV (higher is better) performance of the different CHT in MOEA/D in the moon landing problem. The Three Stage CHT has the competitive performance with most of the other CHT, but is overcomed by the Fast growth Dynamic CHT." />
-<p class="caption">Anytime mean HV (higher is better) performance of the different CHT in MOEA/D in the moon landing problem. The Three Stage CHT has the competitive performance with most of the other CHT, but is overcomed by the Fast growth Dynamic CHT.</p>
+<img src="imgs/MOON_HV.jpg" alt="Fig. 2: Anytime mean HV (higher is better) performance of the different CHT in MOEA/D in the moon landing problem. The Three Stage CHT has the competitive performance with most of the other CHT, but is overcomed by the Fast growth Dynamic CHT." />
+<p class="caption"><strong><em>Fig. 2: Anytime mean HV (higher is better) performance of the different CHT in MOEA/D in the moon landing problem. The Three Stage CHT has the competitive performance with most of the other CHT, but is overcomed by the Fast growth Dynamic CHT.</em></strong></p>
 </div>
 <p>It is noticeable that using CHTs can be responsible for increments in hypervolume values compared to traditional MOEA/D without penalty. It comes with no surprise that while a CHT may be a reasonable choice for a given multi-objective problem (MOPs), this CHT might still perform poorly in other MOPs, with different characteristics.</p>
 </div>
@@ -384,18 +398,18 @@ $(document).ready(function () {
 <h4>Human-Computer Collaboration for the Generation of Soccer Strategies</h4>
 <p>This project proposes the simulation of football players and games, using Multi-AgentSystem technologies and based on the graph models developed. The Multi-Agent Simulation will allow the visualization, validation, and exploration of the football player models, leading to a greater understanding of the relationship between the models and the real-world data and extrapolations of many different scenarios using the rules derived from the models.</p>
 <div class="figure">
-<img src="imgs/picture_full_game_main.png" alt="Example of a full simulated game on the Google Research Football environment, a open-source soccer simulator, from GRF Game Server." />
-<p class="caption">Example of a full simulated game on the Google Research Football environment, a open-source soccer simulator, from GRF Game Server.</p>
+<img src="imgs/picture_full_game_main.png" alt="Fig. 1: Example of a full simulated game on the Google Research Football environment, a open-source soccer simulator, from GRF Game Server." />
+<p class="caption"><strong><em>Fig. 1: Example of a full simulated game on the Google Research Football environment, a open-source soccer simulator, from GRF Game Server.</em></strong></p>
 </div>
 <p>The resulting simulator will also be used to help coaches and educators. The simulator will assist them with planning and decision making by giving these professionals the tools to simulate fictional scenarios in the simulation and observe how these scenarios play out. The simulator will also allow these professionals to obtain easily understandable outputs from the model in the form of video games between simulated agents, leading to an interactive process of trial, error, and discovery.</p>
 <div class="figure">
-<img src="imgs/2D_representation_video.png" alt="Example of real output of a game where one player is controlled by an Artificial NeuralNetwork using the Proximal Policy Optimization" />
-<p class="caption">Example of real output of a game where one player is controlled by an Artificial NeuralNetwork using the Proximal Policy Optimization</p>
+<img src="imgs/2D_representation_video.png" alt="Fig. 2: Example of real output of a game where one player is controlled by an Artificial NeuralNetwork using the Proximal Policy Optimization." />
+<p class="caption"><strong><em>Fig. 2: Example of real output of a game where one player is controlled by an Artificial NeuralNetwork using the Proximal Policy Optimization.</em></strong></p>
 </div>
 <p>Preliminary results are very promising and achieved results are expected to be of interest for both simulator developers and those interested in improving team and player performance based on simulated data.</p>
 <div class="figure">
-<img src="imgs/spread-NN-full.png" alt="Spread time series for teams A and B in a game style where one player is controlled by an Artificial Neural Network using the Proximal Policy Optimization." />
-<p class="caption">Spread time series for teams A and B in a game style where one player is controlled by an Artificial Neural Network using the Proximal Policy Optimization.</p>
+<img src="imgs/spread-NN-full.png" alt="Fig. 3: Spread time series for teams A and B in a game style where one player is controlled by an Artificial Neural Network using the Proximal Policy Optimization." />
+<p class="caption"><strong><em>Fig. 3: Spread time series for teams A and B in a game style where one player is controlled by an Artificial Neural Network using the Proximal Policy Optimization.</em></strong></p>
 </div>
 <p>Ongoing work refers to deepening our understanding regarding the different simulation variations, aiming to address the following research questions:</p>
 <ol style="list-style-type: decimal">
