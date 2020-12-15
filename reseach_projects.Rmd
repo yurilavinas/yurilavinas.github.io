@@ -1,13 +1,23 @@
 ---
-title: Research Projects & Collaborations 
+title: Collaborations, Network & Research Projects
 ---
 
-## 1. Summary of the projects {.tabset .tabset-pills}
+### 1. Research Collaboration & Network
+
+Research collaboration/network:
+
+1. With **Marcelo Ladeira** and with **Felipe Vaz** (University of Brasilia). 
+2. With **Geoffrey Pruvost**, **Bilel Derbel** and **Arnaud Liefooghe** (University of Lille).
+3. With **Ricardo Torres** (University of Norwegian University of Science and Technology), **Felipe Moura** (Londrina State University), **Sergio Cunha** (University of Campinas).
+4. With **Gabriela Ochoa**, (University of Stirling).
+5. With **Felipe Campelo**, (Aston University).
+
+### 2. Summary of the projects {.tabset .tabset-pills}
 
 - Click on the tabs to switch between projects. 
 - For more information check my [publication list](https://yurilavinas.github.io/publications.html) or send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp).
 
-### MOEA/D and Partial Update of the Population 
+#### MOEA/D and Partial Update of the Population 
 
 Multi-objective optimization algorithms (MOP solvers) are hard problems, since finding the best solutions for multi-objective problems can be very computationally expensive. One common approach that MOP solvers use when trying to solve MOP is to decompose the MOP into many subproblems. In general, those MOP solvers give the same computational effort to them all. This has some drawbacks: (1) Some subproblems are harder than others; thus, the MOP solver requires more computational effort to find better solutions; (2) The MOP solvers might waste computational effort improving solutions that require much effort to improve.
 
@@ -24,7 +34,9 @@ vertical axis indicate higher priority for that subproblem. The horizontal red l
 
 I am studying in details what are the reasons for the improvement in performance in MOEA/D with priority functions to specify a theoretical justification for the efficacy of MOEA/D with priority functions, careful examining MOEA/D relates to important issues, such as the ability to find solutions closer to the optima and the ability to find different near-optimal solutions. To improve our understanding of MOEA/D I am studying which components interact well with priority functions to provide a recommendation of MOEA/D component configuration for the community. This will be achieved by a comprehensive and systematic anytime analysis conducted on the combined effect of components, MOEA/D, and priority functions. 
 
-![Anytime HV (higher is better) performance of MOEA/D-PS for different values of **ps** on DTL6. MOEA/D-PS  defines  an  expected amount of solutions updated at each iteration, regulated by a control  parameter, **ps**](imgs/DTLZ6hv_evolution.png)
+![Anytime HV (higher is better) performance of MOEA/D-PS for different values of **ps** on DTL6. MOEA/D-PS  defines  an  expected amount of solutions updated at each iteration, regulated by a control  parameter, **ps**.](imgs/DTLZ6hv_evolution.png)
+
+Future works also include finding ways to improve the performance of MOEA/D on simulated real-world problems using MOEA/D variants that use resource allocation (RA)  \cite{lavinas2019using,lavinas2019improving,lavinas2020moea} since they show promising results in MOP without constraints.
 
 
 
@@ -39,7 +51,7 @@ This work aims to investigate and explore the effects and behavior of constraint
 
 It is noticeable that using CHTs can be responsible for increments in hypervolume values compared to traditional MOEA/D without penalty. It comes with no surprise that while a CHT may be a reasonable choice for a given multi-objective problem (MOPs), this CHT might still perform poorly in other MOPs, with different characteristics. 
 
-### Human-Computer Collaboration for the Generation of Soccer Strategies
+#### Human-Computer Collaboration for the Generation of Soccer Strategies
 
 
 
@@ -65,11 +77,3 @@ Ongoing work refers to deepening our understanding regarding the different simul
 4. Which kinds of simulated matches better encode intrinsic tactical relationships (coordination) between teams?
 
 
-## 2. Collaborations
-
-Current active collaborations:
-
-1. With the **University of Brasilia**, with Prof. Marcelo Ladeira and with Felipe Vaz. 
-2. With the **University of Lille**, with Geoffrey Pruvost together with Profs Bilel Derbel and Arnaud Liefooghe.
-3. With the **University of Norwegian University of Science and Technology**, with Prof. Ricardo Torres, **Londrina State University**, with Prof. Felipe Moura and **University of Campinas**, with Prof. Sergio Moura, and **Pontifícia Universidade Católica de Campinas **, with Daniele Rodrigues.
-4. With the **University of Stirling**, with Prof. Gabriela Ochoa.
