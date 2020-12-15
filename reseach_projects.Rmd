@@ -4,7 +4,8 @@ title: "Research Projects"
 
 ---
 
-<br>
+My research focus on Evolutionary Computation, neuro-evolution and Artificial Life. 
+That said, until now, most of my publications are limited to Single/Multi Evolutionary Computation.
 
 # Summary of the projects {.tabset .tabset-pills}
 
