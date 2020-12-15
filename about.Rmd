@@ -31,9 +31,7 @@ I am conducting research since I was an undergraduate student, in Brazil at the 
 
 #### Research interests {.tabset .tabset-pills}
 
-My research focus on Multi Objective Evolutionary Computation, neuro-evolution and Artificial Life. 
-
-
+My research interests are Multi Objective Evolutionary Computation, neuro-evolution and Artificial Life. 
 
 #### Research Network
 

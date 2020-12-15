@@ -22,19 +22,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
-
-<style type="text/css">
-  code{white-space: pre-wrap;}
-  span.smallcaps{font-variant: small-caps;}
-  span.underline{text-decoration: underline;}
-  div.column{display: inline-block; vertical-align: top; width: 50%;}
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-  ul.task-list{list-style: none;}
-    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -342,8 +331,8 @@ $(document).ready(function () {
 <h3>BIO</h3>
 <p>I am a PhD student at the University of Tsukuba. I graduated in Computer Science (2016) in the University of Brasilia, Brazil, and I my Master Degree at the University of Tsukuba (2020).</p>
 <p>I am conducting research since I was an undergraduate student, in Brazil at the University of Brasilia. During that time, I was awarded with two research scholarship. During my undergraduate period I had the chance to pursuit a sandwich program financed by the Brazilian government - Science without Borders - to conduct research in Japan for a year. After graduating, I started a master course at the same university. Then, I was granted with the opportunity by MEXT to start a research study in Japan.</p>
-<div id="scolarships" class="section level4 tabset tabset-pills">
-<h4>Scolarships</h4>
+<div id="scholarships" class="section level4 tabset tabset-pills">
+<h4>Scholarships</h4>
 <ol style="list-style-type: decimal">
 <li>Yuri Cossich Lavinas. Awarded research scholarship by CNPq - National Council for Scientific and Technological Development, 2014.08 until 2015.07.</li>
 <li>Yuri Cossich Lavinas. Awarded research scholarship by CAPES - Coordination for the Improvement of Higher Education Personnel, 2014.08 until 2015.08.</li>
@@ -355,7 +344,7 @@ $(document).ready(function () {
 </div>
 <div id="research-interests" class="section level4 tabset tabset-pills">
 <h4>Research interests</h4>
-<p>My research focus on Multi Objective Evolutionary Computation, neuro-evolution and Artificial Life.</p>
+<p>My research interests are Multi Objective Evolutionary Computation, neuro-evolution and Artificial Life.</p>
 </div>
 <div id="research-network" class="section level4">
 <h4>Research Network</h4>
@@ -387,7 +376,7 @@ $(document).ready(function () {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
