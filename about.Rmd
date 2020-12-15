@@ -4,16 +4,45 @@ description: |
   Some additional details about the blog
 ---
 
-### BIO
+<!-- TODO: Expand this page in onder to give more interesting information. -->
 
-I am a PhD student at the University of Tsukuba. I graduated in Computer Science (2016) in the University of Brasilia, Brazil, and I my Master Degree at the University of Tsukuba (2020). My research focus on Multi Objective Evolutionary Computation, neuro-evolution and Artificial Life. 
+### BIO {.tabset .tabset-pills}
 
+I am a PhD student at the University of Tsukuba. I graduated in Computer Science (2016) in the University of Brasilia, Brazil, and I my Master Degree at the University of Tsukuba (2020). 
 
-### Hobbies 
-
-### Research interests
-
-### Scolarships
+I am conducting research since I was an undergraduate student, in Brazil at the University of Brasilia. During that time, I was awarded with two research scholarship. During my undergraduate period I had the chance to pursuit a sandwich program financed by the Brazilian government - Science without Borders - to conduct research in Japan for a year. After graduating, I started a master course at the same university. Then, I was granted with the opportunity by MEXT to start a research study in Japan.
 
 
-TODO: Expand this page in onder to give more interesting information.
+#### Scolarships {.tabset .tabset-pills}
+
+  1. Yuri Cossich Lavinas. Awarded research scholarship by CNPq - National Council for Scientific and Technological Development, 2014.08 until 2015.07.
+  2. Yuri Cossich Lavinas. Awarded research scholarship by CAPES - Coordination for the Improvement of Higher Education Personnel, 2014.08 until 2015.08.
+  3. Yuri Cossich Lavinas. Awarded research scholarship by CNPq – National Council for Scientific and Technological Development, 2015.08 until 2016.07.
+  4. Yuri Cossich Lavinas. Awarded research scholarship by
+  5. Yuri Cossich Lavinas. Awarded masters scholarship by
+    - MEXT - 文部科学省奨学金, 2017.09 until 2018.03
+    - MEXT - 文部科学省奨学金, 2018.0
+
+
+#### Research interests {.tabset .tabset-pills}
+
+My research focus on Multi Objective Evolutionary Computation, neuro-evolution and Artificial Life. 
+
+
+
+#### Research Network
+
+Research collaboration/network:
+
+1. With **Marcelo Ladeira** and with **Felipe Vaz** (University of Brasilia). 
+2. With **Geoffrey Pruvost**, **Bilel Derbel** and **Arnaud Liefooghe** (University of Lille).
+3. With **Ricardo Torres** (University of Norwegian University of Science and Technology), **Felipe Moura** (Londrina State University), **Sergio Cunha** (University of Campinas).
+4. With **Gabriela Ochoa**, (University of Stirling).
+5. With **Felipe Campelo**, (Aston University).
+
+
+#### Hobbies {.tabset .tabset-pills}
+
+  - Games: Soccer, magic the gathering.
+  - Movies and TV series.
+  - Traveling.

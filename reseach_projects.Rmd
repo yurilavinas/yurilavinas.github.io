@@ -1,18 +1,8 @@
 ---
-title: Collaborations, Network & Research Projects
+title: Collaborations
 ---
 
-### 1. Research Collaboration & Network
-
-Research collaboration/network:
-
-1. With **Marcelo Ladeira** and with **Felipe Vaz** (University of Brasilia). 
-2. With **Geoffrey Pruvost**, **Bilel Derbel** and **Arnaud Liefooghe** (University of Lille).
-3. With **Ricardo Torres** (University of Norwegian University of Science and Technology), **Felipe Moura** (Londrina State University), **Sergio Cunha** (University of Campinas).
-4. With **Gabriela Ochoa**, (University of Stirling).
-5. With **Felipe Campelo**, (Aston University).
-
-### 2. Summary of the projects {.tabset .tabset-pills}
+### Summary of the projects {.tabset .tabset-pills}
 
 - Click on the tabs to switch between projects. 
 - For more information check my [publication list](https://yurilavinas.github.io/publications.html) or send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp).
