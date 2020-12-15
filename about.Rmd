@@ -15,7 +15,7 @@ I am a PhD student at the University of Tsukuba. I graduated in Computer Science
 I am conducting research since I was an undergraduate student, in Brazil at the University of Brasilia. During that time, I was awarded with two research scholarship. During my undergraduate period I had the chance to pursuit a sandwich program financed by the Brazilian government - Science without Borders - to conduct research in Japan for a year. After graduating, I started a master course at the same university. Then, I was granted with the opportunity by MEXT to start a research study in Japan.
 
 
-#### Scolarships {.tabset .tabset-pills}
+#### Scholarships {.tabset .tabset-pills}
 
   1. Yuri Cossich Lavinas. Awarded research scholarship by CNPq - National Council for Scientific and Technological Development, 2014.08 until 2015.07.
   2. Yuri Cossich Lavinas. Awarded research scholarship by CAPES - Coordination for the Improvement of Higher Education Personnel, 2014.08 until 2015.08.
