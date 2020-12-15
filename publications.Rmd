@@ -3,12 +3,10 @@ title: "Publications"
 
 ---
 
-<br>
-
-# Anual List {.tabset .tabset-pills}
-
 Send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp) if you have any questions about these publications.
 
+
+# Anual List {.tabset .tabset-pills}
 
 
 Publications are listed in chronological order, and the horizontal line separates peer-reviewed publications.
