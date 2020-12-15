@@ -22,7 +22,8 @@ navbar:
       href: https://twitter.com/yurilavinas
     - icon: fa-github
       href: https://github.com/yurilavinas
-  #html_document:
-    #highlight: textmate
+  html_document:
+    highlight: textmate
+    anchor_sections: false
     #css: style.css
 
