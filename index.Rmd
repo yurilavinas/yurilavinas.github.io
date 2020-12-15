@@ -1,13 +1,9 @@
 ---
- # title: "Hi, My name is Yuri Lavinas."
+ title: "Hi, My name is Yuri Lavinas."
  site: distill::distill_website
  listing: posts
  
 ---
-
-<br>
-
-# Hi, My name is Yuri Lavinas.
 
 <div style="width: 65%; float: left;">
 

@@ -1,11 +1,11 @@
 ---
-# title: "Publication List"
+title: "Publications"
 
 ---
 
 <br>
 
-# Publication List {.tabset .tabset-pills}
+# Anual List {.tabset .tabset-pills}
 
 Send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp) if you have any questions about these publications.
 
