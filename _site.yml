@@ -1,3 +1,5 @@
+html_document:
+  anchor_sections: false
 name: "Yuri Lavinas' Research Page"
 output_dir: "."
 base_url: https://yclavinas.github.io
@@ -22,8 +24,7 @@ navbar:
       href: https://twitter.com/yurilavinas
     - icon: fa-github
       href: https://github.com/yurilavinas
-  html_document:
-    highlight: textmate
-    anchor_sections: false
+
+    #highlight: textmate
     #css: style.css
 
