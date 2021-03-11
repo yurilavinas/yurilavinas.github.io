@@ -18,10 +18,13 @@ That said, until now, most of my publications are limited to Single/Multi Evolut
 Summary of the following works:
 
 1. **Yuri Lavinas**, C. Aranha, M. Ladeira and F. Campelo, "MOEA/D with Random Partial Update Strategy," 2020 IEEE Congress on Evolutionary Computation (CEC), Glasgow, United Kingdom, 2020, pp. 1-8, doi: https://doi.org/10.1109/CEC48606.2020.9185527. [Preprint.](https://arxiv.org/abs/2001.06980)
+  - [A visual tool that positions the current research in the literature.](https://www.connectedpapers.com/main/7f81ca246619e7c3113392e242ca6cc11b4815c7/MOEAD-with-Random-Partial-Update-Strategy/graph)
+
 2. **Yuri Lavinas**, Claus Aranha, Testuya Sakurai, "Using Diversity as a Priority Function for Resource Allocation on MOEA/D", In Genetic and Evolutionary Computation Conference Companion (GECCO '19 Companion), https://doi.org/10.1145/3319619.3321948, 2019.7 [Preprint.](https://dl.acm.org/doi/pdf/10.1145/3319619.3321948)
+  - [A visual tool that positions the current research in the literature.](https://www.connectedpapers.com/main/35dc44c4c782427cc2accfe714d9b840f2aec391/Using-diversity-as-a-priority-function-for-resource-allocation-on-MOEAD/graph)
 
 3. **Yuri Lavinas**, Claus Aranha, and Marcelo Ladeira. "Improving resource allocation in MOEA/D with decision-space diversity metrics". In Theory and Practice of Natural Computing, pp. 134–146, Cham, 2019. Springer International Publishing, https://www.doi.org/10.1007/978-3-030-34500-6_9, 2019.12 [Preprint.](https://link.springer.com/chapter/10.1007%2F978-3-030-34500-6_9)
-
+  - [A visual tool that positions the current research in the literature.](https://www.connectedpapers.com/main/708735cf83ce7320f1adcef66340bab51d4a161b/Improving-Resource-Allocation-in-MOEAD-with-DecisionSpace-Diversity-Metrics/graph)
 
 Multi-objective optimization algorithms (MOP solvers) are hard problems, since finding the best solutions for multi-objective problems can be very computationally expensive. One common approach that MOP solvers use when trying to solve MOP is to decompose the MOP into many subproblems. In general, those MOP solvers give the same computational effort to them all. This has some drawbacks: 
 
@@ -53,6 +56,12 @@ Summary of following work:
 1. Felipe Vaz, **Yuri Lavinas**, Claus Aranha, Marcelo Ladeira. "Exploring Constraint Handling Techniques in Real-world Problems on MOEA/D with Limited Budget of Evaluations", To appear at EMO 2021. [Preprint.](https://arxiv.org/pdf/2011.09722.pdf)
 
 
+---- 
+
+[A visual tool that positions the current research in the literature.](https://www.connectedpapers.com/main/b411b0e978427f01294e7012af4f9e926f4b0bb4/Exploring-Constraint-Handling-Techniques-in-Realworld-Problems-on-MOEAD-with-Limited-Budget-of-Evaluations/graph)
+
+---- 
+
 This work aims to investigate and explore the effects and behavior of constraint handling techniques (CHTs) in MOEA/D when solving real-world MOPs with a limited budget of evaluations. For that, we compare real-world analytic MOPs and two simulated MOPs: (1) the problem of selecting landing sites for a lunar exploration robot; and (2) the problem of optimization of car designs. To further enhance the performance of MOEA/D, we propose an efficient CHT that works well with problems that require an exploration of the unfeasible search space.
 
 ![***Fig. 1: Anytime mean hypervolume (HV, higher is better) performance of the different CHT in MOEA/D in the MAZDA car problem. Our newly proposed Constraint Handling Technique, the Three Stage CHT, achieves the best values at the end of the search execution.***](imgs/MAZDA_HV.png)
@@ -67,6 +76,12 @@ It is noticeable that using CHTs can be responsible for increments in hypervolum
 Summary of following work:
 
 1. Nicolo Oreste Pinciroli Vago, **Yuri Lavinas**, Daniele Rodrigues, Felipe Moura, Sergio Cunha, Claus Aranha, and Ricardo da Silva Torres, "INTEGRA: An Open Tool To Support Graph-Based Change Pattern Analyses In Simulated Football Matches", 34th International ECMS Conference on Modeling and Simulation, 2020.06 DOI: https://doi.org/10.7148/2020-0228 [Link.](http://www.scs-europe.net/dlib/2020/ecms2020acceptedpapers/0228_ocms_ecms2020_0051.pdf)
+
+---- 
+
+[A visual tool that positions the current research in the literature.](https://www.connectedpapers.com/main/3ee3ffdf3cdac4674e0c7a48c3f5f704cc064597/INTEGRA-An-Open-Tool-To-Support-GraphBased-Change-Pattern-Analyses-In-Simulated-Football-Matches/graph)
+
+---- 
 
 This project proposes the simulation of football players and games, using Multi-AgentSystem technologies and based on the graph models developed. The Multi-Agent Simulation will allow the visualization, validation, and exploration of the football player models, leading to a greater understanding of the relationship between the models and the real-world data and extrapolations of many different scenarios using the rules derived from the models.
 
