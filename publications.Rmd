@@ -24,7 +24,7 @@ Publications are listed in chronological order, and the horizontal line separate
 
 -----
 
-1. [*Yuri Lavinas*, Claus Aranha, Marcelo Ladeira, Tetsuya Sakurai, "Resource_Allocation_and_Population_Size_in_MOEA/D" Symposium of the Japanese Society of Evolutionary Computation (2020.09).](papers/Resource_Allocation_and_Population_Size_in_MOEA/D.pdf)
+1. [*Yuri Lavinas*, Claus Aranha, Marcelo Ladeira, Tetsuya Sakurai, "Resource Allocation and Population Size in MOEA/D" Symposium of the Japanese Society of Evolutionary Computation (2020.09).](papers/Resource_Allocation_and_Population_Size_in_MOEA/D.pdf)
 
 
 ## 2019
@@ -64,4 +64,4 @@ Publications are listed in chronological order, and the horizontal line separate
 
 -----
 
-1. Claus Aranha, Yuri Cossich Lavinas, Marcelo Ladeira and Bogdan Enescu: **"Is it possible to generate good Earthquake Risk Models using Genetic Algorithms?"**, 6th International Conference on Evolutionary Computation Theory and Applications (ECTA), Rome,  2014, https://doi.org/10.5220/0005072600490058.
+1. Claus Aranha, *Yuri Cossich Lavinas*, Marcelo Ladeira and Bogdan Enescu: **"Is it possible to generate good Earthquake Risk Models using Genetic Algorithms?"**, 6th International Conference on Evolutionary Computation Theory and Applications (ECTA), Rome,  2014, https://doi.org/10.5220/0005072600490058.
