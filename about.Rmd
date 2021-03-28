@@ -33,15 +33,17 @@ I am conducting research since I was an undergraduate student, in Brazil at the 
 
 My research interests are Multi Objective Evolutionary Computation, neuro-evolution and Artificial Life. 
 
-#### Research Network
+#### Co-authorship Network
 
 Research collaboration/network:
 
-1. With **Marcelo Ladeira** and with **Felipe Vaz** (University of Brasilia). 
-2. With **Geoffrey Pruvost**, **Bilel Derbel** and **Arnaud Liefooghe** (University of Lille).
-3. With **Ricardo Torres** (University of Norwegian University of Science and Technology), **Felipe Moura** (Londrina State University), **Sergio Cunha** (University of Campinas).
-4. With **Gabriela Ochoa**, (University of Stirling).
-5. With **Felipe Campelo**, (Aston University).
+1. **Marcelo Ladeira** and **Felipe Vaz** (University of Brasilia). 
+<!-- 2. **Geoffrey Pruvost**, **Bilel Derbel** and **Arnaud Liefooghe** (University of Lille). -->
+2.  **Lana Sinapayen**, (Sony Computer Science Labs’ new Kyoto Lab).
+3.  **Gabriela Ochoa**, (University of Stirling).
+4.  **Felipe Campelo**, (Aston University).
+5.  **Ricardo Torres** (University of Norwegian University of Science and Technology).
+
 
 
 #### Hobbies {.tabset .tabset-pills}
