@@ -18,13 +18,18 @@ That said, until now, most of my publications are limited to Single/Multi Evolut
 Summary of the following works:
 
 1. **Yuri Lavinas**, C. Aranha, M. Ladeira and F. Campelo, "MOEA/D with Random Partial Update Strategy," 2020 IEEE Congress on Evolutionary Computation (CEC), Glasgow, United Kingdom, 2020, pp. 1-8, doi: https://doi.org/10.1109/CEC48606.2020.9185527. [Preprint.](https://arxiv.org/abs/2001.06980)
-  - [A visual tool that positions the current research in the literature.](https://www.connectedpapers.com/main/7f81ca246619e7c3113392e242ca6cc11b4815c7/MOEAD-with-Random-Partial-Update-Strategy/graph)
+
+- [Watch CEC 2020 presentation video on YouTube.](https://youtu.be/0wViMZENBq4)
+
+- [A visual tool that positions the current research in the literature.](https://www.connectedpapers.com/main/7f81ca246619e7c3113392e242ca6cc11b4815c7/MOEAD-with-Random-Partial-Update-Strategy/graph)
 
 2. **Yuri Lavinas**, Claus Aranha, Testuya Sakurai, "Using Diversity as a Priority Function for Resource Allocation on MOEA/D", In Genetic and Evolutionary Computation Conference Companion (GECCO '19 Companion), https://doi.org/10.1145/3319619.3321948, 2019.7 [Preprint.](https://dl.acm.org/doi/pdf/10.1145/3319619.3321948)
-  - [A visual tool that positions the current research in the literature.](https://www.connectedpapers.com/main/35dc44c4c782427cc2accfe714d9b840f2aec391/Using-diversity-as-a-priority-function-for-resource-allocation-on-MOEAD/graph)
+
+- [A visual tool that positions the current research in the literature.](https://www.connectedpapers.com/main/35dc44c4c782427cc2accfe714d9b840f2aec391/Using-diversity-as-a-priority-function-for-resource-allocation-on-MOEAD/graph)
 
 3. **Yuri Lavinas**, Claus Aranha, and Marcelo Ladeira. "Improving resource allocation in MOEA/D with decision-space diversity metrics". In Theory and Practice of Natural Computing, pp. 134–146, Cham, 2019. Springer International Publishing, https://www.doi.org/10.1007/978-3-030-34500-6_9, 2019.12 [Preprint.](https://link.springer.com/chapter/10.1007%2F978-3-030-34500-6_9)
-  - [A visual tool that positions the current research in the literature.](https://www.connectedpapers.com/main/708735cf83ce7320f1adcef66340bab51d4a161b/Improving-Resource-Allocation-in-MOEAD-with-DecisionSpace-Diversity-Metrics/graph)
+
+- [A visual tool that positions the current research in the literature.](https://www.connectedpapers.com/main/708735cf83ce7320f1adcef66340bab51d4a161b/Improving-Resource-Allocation-in-MOEAD-with-DecisionSpace-Diversity-Metrics/graph)
 
 Multi-objective optimization algorithms (MOP solvers) are hard problems, since finding the best solutions for multi-objective problems can be very computationally expensive. One common approach that MOP solvers use when trying to solve MOP is to decompose the MOP into many subproblems. In general, those MOP solvers give the same computational effort to them all. This has some drawbacks: 
 
@@ -55,10 +60,9 @@ Summary of following work:
 
 1. Felipe Vaz, **Yuri Lavinas**, Claus Aranha, Marcelo Ladeira. "Exploring Constraint Handling Techniques in Real-world Problems on MOEA/D with Limited Budget of Evaluations", To appear at EMO 2021. [Preprint.](https://arxiv.org/pdf/2011.09722.pdf)
 
+- [Watch EMO 2021 presentation video on YouTube.](https://youtu.be/wOA0BnX51QI)
 
----- 
-
-[A visual tool that positions the current research in the literature.](https://www.connectedpapers.com/main/b411b0e978427f01294e7012af4f9e926f4b0bb4/Exploring-Constraint-Handling-Techniques-in-Realworld-Problems-on-MOEAD-with-Limited-Budget-of-Evaluations/graph)
+- [A visual tool that positions the current research in the literature.](https://www.connectedpapers.com/main/b411b0e978427f01294e7012af4f9e926f4b0bb4/Exploring-Constraint-Handling-Techniques-in-Realworld-Problems-on-MOEAD-with-Limited-Budget-of-Evaluations/graph)
 
 ---- 
 
