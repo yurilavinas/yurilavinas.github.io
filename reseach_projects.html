@@ -13,17 +13,25 @@
 
 <title>Research Projects</title>
 
+<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -37,11 +45,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -54,32 +57,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 
 
@@ -89,10 +67,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -109,40 +83,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -170,7 +117,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -182,7 +129,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -193,10 +140,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -208,7 +168,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -327,7 +286,7 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
@@ -337,12 +296,12 @@ $(document).ready(function () {
 
 
 <p>My research interests are Evolutionary Computation, neuro-evolution and Artificial Life.</p>
-<p>That said, until now, most of my publications are limited to Single/Multi Evolutionary Computation.</p>
+<p>That said, until now, most of my publications are focused on Single/Multi Evolutionary Computation.</p>
 <ul>
 <li>For more information, check my <a href="https://yurilavinas.github.io/publications.html">publication list</a> or send me an <a href="mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp">e-mail</a>.</li>
 </ul>
 <div id="summary-of-the-projects" class="section level3 tabset tabset-pills">
-<h3>Summary of the projects</h3>
+<h3 class="tabset tabset-pills">Summary of the projects</h3>
 <div id="moead-and-partial-update-of-the-population" class="section level4">
 <h4>MOEA/D and Partial Update of the Population</h4>
 <p>Summary of the following works:</p>
@@ -376,17 +335,17 @@ $(document).ready(function () {
 <li>improving the performance of multi-objective optimization algorithms (MOP solvers) by making them adapt to the characteristics of the problems.</li>
 </ul>
 <div class="figure">
-<img src="imgs/boxplot_hv_dtlz7.png" title="Logo Title Text 1" alt="Fig. 1: Hypevolume values (Higher is better) of MOEA/D with different resource allocation techniques. Limiting the computational effort to 10% of the standard amount each iteration improves MOEA/D. Results are superior than those from MOEA/D (100%) and MOEA/D with R.I. (the most used metric for resource allocation.)" />
+<img src="imgs/boxplot_hv_dtlz7.png" title="Logo Title Text 1" alt="" />
 <p class="caption"><strong><em>Fig. 1: Hypevolume values (Higher is better) of MOEA/D with different resource allocation techniques. Limiting the computational effort to 10% of the standard amount each iteration improves MOEA/D. Results are superior than those from MOEA/D (100%) and MOEA/D with R.I. (the most used metric for resource allocation.)</em></strong></p>
 </div>
 <p>I studied methods to guide the distribution of computational effort adaptatively in based-on information on the features of the MOP, using priority functions. I proposed different priority functions that allow MOEA/D to explore better the search space; thus, MOEA/D can find different and better solutions more efficiently. I observed that MOEA/D improves its performance when only a subset of the solution set is updated on each iteration.</p>
 <div class="figure">
-<img src="imgs/norm_uf7.png" alt="Fig. 2: Resource allocation on the UF7 function. The horizontal axis indicates the subproblems, while the vertical axis indicates the number of updates accumulated over the optimization. Higher values on the vertical axis indicate higher priority for that subproblem. The horizontal red line indicates the default number of updates (with no Resource Allocation)." />
+<img src="imgs/norm_uf7.png" alt="" />
 <p class="caption"><strong><em>Fig. 2: Resource allocation on the UF7 function. The horizontal axis indicates the subproblems, while the vertical axis indicates the number of updates accumulated over the optimization. Higher values on the vertical axis indicate higher priority for that subproblem. The horizontal red line indicates the default number of updates (with no Resource Allocation).</em></strong></p>
 </div>
 <p>I am studying in details what are the reasons for the improvement in performance in MOEA/D with priority functions to specify a theoretical justification for the efficacy of MOEA/D with priority functions, careful examining MOEA/D relates to important issues, such as the ability to find solutions closer to the optima and the ability to find different near-optimal solutions. To improve our understanding of MOEA/D I am studying which components interact well with priority functions to provide a recommendation of MOEA/D component configuration for the community. This will be achieved by a comprehensive and systematic anytime analysis conducted on the combined effect of components, MOEA/D, and priority functions.</p>
 <div class="figure">
-<img src="imgs/DTLZ6hv_evolution.png" alt="Fig. 3: Anytime HV (higher is better) performance of MOEA/D-PS for different values of ps on DTLZ6. MOEA/D-PS defines an expected amount of solutions updated at each iteration, regulated by a control parameter, ps. Using 10% of the standard computational effort (number of functions evaluations) is better than using the standard computational effort (100%)." />
+<img src="imgs/DTLZ6hv_evolution.png" alt="" />
 <p class="caption"><em><strong>Fig. 3: Anytime HV (higher is better) performance of MOEA/D-PS for different values of </strong>ps<strong> on DTLZ6. MOEA/D-PS defines an expected amount of solutions updated at each iteration, regulated by a control parameter, </strong>ps<strong>. Using 10% of the standard computational effort (number of functions evaluations) is better than using the standard computational effort (100%).</strong></em></p>
 </div>
 <p>Future works also include finding ways to improve the performance of MOEA/D on simulated real-world problems using MOEA/D variants that use resource allocation since they show promising results in MOP without constraints.</p>
@@ -404,11 +363,11 @@ $(document).ready(function () {
 <hr />
 <p>This work aims to investigate and explore the effects and behavior of constraint handling techniques (CHTs) in MOEA/D when solving real-world MOPs with a limited budget of evaluations. For that, we compare real-world analytic MOPs and two simulated MOPs: (1) the problem of selecting landing sites for a lunar exploration robot; and (2) the problem of optimization of car designs. To further enhance the performance of MOEA/D, we propose an efficient CHT that works well with problems that require an exploration of the unfeasible search space.</p>
 <div class="figure">
-<img src="imgs/MAZDA_HV.png" alt="Fig. 1: Anytime mean hypervolume (HV, higher is better) performance of the different CHT in MOEA/D in the MAZDA car problem. Our newly proposed Constraint Handling Technique, the Three Stage CHT, achieves the best values at the end of the search execution." />
+<img src="imgs/MAZDA_HV.png" alt="" />
 <p class="caption"><strong><em>Fig. 1: Anytime mean hypervolume (HV, higher is better) performance of the different CHT in MOEA/D in the MAZDA car problem. Our newly proposed Constraint Handling Technique, the Three Stage CHT, achieves the best values at the end of the search execution.</em></strong></p>
 </div>
 <div class="figure">
-<img src="imgs/MOON_HV.jpg" alt="Fig. 2: Anytime mean HV (higher is better) performance of the different CHT in MOEA/D in the moon landing problem. The Three Stage CHT has the competitive performance with most of the other CHT, but is overcomed by the Fast growth Dynamic CHT." />
+<img src="imgs/MOON_HV.jpg" alt="" />
 <p class="caption"><strong><em>Fig. 2: Anytime mean HV (higher is better) performance of the different CHT in MOEA/D in the moon landing problem. The Three Stage CHT has the competitive performance with most of the other CHT, but is overcomed by the Fast growth Dynamic CHT.</em></strong></p>
 </div>
 <p>It is noticeable that using CHTs can be responsible for increments in hypervolume values compared to traditional MOEA/D without penalty. It comes with no surprise that while a CHT may be a reasonable choice for a given multi-objective problem (MOPs), this CHT might still perform poorly in other MOPs, with different characteristics.</p>
@@ -424,17 +383,17 @@ $(document).ready(function () {
 <hr />
 <p>This project proposes the simulation of football players and games, using Multi-AgentSystem technologies and based on the graph models developed. The Multi-Agent Simulation will allow the visualization, validation, and exploration of the football player models, leading to a greater understanding of the relationship between the models and the real-world data and extrapolations of many different scenarios using the rules derived from the models.</p>
 <div class="figure">
-<img src="imgs/picture_full_game_main.png" alt="Fig. 1: Example of a full simulated game on the Google Research Football environment, a open-source soccer simulator, from GRF Game Server." />
+<img src="imgs/picture_full_game_main.png" alt="" />
 <p class="caption"><strong><em>Fig. 1: Example of a full simulated game on the Google Research Football environment, a open-source soccer simulator, from GRF Game Server.</em></strong></p>
 </div>
 <p>The resulting simulator will also be used to help coaches and educators. The simulator will assist them with planning and decision making by giving these professionals the tools to simulate fictional scenarios in the simulation and observe how these scenarios play out. The simulator will also allow these professionals to obtain easily understandable outputs from the model in the form of video games between simulated agents, leading to an interactive process of trial, error, and discovery.</p>
 <div class="figure">
-<img src="imgs/2D_representation_video.png" alt="Fig. 2: Example of real output of a game where one player is controlled by an Artificial NeuralNetwork using the Proximal Policy Optimization." />
+<img src="imgs/2D_representation_video.png" alt="" />
 <p class="caption"><strong><em>Fig. 2: Example of real output of a game where one player is controlled by an Artificial NeuralNetwork using the Proximal Policy Optimization.</em></strong></p>
 </div>
 <p>Preliminary results are very promising and achieved results are expected to be of interest for both simulator developers and those interested in improving team and player performance based on simulated data.</p>
 <div class="figure">
-<img src="imgs/spread-NN-full.png" alt="Fig. 3: Spread time series for teams A and B in a game style where one player is controlled by an Artificial Neural Network using the Proximal Policy Optimization." />
+<img src="imgs/spread-NN-full.png" alt="" />
 <p class="caption"><strong><em>Fig. 3: Spread time series for teams A and B in a game style where one player is controlled by an Artificial Neural Network using the Proximal Policy Optimization.</em></strong></p>
 </div>
 <p>Ongoing work refers to deepening our understanding regarding the different simulation variations, aiming to address the following research questions:</p>
@@ -474,7 +433,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

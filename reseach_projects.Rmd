@@ -6,7 +6,7 @@ title: "Research Projects"
 
 My research interests are Evolutionary Computation, neuro-evolution and Artificial Life. 
 
-That said, until now, most of my publications are limited to Single/Multi Evolutionary Computation.
+That said, until now, most of my publications are focused on Single/Multi Evolutionary Computation.
 
 - For more information, check my [publication list](https://yurilavinas.github.io/publications.html) or send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp).
 
