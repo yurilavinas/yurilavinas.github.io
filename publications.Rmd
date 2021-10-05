@@ -14,7 +14,7 @@ Publications are listed in chronological order, and the horizontal line separate
 
 - [Watch EMO 2021 presentation video on YouTube.](https://youtu.be/wOA0BnX51QI)
 
-2. *Yuri Lavinas*, Abe Mitsu Teru, Yuta Kobayashi, and Claus Aranha. **"MOEA/D with Adaptative Number of Weight Vectors"**, In Theory and Practice of Natural Computing, pp. 134-146, Cham, 2021. Springer International Publishing, to appear.
+2. *Yuri Lavinas*, Abe Mitsu Teru, Yuta Kobayashi, and Claus Aranha. **"MOEA/D with Adaptative Number of Weight Vectors"**, In Theory and Practice of Natural Computing, pp. 134-146, Cham, 2021. Springer International Publishing, to appear. [Preprint.](https://arxiv.org/pdf/2109.05741.pdf)
 
 -----
 
