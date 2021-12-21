@@ -34,7 +34,7 @@ Publications are listed in chronological order, and the horizontal line separate
 
 
 ## 2019
-1. *Yuri Lavinas*, Claus Aranha, Tetsuya Sakurai, **"Using Diversity as a Priority Function for Resource Allocation on MOEA/D"**, In Genetic and Evolutionary Computation Conference Companion (GECCO '19 Companion), https://doi.org/10.1145/3319619.3321948, 2019.7 [Preprint.](Using_diversity_as_a_priority_function_for_resourc)
+1. *Yuri Lavinas*, Claus Aranha, Tetsuya Sakurai, **"Using Diversity as a Priority Function for Resource Allocation on MOEA/D"**, In Genetic and Evolutionary Computation Conference Companion (GECCO '19 Companion), https://doi.org/10.1145/3319619.3321948, 2019.7 [Preprint.](papers/Using_diversity_as_a_priority_function_for_resourc.pdf)
 
 2. *Yuri Lavinas*, Claus Aranha, and Marcelo Ladeira. **"Improving resource allocation in MOEA/D with decision-space diversity metrics"**. In Theory and Practice of Natural Computing, pp. 134–146, Cham, 2019. Springer International Publishing, https://www.doi.org/10.1007/978-3-030-34500-6_9, 2019.12 
 
