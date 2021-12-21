@@ -8,6 +8,9 @@ Send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp) if you have any
 
 Publications are listed in chronological order, and the horizontal line separates peer-reviewed publications.
 
+## 2022
+1. *Yuri Lavinas*, Marcelo Ladeira, Claus Aranha. **Faster Convergence in Multi-Objective Optimization Algorithms Based on Decomposition Evolutionary Computation**, accepted for publication,  Evolutionary Computation.
+
 ## 2021
 
 1. Felipe Vaz, *Yuri Lavinas*, Claus Aranha, Marcelo Ladeira. **"Exploring Constraint Handling Techniques in Real-world Problems on MOEA/D with Limited Budget of Evaluations"**, 2021 Evolutionary Multi-Criterion Optimization (EMO), doi: https://doi.org/10.1007/978-3-030-72062-9_44 [Preprint.](https://arxiv.org/pdf/2011.09722.pdf)
