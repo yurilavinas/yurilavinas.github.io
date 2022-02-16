@@ -9,7 +9,12 @@ Send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp) if you have any
 Publications are listed in chronological order, and the horizontal line separates peer-reviewed publications.
 
 ## 2022
-1. *Yuri Lavinas*, Marcelo Ladeira, Claus Aranha. **Faster Convergence in Multi-Objective Optimization Algorithms Based on Decomposition Evolutionary Computation**, accepted for publication,  Evolutionary Computation.
+1. *Yuri Lavinas*, Marcelo Ladeira, Claus Aranha. **Faster Convergence in Multi-Objective Optimization Algorithms Based on Decomposition Evolutionary Computation**, 2022 Evolutionary Computation, doi: 
+https://doi.org/10.1162/evco_a_00306 [Preprint.](https://arxiv.org/abs/2112.11939)
+
+2. *Yuri Lavinas*, Claus Aranha, Gabriela Ochoa. **Search Trajectories Networks of Multiobjective Evolutionary Algorithms**, accepted for publication, International Conference on the Applications of Evolutionary Computation (Part of EvoStar) [Preprint.](https://arxiv.org/abs/2201.11726) 
+This work was selected as candidate for an Outstanding Student nomination of Evo* 2022.
+
 
 ## 2021
 
