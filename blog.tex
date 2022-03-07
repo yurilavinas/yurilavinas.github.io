@@ -750,36 +750,35 @@ read. I hope you can enjoy reading it as I did when I wrote this.
 \hypertarget{personal-motivation}{%
 \paragraph{Personal motivation}\label{personal-motivation}}
 
-Recently I started to be interested in visualization of evolutionary
-algorithms (EAs). Here, I will give a summary of some fascinating works
-that helped me create an interest in field of study.
+Recently I started to be interested in visualising evolutionary
+algorithms (EAs). Here, I will summarise some fascinating works that
+helped me create an interest in the field of study.
 
-\hypertarget{what-are-these-visualization-tools}{%
-\subparagraph{What are these visualization
-tools?}\label{what-are-these-visualization-tools}}
+\hypertarget{what-are-these-visualisation-tools}{%
+\subparagraph{What are these visualisation
+tools?}\label{what-are-these-visualisation-tools}}
 
-The main idea of visualizing EAs is to be able to show efficient ways of
-communicating the behavior of such algorithms. What is cool about
-looking at the images is that we can \textbf{look} at them and that
-feels a little less abstract. I'm sure that you already saw some of
-these tools and one of the most common are the fitness landscapes.
+The main idea of visualising EAs is to show efficient ways of
+communicating the behaviour of such algorithms. What is remarkable about
+looking at the images is that we can \textbf{look} at them, which feels
+a little less abstract. I'm sure you saw some of these tools, and one of
+the most common is the fitness landscapes.
 
-\begin{center}\includegraphics{gifs/Visualization_of_a_population_evolving_in_a_static_fitness_landscape} \end{center}
+\begin{center}\includegraphics[width=0.6\linewidth]{gifs/Visualization_of_a_population_evolving_in_a_static_fitness_landscape} \end{center}
 
-In case this is your first time hearing about fitness landscape, let me
-give a brief summary of what they are:
+In case this is your first time hearing about the fitness landscape, let
+me give a summary of what they are:
 
 \begin{itemize}
 \tightlist
 \item
-  Fitness Landscapes are used to visualize the relationship between
-  solutions and the their fitness values.
+  Fitness Landscapes are used to visualise the relationship between
+  solutions and their fitness values.
 \item
   Similar solutions are closer to each other, different solutions are
-  far from each other.
-\item
-  The set of all possible solutions, their degree of similarity, and
-  their related fitness values is then called a fitness landscape.
+  far from each other. The set of all possible solutions, their degree
+  of similarity, and corresponding fitness values is called a fitness
+  landscape.
 \item
   The higher the fitness, the higher is the landscape.
 \end{itemize}
@@ -790,49 +789,49 @@ Are you interested? Take a look at this Wikipedia page:
 Or watch this YouTube video:
 \url{https://www.youtube.com/watch?v=4pdiAneMMhU}
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-That's super, isn't it? However, we don't have many tools to analyze,
-contrast and visualize the dynamic behavior of these EAs in the
+That's super, isn't it? However, we don't have many tools to analyse,
+contrast and visualise the dynamic behaviour of these EAs in the
 multiobjective domain. Having tools like this can help us to create new
-and (hopefully) better algorithms, because if we can look at such
-behaviors, we can show the final solution set or their image into the
-objective space (or fitness space, in the single-objective domain) or
-the mechanisms that led to the final solutions and their image.
+and (hopefully) better algorithms. That is because if we can look at
+such behaviours, we can show the final solution set or their image into
+the objective space (or fitness space, in the single-objective domain)
+or the mechanisms that led to the final solutions and their image.
 
-\begin{center}\includegraphics{gifs/thats_good} \end{center}
+\begin{center}\includegraphics[width=0.4\linewidth]{gifs/thats_good} \end{center}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\#\#\#\# Methods that I think are worth mentioning
+\hypertarget{methods-that-i-think-are-worth-mentioning}{%
+\paragraph{Methods that I think are worth
+mentioning}\label{methods-that-i-think-are-worth-mentioning}}
 
-Here I will talk mostly about visualition methods that are for the
-multiobjective domain and that I already succesfully used.
+Here I will discuss visualisation methods for the multiobjective domain
+that I have already successfully used.
 
 \begin{itemize}
 \tightlist
 \item
-  Anytime Metric Performance
+  Anytime hypervolume performance
 \end{itemize}
 
-Analyzing algorithms using the final approximation provides limited
+Analysing algorithms using the final approximation provides limited
 information related to these algorithms' performance since any MOP
 should return a suitable set of solutions at any time during the search.
 Thus, it is imperative to extend the performance analysis because good
 solutions should be found as earlier as possible independently of the
 termination criterion or if the execution is interrupted during the
-search {[}{]}.
+search {[}1,2,3,4{]}.
 
-\begin{center}\includegraphics[width=50in]{imgs/UF10hv_evolution} \end{center}
+\begin{center}\includegraphics[width=0.45\linewidth]{imgs/UF10hv_evolution} \end{center}
 
-Anytime HV (higher is better, shaded areas indicate the standard
-deviation) on UF10. The performance of MOEA/D-PS is shown as the red
-circles, MOEA/D with population size 500 is shown as the green
-triangles, and MOEA/D with population size equals to 50 is shown as the
-blue squares, on UF10. The anytime performance of MOEA/D-PS is similar
-to the anytime performance of MOEA/D with a small population. We can see
-that the three variants have almost the same performance at the end of
-the search. This image and text are from {[}{]}.
+This image shows the Anytime HV (higher is better, shaded areas indicate
+the standard deviation) on UF10. The performance of MOEA/D-PS is shown
+as the red circles, MOEA/D with population size 500 is shown as the
+green triangles, and MOEA/D with population size equals 50 is shown as
+the blue squares, on UF10. The anytime performance of MOEA/D-PS is
+similar to the anytime performance of MOEA/D with a small population. We
+can see that the three variants have almost the same performance at the
+end of the search. This image and text are from {[}5{]}.
 
 \begin{itemize}
 \tightlist
@@ -841,26 +840,27 @@ the search. This image and text are from {[}{]}.
 \end{itemize}
 
 The empirical attainment function (EAF) allows the examination of the
-solution many sets of different runs of an algorithm, and it can
-illustrate where and by how much the outcomes of two algorithms differ
-in the objective space {[}1{]}. The EAF is based on the attainment
-surface and resents the probability that an arbitrary objective region
-in the objective space is attained (that is, dominated or equal) by an
-algorithm and probability can be estimated using data collected from
-several independent runs of such algorithm. The attained surface
-separates the objective space into two regions: (1) where the objective
-space is dominated (attained) by solutions of many sets and (2) where
-the objective space is not dominated by those solutions {[}2,3{]}. For
+solution many sets of different runs of an algorithm. It can illustrate
+where and by how much the outcomes of the two algorithms differ in the
+objective space {[}6{]}. The EAF is based on the attainment surface and
+resents the probability that an arbitrary objective region in the
+objective space is attained (dominated or equal) by an algorithm, and
+probability can be estimated using data collected from several
+independent runs such algorithm. The attained surface separates the
+objective space into two regions: (1) where the objective space is
+dominated (attained) by solutions of many sets and (2) where the
+objective space is not dominated by those solutions {[}7,8{]}. For
 example, the median attainment surface shows regions dominated by at
-least half of the runs {[}1{]}.
+least half of the runs {[}6{]}.
 
-\begin{center}\includegraphics[width=67.06in]{imgs/eaf_UF6_big_vs_ps} \end{center}
+\begin{center}\includegraphics[width=0.65\linewidth]{imgs/eaf_UF6_big_vs_ps} \end{center}
 
-The shades of the red show the amount of the differences of the
+The shades of red show the amount of the differences of the
 probabilistic distribution of the outcomes obtained by the algorithms:
 shades closer to red indicate higher differences between the probability
-distributions, shades closer to orange indicate little difference, and
-shades closer to white indicate no difference.
+distributions, shades closer to orange indicate little difference and
+shades closer to white indicate no difference. Again, this image and
+text are from {[}5{]}.
 
 \begin{itemize}
 \tightlist
@@ -869,62 +869,91 @@ shades closer to white indicate no difference.
 \end{itemize}
 
 Search Trajectories Networks (STNs) of multiobjective evolutionary
-algorithms is a new tool that I together with Gabriela Ochoa and Claus
-Aranha have developed and just being accepted for publication at this
+algorithms is a new tool that I, together with Gabriela Ochoa and Claus
+Aranha, have developed and just been accepted for publication at this
 year's EvoStar conference.
 
-In our work, we extend the search trajectory networks models (STNs),
-that were proposed for single objective EAs. The main difference between
-STNs in the single-objective and in the multi-objective domains is that
-we use the idea of decomposition, where a multi-objective problem is
-transformed into several single-objective problems. So, now we can
-create STNs for the multi-objective domain!
+\begin{center}\includegraphics{gifs/new_is_always_better_gif} \end{center}
+
+(Disclaimer: is it? I love this meme, so I couldn't resist adding it
+here, but it would be great to hear what you think about this.)
+
+In our work, we extend the search trajectory networks models (STNs)
+proposed for single objective EAs. The main difference between STNs in
+the singleobjective and the multiobjective domains is that we use the
+idea of decomposition. The decomposition transforms a multiobjective
+problem into several single-objective problems. So, now we can create
+STNs for the multiobjective domain!
 
 To see how effective this STN are, we generated STNs models for MOEA/D
-and NSGA-II. Here is one of them:
+and NSGA-II. First, I'm showing the STN of the MOEA/D on the UF10
+problem:
 
-\begin{center}\includegraphics{gifs/moeadps_uf7} \end{center}
+\begin{center}\includegraphics[width=0.5\linewidth]{gifs/moead_uf10} \end{center}
 
-\begin{center}\includegraphics{gifs/nsga2_uf7} \end{center}
+First, I'm showing the STN of the NSGA-II on the same problem:
 
-For more information, see this Twitter thread.
+\begin{center}\includegraphics[width=0.5\linewidth]{gifs/nsga2_uf10} \end{center}
+
+See how different they are? For example, the first STN, of MOEA/D, is
+much more dense that the STN of NSGA-II. For more information, see this
+Twitter thread.
 
 \url{https://twitter.com/yurilavinas/status/1499681390019092487}
 
+Or read the preprint version: \url{https://t.co/1GAkPy0R9K}.
+
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-Well, this is it for today. I hope you found this useful and .
+Well, this is it for today. I hope you found this helpful. See you next
+time!
+
+\begin{center}\includegraphics{gifs/spongebob-done} \end{center}
 
 \hypertarget{references}{%
 \section{References}\label{references}}
 
-{[}{]} Zilberstein, S. (1996). Using anytime algorithms in intelligent
+{[}1{]} Zilberstein, S. (1996). Using anytime algorithms in intelligent
 systems. AI magazine, 17(3), 73-73.
 
-{[}1{]} López-Ibáñez, M., Paquete, L., \& Stützle, T. (2010).
-Exploratory analysis of stochastic local search algorithms in
-biobjective optimization. In Experimental methods for the analysis of
-optimization algorithms (pp.~209-222). Springer, Berlin, Heidelberg.
+{[}2{]} Radulescu, A., López-Ibánez, M., \& Stützle, T. (2013, March).
+Automatically improving the anytime behaviour of multiobjective
+evolutionary algorithms. In International Conference on Evolutionary
+Multi-Criterion Optimization (pp.~825-840). Springer, Berlin,
+Heidelberg.
 
-{[}2{]} Fonseca, C. M., \& Fleming, P. J. (1996, September). On the
+{[}3{]} Dubois-Lacoste, J., López-Ibáñez, M., \& Stützle, T. (2015).
+Anytime Pareto local search. European journal of operational research,
+243(2), 369-385.
+
+{[}4{]} Tanabe, R., Ishibuchi, H., \& Oyama, A. (2017). Benchmarking
+multi-and many-objective evolutionary algorithms under two optimisation
+scenarios. IEEE Access, 5, 19597-19619.
+
+{[}5{]} Lavinas, Y., Aranha, C., \& Ladeira, M. (2022). Faster
+Convergence in Multiobjective Optimisation Algorithms Based on
+Decomposition. Evol Comput 2022; DOI:
+\url{https://doi.org/10.1162/evco_a_00306}.
+
+{[}6{]} López-Ibáñez, M., Paquete, L., \& Stützle, T. (2010).
+Exploratory analysis of stochastic local search algorithms in
+biobjective optimisation. In Experimental methods for the analysis of
+optimisation algorithms (pp.~209-222). Springer, Berlin, Heidelberg.
+
+{[}7{]} Fonseca, C. M., \& Fleming, P. J. (1996, September). On the
 performance assessment and comparison of stochastic multiobjective
-optimizers. In International Conference on Parallel Problem Solving from
+optimisers. In International Conference on Parallel Problem Solving from
 Nature (pp.~584-593). Springer, Berlin, Heidelberg.
 
-{[}3{]} Fonseca, V. G. D., Fonseca, C. M., \& Hall, A. O. (2001, March).
+{[}8{]} Fonseca, V. G. D., Fonseca, C. M., \& Hall, A. O. (2001, March).
 Inferential performance assessment of stochastic optimisers and the
 attainment function. In International Conference on Evolutionary
 Multi-Criterion Optimization (pp.~213-225). Springer, Berlin,
 Heidelberg.
 
-{[}{]} Lavinas, Y., Aranha, C., \& Ladeira, M. (2022). Faster
-Convergence in Multi-Objective Optimization Algorithms Based on
-Decomposition. Evol Comput 2022; doi:
-\url{https://doi.org/10.1162/evco_a_00306}.
-
-{[}{]} Lavinas, Y., Aranha, C., \& Ochoa, G. (2022). Search Trajectories
-Networks of Multiobjective Evolutionary Algorithms. arXiv preprint
-arXiv:2201.11726.
+{[}9{]} Lavinas, Y., Aranha, C., \& Ochoa, G. (2022). Search
+Trajectories Networks of Multiobjective Evolutionary Algorithms. arXiv
+preprint arXiv:2201.11726.
 
 <!--radix_placeholder_site_after_body-->
 <!--/radix_placeholder_site_after_body-->
