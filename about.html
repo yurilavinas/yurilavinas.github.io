@@ -13,8 +13,8 @@
 
 <title>About me</title>
 
-<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -62,6 +62,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -82,6 +83,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -234,7 +238,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -247,10 +251,10 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="reseach_projects.html">Research Projects</a>
+  <a href="publications.html">Publications</a>
 </li>
 <li>
-  <a href="publications.html">Publications</a>
+  <a href="blog.html">Blog</a>
 </li>
 <li>
   <a href="about.html">About me</a>
@@ -295,14 +299,11 @@ $(document).ready(function () {
 </div>
 
 
-<!-- <br> -->
-<!-- # About me -->
-<div id="bio" class="section level3 tabset tabset-pills">
-<h3 class="tabset tabset-pills">BIO</h3>
 <p>I am a PhD student at the University of Tsukuba. I graduated in Computer Science (2016) at the University of Brasilia, Brazil, and I got my Master Degree at the University of Tsukuba (2020).</p>
 <p>I am conducting research since I was an undergraduate student, in Brazil at the University of Brasilia. During that time, I was awarded with two research scholarships. During my undergraduate period I had the chance to pursuit a sandwich program financed by the Brazilian government - Science without Borders - to conduct research in Japan for a year. After graduating, I started a master course at the same university. Then, I was granted with the opportunity by MEXT to start a research study in Japan.</p>
-<div id="scholarships" class="section level4 tabset tabset-pills">
-<h4 class="tabset tabset-pills">Scholarships</h4>
+<hr />
+<div id="scholarships" class="section level4">
+<h4>Scholarships</h4>
 <ol style="list-style-type: decimal">
 <li>Awarded PhD scholarship by - MEXT - 文部科学省奨学金, 2020.04 until 2023.03</li>
 <li>Awarded masters scholarship by - MEXT - 文部科学省奨学金, 2018.04 until 2020.03</li>
@@ -311,10 +312,12 @@ $(document).ready(function () {
 <li>Awarded research scholarship by CAPES - Coordination for the Improvement of Higher Education Personnel, 2014.08 until 2015.08.</li>
 <li>Awarded research scholarship by CNPq - National Council for Scientific and Technological Development, 2014.08 until 2015.07.</li>
 </ol>
+<hr />
 </div>
-<div id="research-interests" class="section level4 tabset tabset-pills">
-<h4 class="tabset tabset-pills">Research interests</h4>
-<p>My research interests are Multi Objective Evolutionary Computation, neuro-evolution and Artificial Life.</p>
+<div id="research-interests" class="section level4">
+<h4>Research interests</h4>
+<p>My research interests are Evolutionary Computation, Multiobjective Optimization and Alife.</p>
+<hr />
 </div>
 <div id="co-authorship-network" class="section level4">
 <h4>Co-authorship Network</h4>
@@ -326,15 +329,6 @@ $(document).ready(function () {
 <li><strong>Felipe Campelo</strong>, (Aston University).</li>
 <li><strong>Ricardo Torres</strong> (University of Norwegian University of Science and Technology).</li>
 </ol>
-</div>
-<div id="hobbies" class="section level4 tabset tabset-pills">
-<h4 class="tabset tabset-pills">Hobbies</h4>
-<ul>
-<li>Games: Soccer, magic the gathering.</li>
-<li>Movies and TV series.</li>
-<li>Traveling.</li>
-</ul>
-</div>
 </div>
 
 

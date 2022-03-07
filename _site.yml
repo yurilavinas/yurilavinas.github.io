@@ -9,10 +9,10 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "Research Projects"
-      href: reseach_projects.html
     - text: "Publications"
       href: publications.html
+    - text: "Blog"
+      href: blog.html
     - text: "About me"
       href: about.html
   right:
@@ -25,6 +25,10 @@ navbar:
     - icon: fa-github
       href: https://github.com/yurilavinas
 
-    #highlight: textmate
-    #css: style.css
+collections:
+  posts:
+    categories: false
+    categories_metadata: false
+    authors_metadata: false
+    share: [twitter, linkedin]
 

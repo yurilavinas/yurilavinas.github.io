@@ -4,18 +4,14 @@ description: |
   Some additional details about the blog
 ---
 
-<!-- <br> -->
-
-<!-- # About me -->
-
-### BIO {.tabset .tabset-pills}
 
 I am a PhD student at the University of Tsukuba. I graduated in Computer Science (2016) at the University of Brasilia, Brazil, and I got my Master Degree at the University of Tsukuba (2020). 
 
 I am conducting research since I was an undergraduate student, in Brazil at the University of Brasilia. During that time, I was awarded with two research scholarships. During my undergraduate period I had the chance to pursuit a sandwich program financed by the Brazilian government - Science without Borders - to conduct research in Japan for a year. After graduating, I started a master course at the same university. Then, I was granted with the opportunity by MEXT to start a research study in Japan.
 
+------
 
-#### Scholarships {.tabset .tabset-pills}
+#### Scholarships 
 
   1. Awarded PhD scholarship by
     - MEXT - 文部科学省奨学金, 2020.04 until 2023.03
@@ -27,11 +23,13 @@ I am conducting research since I was an undergraduate student, in Brazil at the 
   5. Awarded research scholarship by CAPES - Coordination for the Improvement of Higher Education Personnel, 2014.08 until 2015.08.
   6. Awarded research scholarship by CNPq - National Council for Scientific and Technological Development, 2014.08 until 2015.07.
     
+------
 
+#### Research interests 
 
-#### Research interests {.tabset .tabset-pills}
+My research interests are Evolutionary Computation, Multiobjective Optimization and Alife.
 
-My research interests are Multi Objective Evolutionary Computation, neuro-evolution and Artificial Life. 
+------
 
 #### Co-authorship Network
 
@@ -44,10 +42,3 @@ Research collaboration/network:
 4.  **Felipe Campelo**, (Aston University).
 5.  **Ricardo Torres** (University of Norwegian University of Science and Technology).
 
-
-
-#### Hobbies {.tabset .tabset-pills}
-
-  - Games: Soccer, magic the gathering.
-  - Movies and TV series.
-  - Traveling.

@@ -1,7 +1,25 @@
+---  
+title: "My blog"  
+output: 
+  pdf_document:
+    toc: yes 
+collections:
+  posts:
+    disqus: evostar_summary
+    share: [twitter, linkedin]
 ---
-title: "Welcome to My Blog"
-date: 06-12-2019
----
 
+# First post {.tabset .tabset-pills}
 
+Hello, all. I'm happy to introduce my research blog. This is where I will write about my research projects and other related stuff that I find interesting.
 
+-----
+
+## Visualizations {.tabset .tabset-pills}
+
+Hi, again. This is my first blog post. The idea here is to show a little of my research is a different way to the traditional papers that we read. I hope you can enjoy reading it as I did when I wrote this.
+
+-----
+
+```{r child = 'my_blog/evostar_summary.Rmd'}
+```
