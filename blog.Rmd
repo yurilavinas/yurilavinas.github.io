@@ -21,5 +21,5 @@ Hi, again. This is my first blog post. The idea here is to show a little of my r
 
 -----
 
-```{r child = 'my_blog/evostar_summary.Rmd'}
+```{r child = 'my_blog/visuals.Rmd'}
 ```
