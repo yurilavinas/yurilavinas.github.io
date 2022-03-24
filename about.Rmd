@@ -5,9 +5,9 @@ description: |
 ---
 
 
-I am a PhD student at the University of Tsukuba. I graduated in Computer Science (2016) at the University of Brasilia, Brazil, and I got my Master Degree at the University of Tsukuba (2020). 
+I am a PhD student at the University of Tsukuba. I graduated in Computer Science (2016) at the University of Brasilia, Brazil, and I got my Master Degree at the University of Tsukuba, Japan (2020). Now, I'm on the final year of the PhD course also at the University of Tsukuba.
 
-I am conducting research since I was an undergraduate student, in Brazil at the University of Brasilia. During that time, I was awarded with two research scholarships. During my undergraduate period I had the chance to pursuit a sandwich program financed by the Brazilian government - Science without Borders - to conduct research in Japan for a year. After graduating, I started a master course at the same university. Then, I was granted with the opportunity by MEXT to start a research study in Japan.
+I am conducting research since I was an undergraduate student, in Brazil at the University of Brasilia. During that time, I was awarded with two research scholarships. During my undergraduate period I had the chance to pursuit a sandwich program financed by the Brazilian government - Science without Borders - to conduct research in Japan for a year, at the University of Tsukuba. After graduating, I started a master course also at University of Tsukuba, with the MEXT scholarship. Then, I was granted another MEXT scholarship, to continue my studies in Japan, but now as a PhD student.
 
 ------
 

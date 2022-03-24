@@ -764,7 +764,14 @@ looking at the images is that we can \textbf{look} at them, which feels
 a little less abstract. I'm sure you saw some of these tools, and one of
 the most common is the fitness landscapes.
 
+In a population-based algorithm:
+
 \begin{center}\includegraphics[width=0.6\linewidth]{gifs/Visualization_of_a_population_evolving_in_a_static_fitness_landscape} \end{center}
+
+In a gradient descent algorithm (commonly used in Neural Networks and
+other ML algorithms):
+
+\begin{center}\includegraphics[width=0.5\linewidth]{gifs/sgd} \end{center}
 
 In case this is your first time hearing about the fitness landscape, let
 me give a summary of what they are:
@@ -789,15 +796,24 @@ Are you interested? Take a look at this Wikipedia page:
 Or watch this YouTube video:
 \url{https://www.youtube.com/watch?v=4pdiAneMMhU}
 
-That's super, isn't it? However, we don't have many tools to analyse,
-contrast and visualise the dynamic behaviour of these EAs in the
-multiobjective domain. Having tools like this can help us to create new
-and (hopefully) better algorithms. That is because if we can look at
-such behaviours, we can show the final solution set or their image into
-the objective space (or fitness space, in the single-objective domain)
-or the mechanisms that led to the final solutions and their image.
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{center}\includegraphics[width=0.4\linewidth]{gifs/thats_good} \end{center}
+\hypertarget{from-1-to-many}{%
+\paragraph{From 1 to many}\label{from-1-to-many}}
+
+That's super, isn't it? These methods were developed for singleobjective
+algorithms, and we don't have yet many tools to visualize multiobjective
+EAs. Having tools like this can help us to create new and (hopefully)
+better algorithms. That is because we can see how the process changes
+over time, and then we an study the strengths and weaknesses of
+algorithms. And by knowing these strengths and weaknesses we can improve
+existing algorithms or even create new and better EAs.
+
+\begin{center}\includegraphics{gifs/new_is_always_better_gif} \end{center}
+
+(Disclaimer: Is new always better? I love this meme, so I couldn't
+resist adding it here, but new doesn't mean better. Btw, what does it
+mean to be better?)
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -808,19 +824,15 @@ mentioning}\label{methods-that-i-think-are-worth-mentioning}}
 Here I will discuss visualisation methods for the multiobjective domain
 that I have already successfully used.
 
-\begin{itemize}
-\tightlist
-\item
-  Anytime hypervolume performance
-\end{itemize}
+\hypertarget{anytime-hypervolume-performance}{%
+\subparagraph{Anytime hypervolume
+performance}\label{anytime-hypervolume-performance}}
 
 Analysing algorithms using the final approximation provides limited
-information related to these algorithms' performance since any MOP
-should return a suitable set of solutions at any time during the search.
-Thus, it is imperative to extend the performance analysis because good
-solutions should be found as earlier as possible independently of the
-termination criterion or if the execution is interrupted during the
-search {[}1,2,3,4{]}.
+information related to these algorithms' performance since these EAS
+should return a suitable set of solutions at any time during the search
+{[}1,2,3,4{]}. That is, looking at the whole process, not only at the
+end, provides more insightful information.
 
 \begin{center}\includegraphics[width=0.45\linewidth]{imgs/UF10hv_evolution} \end{center}
 
@@ -833,11 +845,14 @@ similar to the anytime performance of MOEA/D with a small population. We
 can see that the three variants have almost the same performance at the
 end of the search. This image and text are from {[}5{]}.
 
-\begin{itemize}
-\tightlist
-\item
-  Empirical Attainment Performance
-\end{itemize}
+See? The 3 algorithms have the same final performance, but how they got
+there was different.
+
+\begin{center}\includegraphics[width=0.4\linewidth]{gifs/insightful} \end{center}
+
+\hypertarget{empirical-attainment-performance}{%
+\subparagraph{Empirical Attainment
+Performance}\label{empirical-attainment-performance}}
 
 The empirical attainment function (EAF) allows the examination of the
 solution many sets of different runs of an algorithm. It can illustrate
@@ -862,21 +877,31 @@ distributions, shades closer to orange indicate little difference and
 shades closer to white indicate no difference. Again, this image and
 text are from {[}5{]}.
 
-\begin{itemize}
-\tightlist
-\item
-  Search Trajectory Networks
-\end{itemize}
+See? The algorithm on the left performs better at central regions of the
+objective space. The algorithm on the right performs better at the side
+regions. So, if you prefer more balanced solutions, choose the algorithm
+from the left, if you prefer extreme solutions, then the one of the
+right is the right one.
+
+\begin{center}\includegraphics[width=0.4\linewidth]{gifs/choices} \end{center}
+
+\hypertarget{search-trajectory-networks}{%
+\subparagraph{Search Trajectory
+Networks}\label{search-trajectory-networks}}
 
 Search Trajectories Networks (STNs) of multiobjective evolutionary
 algorithms is a new tool that I, together with Gabriela Ochoa and Claus
 Aranha, have developed and just been accepted for publication at this
 year's EvoStar conference.
 
-\begin{center}\includegraphics{gifs/new_is_always_better_gif} \end{center}
+\begin{center}\includegraphics[width=0.4\linewidth]{gifs/thats_good} \end{center}
 
-(Disclaimer: is it? I love this meme, so I couldn't resist adding it
-here, but it would be great to hear what you think about this.)
+PS: I've been nominated as an ``Outstanding Student'' for this work!
+
+\begin{center}\includegraphics[width=0.4\linewidth]{gifs/cool_peralta} \end{center}
+
+(Disclaimer: Another meme that I love and that I couldn't resist adding
+here. 99!)
 
 In our work, we extend the search trajectory networks models (STNs)
 proposed for single objective EAs. The main difference between STNs in
@@ -896,8 +921,22 @@ First, I'm showing the STN of the NSGA-II on the same problem:
 \begin{center}\includegraphics[width=0.5\linewidth]{gifs/nsga2_uf10} \end{center}
 
 See how different they are? For example, the first STN, of MOEA/D, is
-much more dense that the STN of NSGA-II. For more information, see this
-Twitter thread.
+much more dense that the STN of NSGA-II. Not only that, but the MOEA/D
+STN showed more nodes (coloured circles) indicating that the algorithm
+is exploring more the search space, while the NSGA-II STN keeps going
+back to the end node (the size of the black triangle indicates that this
+node is reached multiple times).
+
+Analysing the STNs showed us that we can effectively apply them to
+differentiate multiobjective EAs visually and quantitatively. This is
+great because we can add together this information to the traditional
+comparing metrics, such as HV and IGD.
+
+\begin{center}\includegraphics[width=0.5\linewidth]{gifs/good_job} \end{center}
+
+Also, they are beautiful! Or is it just me?
+
+For more information, see this Twitter thread.
 
 \url{https://twitter.com/yurilavinas/status/1499681390019092487}
 
