@@ -16,7 +16,8 @@ https://doi.org/10.1162/evco_a_00306 [Preprint.](https://arxiv.org/abs/2112.1193
 - ***This work was nominated as candidate for the student best paper of EvoStar 2022.***
 - ***This work was nominated as candidate for the best paper of EvoStar 2022.***
 
-3. *Yuri Lavinas*, Marcelo Ladeira, Claus Aranha, Gabriela Ochoa. **Component-wise Analysis of Automatically Designed Multiobjective Algorithms on Constrained Problems*, accepted for publication, GECCO 2022.
+3. *Yuri Lavinas*, Marcelo Ladeira, Claus Aranha, Gabriela Ochoa. **Component-wise Analysis of Automatically Designed Multiobjective Algorithms on Constrained Problems**, accepted for publication, GECCO 2022.
+- ***This work was nominated as candidate for the best paper of the EMO track GECCO 2022.***
 [Preprint.](https://arxiv.org/abs/2203.13447)
 
 ## 2021
@@ -25,7 +26,7 @@ https://doi.org/10.1162/evco_a_00306 [Preprint.](https://arxiv.org/abs/2112.1193
 
 - [Watch EMO 2021 presentation video on YouTube.](https://youtu.be/wOA0BnX51QI)
 
-2. *Yuri Lavinas*, Abe Mitsu Teru, Yuta Kobayashi, and Claus Aranha. **"MOEA/D with Adaptative Number of Weight Vectors"**, In Theory and Practice of Natural Computing, pp. 134-146, Cham, 2021. Springer International Publishing, to appear. [Preprint.](https://arxiv.org/pdf/2109.05741.pdf)
+2. *Yuri Lavinas*, Abe Mitsu Teru, Yuta Kobayashi, and Claus Aranha. **"MOEA/D with Adaptative Number of Weight Vectors"**, In Theory and Practice of Natural Computing, pp. 134-146, Cham, 2021. Springer International Publishing, doi: https://doi.org/10.1007/978-3-030-90425-8_7. [Preprint.](https://arxiv.org/pdf/2109.05741.pdf)
 
 -----
 

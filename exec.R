@@ -1,7 +1,7 @@
 #Setup
 library(rmarkdown)
 library(knitr)
-library(beepr)
+
 library(dplyr)
 
 # setwd("~/Documents/estudos/webpage/")
