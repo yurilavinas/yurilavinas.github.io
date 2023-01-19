@@ -1,7 +1,7 @@
 #Setup
 library(rmarkdown)
 library(knitr)
-library(render_site {rmarkdown} {rmarkdown}	)
+# library(render_site)
 library(dplyr)
 
 # setwd("~/Documents/estudos/webpage/")
@@ -13,5 +13,4 @@ knitr::opts_chunk$set(echo = TRUE, include = TRUE, cache=T, fig.width = 8, fig.h
 render_site(input = "publications.Rmd")
 
 
-beep()  #finished rendering
 
