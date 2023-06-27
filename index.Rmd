@@ -30,10 +30,7 @@ EC are heuristics based on ideas from biological evolution. The goal of EC is to
 
 - Send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp). You can also find my contact information at the top of the page.
 
-</div>
-
-------
-#### Scholarships 
+### Scholarships 
 
   1. Awarded PhD scholarship by
     - MEXT - 文部科学省奨学金, 2020.04 until 2023.03
@@ -46,6 +43,9 @@ EC are heuristics based on ideas from biological evolution. The goal of EC is to
   6. Awarded research scholarship by CNPq - National Council for Scientific and Technological Development, 2014.08 until 2015.07.
     
 ------
+</div>
+
+
 
 
 <div style="width: 30%; float: right;">
