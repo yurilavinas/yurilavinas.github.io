@@ -12,7 +12,9 @@ I’m a postdoc research working with histopathology image analysis for cancer t
 
 EC are heuristics based on ideas from biological evolution. The goal of EC is to learn solutions to challenging computational problems using ideas taken from the evolutionary process. EC can solve a few examples of problems: parameter optimization, product design, expert systems design, linear and non-linear regression, and automated control.
 
-Specialities: Genetic Algorithms, Artificial Intelligence, Evolutionary Computation, and Artificial Life.
+<!-- I am amazed that evolution works in programs and artificial constructs, and I think that the possibility of evolving fully virtual creatures is fascinating. I want to create complex virtual ecosystems and the creatures that inhabit it using the open-ended evolution of programs. -->
+<!-- I'm am interested in programs that can adapt themselves, both applications (black box optimization, multi-agent systems, games), as well as more speculative use of these ideas (virtual creatures and their worlds). -->
+
 
 ### General Information
 - Check my [Publication List.](https://yurilavinas.github.io/publications.html)
