@@ -9,11 +9,10 @@ Send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp) if you have any
 
 Publications are listed in chronological order, and the horizontal line separates peer-reviewed publications.
 
-1. Gabriela Ochoa, Arnaud Liefooghe, *Yuri Lavinas*. **Decision/Objective Space Trajectory Networks for Multi-objective Combinatorial Optimisation**, 2023 Evolutionary Computation in Combinatorial Optimization, EvoCOP (Part of EvoStar), to appear.
+1. Gabriela Ochoa, Arnaud Liefooghe, *Yuri Lavinas*, Claus Aranha. **Decision/Objective Space Trajectory Networks for Multi-objective Combinatorial Optimisation**, Evolutionary Computation in Combinatorial Optimization. EvoCOP 2023. https://doi.org/10.1007/978-3-031-30035-6_14 [Preprint.](papers/EvoStar_2023__Multi_Objective_STNs_Combinatorial_Optimisation.pdf)
 
-2. Paul Mitchel, Gabriela Ochoa, *Yuri Lavinas*, Romain Chassagne. **Romain Chassagne Local Optima Networks for Seismic History
-Matching Problems**, 2023 Conference on the Applications of Evolutionary Computation (Part of EvoStar), to appear.
-
+2. Paul Mitchel, Gabriela Ochoa, *Yuri Lavinas*, Romain Chassagne. **Local Optima Networks for Seismic History
+Matching Problems**, EvoApplications 2023. https://doi.org/10.1007/978-3-031-30229-9_6 [Preprint.](papers/FLA_of_ASHM_Problems_using_LONs___EvoStar_2023.pdf)
 
 ## 2022
 1. *Yuri Lavinas*, Marcelo Ladeira, Claus Aranha. **Faster Convergence in Multi-Objective Optimization Algorithms Based on Decomposition Evolutionary Computation**, 2022, Evolutionary Computation, doi: 
