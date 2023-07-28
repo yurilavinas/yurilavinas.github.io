@@ -14,6 +14,12 @@ Publications are listed in chronological order, and the horizontal line separate
 2. Paul Mitchel, Gabriela Ochoa, *Yuri Lavinas*, Romain Chassagne. **Local Optima Networks for Seismic History
 Matching Problems**, EvoApplications 2023. https://doi.org/10.1007/978-3-031-30229-9_6 [Preprint.](papers/FLA_of_ASHM_Problems_using_LONs___EvoStar_2023.pdf)
 
+3.  Alexandre Mascarenhas, *Yuri Lavinas*, Claus Aranha. **AbCD: A Component-wise Adjustable Framework for Dynamic Optimization Problems**, In Proceedings of the Companion Conference on Genetic and Evolutionary Computation (GECCO '23 Companion). Association for Computing Machinery, New York, NY, USA, 503–506. https://doi.org/10.1145/3583133.3590655 [Extended version.](papers/2023_GECCO_Auto_Dynamic_PSO-1.pdf)
+
+4. *Yuri Lavinas*, Kevin Cortacero, Sylvain Cussat-Blanc. **Evolving Graphs with Cartesian Genetic Programming with Lexicase Selection**, In Proceedings of the Companion Conference on Genetic and Evolutionary Computation (GECCO '23 Companion). Association for Computing Machinery, New York, NY, USA, 1920–1924. https://doi.org/10.1145/3583133.3596402 [Preprint.](papers/2023_GECCO_CGP_LEX-1.pdf)
+
+5.
+
 ## 2022
 1. *Yuri Lavinas*, Marcelo Ladeira, Claus Aranha. **Faster Convergence in Multi-Objective Optimization Algorithms Based on Decomposition Evolutionary Computation**, 2022, Evolutionary Computation, doi: 
 https://doi.org/10.1162/evco_a_00306 [Preprint.](https://arxiv.org/abs/2112.11939)
