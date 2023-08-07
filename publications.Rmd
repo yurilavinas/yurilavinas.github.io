@@ -18,7 +18,7 @@ Matching Problems**, EvoApplications 2023. https://doi.org/10.1007/978-3-031-302
 
 4. *Yuri Lavinas*, Kevin Cortacero, Sylvain Cussat-Blanc. **Evolving Graphs with Cartesian Genetic Programming with Lexicase Selection**, In Proceedings of the Companion Conference on Genetic and Evolutionary Computation (GECCO '23 Companion). Association for Computing Machinery, New York, NY, USA, 1920–1924. https://doi.org/10.1145/3583133.3596402 [Preprint.](papers/2023_GECCO_CGP_LEX-1.pdf)
 
-5. *Yuri Lavinas*, Marcelo Ladeira, Gabriela Ochoa, Claus Aranha. **Multiobjective Evolutionary Component Effect on Algorithm behavior**, Accepted for publication at ACM Transactions on Evolutionary Learning and Optimization.
+5. *Yuri Lavinas*, Marcelo Ladeira, Gabriela Ochoa, Claus Aranha. **Multiobjective Evolutionary Component Effect on Algorithm behavior**, Multiobjective Evolutionary Component Effect on Algorithm behavior. ACM     Transactions on Evolutionary Learning and Optimization. Just Accepted (August 2023) https://dl.acm.org/doi/10.1145/3612933
 
 ## 2022
 1. *Yuri Lavinas*, Marcelo Ladeira, Claus Aranha. **Faster Convergence in Multi-Objective Optimization Algorithms Based on Decomposition Evolutionary Computation**, 2022, Evolutionary Computation, doi: 
