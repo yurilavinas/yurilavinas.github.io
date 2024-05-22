@@ -7,10 +7,10 @@ Send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp) if you have any
 
 ## 2024
 
-*Yuri Lavinas*, Nathaniel Haut, William Punch, Wolfgang Banzhaf, Sylvain
+1. *Yuri Lavinas*, Nathaniel Haut, William Punch, Wolfgang Banzhaf, Sylvain
 Cussat-Blanc. **Dynamically Sampling biomedical Images For Genetic Programming**, In Proceedings of the Companion Conference on Genetic and Evolutionary Computation (GECCO '24 Companion). Association for Computing Machinery, New York, NY, USA, 503–506. doi.org/10.1145/3638530.3654202.  
 
-*Yuri Lavinas*, Nathaniel Haut, William Punch, Wolfgang Banzhaf, Sylvain
+2. *Yuri Lavinas*, Nathaniel Haut, William Punch, Wolfgang Banzhaf, Sylvain
 Cussat-Blanc. **Data sampling via Active Learning in Cartesian Genetic Programming for Biomedical Data**, (CEC), Yokohama, Japan, 2024, to appear. 
 
 
