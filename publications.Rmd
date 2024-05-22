@@ -5,6 +5,8 @@ title: "Publications"
 
 Send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp) if you have any questions about these publications.
 
+Publications are listed in chronological order, and the horizontal line separates peer-reviewed publications.
+
 ## 2024
 
 1. *Yuri Lavinas*, Nathaniel Haut, William Punch, Wolfgang Banzhaf, Sylvain
@@ -17,7 +19,7 @@ Cussat-Blanc. **Data sampling via Active Learning in Cartesian Genetic Programmi
 
 ## 2023
 
-Publications are listed in chronological order, and the horizontal line separates peer-reviewed publications.
+
 
 1. Gabriela Ochoa, Arnaud Liefooghe, *Yuri Lavinas*, Claus Aranha. **Decision/Objective Space Trajectory Networks for Multi-objective Combinatorial Optimisation**, Evolutionary Computation in Combinatorial Optimization. EvoCOP 2023. https://doi.org/10.1007/978-3-031-30035-6_14 [Preprint.](papers/EvoStar_2023__Multi_Objective_STNs_Combinatorial_Optimisation.pdf)
 
