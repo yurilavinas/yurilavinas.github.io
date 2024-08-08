@@ -15,6 +15,17 @@ Hello, all. I'm happy to introduce my research blog. This is where I will write 
 
 -----
 
+## Living abroad experiences {.tabset .tabset-pills}
+
+Hi, again. This is my second post, and, wow, after a really long time. This time, I'm moving a little away from research topics and I will discuss a little my experiences while living abroad.
+
+-----
+
+```{r child = 'my_blog/living_abroad.Rmd'}
+```
+
+-----
+
 ## Visualizations {.tabset .tabset-pills}
 
 Hi, again. This is my first blog post. The idea here is to show a little of my research is a different way to the traditional papers that we read. I hope you can enjoy reading it as I did when I wrote this.
