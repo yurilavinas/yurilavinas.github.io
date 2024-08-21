@@ -18,7 +18,7 @@ Cussat-Blanc. **Data sampling via Active Learning in Cartesian Genetic Programmi
 3. *Yuri Lavinas*, Nathan Haut, William Punch, Wolfgang Banzhaf, 
 Cussat-Blanc. **Adaptive Sampling of Biomedical Images with Cartesian Genetic Programming**, Parallel Problem Solving From Nature (PPSN 2024), Hagenberg, Austria. https://doi.org/10.1007/978-3-031-70055-2_16
 
-4.Camilo De La Torre, Sylvain Cussat-Blanc, Dennis G Wilson, *Yuri Lavinas*
+4. Camilo De La Torre, Sylvain Cussat-Blanc, Dennis G Wilson, *Yuri Lavinas*
 **On Search Trajectory Networks for Graph Genetic Programming**. In Proceedings of the Companion Conference on Genetic and Evolutionary Computation (GECCO '24 Companion). . https://doi.org/10.1145/3638530.3664169
 
 5. Camilo De La Torre, *Yuri Lavinas*, Ké=zvin Cortacero, Hervé Luga, Dennis G Wilson, Sylvain
