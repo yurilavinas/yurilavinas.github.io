@@ -13,7 +13,7 @@ Publications are listed in chronological order, and the horizontal line separate
 Cussat-Blanc. **Dynamically Sampling biomedical Images For Genetic Programming**, In Proceedings of the Companion Conference on Genetic and Evolutionary Computation (GECCO '24 Companion). Association for Computing Machinery, New York, NY, USA, 503–506. doi.org/10.1145/3638530.3654202.  
 
 2. *Yuri Lavinas*, Nathaniel Haut, William Punch, Wolfgang Banzhaf, Sylvain
-Cussat-Blanc. **Data sampling via Active Learning in Cartesian Genetic Programming for Biomedical Data**, (CEC), Yokohama, Japan, 2024, 10.1109/CEC60901.2024.10611879. 
+Cussat-Blanc. **Data sampling via Active Learning in Cartesian Genetic Programming for Biomedical Data**, (CEC), Yokohama, Japan, 2024, https://doi.org/10.1109/CEC60901.2024.10611879. 
 
 3. *Yuri Lavinas*, Nathan Haut, William Punch, Wolfgang Banzhaf, Sylvain
 Cussat-Blanc. **Adaptive Sampling of Biomedical Images with Cartesian Genetic Programming**, Parallel Problem Solving From Nature (PPSN 2024), Hagenberg, Austria. https://doi.org/10.1007/978-3-031-70055-2_16
