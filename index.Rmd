@@ -7,13 +7,11 @@
 
 <div style="width: 65%; float: left;">
 
+I'm an associate professor at the University of Toulouse, France and I'm on the [REVA team](https://www.irit.fr/en/departement/dep-hpc-simulation-optimization/reva-team/). I did a postdoc research working with histopathology image analysis for cancer treatment with Genetic Programming in the [IRIT@CRCT](https://www.crct-inserm.fr/iritcrct/) group. I got my PhD degree from the University of Tsukuba, Japan. Originally, I'm from Brazil, where I did my undergraduate course, at the University of Brasilia. 
 
-I’m a postdoc research working with histopathology image analysis for cancer treatment with genetic programming, at the University of Toulouse, France in the [IRIT@CRCT](https://www.crct-inserm.fr/iritcrct/) group. I got my PhD degree from the University of Tsukuba, Japan. My research interests are related to Computational Intelligence, such as Evolutionary Computation and Artificial Life, especially Evolutionary Algorithms (EC), with a greater focus on multi-objective optimization and Cartesian GP. I’m engaged in cooperating in projects for using EC as a tool to solve problems in any field.
+My research interests are related to Computational Intelligence, such as Evolutionary Computation and Artificial Life, with a greater focus on multi-objective optimization, fitness landscape and  Genetic Programming. Overall, I'm interested in programs that can adapt themselves, in applications of Evolutionary Computation (black box optimization, multi-agent systems, games), as well as more speculative use of these Computational Intelligence for Artificial Life ( such as the evolution of virtual creatures and the worlds where the live).
 
-EC are heuristics based on ideas from biological evolution. The goal of EC is to learn solutions to challenging computational problems using ideas taken from the evolutionary process. EC can solve a few examples of problems: parameter optimization, product design, expert systems design, linear and non-linear regression, and automated control.
 
-<!-- I am amazed that evolution works in programs and artificial constructs, and I think that the possibility of evolving fully virtual creatures is fascinating. I want to create complex virtual ecosystems and the creatures that inhabit it using the open-ended evolution of programs. -->
-<!-- I'm am interested in programs that can adapt themselves, both applications (black box optimization, multi-agent systems, games), as well as more speculative use of these ideas (virtual creatures and their worlds). -->
 
 
 ### General Information
