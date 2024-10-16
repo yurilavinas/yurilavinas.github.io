@@ -10,21 +10,24 @@ Publications are listed in chronological order, and the horizontal line separate
 ## 2024
 
 1. *Yuri Lavinas*, Nathaniel Haut, William Punch, Wolfgang Banzhaf, 
-Cussat-Blanc. **Dynamically Sampling biomedical Images For Genetic Programming**, In Proceedings of the Companion Conference on Genetic and Evolutionary Computation (GECCO '24 Companion). https://doi.org/10.1145/3638530.3654202.  
+Sylvain Cussat-Blanc. **Dynamically Sampling biomedical Images For Genetic Programming**, In Proceedings of the Companion Conference on Genetic and Evolutionary Computation (GECCO '24 Companion). https://doi.org/10.1145/3638530.3654202   [Preprint.](papers/2024_GECCO_poster_Active_Learning.pdf)
 
 2. *Yuri Lavinas*, Nathaniel Haut, William Punch, Wolfgang Banzhaf, 
-Cussat-Blanc. **Data sampling via Active Learning in Cartesian Genetic Programming for Biomedical Data**, (CEC), https://doi.org/10.1109/CEC60901.2024.10611879. 
+Sylvain Cussat-Blanc. **Data sampling via Active Learning in Cartesian Genetic Programming for Biomedical Data**, (CEC), https://doi.org/10.1109/CEC60901.2024.10611879 [Preprint.](papers/2024_CEC_2024_AL_CGP.pdf)
 
 3. *Yuri Lavinas*, Nathan Haut, William Punch, Wolfgang Banzhaf, 
-Cussat-Blanc. **Adaptive Sampling of Biomedical Images with Cartesian Genetic Programming**, Parallel Problem Solving From Nature (PPSN 2024). https://doi.org/10.1007/978-3-031-70055-2_16
+Sylvain Cussat-Blanc. **Adaptive Sampling of Biomedical Images with Cartesian Genetic Programming**, Parallel Problem Solving From Nature (PPSN 2024). https://doi.org/10.1007/978-3-031-70055-2_16 [Preprint.](papers/Active_Learning_CGP_PPSN_24.pdf)
 
 4. Camilo De La Torre, Sylvain Cussat-Blanc, Dennis G Wilson, *Yuri Lavinas*
 **On Search Trajectory Networks for Graph Genetic Programming**. In Proceedings of the Companion Conference on Genetic and Evolutionary Computation (GECCO '24 Companion). https://doi.org/10.1145/3638530.3664169
 
+
 5. Camilo De La Torre, *Yuri Lavinas*, Kévin Cortacero, Hervé Luga, Dennis G Wilson, Sylvain
 Cussat-Blanc, **Multi-Modal Adaptive Graph Evolution for Program Synthesis**, Parallel Problem Solving From Nature (PPSN 2024). https://doi.org/10.1007/978-3-031-70055-2_19
+[Preprint.](papers/MAGE_PPSN_Article.pdf)
 
 6. *Yuri Lavinas*, Marcelo Ladeira, Gabriela Ochoa, Claus Aranha. **Multiobjective Evolutionary Component Effect on Algorithm behavior**, Multiobjective Evolutionary Component Effect on Algorithm behavior. ACM     Transactions on Evolutionary Learning and Optimization.  https://dl.acm.org/doi/10.1145/3612933
+[Preprint.](papers/TELO_autodesign_RW_benchmark.pdf)
 
 ## 2023
 
@@ -35,7 +38,7 @@ Matching Problems**, EvoApplications 2023. https://doi.org/10.1007/978-3-031-302
 
 3.  Alexandre Mascarenhas, *Yuri Lavinas*, Claus Aranha. **AbCD: A Component-wise Adjustable Framework for Dynamic Optimization Problems**, In Proceedings of the Companion Conference on Genetic and Evolutionary Computation (GECCO '23 Companion). https://doi.org/10.1145/3583133.3590655 [Extended version.](papers/2023_GECCO_Auto_Dynamic_PSO-1.pdf)
 
-4. *Yuri Lavinas*, Kevin Cortacero,  Cussat-Blanc. **Evolving Graphs with Cartesian Genetic Programming with Lexicase Selection**, In Proceedings of the Companion Conference on Genetic and Evolutionary Computation (GECCO '23 Companion).  https://doi.org/10.1145/3583133.3596402 [Preprint.](papers/2023_GECCO_CGP_LEX-1.pdf)
+4. *Yuri Lavinas*, Kevin Cortacero,  Sylvain Cussat-Blanc. **Evolving Graphs with Cartesian Genetic Programming with Lexicase Selection**, In Proceedings of the Companion Conference on Genetic and Evolutionary Computation (GECCO '23 Companion).  https://doi.org/10.1145/3583133.3596402 [Preprint.](papers/2023_GECCO_CGP_LEX-1.pdf)
 
 
 ## 2022
@@ -46,9 +49,10 @@ https://doi.org/10.1162/evco_a_00306 [Preprint.](https://arxiv.org/abs/2112.1193
 - ***This work was nominated as candidate for the student best paper of EvoStar 2022.***
 - ***This work was nominated as candidate for the best paper of EvoStar 2022.***
 
-3. *Yuri Lavinas*, Marcelo Ladeira, Claus Aranha, Gabriela Ochoa. **Component-wise Analysis of Automatically Designed Multiobjective Algorithms on Constrained Problems**, 2022 GECCO, doi https://doi.org/10.1145/3512290.3528719
+3. *Yuri Lavinas*, Marcelo Ladeira, Claus Aranha, Gabriela Ochoa. **Component-wise Analysis of Automatically Designed Multiobjective Algorithms on Constrained Problems**, 2022 GECCO, doi https://doi.org/10.1145/3512290.3528719 [Preprint.](https://arxiv.org/abs/2203.13447)
 - ***This work was nominated as candidate for the best paper of the EMO track GECCO 2022.***
-[Preprint.](https://arxiv.org/abs/2203.13447)
+
+
 
 ## 2021
 
