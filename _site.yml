@@ -1,11 +1,11 @@
 html_document:
   anchor_sections: false
-name: "Yuri Lavinas' Research Page"
+name: "Yuri Lavinas"
 output_dir: "."
 base_url: https://yclavinas.github.io
 google_analytics: "UA-158808753-1"
 navbar:
-  title: "Yuri Lavinas' Research Page"
+  title: "Yuri Lavinas"
   left:
     - text: "Home"
       href: index.html
@@ -13,6 +13,8 @@ navbar:
       href: publications.html
     - text: "Blog"
       href: blog.html
+    - text: "Calendar"
+      href: calendar.html
   right:
     - icon: fa-envelope
       href: mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp

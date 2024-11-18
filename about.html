@@ -13,7 +13,7 @@
 
 <title>About me</title>
 
-<script src="site_libs/header-attrs-2.12/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.26/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
@@ -32,8 +32,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -143,11 +143,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -176,8 +180,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -185,16 +189,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -257,7 +254,7 @@ $(document).ready(function () {
   <a href="blog.html">Blog</a>
 </li>
 <li>
-  <a href="about.html">About me</a>
+  <a href="calendar.html">Calendar</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -299,35 +296,61 @@ $(document).ready(function () {
 </div>
 
 
-<p>I am a PhD student at the University of Tsukuba. I graduated in Computer Science (2016) at the University of Brasilia, Brazil, and I got my Master Degree at the University of Tsukuba, Japan (2020). Now, I’m on the final year of the PhD course also at the University of Tsukuba.</p>
-<p>I am conducting research since I was an undergraduate student, in Brazil at the University of Brasilia. During that time, I was awarded with two research scholarships. During my undergraduate period I had the chance to pursuit a sandwich program financed by the Brazilian government - Science without Borders - to conduct research in Japan for a year, at the University of Tsukuba. After graduating, I started a master course also at University of Tsukuba, with the MEXT scholarship. Then, I was granted another MEXT scholarship, to continue my studies in Japan, but now as a PhD student.</p>
-<hr />
-<div id="scholarships" class="section level4">
-<h4>Scholarships</h4>
-<ol style="list-style-type: decimal">
-<li>Awarded PhD scholarship by - MEXT - 文部科学省奨学金, 2020.04 until 2023.03</li>
-<li>Awarded masters scholarship by - MEXT - 文部科学省奨学金, 2018.04 until 2020.03</li>
-<li>Awarded research scholarship by - MEXT - 文部科学省奨学金, 2017.09 until 2018.03</li>
-<li>Awarded research scholarship by CNPq – National Council for Scientific and Technological Development, 2015.08 until 2016.07.</li>
-<li>Awarded research scholarship by CAPES - Coordination for the Improvement of Higher Education Personnel, 2014.08 until 2015.08.</li>
-<li>Awarded research scholarship by CNPq - National Council for Scientific and Technological Development, 2014.08 until 2015.07.</li>
-</ol>
-<hr />
-</div>
+<p>I’m a postdoc research working with histopathology image analysis for
+cancer treatment with genetic programming. I was a PhD student at the
+University of Tsukuba (2020-2023). I graduated in Computer Science
+(2016) at the University of Brasilia, Brazil, and I got my Master Degree
+at the University of Tsukuba, Japan (2020).</p>
+<p>I am conducting research since I was an undergraduate student, in
+Brazil at the University of Brasilia. During that time, I was awarded
+with two research scholarships. During my undergraduate period I had the
+chance to pursuit a sandwich program financed by the Brazilian
+government - Science without Borders - to conduct research in Japan for
+a year, at the University of Tsukuba. After graduating, I started a
+master course also at University of Tsukuba, with the MEXT scholarship.
+Then, I was granted another MEXT scholarship, to continue my studies in
+Japan, but as a PhD student.</p>
+<table style="width:10%;">
+<colgroup>
+<col width="9%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>#### Scholarships</td>
+</tr>
+<tr class="even">
+<td>1. Awarded PhD scholarship by - MEXT - 文部科学省奨学金, 2020.04
+until 2023.03 2. Awarded masters scholarship by - MEXT -
+文部科学省奨学金, 2018.04 until 2020.03 3. Awarded research scholarship
+by - MEXT - 文部科学省奨学金, 2017.09 until 2018.03 4. Awarded research
+scholarship by CNPq – National Council for Scientific and Technological
+Development, 2015.08 until 2016.07. 5. Awarded research scholarship by
+CAPES - Coordination for the Improvement of Higher Education Personnel,
+2014.08 until 2015.08. 6. Awarded research scholarship by CNPq -
+National Council for Scientific and Technological Development, 2014.08
+until 2015.07.</td>
+</tr>
+</tbody>
+</table>
 <div id="research-interests" class="section level4">
 <h4>Research interests</h4>
-<p>My research interests are Evolutionary Computation, Multiobjective Optimization and Alife.</p>
+<p>My research interests are Evolutionary Computation, Multiobjective
+Optimization and Alife.</p>
 <hr />
 </div>
 <div id="co-authorship-network" class="section level4">
 <h4>Co-authorship Network</h4>
 <p>Research collaboration/network:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Marcelo Ladeira</strong> and <strong>Felipe Vaz</strong> (University of Brasilia). <!-- 2. **Geoffrey Pruvost**, **Bilel Derbel** and **Arnaud Liefooghe** (University of Lille). --></li>
-<li><strong>Lana Sinapayen</strong>, (Sony Computer Science Labs’ new Kyoto Lab).</li>
+<li><strong>Marcelo Ladeira</strong> and <strong>Felipe Vaz</strong>
+(University of Brasilia).
+<!-- 2. **Geoffrey Pruvost**, **Bilel Derbel** and **Arnaud Liefooghe** (University of Lille). --></li>
+<li><strong>Lana Sinapayen</strong>, (Sony Computer Science Labs’ new
+Kyoto Lab).</li>
 <li><strong>Gabriela Ochoa</strong>, (University of Stirling).</li>
 <li><strong>Felipe Campelo</strong>, (Aston University).</li>
-<li><strong>Ricardo Torres</strong> (University of Norwegian University of Science and Technology).</li>
+<li><strong>Ricardo Torres</strong> (University of Norwegian University
+of Science and Technology).</li>
 </ol>
 </div>
 

@@ -4,21 +4,20 @@
 %
 \documentclass[
 ]{article}
-\title{My blog}
-\author{}
-\date{\vspace{-2.5em}}
-
 \usepackage{amsmath,amssymb}
-\usepackage{lmodern}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -37,13 +36,6 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
-\hypersetup{
-  pdftitle={My blog},
-  hidelinks,
-  pdfcreator={LaTeX via pandoc}}
-\urlstyle{same} % disable monospaced font for URLs
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \makeatletter
@@ -407,8 +399,8 @@ d-title {
 </style>
 
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet"/>
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet"/>
 <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
 <script src="site_libs/autocomplete-0.37.1/autocomplete.min.js"></script>
 <script src="site_libs/fuse-6.4.1/fuse.min.js"></script>
@@ -688,6 +680,17 @@ body {
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={My blog},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{My blog}
+\author{}
+\date{\vspace{-2.5em}}
 
 \begin{document}
 \maketitle
@@ -696,11 +699,11 @@ body {
 <header class="header header--fixed" role="banner">
 <nav class="distill-site-nav distill-site-header">
 <div class="nav-left">
-<a href="index.html" class="title">Yuri Lavinas' Research Page</a>
+<a href="index.html" class="title">Yuri Lavinas</a>
 <a href="index.html">Home</a>
 <a href="publications.html">Publications</a>
 <a href="blog.html">Blog</a>
-<a href="about.html">About me</a>
+<a href="calendar.html">Calendar</a>
 <input id="distill-search" class="nav-search hidden" type="text" placeholder="Search..."/>
 </div>
 <div class="nav-right">
@@ -738,6 +741,20 @@ find interesting.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
+\hypertarget{living-abroad-experiences}{%
+\subsection{Living abroad experiences}\label{living-abroad-experiences}}
+
+Hi, again. This is my second post, and, wow, after a really long time.
+This time, I'm moving a little away from research topics and I will
+discuss a little my experiences while living abroad.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{todo}{%
+\paragraph{TODO}\label{todo}}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
 \hypertarget{visualizations}{%
 \subsection{Visualizations}\label{visualizations}}
 
@@ -766,12 +783,12 @@ the most common is the fitness landscapes.
 
 In a population-based algorithm:
 
-\begin{center}\includegraphics[width=0.6\linewidth]{gifs/Visualization_of_a_population_evolving_in_a_static_fitness_landscape} \end{center}
+\includegraphics[width=0.6\linewidth]{gifs/Visualization_of_a_population_evolving_in_a_static_fitness_landscape}
 
 In a gradient descent algorithm (commonly used in Neural Networks and
 other ML algorithms):
 
-\begin{center}\includegraphics[width=0.5\linewidth]{gifs/sgd} \end{center}
+\includegraphics[width=0.5\linewidth]{gifs/sgd}
 
 In case this is your first time hearing about the fitness landscape, let
 me give a summary of what they are:
@@ -809,7 +826,7 @@ over time, and then we an study the strengths and weaknesses of
 algorithms. And by knowing these strengths and weaknesses we can improve
 existing algorithms or even create new and better EAs.
 
-\begin{center}\includegraphics{gifs/new_is_always_better_gif} \end{center}
+\includegraphics{gifs/new_is_always_better_gif.gif}
 
 (Disclaimer: Is new always better? I love this meme, so I couldn't
 resist adding it here, but new doesn't mean better. Btw, what does it
@@ -834,7 +851,7 @@ should return a suitable set of solutions at any time during the search
 {[}1,2,3,4{]}. That is, looking at the whole process, not only at the
 end, provides more insightful information.
 
-\begin{center}\includegraphics[width=0.45\linewidth]{imgs/UF10hv_evolution} \end{center}
+\includegraphics[width=0.45\linewidth]{imgs/UF10hv_evolution}
 
 This image shows the Anytime HV (higher is better, shaded areas indicate
 the standard deviation) on UF10. The performance of MOEA/D-PS is shown
@@ -848,7 +865,7 @@ end of the search. This image and text are from {[}5{]}.
 See? The 3 algorithms have the same final performance, but how they got
 there was different.
 
-\begin{center}\includegraphics[width=0.4\linewidth]{gifs/insightful} \end{center}
+\includegraphics[width=0.4\linewidth]{gifs/insightful}
 
 \hypertarget{empirical-attainment-performance}{%
 \subparagraph{Empirical Attainment
@@ -868,7 +885,7 @@ objective space is not dominated by those solutions {[}7,8{]}. For
 example, the median attainment surface shows regions dominated by at
 least half of the runs {[}6{]}.
 
-\begin{center}\includegraphics[width=0.65\linewidth]{imgs/eaf_UF6_big_vs_ps} \end{center}
+\includegraphics[width=0.65\linewidth]{imgs/eaf_UF6_big_vs_ps}
 
 The shades of red show the amount of the differences of the
 probabilistic distribution of the outcomes obtained by the algorithms:
@@ -883,7 +900,7 @@ regions. So, if you prefer more balanced solutions, choose the algorithm
 from the left, if you prefer extreme solutions, then the one of the
 right is the right one.
 
-\begin{center}\includegraphics[width=0.4\linewidth]{gifs/choices} \end{center}
+\includegraphics[width=0.4\linewidth]{gifs/choices}
 
 \hypertarget{search-trajectory-networks}{%
 \subparagraph{Search Trajectory
@@ -894,11 +911,11 @@ algorithms is a new tool that I, together with Gabriela Ochoa and Claus
 Aranha, have developed and just been accepted for publication at this
 year's EvoStar conference.
 
-\begin{center}\includegraphics[width=0.4\linewidth]{gifs/thats_good} \end{center}
+\includegraphics[width=0.4\linewidth]{gifs/thats_good}
 
 PS: I've been nominated as an ``Outstanding Student'' for this work!
 
-\begin{center}\includegraphics[width=0.4\linewidth]{gifs/cool_peralta} \end{center}
+\includegraphics[width=0.4\linewidth]{gifs/cool_peralta}
 
 (Disclaimer: Another meme that I love and that I couldn't resist adding
 here. 99!)
@@ -914,11 +931,11 @@ To see how effective this STN are, we generated STNs models for MOEA/D
 and NSGA-II. First, I'm showing the STN of the MOEA/D on the UF10
 problem:
 
-\begin{center}\includegraphics[width=0.5\linewidth]{gifs/moead_uf10} \end{center}
+\includegraphics[width=0.5\linewidth]{gifs/moead_uf10}
 
 First, I'm showing the STN of the NSGA-II on the same problem:
 
-\begin{center}\includegraphics[width=0.5\linewidth]{gifs/nsga2_uf10} \end{center}
+\includegraphics[width=0.5\linewidth]{gifs/nsga2_uf10}
 
 See how different they are? For example, the first STN, of MOEA/D, is
 much more dense that the STN of NSGA-II. Not only that, but the MOEA/D
@@ -932,7 +949,7 @@ differentiate multiobjective EAs visually and quantitatively. This is
 great because we can add together this information to the traditional
 comparing metrics, such as HV and IGD.
 
-\begin{center}\includegraphics[width=0.5\linewidth]{gifs/good_job} \end{center}
+\includegraphics[width=0.5\linewidth]{gifs/good_job}
 
 Also, they are beautiful! Or is it just me?
 
@@ -947,7 +964,7 @@ Or read the preprint version: \url{https://t.co/1GAkPy0R9K}.
 Well, this is it for today. I hope you found this helpful. See you next
 time!
 
-\begin{center}\includegraphics{gifs/spongebob-done} \end{center}
+\includegraphics{gifs/spongebob-done.gif}
 
 \hypertarget{references}{%
 \section{References}\label{references}}
