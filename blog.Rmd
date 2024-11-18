@@ -1,12 +1,6 @@
 ---  
 title: "My blog"  
-output: 
-  pdf_document:
-    toc: yes 
-collections:
-  posts:
-    disqus: evostar_summary
-    share: [twitter, linkedin]
+
 ---
 
 # First post {.tabset .tabset-pills}

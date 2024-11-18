@@ -147,7 +147,7 @@ knitr::include_graphics("gifs/spongebob-done.gif")
 ```
 
 
-# References
+###### **References**
 
 [1] Zilberstein, S. (1996). Using anytime algorithms in intelligent systems. AI magazine, 17(3), 73-73.
 
