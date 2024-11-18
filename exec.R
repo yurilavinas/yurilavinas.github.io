@@ -1,7 +1,7 @@
 #Setup
 library(rmarkdown)
 library(knitr)
-# library(render_site)
+library(render_site)
 library(dplyr)
 
 setwd("~/Documents/yurilavinas.github.io/")
@@ -10,7 +10,7 @@ setwd("~/Documents/yurilavinas.github.io/")
 # knitr::opts_chunk$set(echo = TRUE, include = TRUE, cache=T, fig.width = 8, fig.height=6, fig.align="center", background = c(.95,.95,.95),message=FALSE)
 # 
 # #Execute
-render_site(input = "index.Rmd")
+render_site(input = "calendar.Rmd")
 # render_site(input = "publications.Rmd")
 
 
