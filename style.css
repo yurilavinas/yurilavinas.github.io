@@ -1,17 +1,132 @@
-img {
-  width: 400px;
-  display: block;
-  margin: 0 auto;
+body {
+    display: flex;
+    margin: 0;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+html {
+    font-family: trebuchet, geneva, sans-serif;
 }
 
 
-.column-left{
-  float: left;
-  width: 20%;
-  text-align: left;
+header {
+    display: flex;
+    flex-direction: row;
+    height: 250px;
 }
-.column-right{
-  float: right;
-  width: 50%;
-  text-align: right;
+
+h1:hover { background-color: blue;}
+h1:active { background-color: red;
+	         font-size:  52pt;}
+
+
+header, footer {
+    background-color: rgba(0, 139, 139, 0.75);
+    color: white;
+    text-align: center;
+}
+
+footer {
+    background-color: rgba(0, 139, 139, 1);
+}
+
+header .photo + * {
+    display: flex;
+    flex: 2%;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo{
+    border-right: 1px solid white;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+}
+
+nav a {
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid white;
+    text-align: center;
+    padding: 60px;
+    font-size:80px;
+}
+
+#linkedin:hover {
+    font-size:100px;
+    opacity: 0.3;
+}
+
+#github:hover {
+    font-size:100px;
+    opacity: 0.3;
+}
+
+#linkedin:active {
+    font-size:10px;
+    opacity: 1;
+}
+
+#github:active {
+    font-size:10px;
+    opacity: 1;
+}
+
+
+#data{
+    display: flex;
+    flex-direction: row;   
+    flex-grow: 1;
+}
+
+#text {
+    display: flex;
+    flex-direction: column; 
+    padding: 10px;
+    flex: 75%;
+}
+
+#selection {
+    flex: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#radios {
+    flex: 25%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 20px;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    background-color: rgba(255, 218, 185, 0.1);
+}
+
+aside {
+    background-color: lightgray;
+    border-left: 1px solid black;
+    flex: 25%;
+    padding: 10px;
+}
+
+.imgs {
+    opacity: 1;
+}
+
+.imgs:hover {
+    opacity: 0.3;
 }

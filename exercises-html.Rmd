@@ -1,0 +1,121 @@
+---
+title: "Exercises - HTML"
+author: "Yuri Lavinas"
+date: "2025-01-16"
+output:
+  pdf_document:
+    toc: true
+  html_document:
+    toc: true
+    df_print: paged
+---
+
+We have seen in class the basics of HTML, so now let's put our hands to work!
+Here, we will create a personal webpage where you summarise your own CV.
+
+
+1. a) Create a simple HTML document with the following structure:
+
+
+```{r,eval=FALSE}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My First HTML Page</title>
+</head>
+<body>
+  <header>
+  # for your picture (or something that looks nice) and nav items
+  <h3>My first webpage.</h3>
+  </header>
+  <main>
+  # for the rest of your info/text etc
+      <h1>Welcome to HTML!</h1>
+      <p>This is a paragraph.</p>
+  </main>
+</body>
+</html>
+```
+
+b) Change the text with your name and the name of your website.
+
+c) Personalize it with a short information of who you are. 
+
+  - Example:
+    - A short biography using 
+    - Import hard skills
+    - Import soft skills
+    - Work experiences
+    - Certifications
+      - Be creative!
+  
+<br>  
+
+2. Add some format to your text:
+
+  - Bold text using < b > < /b >or < strong > < / strong >.
+  - Italicized text using < i > or < em >.
+  - Underlined text using < u >< /u >.
+  - Strikethrough text using < s >< /s >
+
+<br>
+
+3. Let's organize it a little. Change your soft and hard skills section using lists:
+
+a)  Make a list of the two main categories: soft and hard skills.
+  
+b) For that we start with the < ul >< /ul > tag, to indicate an urdered list will be created here.
+  
+c) Then, for each item, use the tag < li >< /li > and write the skill category inside.
+  
+d) Under the tag of each of the skills, create a nested ordered list < li >< /li > with the name of the skill.
+  
+<br>
+
+4. Add links, in your biography, to the university our university and others if you went to any;
+  - Example: A link to Google: < a href="https://www.google.com" >Google< /a >
+
+<br>   
+
+5. a) Add a beautiful image (maybe of yourself?) to your webpage using the < img > tag on the header section.
+  - Example: < img src="path-to-your-image.jpg" alt="A description of the image" >
+
+b) Resize the image using the width and height attributes.     
+
+<br>
+
+6. Build a contact section with:
+  - A form, tag < form >< /form > that includes
+  - Example:      
+```{r,eval=FALSE}
+  <label for="name">Name:</label>
+  <input type="text">
+```
+
+  - Add an email input, changing the type attribute. 
+  - Add an text input, changing the type attribute.
+  
+```{r,eval=FALSE}
+  <label for="text">Text:</label>
+  <textarea></textarea>
+```
+
+<br>
+
+7. a) Add a placeholder, a text to indicate some information.
+
+b) Change the input tags to be required, so that a submission cannot be made without all fields filled.
+
+<br>
+
+8. Your social media links as clickable icons using the <nav></nav> tag on the header section.
+
+<br>
+
+9. Interactive Elements
+
+ - Include a button or link that allows users to download your CV as a PDF.
+ - Use a < details > element for an expandable "More About Me" section.
+
+        
+        
