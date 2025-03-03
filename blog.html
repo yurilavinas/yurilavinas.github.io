@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>My blog</title>
+
+<script src="site_libs/header-attrs-2.26/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Yuri Lavinas</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="publications.html">Publications</a>
+</li>
+<li>
+  <a href="blog.html">Blog</a>
+</li>
+<li>
+  <a href="calendar.html">Calendar</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp">
+    <span class="fa fa-envelope"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://scholar.google.co.jp/citations?user=-hdeQYcAAAAJ&amp;hl=en">
+    <span class="fa fa-google"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://twitter.com/yurilavinas">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/yurilavinas">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">My blog</h1>
+
+</div>
+
+
+<div id="first-post" class="section level1 tabset tabset-pills">
+<h1 class="tabset tabset-pills">First post</h1>
+<p>Hello, all. I’m happy to introduce my research blog. This is where I
+will write about my research projects and other related stuff that I
+find interesting.</p>
+<hr />
+<div id="living-abroad-experiences"
+class="section level2 tabset tabset-pills">
+<h2 class="tabset tabset-pills">Living abroad experiences</h2>
+<p>Hi, again. This is my second post, and, wow, after a really long
+time. This time, I’m moving a little away from research topics and I
+will discuss a little my experiences while living abroad.</p>
+<hr />
+<div id="todo" class="section level4">
+<h4>TODO</h4>
+<hr />
+</div>
+</div>
+<div id="visualizations" class="section level2 tabset tabset-pills">
+<h2 class="tabset tabset-pills">Visualizations</h2>
+<p>Hi, again. This is my first blog post. The idea here is to show a
+little of my research is a different way to the traditional papers that
+we read. I hope you can enjoy reading it as I did when I wrote this.</p>
+<hr />
+<div id="personal-motivation" class="section level4">
+<h4>Personal motivation</h4>
+<p>Recently I started to be interested in visualising evolutionary
+algorithms (EAs). Here, I will summarise some fascinating works that
+helped me create an interest in the field of study.</p>
+<div id="what-are-these-visualisation-tools" class="section level5">
+<h5>What are these visualisation tools?</h5>
+<p>The main idea of visualising EAs is to show efficient ways of
+communicating the behaviour of such algorithms. What is remarkable about
+looking at the images is that we can <strong>look</strong> at them,
+which feels a little less abstract. I’m sure you saw some of these
+tools, and one of the most common is the fitness landscapes.</p>
+<p>In a population-based algorithm:</p>
+<p><img src="gifs/Visualization_of_a_population_evolving_in_a_static_fitness_landscape.gif" width="60%" /></p>
+<p>In a gradient descent algorithm (commonly used in Neural Networks and
+other ML algorithms):</p>
+<p><img src="gifs/sgd.gif" width="50%" /></p>
+<p>In case this is your first time hearing about the fitness landscape,
+let me give a summary of what they are:</p>
+<ul>
+<li>Fitness Landscapes are used to visualise the relationship between
+solutions and their fitness values.</li>
+<li>Similar solutions are closer to each other, different solutions are
+far from each other. The set of all possible solutions, their degree of
+similarity, and corresponding fitness values is called a fitness
+landscape.</li>
+<li>The higher the fitness, the higher is the landscape.</li>
+</ul>
+<p>Are you interested? Take a look at this Wikipedia page: <a
+href="https://en.wikipedia.org/wiki/Evolutionary_landscape"
+class="uri">https://en.wikipedia.org/wiki/Evolutionary_landscape</a>.</p>
+<p>Or watch this YouTube video: <a
+href="https://www.youtube.com/watch?v=4pdiAneMMhU"
+class="uri">https://www.youtube.com/watch?v=4pdiAneMMhU</a></p>
+<hr />
+</div>
+</div>
+<div id="from-1-to-many" class="section level4">
+<h4>From 1 to many</h4>
+<p>That’s super, isn’t it? These methods were developed for
+singleobjective algorithms, and we don’t have yet many tools to
+visualize multiobjective EAs. Having tools like this can help us to
+create new and (hopefully) better algorithms. That is because we can see
+how the process changes over time, and then we an study the strengths
+and weaknesses of algorithms. And by knowing these strengths and
+weaknesses we can improve existing algorithms or even create new and
+better EAs.</p>
+<p><img src="gifs/new_is_always_better_gif.gif" /><!-- --></p>
+<p>(Disclaimer: Is new always better? I love this meme, so I couldn’t
+resist adding it here, but new doesn’t mean better. Btw, what does it
+mean to be better?)</p>
+<hr />
+</div>
+<div id="methods-that-i-think-are-worth-mentioning"
+class="section level4">
+<h4>Methods that I think are worth mentioning</h4>
+<p>Here I will discuss visualisation methods for the multiobjective
+domain that I have already successfully used.</p>
+<div id="anytime-hypervolume-performance" class="section level5">
+<h5>Anytime hypervolume performance</h5>
+<p>Analysing algorithms using the final approximation provides limited
+information related to these algorithms’ performance since these EAS
+should return a suitable set of solutions at any time during the search
+[1,2,3,4]. That is, looking at the whole process, not only at the end,
+provides more insightful information.</p>
+<p><img src="imgs/UF10hv_evolution.png" width="45%" /></p>
+<p>This image shows the Anytime HV (higher is better, shaded areas
+indicate the standard deviation) on UF10. The performance of MOEA/D-PS
+is shown as the red circles, MOEA/D with population size 500 is shown as
+the green triangles, and MOEA/D with population size equals 50 is shown
+as the blue squares, on UF10. The anytime performance of MOEA/D-PS is
+similar to the anytime performance of MOEA/D with a small population. We
+can see that the three variants have almost the same performance at the
+end of the search. This image and text are from [5].</p>
+<p>See? The 3 algorithms have the same final performance, but how they
+got there was different.</p>
+<p><img src="gifs/insightful.gif" width="40%" /></p>
+</div>
+<div id="empirical-attainment-performance" class="section level5">
+<h5>Empirical Attainment Performance</h5>
+<p>The empirical attainment function (EAF) allows the examination of the
+solution many sets of different runs of an algorithm. It can illustrate
+where and by how much the outcomes of the two algorithms differ in the
+objective space [6]. The EAF is based on the attainment surface and
+resents the probability that an arbitrary objective region in the
+objective space is attained (dominated or equal) by an algorithm, and
+probability can be estimated using data collected from several
+independent runs such algorithm. The attained surface separates the
+objective space into two regions: (1) where the objective space is
+dominated (attained) by solutions of many sets and (2) where the
+objective space is not dominated by those solutions [7,8]. For example,
+the median attainment surface shows regions dominated by at least half
+of the runs [6].</p>
+<p><img src="imgs/eaf_UF6_big_vs_ps.png" width="65%" /></p>
+<p>The shades of red show the amount of the differences of the
+probabilistic distribution of the outcomes obtained by the algorithms:
+shades closer to red indicate higher differences between the probability
+distributions, shades closer to orange indicate little difference and
+shades closer to white indicate no difference. Again, this image and
+text are from [5].</p>
+<p>See? The algorithm on the left performs better at central regions of
+the objective space. The algorithm on the right performs better at the
+side regions. So, if you prefer more balanced solutions, choose the
+algorithm from the left, if you prefer extreme solutions, then the one
+of the right is the right one.</p>
+<p><img src="gifs/choices.gif" width="40%" /></p>
+</div>
+<div id="search-trajectory-networks" class="section level5">
+<h5>Search Trajectory Networks</h5>
+<p>Search Trajectories Networks (STNs) of multiobjective evolutionary
+algorithms is a new tool that I, together with Gabriela Ochoa and Claus
+Aranha, have developed and just been accepted for publication at this
+year’s EvoStar conference.</p>
+<p><img src="gifs/thats_good.gif" width="40%" /></p>
+<p>PS: I’ve been nominated as an “Outstanding Student” for this
+work!</p>
+<p><img src="gifs/cool_peralta.gif" width="40%" /></p>
+<p>(Disclaimer: Another meme that I love and that I couldn’t resist
+adding here. 99!)</p>
+<p>In our work, we extend the search trajectory networks models (STNs)
+proposed for single objective EAs. The main difference between STNs in
+the singleobjective and the multiobjective domains is that we use the
+idea of decomposition. The decomposition transforms a multiobjective
+problem into several single-objective problems. So, now we can create
+STNs for the multiobjective domain!</p>
+<p>To see how effective this STN are, we generated STNs models for
+MOEA/D and NSGA-II. First, I’m showing the STN of the MOEA/D on the UF10
+problem:</p>
+<p><img src="gifs/moead_uf10.gif" width="50%" /></p>
+<p>First, I’m showing the STN of the NSGA-II on the same problem:</p>
+<p><img src="gifs/nsga2_uf10.gif" width="50%" /></p>
+<p>See how different they are? For example, the first STN, of MOEA/D, is
+much more dense that the STN of NSGA-II. Not only that, but the MOEA/D
+STN showed more nodes (coloured circles) indicating that the algorithm
+is exploring more the search space, while the NSGA-II STN keeps going
+back to the end node (the size of the black triangle indicates that this
+node is reached multiple times).</p>
+<p>Analysing the STNs showed us that we can effectively apply them to
+differentiate multiobjective EAs visually and quantitatively. This is
+great because we can add together this information to the traditional
+comparing metrics, such as HV and IGD.</p>
+<p><img src="gifs/good_job.gif" width="50%" /></p>
+<p>Also, they are beautiful! Or is it just me?</p>
+<p>For more information, see this Twitter thread.</p>
+<p><a href="https://twitter.com/yurilavinas/status/1499681390019092487"
+class="uri">https://twitter.com/yurilavinas/status/1499681390019092487</a></p>
+<p>Or read the preprint version: <a href="https://t.co/1GAkPy0R9K"
+class="uri">https://t.co/1GAkPy0R9K</a>.</p>
+<hr />
+<p>Well, this is it for today. I hope you found this helpful. See you
+next time!</p>
+<p><img src="gifs/spongebob-done.gif" /><!-- --></p>
+<div id="references" class="section level6">
+<h6><strong>References</strong></h6>
+<p>[1] Zilberstein, S. (1996). Using anytime algorithms in intelligent
+systems. AI magazine, 17(3), 73-73.</p>
+<p>[2] Radulescu, A., López-Ibánez, M., &amp; Stützle, T. (2013, March).
+Automatically improving the anytime behaviour of multiobjective
+evolutionary algorithms. In International Conference on Evolutionary
+Multi-Criterion Optimization (pp. 825-840). Springer, Berlin,
+Heidelberg.</p>
+<p>[3] Dubois-Lacoste, J., López-Ibáñez, M., &amp; Stützle, T. (2015).
+Anytime Pareto local search. European journal of operational research,
+243(2), 369-385.</p>
+<p>[4] Tanabe, R., Ishibuchi, H., &amp; Oyama, A. (2017). Benchmarking
+multi-and many-objective evolutionary algorithms under two optimisation
+scenarios. IEEE Access, 5, 19597-19619.</p>
+<p>[5] Lavinas, Y., Aranha, C., &amp; Ladeira, M. (2022). Faster
+Convergence in Multiobjective Optimisation Algorithms Based on
+Decomposition. Evol Comput 2022; DOI: <a
+href="https://doi.org/10.1162/evco_a_00306"
+class="uri">https://doi.org/10.1162/evco_a_00306</a>.</p>
+<p>[6] López-Ibáñez, M., Paquete, L., &amp; Stützle, T. (2010).
+Exploratory analysis of stochastic local search algorithms in
+biobjective optimisation. In Experimental methods for the analysis of
+optimisation algorithms (pp. 209-222). Springer, Berlin, Heidelberg.</p>
+<p>[7] Fonseca, C. M., &amp; Fleming, P. J. (1996, September). On the
+performance assessment and comparison of stochastic multiobjective
+optimisers. In International Conference on Parallel Problem Solving from
+Nature (pp. 584-593). Springer, Berlin, Heidelberg.</p>
+<p>[8] Fonseca, V. G. D., Fonseca, C. M., &amp; Hall, A. O. (2001,
+March). Inferential performance assessment of stochastic optimisers and
+the attainment function. In International Conference on Evolutionary
+Multi-Criterion Optimization (pp. 213-225). Springer, Berlin,
+Heidelberg.</p>
+<p>[9] Lavinas, Y., Aranha, C., &amp; Ochoa, G. (2022). Search
+Trajectories Networks of Multiobjective Evolutionary Algorithms. arXiv
+preprint arXiv:2201.11726.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
