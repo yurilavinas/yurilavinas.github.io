@@ -7,6 +7,16 @@ Send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp) if you have any
 
 Publications are listed in chronological order, and the horizontal line separates peer-reviewed publications.
 
+## 2025
+
+1. Camilo De La Torre,Sylvain Cussat-Blanc, Hervé Luga, Dennis G Wilson and *Yuri Lavinas*. **On Chromosome Crossover in Multimodal Adaptive Graph Evolution** In Proceedings of the Genetic and Evolutionary Computation Conference Companion (GECCO '25 Companion). https://doi.org/10.1145/3712255.3734323  For the preprint, send me an email.
+
+2. Camilo De La Torre, Giorgia Nadizar, *Yuri Lavinas*, Hervé Luga, Dennis Wilson and Sylvain Cussat-Blanc. 2025. **Evolution of Inherently Interpretable Visual Control Policies**. Proceedings of the Genetic and Evolutionary Computation Conference.  https://doi.org/10.1145/3712256.3726332 For the preprint, send me an email.
+
+3. Camilo De La Torre, Giorgia Nadizar, *Yuri Lavinas*, Robin Schwob, Camille Franchet, Hervé Luga, Dennis Wilson and Sylvain Cussat-Blanc **Evolved and Transparent Pipelines for Biomedical Image Classification**. Genetic Programming. EuroGP 2025. https://doi.org/10.1007/978-3-031-89991-1_11 For the preprint, send me an email.
+
+4. *Yuri Lavinas*, Camilo De La Torre, Kévin Cortacero, Dennis G. Wilson and Sylvain Cussat-Blanc **Interpretable Genetic Programming Models for Real-World Biomedical Images** Genetic Programming Theory and Practice XXI. Genetic and Evolutionary Computation. https://doi.org/10.1007/978-981-96-0077-9_15 For the preprint, send me an email.
+
 ## 2024
 
 1. *Yuri Lavinas*, Nathaniel Haut, William Punch, Wolfgang Banzhaf, 
