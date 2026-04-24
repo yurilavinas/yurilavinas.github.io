@@ -1,0 +1,11 @@
+---
+  title: "Aulas"
+
+---
+
+  
+### Aulas
+  - [Buscas Heurísticas e Avançadas](https://yurilavinas.github.io/classes/buscas.html)
+  - [Representação de Conhecimento e Raciocínio em Inteligência Artificial](https://yurilavinas.github.io/classes/expert_system.html)
+  - [Aprendizado Supervisionado](https://yurilavinas.github.io/classes/learning.html)
+  - [Representação de Conhecimento e Raciocínio em Inteligência Artificial](https://yurilavinas.github.io/classes/expert_system.html)
