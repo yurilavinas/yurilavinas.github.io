@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MIT 6.034 - Aprendizado de Máquina (Aprofundado)</title>
+  <title>MIT 6.034 - Aprendizado de Máquina (KNN e mais)</title>
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
@@ -11,45 +11,45 @@
   <style>
     :root {
       --primary: #00d9ff;
-      --secondary: #a855f7;
+      --secondary: #8b5cf6;
       --accent: #10b981;
-      --warning: #fbbf24;
-      --bg-box: rgba(255, 255, 255, 0.1);
+      --warning: #f59e0b;
     }
 
-    .reveal h1 { color: var(--primary); text-shadow: 2px 2px 10px rgba(0,217,255,0.3); }
-    .reveal h2 { color: var(--secondary); border-bottom: 2px solid var(--secondary); padding-bottom: 10px; }
-    .reveal section { text-align: left; }
-    .center { text-align: center !important; }
-    
-    .box {
-      background: var(--bg-box);
-      padding: 25px;
-      border-radius: 15px;
-      border-left: 5px solid var(--primary);
-      margin: 20px 0;
+    .reveal h1, .reveal h2, .reveal h3 {
+      text-transform: none;
+      color: var(--primary);
     }
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+    .reveal section {
+      text-align: left;
     }
 
-    .highlight { color: var(--warning); font-weight: bold; }
-    .small-text { font-size: 0.7em; }
-    code { color: var(--accent); background: #222; padding: 2px 6px; border-radius: 5px; }
-
-    /* Estilo para fórmulas */
-    .math {
-      font-family: 'Times New Roman', serif;
-      font-style: italic;
-      background: #111;
-      padding: 15px;
-      display: block;
+    .center {
       text-align: center;
-      border-radius: 10px;
-      color: #ddd;
+    }
+
+    .box {
+      background: rgba(255,255,255,0.08);
+      padding: 20px;
+      border-radius: 18px;
+      margin-top: 20px;
+    }
+
+    .highlight {
+      color: var(--warning);
+      font-weight: bold;
+    }
+
+    code {
+      color: #10b981;
+      background: rgba(255,255,255,0.08);
+      padding: 3px 8px;
+      border-radius: 8px;
+    }
+
+    table {
+      font-size: 0.75em;
     }
   </style>
 </head>
@@ -59,192 +59,265 @@
 <div class="reveal">
 <div class="slides">
 
-  <section class="center">
-    <h1>Aprendizado de Máquina</h1>
-    <h3>A Perspectiva de Patrick Winston (MIT)</h3>
-    <p>KNN, Similaridade e o Poder da Representação</p>
-    <p style="font-size: 0.5em; opacity: 0.6;">Baseado na aula 12 do curso MIT 6.034</p>
-  </section>
+<section class="center">
+  <h1>Aprendizado de Máquina</h1>
+  <h3>KNN, Árvores de Decisão e Redes Neurais</h3>
+  <p>Baseado em MIT 6.034 (Patrick Winston)</p>
+</section>
 
-  <section>
-    <h2>O "Mantra" de Winston</h2>
-    <div class="box">
-      "Se você não consegue representar, não consegue aprender."
-    </div>
-    <ul>
-      <li>Aprendizado = encontrar regularidades nos dados.</li>
-      <li><strong>Abordagem de Regularidade:</strong> Identificar padrões repetitivos e extrapolá-los.</li>
-      <li><strong>Abordagem de Restrição:</strong> (Ex: Visão computacional) Usar leis físicas/lógicas para deduzir o mundo.</li>
-    </ul>
-  </section>
+<section>
+  <h2>Ideia Central da Aula</h2>
+  <ul>
+    <li>Aprender com regularidades nos dados</li>
+    <li>Usar exemplos passados para prever o futuro</li>
+    <li>Medir similaridade entre objetos</li>
+  </ul>
+</section>
 
-  <section>
-    <h2>O Princípio da Similaridade</h2>
-    <p>A premissa fundamental do KNN segundo o transcript:</p>
-    <div class="box">
-      "Se dois exemplos são parecidos em algumas características, provavelmente serão parecidos em outras."
-    </div>
-    <div class="grid-2">
-      <div>
-        <p class="highlight">O Método:</p>
-        <ul class="small-text">
-          <li>Compare o novo dado com todos na biblioteca.</li>
-          <li>Encontre o "mais próximo" usando uma métrica.</li>
-          <li>Atribua a mesma classe.</li>
-        </ul>
-      </div>
-      <div class="box small-text">
-        <strong>Exemplo:</strong> Se um animal tem penas e bica, provavelmente voa (como outros exemplos na memória).
-      </div>
-    </div>
-  </section>
+<section>
+  <h2>Dois Tipos de Aprendizado</h2>
+  <ul>
+    <li><strong>Baseado em regularidade</strong> (KNN, redes neurais)</li>
+    <li><strong>Baseado em restrições</strong> (explicação, raciocínio humano)</li>
+  </ul>
+</section>
 
-  <section>
-    <h2>Como medir a "Vizinhança"?</h2>
-    <p>A distância entre o ponto $P$ e o exemplo $E$ em $n$ dimensões:</p>
-    <div class="math">
-      d = √[ Σ (p<sub>i</sub> - e<sub>i</sub>)² ]
-    </div>
-    <ul>
-      <li>Cada característica (eixo) deve ter a mesma escala.</li>
-      <li><span class="highlight">Problema:</span> Se uma escala for 0-1 e outra 0-1000, a maior dominará o cálculo.</li>
-    </ul>
-  </section>
+<section>
+  <h2>Exemplo Intuitivo (Patrick Winston)</h2>
+  <ul>
+    <li>Reconhecer objetos por características</li>
+    <li>Comparar com biblioteca de exemplos</li>
+    <li>Escolher o mais parecido</li>
+  </ul>
+</section>
 
-  <section>
-    <h2>Fronteiras de Decisão</h2>
-    <p>Winston descreve a geometria do aprendizado:</p>
-    <ul>
-      <li><strong>Bissetores:</strong> A linha que divide exatamente dois pontos.</li>
-      <li><strong>Células de Voronoi:</strong> O conjunto de pontos que "pertencem" a um exemplo específico.</li>
-      <li><strong>Fronteiras:</strong> São formadas por esses pedaços de bissetores.</li>
-    </ul>
-    <div class="box center small-text">
-      O espaço é "fatiado" em regiões de influência.
-    </div>
-  </section>
+<section class="center">
+  <h1>K-Nearest Neighbors (KNN)</h1>
+</section>
 
-  <section>
-    <h2>A Maldição da Dimensionalidade</h2>
-    <p>No transcript, Winston alerta sobre adicionar dimensões inúteis:</p>
-    <ul>
-      <li>Se você adiciona "cor do sapato" para prever "QI", você cria ruído.</li>
-      <li>A distância euclidiana "dilui" o que importa entre o que não importa.</li>
-      <li><span class="highlight">Solução:</span> Atribuir pesos (importância) às dimensões.</li>
-    </ul>
-  </section>
+<section>
+  <h2>Intuição</h2>
+  <p>"Diga-me quem são seus vizinhos e direi quem você é."</p>
+</section>
 
-  <section>
-    <h2>Similaridade por Ângulo</h2>
-    <p>Para busca de textos (como no Google), a distância euclidiana falha se os textos tiverem tamanhos diferentes.</p>
-    <div class="box">
-      <strong>Produto Escalar (Dot Product):</strong> Mede o quanto dois vetores apontam para a mesma direção.
-    </div>
-    <div class="math">
-      A · B = |A| |B| cos(θ)
-    </div>
-    <p class="small-text">Winston explica que isso normaliza o "tamanho" dos documentos, focando apenas no <strong>assunto</strong> (ângulo).</p>
-  </section>
+<section>
+  <h2>Como Funciona</h2>
+  <ol>
+    <li>Escolher K</li>
+    <li>Calcular distâncias</li>
+    <li>Selecionar vizinhos mais próximos</li>
+    <li>Votação majoritária</li>
+  </ol>
+</section>
 
-  <section>
-    <h2>Estudo de Caso: O Manipulador</h2>
-    <p>Um robô tentando mover um braço mecânico:</p>
-    <ul>
-      <li><strong>Sem Física:</strong> O robô registra: "Nesta posição e velocidade, apliquei X força e deu certo".</li>
-      <li><strong>Tabela de Consulta:</strong> Milhões de pontos de experiência.</li>
-      <li><strong>Interpolação:</strong> Se ele está entre dois pontos conhecidos, ele tira a média das ações.</li>
-    </ul>
-    <p class="highlight">Aprendizado por memória pura.</p>
-  </section>
+<section>
+  <h2>Distância Euclidiana</h2>
 
-  <section>
-    <h2>Árvores de Decisão</h2>
-    <p>Uma forma de classificar através de testes sucessivos.</p>
-    <div class="grid-2">
-      <ul class="small-text">
-        <li><strong>Nó Raiz:</strong> A pergunta mais importante.</li>
-        <li><strong>Folhas:</strong> O veredito final.</li>
-        <li><strong>Meta:</strong> Maximizar o ganho de informação (diminuir a desordem).</li>
-      </ul>
-      <div class="box small-text">
-        Winston usa o exemplo: "Vou jogar tênis?" <br>
-        1. Está chovendo? <br>
-        2. Vento forte?
-      </div>
-    </div>
-  </section>
+  :contentReference[oaicite:0]{index=0}
 
-  <section>
-    <h2>Redes Neurais</h2>
-    <p>Uma extensão do KNN onde os pesos são aprendidos.</p>
-    <ul>
-      <li><strong>Neurônio:</strong> Soma ponderada + Função degrau.</li>
-      <li><strong>Camadas Escondidas:</strong> Criam novas representações dos dados.</li>
-      <li><strong>O Truque:</strong> Ajustar os pesos para reduzir o erro entre a previsão e a realidade.</li>
-    </ul>
-  </section>
+</section>
 
-  <section>
-    <h2>Cuidado com as Conclusões!</h2>
-    <p>O exemplo clássico de Winston no transcript:</p>
-    <div class="box">
-      "Pessoas que bebem refrigerante diet costumam estar acima do peso."
-    </div>
-    <ul>
-      <li><span class="highlight">Erro:</span> O refrigerante diet causa obesidade?</li>
-      <li><span class="highlight">Fato:</span> A obesidade causa o consumo do refrigerante (causalidade reversa).</li>
-      <li>Máquinas aprendem <strong>correlação</strong>, humanos buscam <strong>causalidade</strong>.</li>
-    </ul>
-  </section>
+<section>
+  <h2>Ideia do Espaço de Features</h2>
+  <ul>
+    <li>Cada objeto é um ponto em um espaço</li>
+    <li>Classes formam regiões</li>
+    <li>Fronteiras = decisões</li>
+  </ul>
+</section>
 
-  <section class="center">
-    <h2>Resumo</h2>
-    <table style="width: 100%;">
-      <thead>
-        <tr>
-          <th>Técnica</th>
-          <th>Força</th>
-          <th>Fraqueza</th>
-        </tr>
-      </thead>
-      <tbody class="small-text">
-        <tr>
-          <td>KNN</td>
-          <td>Simples, sem treinamento.</td>
-          <td>Lento para buscar, ruidoso.</td>
-        </tr>
-        <tr>
-          <td>Árvores</td>
-          <td>Explicável (leitura humana).</td>
-          <td>Instável com novos dados.</td>
-        </tr>
-        <tr>
-          <td>Redes</td>
-          <td>Poderosas e flexíveis.</td>
-          <td>Caixa preta, precisa de dados.</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+<section>
+  <h2>Fronteiras de Decisão</h2>
+  <ul>
+    <li>Construídas por bissetores entre pontos</li>
+    <li>Separam regiões do espaço</li>
+    <li>Definem classes automaticamente</li>
+  </ul>
+</section>
 
-  <section class="center">
-    <h1>Perguntas?</h1>
-    <div class="box" style="display: inline-block;">
-      "A inteligência está na forma como olhamos para os dados."
-    </div>
-  </section>
+<section>
+  <h2>Outra Ideia Importante</h2>
+  <div class="box">
+    <p>Se algo é parecido em alguns aspectos, tende a ser parecido em outros.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Similaridade por Ângulo (Winston)</h2>
+  <p>Em vez de distância, podemos usar direção:</p>
+  <ul>
+    <li>Comparar vetores</li>
+    <li>Usar produto escalar</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Produto Escalar</h2>
+  <div class="box">
+    cos(θ) mede similaridade entre vetores
+  </div>
+</section>
+
+<section>
+  <h2>Aplicação: Recuperação de Texto</h2>
+  <ul>
+    <li>Representar documentos como vetores</li>
+    <li>Palavras = dimensões</li>
+    <li>Comparar ângulo entre textos</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Problema: Dimensionalidade</h2>
+  <ul>
+    <li>Muitas dimensões → difícil generalizar</li>
+    <li>Dados ficam esparsos</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Normalização</h2>
+  <p>Padronizar dados melhora o KNN</p>
+</section>
+
+<section>
+  <h2>Problema Importante</h2>
+  <ul>
+    <li>O que realmente importa no dado?</li>
+    <li>Nem toda feature ajuda na decisão</li>
+  </ul>
+</section>
+
+<section class="center">
+  <h1>Aprendizado por Memória (Robô)</h1>
+</section>
+
+<section>
+  <h2>Ideia do Robô</h2>
+  <ul>
+    <li>Registrar experiências</li>
+    <li>Salvar estados (posição, velocidade)</li>
+    <li>Reutilizar no futuro</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Resultado</h2>
+  <p>O robô aprende por interpolação de experiências passadas</p>
+</section>
+
+<section>
+  <h2>Limitação</h2>
+  <ul>
+    <li>Precisa de muita memória</li>
+    <li>Mas o cérebro humano parece fazer algo similar</li>
+  </ul>
+</section>
+
+<section class="center">
+  <h1>Árvores de Decisão</h1>
+</section>
+
+<section>
+  <h2>Ideia</h2>
+  <p>Dividir o espaço com perguntas sequenciais</p>
+</section>
+
+<section>
+  <h2>Exemplo</h2>
+  <ul>
+    <li>Está quente?</li>
+    <li>Está úmido?</li>
+    <li>Há vento?</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Critério</h2>
+  <p>Escolher a melhor divisão do conjunto</p>
+</section>
+
+<section class="center">
+  <h1>Redes Neurais</h1>
+</section>
+
+<section>
+  <h2>Inspiração</h2>
+  <p>Inspiradas em neurônios biológicos</p>
+</section>
+
+<section>
+  <h2>Estrutura</h2>
+  <ul>
+    <li>Entradas</li>
+    <li>Pesos</li>
+    <li>Função de ativação</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Treinamento</h2>
+  <ul>
+    <li>Forward propagation</li>
+    <li>Backpropagation</li>
+    <li>Gradiente descendente</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Limitações</h2>
+  <ul>
+    <li>Requer muitos dados</li>
+    <li>Baixa interpretabilidade</li>
+  </ul>
+</section>
+
+<section class="center">
+  <h1>Conceito Importante</h1>
+</section>
+
+<section>
+  <h2>Correlação vs Causalidade</h2>
+  <div class="box">
+    Só porque duas coisas aparecem juntas, não significa que uma causa a outra.
+  </div>
+</section>
+
+<section>
+  <h2>Exemplo</h2>
+  <ul>
+    <li>Pessoas gordas bebem diet soda</li>
+    <li>Isso não significa que diet soda engorda</li>
+  </ul>
+</section>
+
+<section class="center">
+  <h1>Resumo Final</h1>
+</section>
+
+<section>
+  <ul>
+    <li>KNN: aprende por similaridade</li>
+    <li>Árvores: aprendem regras</li>
+    <li>Redes: aprendem representações</li>
+    <li>Dados + métrica = inteligência</li>
+  </ul>
+</section>
+
+<section class="center">
+  <h1>Perguntas?</h1>
+</section>
 
 </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
 <script>
-  Reveal.initialize({
-    hash: true,
-    slideNumber: 'c/t',
-    transition: 'convex',
-    backgroundTransition: 'zoom'
-  });
+Reveal.initialize({
+  hash: true,
+  slideNumber: true,
+  transition: 'slide'
+});
 </script>
 
 </body>
