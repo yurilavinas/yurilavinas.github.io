@@ -13,8 +13,8 @@ navbar:
       href: publications.html
     - text: "Blog"
       href: blog.html
-    - text: "Calendar"
-      href: calendar.html
+    - text: "Aulas"
+      href: aulas.html
   right:
     - icon: fa-envelope
       href: mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp
