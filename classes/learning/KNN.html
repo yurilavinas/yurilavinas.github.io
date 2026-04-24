@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIT 6.034 - Aprendizado de Máquina (Aprofundado)</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+  <style>
+    :root { --primary: #00d9ff; --secondary: #a855f7; --accent: #10b981; --warning: #ffcc00; }
+    .reveal h1, .reveal h2 { color: var(--primary); text-transform: none; }
+    .reveal h3 { color: var(--secondary); text-transform: none; }
+    .reveal section { text-align: left; font-size: 0.9em; }
+    .center { text-align: center !important; }
+    .box { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; border-left: 5px solid var(--primary); margin: 15px 0; }
+    .warning-box { border-left-color: var(--warning); background: rgba(255, 204, 0, 0.05); }
+    .highlight { color: var(--warning); font-weight: bold; }
+    .formula { background: #111; padding: 10px; border-radius: 8px; display: inline-block; font-family: 'Courier New', monospace; color: var(--accent); }
+    .timeline { color: #888; font-size: 0.6em; font-weight: bold; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+  <section class="center">
+    <h1>Aprendizado de Máquina</h1>
+  </section>
+
+
+  <section>
+    <h2>Dois Tipos de Aprendizado</h2>
+   
+    </br>
+    <ul>
+      <li><strong>Regularidade:</strong> O mundo é repetitivo. Se algo aconteceu uma vez, as condições que o causaram podem se repetir.</li>
+      <li><strong>O Objetivo:</strong> Usar o que sabemos (biblioteca de casos) para prever o que não sabemos (novos dados).</li>
+    
+      <li>Quadro</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Ideia Central</h2>
+    <ul>
+      <li>Aprender com regularidades nos dados</li>
+      <li>Usar exemplos passados para prever o futuro</li>
+      <li>Medir similaridade entre objetos</li>
+    </ul>
+</section>
+
+
+    <section>
+      <h2>Exemplo Intuitivo</h2>
+      <ul>
+        <li>Reconhecer objetos por características</li>
+        <li>Comparar com biblioteca de exemplos</li>
+        <li>Escolher o mais parecido</li>
+      </ul>
+  </section>
+
+
+  <section class="center">
+    <h2>K-Nearest Neighbors (KNN)</h2>
+    <div class="box">
+      <strong>Como classificar elementos?</strong>
+    </div>
+    <ol>
+      <li>Quadro</li>
+    </ol>
+  </section>
+
+
+  <section>
+    <h2>A Premissa da Similaridade</h2>
+    <p>A ideia fundamental: <strong>"Diga-me quem são seus vizinhos e eu direi quem você é."</strong></p>
+    <p>Se um ponto desconhecido está cercado por exemplos da classe A, a hipótese mais simples é que ele também seja da classe A.</p>
+    <div class="box">
+      <strong>K-Nearest:</strong> Verificar mais de 1 vizinho (pode ser ruído), mas para os <em>K</em> mais próximos e fazemos uma votação majoritária.
+    </div>
+  </section>
+
+  <section>
+    <h2>Fronteiras de Decisão e Voronoi</h2>
+    <p>Como o KNN "enxerga" o mundo? Quadro</p>
+    <ul>
+      <li>Imagine dois pontos no mapa. A linha que os separa exatamente no meio é o <strong>bissetor perpendicular</strong>.</li>
+      <li>Ao adicionar vários pontos, essas linhas se cruzam formando <strong>Células de Voronoi</strong>.</li>
+      <li>Tudo dentro de uma célula "pertence" ao ponto central daquela célula.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Como medir a "Vizinhança"?</h2>
+    <p>A distância entre o ponto P e o exemplo E em n dimensões:</p>
+    <div class="math">
+      d = √[ Σ (p<sub>i</sub> - e<sub>i</sub>)² ]
+    </div>
+    <ul>
+      <li>Cada característica (eixo) deve ter a mesma escala.</li>
+      <li><span class="highlight">Problema:</span> Se uma escala for 0-1 e outra 0-1000, a maior dominará o cálculo.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>O Problema da Escala (Normalização)</h2>
+    <p>O KNN é sensível a como medimos as coisas.</p>
+    <div class="box warning-box">
+      <strong>Exemplo:</strong> Comparar peso (em gramas) e altura (em metros).<br>
+      Uma variação de 1kg (1000 unidades) "esmagaria" uma variação de 10cm (0.1 unidades) no cálculo da distância.
+    </div>
+    <ul>
+      <li><strong>Possível solução:</strong> Z-Score ou Min-Max Scaling.</li>
+      <li>A idéia é que cada dimensão tenha uma contribuição similar para a distância final.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Métrica de Cosseno</h2>
+    A métrica de distância varia de acordo com o problema.
+    <p>A distância euclidiana é ruim para textos.</p>
+    <ul>
+      <li>Um documento de 10 páginas sobre "IA" e um outro de 1 página sobre o mesmo tempo tem uma grade diferença no número de palavras.</li>
+      <li>Mas o <strong>ângulo</strong> entre os vetores de palavras é quase zero.</li>
+    </ul>
+    <div class="center">
+      N: Novo
+      G: Grupo em potencial
+
+      <p class="formula">Σ N · H = |N| |G| cos(θ)</p>
+    </div>
+    <p>O <strong>Produto Escalar</strong> foca na direção (assunto) e ignora a magnitude (tamanho do texto).</p>
+  </section>
+
+  <section>
+    <h2>Causalidade vs. Correlação</h2>
+    <p>Para encerrar a parte técnica:</p>
+    <div class="box warning-box">
+      "Só porque A e B acontecem juntos, não significa que A causa B."
+    </div>
+    <ul>
+      <li>Pessoas que bebem refrigerante diet costumam estar acima do peso.</li>
+      <li>O classificador pode dizer: "Pare de beber diet para emagrecer".</li>
+      <li><strong>Erro:</strong> A condição (obesidade) causou a escolha do refrigerante, não o contrário.</li>
+    </ul>
+    
+    <h2>Outras considerações</h2>
+    <ul>
+      <li>O que realmente importa no dado?</li>
+      <li>Nem toda feature ajuda na decisão</li>
+    </ul>
+  </section>
+
+  <section class="center">
+    <h2>Conclusão e Revisão</h2>
+    <div class="box">
+      1. KNN: Aprender por similaridade geométrica.<br>
+      2. Escala: Sem normalização, o impacto das características pode influenciar negativamente o aprendizado.<br>
+      3. Métrica de distância: Cosseno pode ser útil, depende do problema.<br>
+      3. Características: Escolher um conjunto que ajude a diferenciar bem os dados - 2D ou mais<br>
+      5. Ética: Cuidado com a interpretação de causalidade.
+    </div>
+    <h3>Dúvidas?</h3>
+  </section>
+
+  
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({ 
+    hash: true, 
+    slideNumber: 'c/t',
+    transition: 'slide',
+    controls: true,
+    progress: true
+  });
+</script>
+</body>
+</html>
