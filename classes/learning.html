@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MIT 6.034 - Aprendizado de Máquina (Aprofundado)</title>
+  <title>Aprendizado de Máquina</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
   <style>
@@ -24,6 +24,7 @@
 <div class="slides">
 
   <section class="center">
+    <span class="badge">Módulo 2</span>
     <h1>Aprendizado de Máquina</h1>
   </section>
 
@@ -59,7 +60,7 @@
       </ul>
   </section>
 
-
+<section>
   <section class="center">
     <h2>K-Nearest Neighbors (KNN)</h2>
     <div class="box">
@@ -151,6 +152,44 @@
     </ul>
   </section>
 
+  <section>
+        <h3>Funcionamento</h3>
+        <ol>
+            <li>Escolher K.</li>
+            <li>Calcular distâncias.</li>
+            <li>Selecionar os K vizinhos.</li>
+            <li>Realizar votação majoritária.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h3>Métricas de Distância</h3>
+        <ul>
+            <li>Euclidiana</li>
+            <li>Manhattan</li>
+            <li>Minkowski</li>
+            <li>Cosseno</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Vantagens</h3>
+        <ul>
+            <li>Simples.</li>
+            <li>Sem fase de treinamento.</li>
+            <li>Eficiente em bases pequenas.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Desvantagens</h3>
+        <ul>
+            <li>Alto custo na predição.</li>
+            <li>Sensível à escala.</li>
+            <li>Maldição da dimensionalidade.</li>
+        </ul>
+    </section>
+
   <section class="center">
     <h2>Conclusão e Revisão</h2>
     <div class="box">
@@ -163,7 +202,165 @@
     <h3>Dúvidas?</h3>
   </section>
 
-  
+  </section>
+
+  <!-- Decision Trees -->
+<section>
+    <section>
+        <h2>Árvores de Decisão</h2>
+        <blockquote>
+            Aprender regras de decisão a partir dos dados.
+        </blockquote>
+    </section>
+
+    <section>
+        <h3>Conceitos</h3>
+        <ul>
+            <li>Nós internos: testes.</li>
+            <li>Folhas: classes.</li>
+            <li>Ramos: resultados dos testes.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Entropia</h3>
+        <p>
+            Mede a desordem dos dados.
+        </p>
+        <pre><code>
+Entropy(S) = - Σ pᵢ log₂ pᵢ
+        </code></pre>
+    </section>
+
+    <section>
+        <h3>Ganho de Informação</h3>
+        <ul>
+            <li>Seleciona o melhor atributo.</li>
+            <li>Reduz a incerteza.</li>
+            <li>Base do algoritmo ID3.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Poda</h3>
+        <ul>
+            <li>Evita overfitting.</li>
+            <li>Melhora generalização.</li>
+        </ul>
+    </section>
+</section>
+
+<!-- Neural Networks -->
+<section>
+    <section>
+        <h2>Redes Neurais Artificiais</h2>
+        <blockquote>
+            Inspiradas no cérebro humano.
+        </blockquote>
+    </section>
+
+    <section>
+        <h3>Perceptron</h3>
+        <ul>
+            <li>Entradas ponderadas.</li>
+            <li>Função de ativação.</li>
+            <li>Saída binária.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Aprendizado</h3>
+        <pre><code>
+w ← w + α(y - ŷ)x
+        </code></pre>
+    </section>
+
+    <section>
+        <h3>Limitação</h3>
+        <p>
+            Resolve apenas problemas linearmente separáveis.
+        </p>
+    </section>
+</section>
+
+<!-- Deep Learning -->
+<section>
+    <section>
+        <h2>Deep Neural Networks</h2>
+        <ul>
+            <li>Múltiplas camadas ocultas.</li>
+            <li>Aprendem representações hierárquicas.</li>
+            <li>Grande poder de generalização.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Backpropagation</h3>
+        <ul>
+            <li>Calcula gradientes.</li>
+            <li>Atualiza pesos.</li>
+            <li>Usa descida do gradiente.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Funções de Ativação</h3>
+        <ul>
+            <li>Sigmoid</li>
+            <li>Tanh</li>
+            <li>ReLU</li>
+            <li>Softmax</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Aplicações</h3>
+        <ul>
+            <li>Visão Computacional</li>
+            <li>NLP</li>
+            <li>Reconhecimento de Voz</li>
+            <li>Sistemas Autônomos</li>
+        </ul>
+    </section>
+</section>
+
+<!-- SVM -->
+<section>
+    <section>
+        <h2>Support Vector Machines</h2>
+        <blockquote>
+            Encontrar o hiperplano de máxima margem.
+        </blockquote>
+    </section>
+
+    <section>
+        <h3>Conceitos</h3>
+        <ul>
+            <li>Vetores de suporte.</li>
+            <li>Margem máxima.</li>
+            <li>Classificação robusta.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Kernel Trick</h3>
+        <ul>
+            <li>Linear</li>
+            <li>Polinomial</li>
+            <li>RBF</li>
+            <li>Sigmoide</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>Vantagens</h3>
+        <ul>
+            <li>Excelente em alta dimensionalidade.</li>
+            <li>Robusto contra overfitting.</li>
+            <li>Ótimo para conjuntos médios.</li>
+        </ul>
+    </section>
+</section>
 
 </div>
 </div>
