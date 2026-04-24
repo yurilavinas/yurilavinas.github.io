@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIT 6.034 - Tutorial 6 | Probabilidade e Redes Bayesianas</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+
+  <style>
+    :root{
+      --primary:#00d4ff;
+      --accent:#10b981;
+      --warning:#f59e0b;
+    }
+
+    .reveal h1,.reveal h2,.reveal h3{
+      color:var(--primary);
+      text-transform:none;
+    }
+
+    .reveal section{
+      text-align:left;
+    }
+
+    .center{
+      text-align:center;
+    }
+
+    .box{
+      background:rgba(255,255,255,0.08);
+      padding:22px;
+      border-radius:16px;
+      margin-top:20px;
+    }
+
+    code{
+      color:#10b981;
+      background:rgba(255,255,255,0.08);
+      padding:4px 8px;
+      border-radius:6px;
+    }
+
+    .small{ font-size:0.75em; }
+  </style>
+</head>
+
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<section class="center">
+  <h1>Probabilidade e Inferência</h1>
+  <h3>Redes Bayesianas, Naive Bayes e Modelos Probabilísticos</h3>
+  <p>MIT 6.034 – Artificial Intelligence</p>
+  <p>Tutorial 6</p>
+  <br>
+  <p class="small">Baseado no MIT OpenCourseWare (Fall 2010)</p>
+  <p class="small">Patrick Henry Winston</p>
+  <p class="small">Aula de 60 minutos</p>
+</section>
+
+<section>
+  <h2>Objetivos da Aula</h2>
+  <ul>
+    <li>Entender probabilidade como representação de incerteza</li>
+    <li>Aplicar o Teorema de Bayes</li>
+    <li>Compreender redes Bayesianas</li>
+    <li>Estudar Naive Bayes</li>
+    <li>Aprender seleção de modelos</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Motivação</h2>
+  <p>Mundo real é incerto.</p>
+
+  <div class="box">
+    <ul>
+      <li>Dados incompletos</li>
+      <li>Ruído</li>
+      <li>Ambiguidade</li>
+    </ul>
+  </div>
+
+  <p>Precisamos de modelos probabilísticos.</p>
+</section>
+
+<section class="center">
+  <h1>Probabilidade Básica</h1>
+</section>
+
+<section>
+  <h2>Definição</h2>
+  <p>Probabilidade representa incerteza sobre eventos.</p>
+
+  <div class="box">
+    <p>P(A) = chance de A ocorrer</p>
+  </div>
+</section>
+
+<section>
+  <h2>Regras Básicas</h2>
+  <ul>
+    <li>0 ≤ P(A) ≤ 1</li>
+    <li>P(A) + P(¬A) = 1</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Probabilidade Condicional</h2>
+
+  
+::contentReference[oaicite:1]{index=1}
+
+</section>
+
+<section>
+  <h2>Intuição</h2>
+  <p>"Qual a chance de A acontecer dado que B já aconteceu?"</p>
+</section>
+
+<section class="center">
+  <h1>Teorema de Bayes</h1>
+</section>
+
+<section>
+  <h2>Fórmula Central</h2>
+
+  
+::contentReference[oaicite:2]{index=2}
+
+</section>
+
+<section>
+  <h2>Interpretação</h2>
+  <ul>
+    <li>P(A): crença inicial (prior)</li>
+    <li>P(B|A): evidência</li>
+    <li>P(A|B): crença atualizada (posterior)</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Exemplo Médico</h2>
+  <ul>
+    <li>A: doença</li>
+    <li>B: teste positivo</li>
+  </ul>
+
+  <p>Queremos saber: probabilidade de doença dado teste positivo.</p>
+</section>
+
+<section>
+  <h2>Problema de Intuição</h2>
+  <p>Testes médicos podem enganar!</p>
+
+  <div class="box">
+    <p>Alta taxa de falsos positivos muda tudo.</p>
+  </div>
+</section>
+
+<section class="center">
+  <h1>Redes Bayesianas</h1>
+</section>
+
+<section>
+  <h2>O que são?</h2>
+  <p>Grafos direcionados que representam dependências probabilísticas.</p>
+</section>
+
+<section>
+  <h2>Estrutura</h2>
+  <ul>
+    <li>Nós = variáveis</li>
+    <li>Arestas = dependências</li>
+    <li>Tabelas = probabilidades condicionais</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Exemplo</h2>
+  <p>Chuva → Grama molhada → Escorregadio</p>
+</section>
+
+<section>
+  <h2>Independência Condicional</h2>
+  <p>Permite simplificar cálculos complexos.</p>
+</section>
+
+<section>
+  <h2>Vantagem Principal</h2>
+  <div class="box">
+    <p>Reduz explosão combinatória de probabilidades</p>
+  </div>
+</section>
+
+<section class="center">
+  <h1>Naive Bayes</h1>
+</section>
+
+<section>
+  <h2>Ideia</h2>
+  <p>Assume independência entre variáveis dado a classe.</p>
+</section>
+
+<section>
+  <h2>Fórmula</h2>
+
+  :contentReference[oaicite:3]{index=3}
+</section>
+
+<section>
+  <h2>Por que “Naive”?</h2>
+  <p>Porque a suposição de independência geralmente não é verdadeira.</p>
+</section>
+
+<section>
+  <h2>Mesmo Assim Funciona</h2>
+  <ul>
+    <li>Classificação de texto</li>
+    <li>Spam filtering</li>
+    <li>Diagnóstico simples</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Exemplo: Spam</h2>
+  <ul>
+    <li>Palavra “grátis”</li>
+    <li>Palavra “dinheiro”</li>
+    <li>Palavra “promoção”</li>
+  </ul>
+</section>
+
+<section class="center">
+  <h1>Estimativa de Parâmetros</h1>
+</section>
+
+<section>
+  <h2>Problema</h2>
+  <p>Como aprender probabilidades a partir de dados?</p>
+</section>
+
+<section>
+  <h2>Máxima Verossimilhança</h2>
+
+  :contentReference[oaicite:4]{index=4}
+</section>
+
+<section>
+  <h2>Interpretação</h2>
+  <p>Escolhemos parâmetros que melhor explicam os dados observados.</p>
+</section>
+
+<section class="center">
+  <h1>Overfitting</h1>
+</section>
+
+<section>
+  <h2>Problema</h2>
+  <p>Modelo se ajusta demais aos dados de treino.</p>
+</section>
+
+<section>
+  <h2>Sintomas</h2>
+  <ul>
+    <li>Alta precisão no treino</li>
+    <li>Baixa generalização</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Soluções</h2>
+  <ul>
+    <li>Regularização</li>
+    <li>Mais dados</li>
+    <li>Simplificação do modelo</li>
+  </ul>
+</section>
+
+<section class="center">
+  <h1>Seleção de Modelos</h1>
+</section>
+
+<section>
+  <h2>Objetivo</h2>
+  <p>Escolher o modelo que generaliza melhor.</p>
+</section>
+
+<section>
+  <h2>Trade-off</h2>
+  <ul>
+    <li>Complexidade do modelo</li>
+    <li>Erro de treinamento</li>
+    <li>Erro de generalização</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Occam's Razor</h2>
+  <div class="box">
+    <p>Entre explicações equivalentes, escolha a mais simples.</p>
+  </div>
+</section>
+
+<section class="center">
+  <h1>Aplicações</h1>
+</section>
+
+<section>
+  <h2>Onde isso é usado?</h2>
+  <ul>
+    <li>Filtros de spam</li>
+    <li>Diagnóstico médico</li>
+    <li>Reconhecimento de padrões</li>
+    <li>Recomendação</li>
+    <li>IA moderna probabilística</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Conexão com IA Moderna</h2>
+  <ul>
+    <li>Redes neurais probabilísticas</li>
+    <li>Modelos generativos</li>
+    <li>LLMs usam probabilidade extensivamente</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Resumo</h2>
+  <ul>
+    <li>Probabilidade modela incerteza</li>
+    <li>Bayes atualiza crenças</li>
+    <li>Redes Bayesianas modelam dependências</li>
+    <li>Naive Bayes é simples e eficaz</li>
+    <li>Seleção de modelos evita overfitting</li>
+  </ul>
+</section>
+
+<section class="center">
+  <h1>Perguntas?</h1>
+  <h3>Obrigado!</h3>
+  <p>MIT 6.034 – Tutorial 6</p>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: true,
+  controls: true,
+  progress: true,
+  transition: 'slide',
+  center: true
+});
+</script>
+
+</body>
+</html>

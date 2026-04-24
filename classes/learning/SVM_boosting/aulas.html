@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIT 6.034 - Tutorial 5 | SVM e Boosting</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+
+  <style>
+    :root{
+      --primary:#00d4ff;
+      --secondary:#8b5cf6;
+      --accent:#10b981;
+      --warning:#f59e0b;
+      --danger:#ef4444;
+    }
+
+    .reveal h1,.reveal h2,.reveal h3{
+      color:var(--primary);
+      text-transform:none;
+    }
+
+    .reveal section{
+      text-align:left;
+    }
+
+    .center{
+      text-align:center;
+    }
+
+    .box{
+      background:rgba(255,255,255,0.08);
+      padding:24px;
+      border-radius:18px;
+      margin-top:20px;
+    }
+
+    .highlight{
+      color:var(--warning);
+      font-weight:bold;
+    }
+
+    .success{
+      color:var(--accent);
+      font-weight:bold;
+    }
+
+    code{
+      color:#10b981;
+      background:rgba(255,255,255,0.08);
+      padding:4px 8px;
+      border-radius:8px;
+    }
+
+    table{
+      font-size:0.68em;
+    }
+
+    .small{
+      font-size:0.75em;
+    }
+  </style>
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<section class="center">
+  <h1>Support Vector Machines e Boosting</h1>
+  <h3>MIT 6.034 – Artificial Intelligence</h3>
+  <p>Tutorial 5</p>
+  <br>
+  <p class="small">Baseado no curso de Patrick Henry Winston</p>
+  <p class="small">MIT OpenCourseWare – Fall 2010</p>
+  <p class="small">Duração: 1 hora</p>
+</section>
+
+<section>
+  <h2>Objetivos da Aula</h2>
+  <ul>
+    <li>Compreender o conceito de margem máxima</li>
+    <li>Entender Support Vector Machines (SVM)</li>
+    <li>Estudar kernels e separação não linear</li>
+    <li>Aprender o algoritmo AdaBoost</li>
+    <li>Comparar SVM e Boosting</li>
+    <li>Aplicar os conceitos em problemas reais</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Agenda</h2>
+  <ol>
+    <li>Introdução</li>
+    <li>Classificadores Lineares</li>
+    <li>Support Vector Machines</li>
+    <li>Kernels</li>
+    <li>Boosting</li>
+    <li>AdaBoost</li>
+    <li>Comparações e Aplicações</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Motivação</h2>
+  <p>Como construir classificadores poderosos e robustos?</p>
+
+  <div class="box">
+    <ul>
+      <li>SVM maximiza separação</li>
+      <li>Boosting combina classificadores fracos</li>
+      <li>Ambos revolucionaram o Machine Learning clássico</li>
+    </ul>
+  </div>
+</section>
+
+<section class="center">
+  <h1>Classificação Linear</h1>
+</section>
+
+<section>
+  <h2>Separador Linear</h2>
+
+  :contentReference[oaicite:0]{index=0}
+
+  <p>Define um hiperplano no espaço das características.</p>
+</section>
+
+<section>
+  <h2>Regra de Classificação</h2>
+
+  :contentReference[oaicite:1]{index=1}
+</section>
+
+<section>
+  <h2>Problema Fundamental</h2>
+  <ul>
+    <li>Muitos hiperplanos podem separar os dados</li>
+    <li>Qual escolher?</li>
+    <li>A resposta: o de maior margem</li>
+  </ul>
+</section>
+
+<section class="center">
+  <h1>Support Vector Machines</h1>
+</section>
+
+<section>
+  <h2>Ideia Central</h2>
+  <p>Escolher o hiperplano que maximiza a distância até os exemplos mais próximos.</p>
+
+  <div class="box">
+    <p class="highlight">Maior margem = melhor generalização</p>
+  </div>
+</section>
+
+<section>
+  <h2>Margem</h2>
+
+  :contentReference[oaicite:2]{index=2}
+</section>
+
+<section>
+  <h2>Vetores de Suporte</h2>
+  <ul>
+    <li>Pontos mais próximos da fronteira</li>
+    <li>Determinantes para a solução</li>
+    <li>Todos os demais pontos são irrelevantes</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Restrições</h2>
+
+  :contentReference[oaicite:3]{index=3}
+</section>
+
+<section>
+  <h2>Otimização</h2>
+
+  :contentReference[oaicite:4]{index=4}
+
+  <p>Sujeito às restrições de classificação.</p>
+</section>
+
+<section>
+  <h2>Por que Funciona?</h2>
+  <ul>
+    <li>Controle explícito da complexidade</li>
+    <li>Excelente capacidade de generalização</li>
+    <li>Robustez a ruídos moderados</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Soft Margin</h2>
+  <p>Permite erros para lidar com dados não separáveis.</p>
+
+  :contentReference[oaicite:5]{index=5}
+</section>
+
+<section>
+  <h2>Parâmetro C</h2>
+  <ul>
+    <li>C alto: menos erros, maior overfitting</li>
+    <li>C baixo: mais regularização</li>
+  </ul>
+</section>
+
+<section class="center">
+  <h1>Kernel Trick</h1>
+</section>
+
+<section>
+  <h2>Motivação</h2>
+  <p>E se os dados não forem linearmente separáveis?</p>
+</section>
+
+<section>
+  <h2>Mapeamento para Espaço Superior</h2>
+
+  :contentReference[oaicite:6]{index=6}
+</section>
+
+<section>
+  <h2>Função Kernel</h2>
+
+  :contentReference[oaicite:7]{index=7}
+</section>
+
+<section>
+  <h2>Kernels Populares</h2>
+  <ul>
+    <li>Linear</li>
+    <li>Polinomial</li>
+    <li>RBF (Gaussiano)</li>
+    <li>Sigmoide</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Kernel RBF</h2>
+
+  :contentReference[oaicite:8]{index=8}
+</section>
+
+<section>
+  <h2>Aplicações do SVM</h2>
+  <ul>
+    <li>Reconhecimento facial</li>
+    <li>Classificação de texto</li>
+    <li>Bioinformática</li>
+    <li>Detecção de fraude</li>
+  </ul>
+</section>
+
+<section class="center">
+  <h1>Boosting</h1>
+</section>
+
+<section>
+  <h2>Ideia Fundamental</h2>
+  <p>Combinar muitos classificadores fracos para formar um forte.</p>
+
+  <div class="box">
+    <p>"A união faz a força."</p>
+  </div>
+</section>
+
+<section>
+  <h2>Classificador Fraco</h2>
+  <ul>
+    <li>Levemente melhor que aleatório</li>
+    <li>Exemplo: stump (árvore de profundidade 1)</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Combinação Final</h2>
+
+  :contentReference[oaicite:9]{index=9}
+</section>
+
+<section class="center">
+  <h1>AdaBoost</h1>
+</section>
+
+<section>
+  <h2>Fluxo do Algoritmo</h2>
+  <ol>
+    <li>Inicializar pesos iguais</li>
+    <li>Treinar classificador fraco</li>
+    <li>Medir erro</li>
+    <li>Atualizar pesos</li>
+    <li>Repetir</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Erro Ponderado</h2>
+
+  :contentReference[oaicite:10]{index=10}
+</section>
+
+<section>
+  <h2>Peso do Classificador</h2>
+
+  :contentReference[oaicite:11]{index=11}
+</section>
+
+<section>
+  <h2>Atualização dos Pesos</h2>
+
+  :contentReference[oaicite:12]{index=12}
+</section>
+
+<section>
+  <h2>Intuição</h2>
+  <ul>
+    <li>Exemplos errados ganham maior peso</li>
+    <li>O próximo classificador foca nos casos difíceis</li>
+    <li>Aprendizado iterativo e adaptativo</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Por que AdaBoost é Tão Eficiente?</h2>
+  <ul>
+    <li>Reduz viés</li>
+    <li>Reduz variância</li>
+    <li>Excelente generalização</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Stumps de Decisão</h2>
+  <p>São os classificadores fracos mais usados.</p>
+</section>
+
+<section>
+  <h2>Exemplo Visual</h2>
+  <ul>
+    <li>Primeiro stump: separa grosseiramente</li>
+    <li>Segundo: corrige erros</li>
+    <li>Terceiro: refina fronteira</li>
+  </ul>
+</section>
+
+<section class="center">
+  <h1>SVM vs Boosting</h1>
+</section>
+
+<section>
+  <h2>Comparação</h2>
+  <table>
+    <tr>
+      <th>Critério</th>
+      <th>SVM</th>
+      <th>AdaBoost</th>
+    </tr>
+    <tr>
+      <td>Interpretabilidade</td>
+      <td>Média</td>
+      <td>Alta</td>
+    </tr>
+    <tr>
+      <td>Escalabilidade</td>
+      <td>Média</td>
+      <td>Alta</td>
+    </tr>
+    <tr>
+      <td>Dados Não Lineares</td>
+      <td>Excelente</td>
+      <td>Boa</td>
+    </tr>
+    <tr>
+      <td>Ruído</td>
+      <td>Bom</td>
+      <td>Sensível</td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h2>Quando Usar SVM?</h2>
+  <ul>
+    <li>Conjuntos médios</li>
+    <li>Alta dimensionalidade</li>
+    <li>Texto e bioinformática</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Quando Usar Boosting?</h2>
+  <ul>
+    <li>Dados tabulares</li>
+    <li>Competições de Machine Learning</li>
+    <li>Alta performance preditiva</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Aplicações Modernas</h2>
+  <ul>
+    <li>XGBoost</li>
+    <li>LightGBM</li>
+    <li>CatBoost</li>
+    <li>Gradient Boosting Machines</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Conexão com IA Moderna</h2>
+  <ul>
+    <li>Boosting ainda domina dados estruturados</li>
+    <li>SVM continua relevante em domínios específicos</li>
+    <li>Ambos são pilares do aprendizado supervisionado</li>
+  </ul>
+</section>
+
+<section class="center">
+  <h1>Exercícios</h1>
+</section>
+
+<section>
+  <h2>Exercício 1</h2>
+  <p>Identifique os vetores de suporte em um conjunto bidimensional.</p>
+</section>
+
+<section>
+  <h2>Exercício 2</h2>
+  <p>Calcule o peso α de um classificador com erro de 20%.</p>
+</section>
+
+<section>
+  <h2>Exercício 3</h2>
+  <p>Explique por que o kernel RBF pode separar círculos concêntricos.</p>
+</section>
+
+<section>
+  <h2>Resumo</h2>
+  <ul>
+    <li>SVM maximiza margem</li>
+    <li>Kernels permitem separação não linear</li>
+    <li>Boosting combina modelos fracos</li>
+    <li>AdaBoost foca nos exemplos difíceis</li>
+    <li>Ambos continuam extremamente relevantes</li>
+  </ul>
+</section>
+
+<section class="center">
+  <h1>Perguntas?</h1>
+  <h3>Obrigado!</h3>
+  <p>MIT 6.034 – Tutorial 5</p>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script>
+Reveal.initialize({
+  hash: true,
+  slideNumber: true,
+  controls: true,
+  progress: true,
+  transition: 'slide',
+  center: true
+});
+</script>
+
+</body>
+</html>

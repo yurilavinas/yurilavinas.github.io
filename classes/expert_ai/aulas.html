@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA - Sistemas Baseados em Regras e Busca</title>
+
+  <!-- Reveal.js CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+
+  <style>
+    :root {
+      --primary: #00d4ff;
+      --secondary: #7c3aed;
+      --accent: #10b981;
+    }
+
+    .reveal h1, .reveal h2, .reveal h3 {
+      text-transform: none;
+      color: var(--primary);
+    }
+
+    .reveal section img {
+      border: none;
+      box-shadow: none;
+    }
+
+    .highlight {
+      color: #fbbf24;
+      font-weight: bold;
+    }
+
+    .box {
+      background: rgba(255,255,255,0.08);
+      padding: 20px;
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+
+    .small {
+      font-size: 0.75em;
+    }
+
+    code {
+      color: #10b981;
+      background: rgba(255,255,255,0.1);
+      padding: 3px 6px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="reveal">
+<div class="slides">
+
+<section>
+  <h1>Inteligência Artificial</h1>
+  <h3>Sistemas Baseados em Regras e Busca</h3>
+  <p>MIT 6.034 – Artificial Intelligence</p>
+  <p>Tutorial 1</p>
+  <br>
+  <p class="small">Baseado no material oficial do MIT OpenCourseWare</p>
+  <p class="small">Patrick Henry Winston</p>
+  <p class="small">Duração: 1 hora</p>
+  <aside class="notes">
+    Apresente o contexto do curso e a relevância histórica da IA simbólica.
+  </aside>
+</section>
+
+<section>
+  <h2>Objetivos da Aula</h2>
+  <ul>
+    <li>Entender sistemas especialistas</li>
+    <li>Aprender encadeamento progressivo</li>
+    <li>Aprender encadeamento regressivo</li>
+    <li>Explorar algoritmos de busca</li>
+    <li>Resolver problemas clássicos de IA</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Agenda</h2>
+  <ol>
+    <li>IA Simbólica</li>
+    <li>Sistemas Baseados em Regras</li>
+    <li>Forward Chaining</li>
+    <li>Backward Chaining</li>
+    <li>Busca em Grafos</li>
+    <li>DFS, BFS e A*</li>
+    <li>Exercícios</li>
+  </ol>
+</section>
+
+<section>
+  <h2>IA Simbólica</h2>
+  <p>Representar conhecimento explicitamente usando símbolos.</p>
+
+  <div class="box">
+    <p><strong>Exemplo:</strong></p>
+    <p>SE paciente tem febre E tosse</p>
+    <p>ENTÃO suspeita de gripe</p>
+  </div>
+
+  <p>Base de muitos sistemas especialistas clássicos.</p>
+</section>
+
+<section>
+  <h2>Por que Regras?</h2>
+  <ul>
+    <li>Interpretabilidade</li>
+    <li>Explicabilidade</li>
+    <li>Facilidade de manutenção</li>
+    <li>Ideal para domínios estruturados</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Estrutura de uma Regra</h2>
+  <pre><code>
+SE condição
+ENTÃO conclusão
+  </code></pre>
+
+  <div class="box">
+    <p>SE animal possui penas</p>
+    <p>ENTÃO animal é ave</p>
+  </div>
+</section>
+
+<section>
+  <h2>Componentes</h2>
+  <ul>
+    <li><span class="highlight">Base de Conhecimento</span></li>
+    <li><span class="highlight">Memória de Trabalho</span></li>
+    <li><span class="highlight">Motor de Inferência</span></li>
+  </ul>
+</section>
+
+<section>
+  <h2>Base de Conhecimento</h2>
+  <p>Armazena regras gerais do domínio.</p>
+
+  <pre><code>
+R1: SE mamífero ENTÃO vertebrado
+R2: SE baleia ENTÃO mamífero
+  </code></pre>
+</section>
+
+<section>
+  <h2>Memória de Trabalho</h2>
+  <p>Armazena fatos conhecidos no momento.</p>
+
+  <pre><code>
+baleia(Willy)
+vive_no_mar(Willy)
+  </code></pre>
+</section>
+
+<section>
+  <h2>Motor de Inferência</h2>
+  <p>Aplica regras sobre fatos para gerar novos conhecimentos.</p>
+
+  <ul>
+    <li>Forward Chaining</li>
+    <li>Backward Chaining</li>
+  </ul>
+</section>
+
+<section>
+  <h1>Forward Chaining</h1>
+</section>
+
+<section>
+  <h2>Definição</h2>
+  <p>Raciocínio orientado pelos dados.</p>
+
+  <p>Começa com fatos conhecidos e deriva novas conclusões.</p>
+</section>
+
+<section>
+  <h2>Fluxo</h2>
+  <ol>
+    <li>Encontrar regras aplicáveis</li>
+    <li>Executar regra</li>
+    <li>Adicionar novo fato</li>
+    <li>Repetir até estabilizar</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Exemplo</h2>
+  <pre><code>
+R1: SE A ENTÃO B
+R2: SE B ENTÃO C
+
+Fato inicial: A
+  </code></pre>
+
+  <p>Resultado: B → C</p>
+</section>
+
+<section>
+  <h2>Passo a Passo</h2>
+  <ol>
+    <li>A é verdadeiro</li>
+    <li>R1 dispara → B</li>
+    <li>R2 dispara → C</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Vantagens</h2>
+  <ul>
+    <li>Excelente para monitoramento</li>
+    <li>Descobre consequências automaticamente</li>
+    <li>Ideal para sistemas reativos</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Desvantagens</h2>
+  <ul>
+    <li>Pode gerar fatos irrelevantes</li>
+    <li>Explosão combinatória</li>
+  </ul>
+</section>
+
+<section>
+  <h1>Backward Chaining</h1>
+</section>
+
+<section>
+  <h2>Definição</h2>
+  <p>Raciocínio orientado por objetivos.</p>
+
+  <p>Parte da hipótese e busca evidências.</p>
+</section>
+
+<section>
+  <h2>Fluxo</h2>
+  <ol>
+    <li>Definir objetivo</li>
+    <li>Buscar regras que o produzem</li>
+    <li>Verificar pré-condições</li>
+    <li>Recursivamente provar subobjetivos</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Exemplo</h2>
+  <pre><code>
+Objetivo: C
+
+R2: B → C
+R1: A → B
+
+Fato: A
+  </code></pre>
+</section>
+
+<section>
+  <h2>Árvore de Objetivos</h2>
+  <pre><code>
+C
+└── B
+    └── A
+  </code></pre>
+</section>
+
+<section>
+  <h2>Quando Usar?</h2>
+  <ul>
+    <li>Diagnóstico médico</li>
+    <li>Consultas específicas</li>
+    <li>Sistemas especialistas</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Forward vs Backward</h2>
+  <table>
+    <tr>
+      <th>Critério</th>
+      <th>Forward</th>
+      <th>Backward</th>
+    </tr>
+    <tr>
+      <td>Direção</td>
+      <td>Dados → Objetivo</td>
+      <td>Objetivo → Dados</td>
+    </tr>
+    <tr>
+      <td>Uso</td>
+      <td>Exploração</td>
+      <td>Diagnóstico</td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h1>Busca em Espaço de Estados</h1>
+</section>
+
+<section>
+  <h2>Definição</h2>
+  <p>Encontrar uma sequência de ações que leva do estado inicial ao objetivo.</p>
+</section>
+
+<section>
+  <h2>Componentes</h2>
+  <ul>
+    <li>Estado inicial</li>
+    <li>Operadores</li>
+    <li>Teste de objetivo</li>
+    <li>Custo</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Exemplo: Labirinto</h2>
+  <p>Encontrar caminho entre início e saída.</p>
+</section>
+
+<section>
+  <h1>Busca em Largura (BFS)</h1>
+</section>
+
+<section>
+  <h2>Características</h2>
+  <ul>
+    <li>Explora nível por nível</li>
+    <li>Completa</li>
+    <li>Ótima para custos uniformes</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Pseudocódigo</h2>
+  <pre><code>
+fila = [inicial]
+
+enquanto fila não vazia:
+    n = remover_inicio()
+    se objetivo(n): retornar
+    adicionar filhos ao final
+  </code></pre>
+</section>
+
+<section>
+  <h1>Busca em Profundidade (DFS)</h1>
+</section>
+
+<section>
+  <h2>Características</h2>
+  <ul>
+    <li>Explora profundamente</li>
+    <li>Baixa memória</li>
+    <li>Pode ficar presa</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Pseudocódigo</h2>
+  <pre><code>
+pilha = [inicial]
+
+enquanto pilha não vazia:
+    n = remover_topo()
+    se objetivo(n): retornar
+    empilhar filhos
+  </code></pre>
+</section>
+
+<section>
+  <h1>Busca Gulosa</h1>
+</section>
+
+<section>
+  <h2>Heurística</h2>
+  <p>Escolhe o nó aparentemente mais promissor.</p>
+
+  <p><code>f(n) = h(n)</code></p>
+</section>
+
+<section>
+  <h1>A*</h1>
+</section>
+
+<section>
+  <h2>Função de Avaliação</h2>
+  <p><code>f(n) = g(n) + h(n)</code></p>
+
+  <ul>
+    <li><strong>g(n)</strong>: custo acumulado</li>
+    <li><strong>h(n)</strong>: estimativa até o objetivo</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Propriedades do A*</h2>
+  <ul>
+    <li>Completo</li>
+    <li>Ótimo</li>
+    <li>Amplamente utilizado</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Comparação</h2>
+  <table>
+    <tr>
+      <th>Algoritmo</th>
+      <th>Ótimo</th>
+      <th>Memória</th>
+    </tr>
+    <tr>
+      <td>BFS</td>
+      <td>Sim</td>
+      <td>Alta</td>
+    </tr>
+    <tr>
+      <td>DFS</td>
+      <td>Não</td>
+      <td>Baixa</td>
+    </tr>
+    <tr>
+      <td>A*</td>
+      <td>Sim</td>
+      <td>Média/Alta</td>
+    </tr>
+  </table>
+</section>
+
+<section>
+  <h1>Exercício 1</h1>
+  <h3>Forward Chaining</h3>
+
+  <pre><code>
+R1: A → B
+R2: B → C
+R3: C → D
+
+Fato inicial: A
+  </code></pre>
+
+  <p>Quais fatos serão derivados?</p>
+</section>
+
+<section>
+  <h1>Exercício 2</h1>
+  <h3>Backward Chaining</h3>
+
+  <p>Provar o objetivo D usando as regras anteriores.</p>
+</section>
+
+<section>
+  <h1>Exercício 3</h1>
+  <h3>Busca</h3>
+
+  <p>Compare BFS e DFS em um grafo cíclico.</p>
+</section>
+
+<section>
+  <h2>Aplicações Modernas</h2>
+  <ul>
+    <li>Sistemas especialistas</li>
+    <li>Planejamento robótico</li>
+    <li>Roteamento</li>
+    <li>Jogos</li>
+    <li>Diagnóstico automático</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Conexão com IA Atual</h2>
+  <ul>
+    <li>LLMs usam busca em cadeias de raciocínio</li>
+    <li>Sistemas híbridos combinam regras e aprendizado</li>
+    <li>Agentes autônomos dependem fortemente de busca</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Resumo</h2>
+  <ul>
+    <li>Regras representam conhecimento</li>
+    <li>Forward = dirigido por dados</li>
+    <li>Backward = dirigido por objetivos</li>
+    <li>Busca resolve problemas sequenciais</li>
+    <li>A* é o padrão ouro em muitos cenários</li>
+  </ul>
+</section>
+
+<section>
+  <h1>Perguntas?</h1>
+  <h3>Obrigado!</h3>
+  <p>MIT 6.034 – Tutorial 1</p>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: true,
+    transition: 'slide',
+    controls: true,
+    progress: true,
+    center: true
+  });
+</script>
+
+</body>
+</html>
