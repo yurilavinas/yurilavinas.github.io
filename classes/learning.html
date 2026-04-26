@@ -23,23 +23,12 @@
 <div class="reveal">
 <div class="slides">
 
+<section>
   <section class="center">
-    <span class="badge">Módulo 2</span>
+    <span class="badge">Módulo 3</span>
     <h1>Aprendizado de Máquina</h1>
   </section>
 
-
-  <section>
-    <h2>Dois Tipos de Aprendizado</h2>
-   
-    </br>
-    <ul>
-      <li><strong>Regularidade:</strong> O mundo é repetitivo. Se algo aconteceu uma vez, as condições que o causaram podem se repetir.</li>
-      <li><strong>O Objetivo:</strong> Usar o que sabemos (biblioteca de casos) para prever o que não sabemos (novos dados).</li>
-    
-      <li>Quadro</li>
-    </ul>
-  </section>
 
   <section>
     <h2>Ideia Central</h2>
@@ -61,14 +50,45 @@
   </section>
 
 <section>
-  <section class="center">
-    <h2>K-Nearest Neighbors (KNN)</h2>
+    <h2>Diferentes Tipos de Aprendizagem</h2>
+
     <div class="box">
-      <strong>Como classificar elementos?</strong>
+        <h3>Supervisionada</h3>
+        <ul>
+            <li>
+                os pesos são ajustados minimizando o erro entre a
+                saída esperada e a saída prevista no conjunto de dados
+                de treinamento.
+            </li>
+        </ul>
     </div>
-    <ol>
-      <li>Quadro</li>
-    </ol>
+    <div class="box">
+        <h3>Não Supervisionada</h3>
+        <ul>
+            <li>
+                não utiliza saídas rotuladas. Os pesos são otimizados
+                com base em critérios gerais, como similaridade,
+                densidade, recompensa ou estrutura dos dados.
+            </li>
+        </ul>
+    </div>
+    </section>
+    
+</section>
+<section class="center">
+        <span class="badge">Módulo 3 - parte 1</span>
+        <h1>Aprendizado Supervisionado</h1>
+</section>    
+<!-- KNN -->
+    <section>
+    <section class="center">
+        <h2>K-Nearest Neighbors (KNN)</h2>
+        <div class="box">
+        <strong>Como classificar elementos?</strong>
+        </div>
+        <ol>
+        <li>Quadro</li>
+        </ol>
   </section>
 
 
@@ -202,7 +222,9 @@
     <h3>Dúvidas?</h3>
   </section>
 
-  </section>
+    </section>
+
+    
 
   <!-- Decision Trees -->
 <section>
@@ -250,80 +272,6 @@ Entropy(S) = - Σ pᵢ log₂ pᵢ
     </section>
 </section>
 
-<!-- Neural Networks -->
-<section>
-    <section>
-        <h2>Redes Neurais Artificiais</h2>
-        <blockquote>
-            Inspiradas no cérebro humano.
-        </blockquote>
-    </section>
-
-    <section>
-        <h3>Perceptron</h3>
-        <ul>
-            <li>Entradas ponderadas.</li>
-            <li>Função de ativação.</li>
-            <li>Saída binária.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h3>Aprendizado</h3>
-        <pre><code>
-w ← w + α(y - ŷ)x
-        </code></pre>
-    </section>
-
-    <section>
-        <h3>Limitação</h3>
-        <p>
-            Resolve apenas problemas linearmente separáveis.
-        </p>
-    </section>
-</section>
-
-<!-- Deep Learning -->
-<section>
-    <section>
-        <h2>Deep Neural Networks</h2>
-        <ul>
-            <li>Múltiplas camadas ocultas.</li>
-            <li>Aprendem representações hierárquicas.</li>
-            <li>Grande poder de generalização.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h3>Backpropagation</h3>
-        <ul>
-            <li>Calcula gradientes.</li>
-            <li>Atualiza pesos.</li>
-            <li>Usa descida do gradiente.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h3>Funções de Ativação</h3>
-        <ul>
-            <li>Sigmoid</li>
-            <li>Tanh</li>
-            <li>ReLU</li>
-            <li>Softmax</li>
-        </ul>
-    </section>
-
-    <section>
-        <h3>Aplicações</h3>
-        <ul>
-            <li>Visão Computacional</li>
-            <li>NLP</li>
-            <li>Reconhecimento de Voz</li>
-            <li>Sistemas Autônomos</li>
-        </ul>
-    </section>
-</section>
-
 <!-- SVM -->
 <section>
     <section>
@@ -362,6 +310,1018 @@ w ← w + α(y - ŷ)x
     </section>
 </section>
 
+<!-- Neural Networks -->
+    <section class="center">
+        <span class="badge">Módulo 3 - parte 2</span>
+        <h1>Redes Neurais</h1>
+        <ol>
+          <li>Redes Neurais Artificiais</li>
+          <li>CNN</li>
+          <li>RNN</li>
+          <li>Backpropagation</li>
+      </ol> 
+    </section>
+
+<!-- Artificial Neural Networks -->
+<section>
+    <section class="center">
+        <span class="badge">Módulo 3 - parte 2</span>
+        <h1>Redes Neurais Artificiais</h1>
+    </section>
+
+    <section>
+        <h3>Redes Neurais Artificiais</h3>
+        <blockquote>
+            Modelo computacional inspirado no cérebro humano,
+        composto por unidades simples chamadas <strong>neurônios artificiais</strong>.
+        </blockquote>
+        <ul>
+          <li>Processamento paralelo</li>
+          <li>Capacidade de generalização</li>
+          <li>Aprendizado a partir de dados</li>
+          <li>Modelagem de funções complexas</li>
+      </ul>    
+    </section>
+    
+    <section>
+        <h3>Neurônio Biológico vs Artificial</h3>
+        <img src="imgs/dendrites.png" width="40%" height="auto">
+        <ul>
+            <li><strong>Dendritos</strong> → Entradas</li>
+            <li><strong>Sinapses</strong> → Pesos</li>
+            <li><strong>Corpo celular</strong> → Soma ponderada</li>
+            <li><strong>Axônio</strong> → Saída</li>
+            <li>Quadro</li>
+            
+        </ul>
+    </section>
+
+    <section>
+        <h3>Perceptron</h3>
+        <ul>
+            <li>Primeiro modelo funcional de rede neural</li>
+            <li>Resolve problemas linearmente separáveis</li>
+            <li>Base das redes modernas</li>
+        </ul>
+        <h3>Características</h3>
+        <ul>
+            <li>Entradas ponderadas.</li>
+            <li>Função de ativação.</li>
+            <li>Saída binária.</li>
+        </ul>
+    </section>
+  
+    <section>
+        <h3>Modelo Matemático</h3>
+        <div class="formula">
+            z = Σ(wᵢxᵢ) + b
+            <br><br>
+            y = f(z)
+        </div>
+        <ul>
+            <li>xᵢ: entradas</li>
+            <li>wᵢ: pesos</li>
+            <li>b: bias</li>
+            <li>f: função de ativação</li>
+            <li>Quadro</li>
+        </ul>
+        
+        <br><br>
+        <h3>Aprendizado</h3>
+        <div class="formula">
+            w ← w + α(y - ŷ)x
+        </div>
+    </section>
+
+    <section>
+        <h3>Limitação do Perceptron</h3>
+        <ul>
+            <li>Não resolve XOR</li>
+            <li>Necessidade de camadas ocultas</li>
+            <li>Origem do Redes Neurais Artificiais Profundas (Deep Learning)</li>
+        </ul>
+    </section>
+    </section>  
+
+
+<!-- Deep Learning -->
+  <section>
+    <section class="center">
+        <span class="badge">Módulo 3 - parte 2</span>
+        <h1>Redes Neurais Artificiais Profundas</h1>
+    </section>
+
+    <section>
+        <h3>O que são Redes Neurais Artificiais Profundas?</h3>
+        <div class="box">
+            Redes neurais com múltiplas camadas ocultas capazes de aprender
+        </div>
+        <ul>
+            <li>Aprendem representações hierárquicas.</li>
+            <li>Grande poder de generalização.</li>
+        </ul>
+    </section>
+
+
+    <section>
+        <h3>Funções de Ativação</h3>
+        <ul>
+            <li>Sigmoid</li>
+            <li>Tanh</li>
+            <li>ReLU</li>
+            <li>Softmax</li>
+            <img src="imgs/funcoes_ativacao.png" width="40%" height="auto">
+        </ul>
+        Não Lineares!
+    </section>
+
+
+    <section>
+        <h3>Por que Não Linearidade?</h3>
+        <div class="box">
+            Sem funções não lineares, uma rede profunda seria equivalente
+            a uma única transformação linear.
+        </div>
+        <img src="imgs/funcoes_ativacao_linearidade.png" width="40%" height="auto">
+    </section>
+
+
+
+<section>
+    <h2>Sigmoid</h2>
+
+    <div class="formula">
+            σ(x) = 1 / (1 + e<sup>−x</sup>)
+    </div>
+    <img src="imgs/grafico_sigmoide.png" width="40%" height="auto">
+    <ul>
+        <li>Saída entre 0 e 1</li>
+        <li>Interpretação probabilística</li>
+        <li>Sofre com saturação</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Problemas da Sigmoid</h2>
+
+    <ul>
+        <li>Gradientes desaparecem nas extremidades</li>
+        <li>Saídas não centradas em zero</li>
+        <li>Treinamento mais lento</li>
+    </ul>
+</section>
+
+<section>
+    <h2>ReLU</h2>
+
+    <div class="formula">
+        f(x)=max(0,x)
+    </div>
+    <img src="imgs/grafico_relu.png" width="40%" height="auto">
+    <ul>
+        <li>Treinamento muito mais rápido</li>
+        <li>Não satura para valores positivos</li>
+        <li>Padrão</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Vantagens da ReLU</h2>
+
+    <ul>
+        <li>Computacionalmente eficiente</li>
+        <li>Acelera SGD</li>
+        <li>Excelente desempenho prático</li>
+        <li>Reduz o problema do gradiente desaparecendo</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Problema da ReLU</h2>
+
+    <div class="box">
+        Neurônios podem "morrer" quando nunca mais ativam.
+    </div>
+
+    <ul>
+        <li>Gradiente zero permanentemente</li>
+        <li>Comum com learning rates altos</li>
+    </ul>
+</section>
+
+
+    <section>
+        <h2>Arquitetura Multicamadas</h2>
+        <img src="imgs/layers.png" width="60%" height="auto">
+        <ul>
+            <li>Camada de entrada</li>
+            <li>Camadas ocultas</li>
+            <li>Camada de saída</li>
+        </ul>
+        <div class="box">
+            Quanto maior a profundidade, maior a capacidade de representação.
+        </div>
+        
+    </section>
+
+
+<section>
+    <h2>Aprendizado Hierárquico</h2>
+    <ul>
+        <li>Camadas iniciais: características simples</li>
+        <li>Camadas intermediárias: padrões</li>
+        <li>Camadas profundas: conceitos abstratos</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Rede de 2 Camadas</h2>
+
+    <div class="formula">
+        f = W₂ \, \sigma(W₁x + b₁) + b₂
+    </div>
+
+    <ul>
+        <li>Uma camada oculta</li>
+        <li>Uma camada de saída</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Forward Pass</h2>
+
+    <div class="formula">
+        h_1 = f(W_1x + b_1)
+        <br><br>
+        h_2 = f(W_2h_1 + b_2)
+        <br><br>
+        y = W_3h_2 + b_3
+    </div>
+</section>
+
+<section>
+    <h2>Poder de Representação</h2>
+
+    <div class="box">
+        Redes neurais com uma única camada oculta
+        são aproximadores universais.
+    </div>
+
+    <ul>
+        <li>Podem aproximar qualquer função contínua</li>
+        <li>Desde que tenham neurônios suficientes</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Mais Neurônios, Mais Capacidade</h2>
+    <img src="imgs/fronteiras_decisao.png" width="60%" height="auto">
+    <ul>
+        <li>Redes maiores modelam funções mais complexas</li>
+        <li>Maior risco de overfitting</li>
+        <li>Necessitam regularização adequada</li>
+    </ul>
+
+</section>
+
+<section>
+    <h2>Quantos Parâmetros?</h2>
+
+    <div class="formula">
+        Parâmetros = Pesos + Biases
+    </div>
+
+    <ul>
+        <li>Mede a capacidade da rede</li>
+        <li>Redes modernas possuem milhões ou bilhões</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Escolhendo Arquiteturas</h2>
+
+    <ul>
+        <li>Mais camadas → maior abstração</li>
+        <li>Mais neurônios → maior capacidade</li>
+        <li>Regularização torna-se essencial</li>
+    </ul>
+</section>
+
+  
+  <section>
+      <h2>Problemas Comuns</h2>
+      <ul>
+          <li>Vanishing Gradients</li>
+          <li>Exploding Gradients</li>
+          <li>Learning Rate inadequada</li>
+          <li>Má inicialização</li>
+      </ul>
+  </section>
+  
+<section>
+    <h2>Otimizadores Modernos</h2>
+    <ul>
+        <li>SGD</li>
+        <li>Momentum</li>
+        <li>RMSProp</li>
+        <li><strong>Adam</strong></li>
+    </ul>
+</section>
+
+
+<section>
+    <h2>Técnicas de Regularização</h2>
+    <ul>
+        <li>Dropout</li>
+        <li>L1/L2</li>
+        <li>Early Stopping</li>
+        <li>Data Augmentation</li>
+        <li>Batch Normalization</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Dropout</h2>
+    <img src="imgs/dropout.png" width="60%" height="auto">
+    <div class="box">
+        Desativa neurônios aleatoriamente durante o treinamento.
+    </div>
+</section>
+
+<section>
+    <h2>Exemplo em PyTorch</h2>
+
+    <pre><code class="language-python">
+""" Vanilla Dropout: Not recommended implementation (see notes below) """
+
+p = 0.5 # probability of keeping a unit active. higher = less dropout
+
+def train_step(X):
+  """ X contains the data """
+  
+  # forward pass for example 3-layer neural network
+  H1 = np.maximum(0, np.dot(W1, X) + b1)
+  U1 = np.random.rand(*H1.shape) < p # first dropout mask
+  H1 *= U1 # drop!
+  H2 = np.maximum(0, np.dot(W2, H1) + b2)
+  U2 = np.random.rand(*H2.shape) < p # second dropout mask
+  H2 *= U2 # drop!
+  out = np.dot(W3, H2) + b3
+  
+  # backward pass: compute gradients... (not shown)
+  # perform parameter update... (not shown)
+  
+def predict(X):
+  # ensembled forward pass
+  H1 = np.maximum(0, np.dot(W1, X) + b1) * p # NOTE: scale the activations
+  H2 = np.maximum(0, np.dot(W2, H1) + b2) * p # NOTE: scale the activations
+  out = np.dot(W3, H2) + b3
+    </code></pre>
+</section>
+
+<section>
+    <h2>Batch Normalization</h2>
+
+    <div class="fragment">
+        <p>
+            Batch Normalization (BN) é uma técnica que normaliza
+            as ativações de cada mini-batch durante o treinamento.
+        </p>
+    </div>
+
+    <div class="box fragment">
+        <h3>Objetivos Principais</h3>
+        <ul>
+            <li>Acelerar a convergência do treinamento</li>
+            <li>Permitir taxas de aprendizado maiores</li>
+            <li>Reduzir sensibilidade à inicialização</li>
+            <li>Estabilizar o fluxo de gradientes</li>
+        </ul>
+    </div>
+
+    <aside class="notes">
+        BatchNorm foi introduzido por Ioffe e Szegedy em 2015
+        e tornou-se um dos componentes mais importantes
+        das arquiteturas modernas.
+    </aside>
+</section>
+
+<section>
+    <h2>Problema: Internal Covariate Shift</h2>
+
+    <p>
+        Durante o treinamento, a distribuição das ativações
+        muda continuamente à medida que os pesos são atualizados.
+    </p>
+
+    <div class="box fragment">
+        <h3>Consequências</h3>
+        <ul>
+            <li>Treinamento mais lento</li>
+            <li>Gradientes instáveis</li>
+            <li>Maior dificuldade de convergência</li>
+            <li>Dependência crítica da inicialização</li>
+        </ul>
+    </div>
+
+    <p class="fragment">
+        BatchNorm reduz esse efeito ao manter as ativações
+        aproximadamente padronizadas.
+    </p>
+   
+</section>
+
+<section>
+    <h2>Exemplo em PyTorch</h2>
+    <p class="fragment">
+        A prática recomendada é inserir BatchNorm
+        antes da função de ativação.
+    </p>
+
+    <pre><code class="language-python">
+        model = nn.Sequential(
+            nn.Linear(784, 256),
+            nn.BatchNorm1d(256),
+            nn.ReLU(),
+            nn.Linear(256, 10)
+        )
+    </code></pre>
+</section>
+
+<section>
+    <h2>Vantagens</h2>
+
+    <div class="box">
+        <ul>
+            <li>Treinamento significativamente mais rápido</li>
+            <li>Redução do vanishing/exploding gradient</li>
+            <li>Maior robustez à inicialização</li>
+            <li>Efeito regularizador moderado</li>
+            <li>Melhor generalização</li>
+        </ul>
+    </div>
+</section>
+
+
+<section>
+    <h2>Camadas Principais</h2>
+    <ul>
+        <li>Dense</li>
+        <li>Convolution</li>
+        <li>Pooling</li>
+        <li>Flatten</li>
+        <li>Normalization</li>
+        <li>Softmax</li>
+    </ul>
+</section>
+</section>
+
+
+<!-- CNNs-->
+<section>
+    <section class="center">
+        <span class="badge">Módulo 3 - parte 2</span>
+        <h1>Redes Convolucionais</h1>
+        <h2>Processamento de Imagens</h2>
+    </section>
+
+    <section>
+    <h2>Por Que Não Usar Camadas Totalmente Conectadas?</h2>
+
+    <p>Uma imagem de tamanho 200 × 200 × 3 possui:</p>
+
+    <div class="formula">
+        200 × 200 × 3 = 120.000
+    </div>
+
+    <p class="fragment">
+        Conectando-a a apenas 1.000 neurônios, seriam necessários:
+    </p>
+
+    <div class="formula fragment">
+        120.000 × 1.000 = 120 milhões de parâmetros
+    </div>
+
+    <div class="box fragment">
+        <ul>
+            <li>Consumo excessivo de memória</li>
+            <li>Treinamento extremamente lento</li>
+            <li>Grande risco de overfitting</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h3>Ideias Fundamentais das CNNs</h3>
+
+    <div class="box">
+        <ul>
+            <li class="fragment"><strong>Conectividade Local</strong></li>
+            <li class="fragment"><strong>Compartilhamento de Parâmetros</strong></li>
+            <li class="fragment"><strong>Hierarquia Espacial de Características</strong></li>
+        </ul>
+    </div>
+
+    <p class="fragment">
+        Essas propriedades reduzem drasticamente
+        a quantidade de parâmetros treináveis.
+    </p>
+    <h3 class="fragment">CNN são:</h3>
+    <ul class="fragment">
+        <li>Especializadas em imagens</li>
+        <li>Extração automática de características</li>
+        <li>Compartilhamento de pesos</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Arquitetura Típica de uma CNN</h2>
+
+    <pre><code>
+ENTRADA
+   ↓
+CONV → ReLU
+   ↓
+POOL
+   ↓
+CONV → ReLU
+   ↓
+POOL
+   ↓
+TOTALMENTE CONECTADA
+   ↓
+SOFTMAX
+    </code></pre>
+</section>
+
+<section>
+    <h2>Volume de Entrada</h2>
+
+    <div class="formula">
+        Largura × Altura × Profundidade
+    </div>
+
+    <p>Exemplo: imagem do CIFAR-10</p>
+
+    <div class="formula">
+        32 × 32 × 3
+    </div>
+
+    <ul>
+        <li>Largura</li>
+        <li>Altura</li>
+        <li>Profundidade (canais RGB)</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Camada de Convolução</h2>
+
+    <p>
+        Aplica filtros aprendíveis sobre a imagem.
+    </p>
+
+    <div class="formula">
+        Saída = (W - F + 2P)/S + 1
+    </div>
+
+    <ul>
+        <li><strong>F</strong>: tamanho do filtro</li>
+        <li><strong>S</strong>: stride (passo)</li>
+        <li><strong>P</strong>: padding</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Exemplo de Convolução</h2>
+
+    <p>Entrada: 32 × 32 × 3</p>
+    <p>Filtro: 5 × 5</p>
+    <p>Stride: 1</p>
+    <p>Padding: 2</p>
+    <p>Quantidade de filtros: 12</p>
+
+    <div class="formula">
+        Saída = 32 × 32 × 12
+    </div>
+</section>
+
+<section>
+    <h2>Compartilhamento de Parâmetros</h2>
+
+    <p>
+        O mesmo filtro é aplicado em toda a imagem.
+    </p>
+
+    <div class="formula">
+        5 × 5 × 3 + 1 = 76 parâmetros
+    </div>
+
+    <p>
+        Independentemente do tamanho da imagem.
+    </p>
+</section>
+
+<section>
+    <h2>Camada de Pooling</h2>
+
+    <ul>
+        <li>Reduz dimensionalidade</li>
+        <li>Preserva características importantes</li>
+        <li>Maior robustez</li>
+    </ul>
+
+    <div class="formula">
+        Max Pooling 2 × 2, stride = 2
+    </div>
+
+    <div class="formula">
+        32 × 32 × 12 → 16 × 16 × 12
+    </div>
+</section>
+
+<section>
+    <h2>Camadas Totalmente Conectadas</h2>
+
+    <p>
+        Combinam as características extraídas
+        para realizar a classificação final.
+    </p>
+
+    <div class="formula">
+        Características → Classes
+    </div>
+</section>
+
+<section>
+    <h2>Camada Softmax</h2>
+
+    <div class="formula">
+        P(y=i) = e^{s_i} / Σ e^{s_j}
+    </div>
+
+    <p>
+        Converte scores em probabilidades.
+    </p>
+</section>
+
+<section>
+    <h2>Exemplo em PyTorch</h2>
+
+    <pre><code class="language-python">
+nn.Sequential(
+    nn.Conv2d(3, 32, 3, padding=1),
+    nn.ReLU(),
+    nn.MaxPool2d(2),
+
+    nn.Conv2d(32, 64, 3, padding=1),
+    nn.ReLU(),
+    nn.MaxPool2d(2),
+
+    nn.Flatten(),
+    nn.Linear(64 * 8 * 8, 10)
+)
+    </code></pre>
+</section>
+
+<section>
+    <h2>Arquiteturas Clássicas</h2>
+
+    <ul>
+        <li class="">LeNet (1998)</li>
+        <li class="">AlexNet (2012)</li>
+        <li class="">VGG (2014)</li>
+        <li class="">GoogLeNet (2014)</li>
+        <li class="">ResNet (2015)</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Por Que CNNs Funcionam Tão Bem?</h2>
+
+    <div class="box">
+        <ul>
+            <li>Invariância a translações</li>
+            <li>Aprendizado hierárquico de características</li>
+            <li>Uso eficiente de parâmetros</li>
+            <li>Excelente escalabilidade</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h2>Resumo</h2>
+
+    <ul>
+        <li>Exploram a estrutura espacial das imagens</li>
+        <li>Convoluções aprendem padrões locais</li>
+        <li>Pooling reduz dimensionalidade</li>
+        <li>Camadas densas classificam</li>
+        <li>Base da visão computacional moderna</li>
+    </ul>
+
+</section>
+
+
+<section>
+    <h2>Operação de Convolução</h2>
+    <ul>
+        <li>Kernel desliza sobre a imagem</li>
+        <li>Produz mapas de ativação</li>
+        <li>Detecta padrões locais</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Demonstração Interativa de Convolução</h2>
+<iframe src="demo_iframe.htm" name="iframe_a" title="Iframe Example"></iframe>
+
+<p><a href="https://www.w3schools.com" target="iframe_a">W3Schools.com</a></p>
+    <!-- <iframe
+        src="./assets/conv-demo/index.html"
+        width="100%"
+        height="700"
+        style="border: none; border-radius: 12px;">
+    </iframe> -->
+</section>
+</section>
+
+
+
+<!-- RNN-->
+<section>
+    <section class="center">
+        <span class="badge">Módulo 3 - parte 2</span>
+        <h1>Redes Recorrentes</h1>
+        <h2>Processamento de Texto</h2>
+    </section>
+<section>
+    <h2>Redes Recorrentes (RNN)</h2>
+    <ul>
+        <li>Processam sequências</li>
+        <li>Possuem memória temporal</li>
+    </ul>
+</section>
+
+<section>
+    <h2>LSTM e GRU</h2>
+    <ul>
+        <li>Resolvem gradientes desaparecendo</li>
+        <li>Excelente para séries temporais e NLP</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Transformers</h2>
+    <ul>
+        <li>Mecanismo de atenção</li>
+        <li>Paralelização massiva</li>
+        <li>Base dos LLMs modernos</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Self-Attention</h2>
+    <div class="formula">
+        Attention(Q,K,V)=softmax(QKᵀ/√d)V
+    </div>
+</section>
+
+<section>
+    <h2>Aplicações</h2>
+    <ul>
+        <li>Visão Computacional</li>
+        <li>Processamento de Linguagem Natural</li>
+        <li>Reconhecimento de Voz</li>
+        <li>Sistemas de Recomendação</li>
+        <li>Veículos Autônomos</li>
+        <li>Medicina</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Pipeline de Desenvolvimento</h2>
+    <ol>
+        <li>Coleta de dados</li>
+        <li>Pré-processamento</li>
+        <li>Treinamento</li>
+        <li>Validação</li>
+        <li>Teste</li>
+        <li>Deploy</li>
+    </ol>
+</section>
+
+<section>
+    <h2>Principais Desafios</h2>
+    <ul>
+        <li>Grande volume de dados</li>
+        <li>Alto custo computacional</li>
+        <li>Escolha da arquitetura</li>
+        <li>Interpretabilidade</li>
+        <li>Viés algorítmico</li>
+    </ul>
+</section>
+</section>
+
+<!-- Backprop-->
+ <section>
+    <section class="center">
+        <span class="badge">Módulo 3 - parte 2</span>
+        <h2>Backpropagation - Otimização dos pesos</h2>
+        <ul>
+            <li>Calcula gradientes.</li>
+            <li>Atualiza pesos.</li>
+            <li>Usa descida do gradiente.</li>
+        </ul>
+    </section>
+
+
+  <section>
+      <h3>Por Que Otimização?</h3>
+      <div class="box">
+          Treinar uma rede neural significa encontrar os pesos que minimizam uma função de custo.
+      </div>
+      <ul>
+          <li>Milhões de parâmetros</li>
+          <li>Espaços de alta dimensionalidade</li>
+          <li>Superfícies não convexas</li>
+      </ul>
+  </section>
+
+  <section>
+      <h2>O Conceito de Gradiente</h2>
+      <div class="box">
+          O gradiente aponta para a direção de maior crescimento da função.
+      </div>
+
+      :contentReference[oaicite:1]{index=1}
+  </section>
+
+  <section>
+      <h2>Gradient Descent</h2>
+
+      <pre><code class="language-python">
+        # Vanilla Gradient Descent
+
+        while True:
+            weights_grad = evaluate_gradient(loss_fun, data, weights)
+            weights += -step_size * weights_grad
+        </code></pre>
+
+      <ul>
+          <li><strong>η</strong>: taxa de aprendizado</li>
+          <li>Movimento na direção oposta ao gradiente</li>
+          <li>Busca pelo mínimo da função</li>
+      </ul>
+  </section>
+
+  <section>
+      <h2>Intuição Visual</h2>
+      <ul>
+          <li>Bola descendo uma montanha</li>
+          <li>O gradiente indica a inclinação local</li>
+          <li>Atualizações sucessivas convergem ao mínimo</li>
+      </ul>
+  </section>
+
+  <section>
+      <h2>Expressões Simples</h2>
+
+      <div class="formula">
+          f(x,y,z) = (x + y)z
+      </div>
+
+      <ul>
+          <li>q = x + y</li>
+          <li>f = q · z</li>
+      </ul>
+
+      <p class="small">:contentReference[oaicite:3]{index=3}</p>
+  </section>
+
+  <section>
+      <h2>Forward Pass</h2>
+
+      <div class="formula">
+          x = -2<br>
+          y = 5<br>
+          z = -4<br><br>
+
+          q = x + y = 3<br>
+          f = qz = -12
+      </div>
+  </section>
+
+  <section>
+      <h2>Backward Pass</h2>
+
+      <div class="formula">
+          ∂f/∂z = q = 3<br>
+          ∂f/∂q = z = -4
+      </div>
+
+      <div class="box">
+          Agora propagamos para trás usando a regra da cadeia.
+      </div>
+  </section>
+
+  <section>
+      <h2>Regra da Cadeia</h2>
+
+      :contentReference[oaicite:4]{index=4}
+
+      <ul>
+          <li>dq/dx = 1</li>
+          <li>df/dx = -4</li>
+          <li>df/dy = -4</li>
+      </ul>
+  </section>
+
+  <section>
+      <h2>Backpropagation</h2>
+      <div class="box">
+          Propagação reversa eficiente dos gradientes através do grafo computacional.
+      </div>
+
+      <ul>
+          <li>Executa da saída para a entrada</li>
+          <li>Reutiliza cálculos</li>
+          <li>Complexidade linear</li>
+      </ul>
+  </section>
+
+  <section>
+      <h2>Fluxo dos Gradientes</h2>
+      <ul>
+          <li>Sinais viajam para trás</li>
+          <li>Cada operação calcula gradientes locais</li>
+          <li>Multiplicação pela derivada local</li>
+      </ul>
+  </section>
+
+  <section>
+      <h2>Portas Computacionais</h2>
+      <ul>
+          <li><strong>Soma</strong>: distribui gradiente</li>
+          <li><strong>Máximo</strong>: roteia gradiente</li>
+          <li><strong>Produto</strong>: troca entradas</li>
+      </ul>
+
+      <p class="small">:contentReference[oaicite:5]{index=5}</p>
+  </section>
+
+  <section>
+      <h2>Porta Soma</h2>
+
+      :contentReference[oaicite:6]{index=6}
+
+      <ul>
+          <li>∂f/∂x = 1</li>
+          <li>∂f/∂y = 1</li>
+          <li>Gradiente é copiado para ambas entradas</li>
+      </ul>
+  </section>
+
+  <section>
+      <h2>Porta Multiplicação</h2>
+
+      :contentReference[oaicite:7]{index=7}
+
+      <ul>
+          <li>∂f/∂x = y</li>
+          <li>∂f/∂y = x</li>
+      </ul>
+  </section>
+
+  <section>
+      <h2>Porta Máximo</h2>
+
+      :contentReference[oaicite:8]{index=8}
+
+      <ul>
+          <li>Gradiente vai apenas para o maior valor</li>
+          <li>O outro recebe zero</li>
+      </ul>
+  </section>
+
+  <section>
+      <h2>Sigmoid</h2>
+
+      :contentReference[oaicite:9]{index=9}
+
+  </section>
+
+  <section>
+      <h2>Derivada da Sigmoid</h2>
+
+      :contentReference[oaicite:10]{index=10}
+
+      <div class="box">
+          Elegante, eficiente e amplamente utilizada em backprop.
+      </div>
+  </section>
+</section>
+
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
@@ -374,5 +1334,17 @@ w ← w + α(y - ŷ)x
     progress: true
   });
 </script>
+
+<!-- mathjax -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+      // Make responsive
+      MathJax.Hub.Config({
+       "HTML-CSS": { linebreaks: { automatic: true } },
+       "SVG": { linebreaks: { automatic: true } },
+      });
+    </script>
+
 </body>
 </html>
+
