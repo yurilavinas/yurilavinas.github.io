@@ -786,7 +786,7 @@ def predict(X):
     </section>
 
     <section>
-    <h2>Por Que Não Usar Camadas Totalmente Conectadas?</h2>
+    <h3>Por Que Não Usar Camadas Totalmente Conectadas?</h3>
 
     <p>Uma imagem de tamanho 200 × 200 × 3 possui:</p>
 
@@ -835,23 +835,13 @@ def predict(X):
 </section>
 
 <section>
-    <h2>Arquitetura Típica de uma CNN</h2>
-
-    <pre><code>
-ENTRADA
-   ↓
-CONV → ReLU
-   ↓
-POOL
-   ↓
-CONV → ReLU
-   ↓
-POOL
-   ↓
-TOTALMENTE CONECTADA
-   ↓
-SOFTMAX
-    </code></pre>
+    <h3>Arquitetura Típica de uma CNN</h3>
+    <img src="imgs/cnns.png" width="100%" height="auto">
+    
+    <div>
+        Uma rede de convoluções (ConvNet) é composta por camadas. 
+        Cada camada possui uma API simples: ela transforma um volume 3D de entrada em um volume 3D de saída por meio de uma função diferenciável que pode ou não ter parâmetros.
+    </div>
 </section>
 
 <section>
@@ -893,34 +883,50 @@ SOFTMAX
 </section>
 
 <section>
-    <h2>Exemplo de Convolução</h2>
-
-    <p>Entrada: 32 × 32 × 3</p>
-    <p>Filtro: 5 × 5</p>
-    <p>Stride: 1</p>
-    <p>Padding: 2</p>
-    <p>Quantidade de filtros: 12</p>
-
-    <div class="formula">
-        Saída = 32 × 32 × 12
+    <h3>Ativações de uma arquitetura de ConvNet</h3>
+    <img src="imgs/activate_ex.png" width="80%" height="auto">
+    
+    <div>
+        O volume inicial armazena os pixels brutos da imagem (à esquerda) e o último volume armazena as pontuações de classe (à direita). 
+        Cada volume de ativações ao longo do caminho de processamento é apresentado como uma coluna.
     </div>
 </section>
 
 <section>
-    <h2>Compartilhamento de Parâmetros</h2>
+    <h3>Exemplo de Convolução - Uma imagem CIFAR-10 de 32x32x3</h3>
+    <img src="imgs/cnn_example.png" width="100%" height="auto">
+    <div class="">
+        Esquerda: Cada neurônio na camada convolucional está conectado a apenas a uma região da entrada, mas em toda a profundidade (canais de cor). <br>
+        O 5 neurônios observam a mesma região na entrada ao longo da profundidade, mas não compartilham os mesmos pesos.<br>
 
-    <p>
-        O mesmo filtro é aplicado em toda a imagem.
-    </p>
-
-    <div class="formula">
-        5 × 5 × 3 + 1 = 76 parâmetros
     </div>
-
-    <p>
-        Independentemente do tamanho da imagem.
-    </p>
 </section>
+
+
+<section>
+    <h3>Exemplo de Convolução - Uma imagem CIFAR-10 de 32x32x3</h3>
+    <img src="imgs/cnn_example.png" width="100%" height="auto">
+    <div class="">
+        Direita: Os neurônios  calculam um produto escalar de seus pesos com a entrada, seguido por uma não linearidade, 
+        mas sua conectividade agora está restrita a ser local espacialmente. 
+    </div>
+</section>
+
+<section>
+    <h3>Demonstração Interativa de Convolução</h3>
+    <iframe
+        src="./assets/conv-demo/index.html"
+        width="100%"
+        height="700"
+        style="border: none; border-radius: 12px;">
+    </iframe>
+</section>
+
+<section>
+    <h3>Features aprendidas</h3>
+    <img src="imgs/features.jpeg" width="100%" height="auto">
+</section>
+
 
 <section>
     <h2>Camada de Pooling</h2>
@@ -1032,15 +1038,7 @@ nn.Sequential(
     </ul>
 </section>
 
-<section>
-    <h2>Demonstração Interativa de Convolução</h2>
-    <iframe
-        src="./assets/conv-demo/index.html"
-        width="100%"
-        height="700"
-        style="border: none; border-radius: 12px;">
-    </iframe>
-</section>
+
 </section>
 
 
