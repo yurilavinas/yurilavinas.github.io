@@ -811,6 +811,21 @@ def predict(X):
     </div>
 </section>
 
+
+
+<section>
+    <h3>Por Que CNNs Funcionam Tão Bem?</h3>
+
+    <div class="box">
+        <ul>
+            <li>Invariância a translações</li>
+            <li>Aprendizado hierárquico de características</li>
+            <li>Uso eficiente de parâmetros</li>
+            <li>Excelente escalabilidade</li>
+        </ul>
+    </div>
+</section>
+
 <section>
     <h3>Ideias Fundamentais das CNNs</h3>
 
@@ -845,7 +860,7 @@ def predict(X):
 </section>
 
 <section>
-    <h2>Volume de Entrada</h2>
+    <h3>Volume de Entrada</h3>
 
     <div class="formula">
         Largura × Altura × Profundidade
@@ -865,7 +880,7 @@ def predict(X):
 </section>
 
 <section>
-    <h2>Camada de Convolução</h2>
+    <h3>Camada de Convolução</h3>
 
     <p>
         Aplica filtros aprendíveis sobre a imagem.
@@ -929,12 +944,13 @@ def predict(X):
 
 
 <section>
-    <h2>Camada de Pooling</h2>
+    <h3>Camada de Pooling</h3>
 
     <ul>
         <li>Reduz dimensionalidade</li>
         <li>Preserva características importantes</li>
-        <li>Maior robustez</li>
+        <li>Controlar overfitting</li>
+        <li>É utilizada em cada camada de profundidade independentemente</li>
     </ul>
 
     <div class="formula">
@@ -946,33 +962,25 @@ def predict(X):
     </div>
 </section>
 
+
 <section>
-    <h2>Camadas Totalmente Conectadas</h2>
-
-    <p>
-        Combinam as características extraídas
-        para realizar a classificação final.
-    </p>
-
-    <div class="formula">
-        Características → Classes
+    <h3>Exemplo de Pooling - Entrada [224x224x64]</h3>
+    <img src="imgs/poolnig.jpeg" width="40%" height="auto">
+    <div class="">
+        Esquerda: A entrada é submetido a pooling com tamanho de filtro 2 e stride 2, resultando em um volume de saída de tamanho [112x112x64]. A profundidade do volume é preservada. 
     </div>
 </section>
 
 <section>
-    <h2>Camada Softmax</h2>
-
-    <div class="formula">
-        P(y=i) = e^{s_i} / Σ e^{s_j}
+    <h3>Exemplo de Pooling - Entrada [224x224x64]</h3>
+    <img src="imgs/poolnig.jpeg" width="40%" height="auto">
+    <div class="">
+        Direita: A operação de subamostragem mais comum é o máximo, dando origem ao max pooling, aqui mostrado com um stride de 2. Ou seja, cada máximo é calculado sobre 4 números (pequeno quadrado de 2x2). 
     </div>
-
-    <p>
-        Converte scores em probabilidades.
-    </p>
 </section>
 
 <section>
-    <h2>Exemplo em PyTorch</h2>
+    <h3>Exemplo em PyTorch</h3>
 
     <pre><code class="language-python">
 nn.Sequential(
@@ -991,7 +999,7 @@ nn.Sequential(
 </section>
 
 <section>
-    <h2>Arquiteturas Clássicas</h2>
+    <h3>Arquiteturas Clássicas</h3>
 
     <ul>
         <li class="">LeNet (1998)</li>
@@ -1003,20 +1011,7 @@ nn.Sequential(
 </section>
 
 <section>
-    <h2>Por Que CNNs Funcionam Tão Bem?</h2>
-
-    <div class="box">
-        <ul>
-            <li>Invariância a translações</li>
-            <li>Aprendizado hierárquico de características</li>
-            <li>Uso eficiente de parâmetros</li>
-            <li>Excelente escalabilidade</li>
-        </ul>
-    </div>
-</section>
-
-<section>
-    <h2>Resumo</h2>
+    <h3>Resumo</h3>
 
     <ul>
         <li>Exploram a estrutura espacial das imagens</li>
@@ -1027,17 +1022,6 @@ nn.Sequential(
     </ul>
 
 </section>
-
-
-<section>
-    <h2>Operação de Convolução</h2>
-    <ul>
-        <li>Kernel desliza sobre a imagem</li>
-        <li>Produz mapas de ativação</li>
-        <li>Detecta padrões locais</li>
-    </ul>
-</section>
-
 
 </section>
 
