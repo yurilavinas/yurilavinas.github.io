@@ -1,303 +1,321 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NLP</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
-  <style>
-    :root { --primary: #00d9ff; --secondary: #a855f7; --accent: #10b981; --warning: #ffcc00; }
-    .reveal h1, .reveal h2 { color: var(--primary); text-transform: none; }
-    .reveal h3 { color: var(--secondary); text-transform: none; }
-    .reveal section { text-align: left; font-size: 0.9em; }
-    .center { text-align: center !important; }
-    .box { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; border-left: 5px solid var(--primary); margin: 15px 0; }
-    .warning-box { border-left-color: var(--warning); background: rgba(255, 204, 0, 0.05); }
-    .highlight { color: var(--warning); font-weight: bold; }
-    .formula { background: #111; padding: 10px; border-radius: 8px; display: inline-block; font-family: 'Courier New', monospace; color: var(--accent); }
-    .timeline { color: #888; font-size: 0.6em; font-weight: bold; text-transform: uppercase; }
-  </style>
-</head>
-<body>
-<div class="reveal">
-<div class="slides">
-
-<section class="center">
-  <section class="center">
-    <span class="badge">Módulo 5 - parte 1</span>
-    <h1>Processamento de Linguagem Natural</h1>
-    <h2>Vetores de Palavras</h2>
-  </section>
+  <!DOCTYPE html>
+  <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLP</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+    <style>
+      :root { --primary: #00d9ff; --secondary: #a855f7; --accent: #10b981; --warning: #ffcc00; }
+      .reveal h1, .reveal h2 { color: var(--primary); text-transform: none; }
+      .reveal h3 { color: var(--secondary); text-transform: none; }
+      .reveal section { text-align: left; font-size: 0.9em; }
+      .center { text-align: center !important; }
+      .box { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; border-left: 5px solid var(--primary); margin: 15px 0; }
+      .warning-box { border-left-color: var(--warning); background: rgba(255, 204, 0, 0.05); }
+      .highlight { color: var(--warning); font-weight: bold; }
+      .formula { background: #111; padding: 10px; border-radius: 8px; display: inline-block; font-family: 'Courier New', monospace; color: var(--accent); }
+      .timeline { color: #888; font-size: 0.6em; font-weight: bold; text-transform: uppercase; }
+    </style>
+  </head>
+  <body>
+  <div class="reveal">
+  <div class="slides">
 
   <section class="center">
-    <h3>Como representamos o significado de uma palavra?</h3>
-<ul>
-      <li>Possíveis definições:</li>
-      <ol>
-        <li>a ideia representada por uma palavra, frase, etc.</li>
-        <li>a ideia que uma pessoa deseja expressar por meio de palavras, sinais, etc.</li>
-      </ol>
-  <p>Forma linguística mais comum de conceber o significado:</p>
-  <img src="imgs/significados.png" width="80%" height="auto">
-  </section>
-
-  <section class="center">
-    <h3>Por que Representar Palavras?</h3>
-    <ul>
-      <li>Computadores precisam de representações numéricas.</li>
-      <li>Palavras semelhantes devem possuir vetores semelhantes.</li>
-      <li>Essas representações são fundamentais em NLP moderno.</li>
-    </ul>
-  </section>
+    <section class="center">
+      <span class="badge">Módulo 5 - parte 1</span>
+      <h1>Processamento de Linguagem Natural</h1>
+      <h2>Vetores de Palavras</h2>
+    </section>
 
     <section class="center">
-    <h3>WordNet:</h">
-    <ul><li> Banco de dados lexical de relações semânticas entre palavras</li></ul>
-    <img src="imgs/wordvet.png" width="80%" height="auto">
-  </section>
-
-
-  <section class="center">
-    <h3>Limitações</h3>
-    <ul>
-      <li>Correto, mas depende do contexto</li>
-      <li>Palavras novas ou raras não são bem representadas</li>
-      <li>Subjetivo</li>
-      <li>Requer horas de trabalho para ser criado/atualizado</li>
-      <li>Precisamos de um novo banco para cada linguagem</li>
-    </ul>
-  </section>
-
-  <section class="center">
-    <h3>Codificação One-Hot</h3  >
-    <ul>
-      <li>Palavras como símbolos</li>
-      <li>Vetores extremamente esparsos.</li>
-      <img src="imgs/symbols.png" width="80%" height="auto">
-    </ul>
-  </section>
-
-  <section class="center">
-    <h3>Problema dos Vetores One-Hot</h3  >
-    <ul>
-      <li>Alta dimensionalidade - um para cada palavra</li>
-      <li>Vetores extremamente esparsos.</li>
-      <li>Não capturam similaridade semântica.</li>
-      <li>"hotel" e "motel" ficam tão distantes quanto "hotel" e "gato".</li>
-    </ul>
-  </section>
-
-  <section class="center">
-    <h3>Hipótese Distribucional</h3>
-    <ul>
-      <li>Palavras em contextos semelhantes tendem a ter significados semelhantes.</li>
-      <li>Base conceitual dos embeddings (espaço vetorial de dimensão inferior)</li>
-    </ul>
-    <p class="fragment">"As mangas podem ser classificadas de várias maneiras"</p>
-    <ul class="fragment">
-      <li>fresca, seca, madura, rosa</li>
-      <li>longa, curta, bufante</li>
-      <li>original, baseado em livros</li>
-    </ul>
-    <p class="fragment">https://pt.wikipedia.org/wiki/Manga</p>
-  </section>
-
-  <section class="center">
-    <h3>Vetores de palavras</h3>
-    <ul>
-      <li>Construir um vetor denso para cada palavra</li>
-      <li>Similar aos vetores das palavras</li>
-      <li>Semelhança é calculada dado o produto escalar dos vetores</li>
-    </ul>
-    <img src="imgs/wordvecs.png" width="100%" height="auto">
-  </section>
-
-  
-  <section class="center">
-    <h3>Vetores de palavras - exemplo</h3>
-    <img src="imgs/wordvec_ex.png" width="80%" height="auto">
-    <ol>
-      <li>Calcular a função baseada na verossimilhança:<p>        <img class="center" src="imgs/objective_fun.png" width="40%" height="auto"></p></li>
-      <li>Usar função exponencial normalizada (softmax) para estimar probabilidades</li>
-    </ol>
-  </section>
-
-   <section class="center">
-    <h3>Vetores de palavras - treinamento</h3>
-    <img src="imgs/treinamento_NLP.png" width="80%" height="auto">
-    <ol>
-      <li>Ajustar gradualmente os parâmetros para minimizar a função</li>
-      <li>Otimizar esses parâmetros seguindo o gradiente</li>
-      <li>Calcular todos os gradientes vetoriais!</li>
-    </ol>
-  </section>
-
- <section class="center">
-    <h3>Vetores de palavras - otimização</h3>
-    <img src="imgs/gradient_descent.png" width="60%" height="auto">
-    <ol>
-      <li>O Descenso por Gradiente é um algoritmo para minimizar 𝐽 𝜃</li>
-      <li>Ideia: para o valor atual de 𝜃, calcular o gradiente de 𝐽 𝜃 e, em seguida, dar um pequeno passo na direção
-do gradiente negativo. Repetir.</li>
-    </ol>
-  </section>
-
-
- <section class="center">
-    <h3>Nuvem de palavras</h3>
-    <img src="imgs/nuvem_palavras.png" width="90%" height="auto">
-    <ol>
-      <li>Palavras semelhantes devem ficar próximas</li>
-    </ol>
-  </section>
-
-  
-
-</section>
-<!-- Modelo de linguagem-->
-
-<section>
-  <section class="center">
-    <span class="badge">Módulo 5 - parte 2</span>
-    <h1>Processamento de Linguagem Natural</h1>
-    <h2>Modelo de linguagem</h2>
-  </section>
-
-  <section class="center">
-    <h3>O que é um modelo de modelo de linguagem?</h3>
-    <ul>
-      <li>Modelo que prevê a próxima palavra em uma sequência.</li>
-      <li>Exemplo: "Eu quero um copo de ___"</li>
-      <li>Aprende probabilidade de sequências de palavras.</li>
-    </ul>
-    <img src="imgs/lang_models.png" width="50%" height="auto">
-  </section>
-
-  <section class="center">
-    <h3>Treinar um modelo de linguagem</h3>
-      
-    <li>Coletar estatísticas sobre a frequência de diferentes n-gramas e utilizá-las para prever a próxima palavra</li>
-    <li>uposição de Markov: 𝑥(𝑡+1) depende apenas das n-1 palavras anteriores</li>
-    <li>Contar palavras em algum grande corpus de texto</li>
-    <li>Aproximar probabilidades dado:</li>
-    </ul>
-    <img src="imgs/formula_lang_model.png" width="50%" height="auto">
-  </section>
+      <h3>Como representamos o significado de uma palavra?</h3>
+  <ul>
+        <li>Possíveis definições:</li>
+        <ol>
+          <li>a ideia representada por uma palavra, frase, etc.</li>
+          <li>a ideia que uma pessoa deseja expressar por meio de palavras, sinais, etc.</li>
+        </ol>
+    <p>Forma linguística mais comum de conceber o significado:</p>
+    <img src="imgs/significados.png" width="80%" height="auto">
+    </section>
 
     <section class="center">
-    <h3>Problemas</h3>
-      
-    <li>Dependências longas: em geral n é no máximo 5</li>
-    <li>O ministério da cultura, que tem hoje como ministro o excelentíssmo fulano, é um ministério ____"</li>
-    <li>Mais dados e n maior?</li>
-    <li class="fragment">Rede neural</li>
-    </ul>
-  </section>
-
-  
-
-  <section class="center">
-    <h3>Rede Neural para modelos de linguagem</h3>
-    <ul>
-      <li>Representações densas (embeddings)</li>
-      <li>Generalização melhor</li>
-      <li>Aprendizado de padrões complexos</li>
-      <li>Substituem contagem por aprendizado</li>
-    </ul>
-    <img src="imgs/NN_langModel.png" width="70%" height="auto">
-  </section>
-
-  <section class="center">
-    <h3>Por que sequências são difíceis?</h3>
-    <ul>
-      <li>Comprimento variável</li>
-      <li>Dependência temporal</li>
-      <li>Necessidade de memória</li>
-    </ul>
-  </section>
-
-  <section class="center">
-    <h3>E para lidar com vetores de qualquer tamanho?</h3>
-    <p>Redes Neurais Recorrentes (RNN)</p>
-    <img src="imgs/rrn_nlp.png" width="80%" height="auto">
-  </section>
-
-  <section class="center">
-    <h3>Treinar uma RNN</h3>
-    <img src="imgs/treinando_RNN.png" width="80%" height="auto">
-  </section>
-
-  
-  <section class="center">
-    <h3>Gerando texto com uma RNN</h3>
-    <img src="imgs/gerando_txt_langModel.png" width="80%" height="auto">
-  </section>
-
-
-  <section class="center">
-    <h3>Limitações dos RNNs</h3>
-    <ul>
-      <li>Processamento sequencial lento</li>
-      <li>Dificuldade com dependências longas</li>
-      <li>Treinamento instável</li>
-      <li>Problema do Vanishing Gradient</li>
-    </ul>
-  </section>
-
-
-
-  <section class="center">
-    <h3>Problemas -  RNN</h3>
-    <ul>
-      <li>Problema do desaparecimento do gradiente</li>
-       <ul>
-        <li>Gradientes desaparecem no tempo</li>
-        <li>Dificulta aprendizado de dependências longas</li>
-        <li>Long Short-Term Memory (LSTM) - <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">Link</a></li>
-      </ul>    
-      <li>Gradientes crescem demais</li>
-      <li>Instabilidade numérica</li>
-      <li>Problema do desaparecimento do gradiente</li>
+      <h3>Por que Representar Palavras?</h3>
       <ul>
-        <li>Escalarização</li>
-      </ul>   
-    </ul>
-  </section>
+        <li>Computadores precisam de representações numéricas.</li>
+        <li>Palavras semelhantes devem possuir vetores semelhantes.</li>
+        <li>Essas representações são fundamentais em NLP moderno.</li>
+      </ul>
+    </section>
 
-  <section>
-    <h3>Tradução de texto</h3>
-    <p>2016: Google Translate usa Tradução por redes neurais </p>
-    <p>Modelo sequence-to-sequence (seq2seq)</p>
-    <img src="imgs/seq2seq.png" width="80%" height="auto">
-  </section>
+      <section class="center">
+      <h3>WordNet:</h">
+      <ul><li> Banco de dados lexical de relações semânticas entre palavras</li></ul>
+      <img src="imgs/wordvet.png" width="80%" height="auto">
+    </section>
 
 
-  <section>
-    <h3>Multi-camadas - maior é melhor?</h3>
-    <img src="imgs/multi_layer.png" width="80%" height="auto">
-  </section>
+    <section class="center">
+      <h3>Limitações</h3>
+      <ul>
+        <li>Correto, mas depende do contexto</li>
+        <li>Palavras novas ou raras não são bem representadas</li>
+        <li>Subjetivo</li>
+        <li>Requer horas de trabalho para ser criado/atualizado</li>
+        <li>Precisamos de um novo banco para cada linguagem</li>
+      </ul>
+    </section>
 
-  
-<section>
-    Referências:
-    <ul>
-        <li> Chris Manning, CS224N, Natural Language Processing with Deep Learning - https://web.stanford.edu/class/cs224n/</li>
-    </ul>
+    <section class="center">
+      <h3>Codificação One-Hot</h3  >
+      <ul>
+        <li>Palavras como símbolos</li>
+        <li>Vetores extremamente esparsos.</li>
+        <img src="imgs/symbols.png" width="80%" height="auto">
+      </ul>
+    </section>
+
+    <section class="center">
+      <h3>Problema dos Vetores One-Hot</h3  >
+      <ul>
+        <li>Alta dimensionalidade - um para cada palavra</li>
+        <li>Vetores extremamente esparsos.</li>
+        <li>Não capturam similaridade semântica.</li>
+        <li>"hotel" e "motel" ficam tão distantes quanto "hotel" e "gato".</li>
+      </ul>
+    </section>
+
+    <section class="center">
+      <h3>Hipótese Distribucional</h3>
+      <ul>
+        <li>Palavras em contextos semelhantes tendem a ter significados semelhantes.</li>
+        <li>Base conceitual dos embeddings (espaço vetorial de dimensão inferior)</li>
+      </ul>
+      <p class="fragment">"As mangas podem ser classificadas de várias maneiras"</p>
+      <ul class="fragment">
+        <li>fresca, seca, madura, rosa</li>
+        <li>longa, curta, bufante</li>
+        <li>original, baseado em livros</li>
+      </ul>
+      <p class="fragment">https://pt.wikipedia.org/wiki/Manga</p>
+    </section>
+
+    <section class="center">
+      <h3>Vetores de palavras</h3>
+      <ul>
+        <li>Construir um vetor denso para cada palavra</li>
+        <li>Similar aos vetores das palavras</li>
+        <li>Semelhança é calculada dado o produto escalar dos vetores</li>
+      </ul>
+      <img src="imgs/wordvecs.png" width="100%" height="auto">
+    </section>
+
     
-</section>
-</div>
-</div>
+    <section class="center">
+      <h3>Vetores de palavras - exemplo</h3>
+      <img src="imgs/wordvec_ex.png" width="80%" height="auto">
+      <ol>
+        <li>Calcular a função baseada na verossimilhança:<p>        <img class="center" src="imgs/objective_fun.png" width="40%" height="auto"></p></li>
+        <li>Usar função exponencial normalizada (softmax) para estimar probabilidades</li>
+      </ol>
+    </section>
+
+    <section class="center">
+      <h3>Vetores de palavras - treinamento</h3>
+      <img src="imgs/treinamento_NLP.png" width="80%" height="auto">
+      <ol>
+        <li>Ajustar gradualmente os parâmetros para minimizar a função</li>
+        <li>Otimizar esses parâmetros seguindo o gradiente</li>
+        <li>Calcular todos os gradientes vetoriais!</li>
+      </ol>
+    </section>
+
+  <section class="center">
+      <h3>Vetores de palavras - otimização</h3>
+      <img src="imgs/gradient_descent.png" width="60%" height="auto">
+      <ol>
+        <li>O Descenso por Gradiente é um algoritmo para minimizar 𝐽 𝜃</li>
+        <li>Ideia: para o valor atual de 𝜃, calcular o gradiente de 𝐽 𝜃 e, em seguida, dar um pequeno passo na direção
+  do gradiente negativo. Repetir.</li>
+      </ol>
+    </section>
 
 
-<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
-<script>
-  Reveal.initialize({
-    hash: true,
-    slideNumber: true,
-    transition: 'slide'
-  });
-</script>
+  <section class="center">
+      <h3>Nuvem de palavras</h3>
+      <img src="imgs/nuvem_palavras.png" width="90%" height="auto">
+      <ol>
+        <li>Palavras semelhantes devem ficar próximas</li>
+      </ol>
+    </section>
 
-</body>
-</html>
+    
+
+  </section>
+  <!-- Modelo de linguagem-->
+
+  <section>
+    <section class="center">
+      <span class="badge">Módulo 5 - parte 2</span>
+      <h1>Processamento de Linguagem Natural</h1>
+      <h2>Modelo de linguagem</h2>
+    </section>
+
+    <section class="center">
+      <h3>O que é um modelo de modelo de linguagem?</h3>
+      <ul>
+        <li>Modelo que prevê a próxima palavra em uma sequência.</li>
+        <li>Exemplo: "Eu quero um copo de ___"</li>
+        <li>Aprende probabilidade de sequências de palavras.</li>
+      </ul>
+      <img src="imgs/lang_models.png" width="50%" height="auto">
+    </section>
+
+    <section class="center">
+      <h3>Treinar um modelo de linguagem</h3>
+        
+      <li>Coletar estatísticas sobre a frequência de diferentes n-gramas e utilizá-las para prever a próxima palavra</li>
+      <li>uposição de Markov: 𝑥(𝑡+1) depende apenas das n-1 palavras anteriores</li>
+      <li>Contar palavras em algum grande corpus de texto</li>
+      <li>Aproximar probabilidades dado:</li>
+      </ul>
+      <img src="imgs/formula_lang_model.png" width="50%" height="auto">
+    </section>
+
+      <section class="center">
+      <h3>Problemas</h3>
+        
+      <li>Dependências longas: em geral n é no máximo 5</li>
+      <li>O ministério da cultura, que tem hoje como ministro o excelentíssmo fulano, é um ministério ____"</li>
+      <li>Mais dados e n maior?</li>
+      <li class="fragment">Rede neural</li>
+      </ul>
+    </section>
+
+    
+
+    <section class="center">
+      <h3>Rede Neural para modelos de linguagem</h3>
+      <ul>
+        <li>Representações densas (embeddings)</li>
+        <li>Generalização melhor</li>
+        <li>Aprendizado de padrões complexos</li>
+        <li>Substituem contagem por aprendizado</li>
+      </ul>
+      <img src="imgs/NN_langModel.png" width="70%" height="auto">
+    </section>
+
+    <section class="center">
+      <h3>Por que sequências são difíceis?</h3>
+      <ul>
+        <li>Comprimento variável</li>
+        <li>Dependência temporal</li>
+        <li>Necessidade de memória</li>
+      </ul>
+    </section>
+
+    <section class="center">
+      <h3>E para lidar com vetores de qualquer tamanho?</h3>
+      <p>Redes Neurais Recorrentes (RNN)</p>
+      <img src="imgs/rrn_nlp.png" width="80%" height="auto">
+    </section>
+
+    <section class="center">
+      <h3>Treinar uma RNN</h3>
+      <img src="imgs/treinando_RNN.png" width="80%" height="auto">
+    </section>
+
+    
+    <section class="center">
+      <h3>Gerando texto com uma RNN</h3>
+      <img src="imgs/gerando_txt_langModel.png" width="80%" height="auto">
+    </section>
+
+
+    <section class="center">
+      <h3>Limitações dos RNNs</h3>
+      <ul>
+        <li>Processamento sequencial lento</li>
+        <li>Dificuldade com dependências longas</li>
+        <li>Treinamento instável</li>
+        <li>Problema do Vanishing Gradient</li>
+      </ul>
+    </section>
+
+
+
+    <section class="center">
+      <h3>Problemas -  RNN</h3>
+      <ul>
+        <li>Problema do desaparecimento do gradiente</li>
+        <ul>
+          <li>Gradientes desaparecem no tempo</li>
+          <li>Dificulta aprendizado de dependências longas</li>
+          <li>Long Short-Term Memory (LSTM) - <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">Link</a></li>
+        </ul>    
+        <li>Gradientes crescem demais</li>
+        <li>Instabilidade numérica</li>
+        <li>Problema do desaparecimento do gradiente</li>
+        <ul>
+          <li>Escalarização</li>
+        </ul>   
+      </ul>
+    </section>
+
+    <section>
+      <h3>Tradução de texto</h3>
+      <p>2016: Google Translate usa Tradução por redes neurais </p>
+      <p>Modelo sequence-to-sequence (seq2seq)</p>
+      <img src="imgs/seq2seq.png" width="80%" height="auto">
+    </section>
+
+
+    <section>
+      <h3>Multi-camadas - maior é melhor?</h3>
+      <img src="imgs/multi_layer.png" width="80%" height="auto">
+    </section>
+  </section>
+
+  <!-- Transformers-->
+    <section>
+      https://web.stanford.edu/class/cs224n/slides_w26/cs224n-2026-lecture05-transformers.pdf
+    </section>
+
+    
+  <section>
+      Referências:
+      <ul>
+          <li> Chris Manning, CS224N, Natural Language Processing with Deep Learning - https://web.stanford.edu/class/cs224n/</li>
+      </ul>
+      
+  </section>
+  </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({ 
+      hash: true, 
+      slideNumber: 'c/t',
+      transition: 'slide',
+      controls: true,
+      progress: true
+    });
+  </script>
+
+  <!-- mathjax -->
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/x-mathjax-config">
+        // Make responsive
+        MathJax.Hub.Config({
+        "HTML-CSS": { linebreaks: { automatic: true } },
+        "SVG": { linebreaks: { automatic: true } },
+        });
+      </script>
+
+  </body>
+  </html>

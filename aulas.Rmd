@@ -5,11 +5,14 @@
 
   
 ### Aulas
-  - [Buscas Heurísticas e Avançadas](https://yurilavinas.github.io/classes/buscas.html)
   - [Representação de Conhecimento e Raciocínio em Inteligência Artificial](https://yurilavinas.github.io/classes/expert_system.html)
-  - [Aprendizado Supervisionado/Redes Neurais Artificiais Profundas](https://yurilavinas.github.io/classes/learning.html)
-  - [Processamento de Linguagem Natural]()
+  - [Buscas Heurísticas e Avançadas](https://yurilavinas.github.io/classes/buscas.html)
+  - [Aprendizado por Reforço]()
+  - [Aprendizado Supervisionado](https://yurilavinas.github.io/classes/learning.html)
+  - Aprendizado Não Supervisionado
+  - [Redes Neurais Artificiais Profundas (ANN/DL/CNN)](https://yurilavinas.github.io/classes/ANN.html)
+  - [Processamento de Linguagem Natural (modelo de linguagem+RNN)](https://yurilavinas.github.io/classes/nlp_word_vectors.html)
   - Inteligência Artificial Generativa
   - Aprendizado Profundo Multimodal
   - Aprendizado Profundo e Reconhecimento e Identificação de Objetos
-  - Explicabilidade em Inteligência Artificial
+  - [Explicabilidade em Inteligência Artificial](https://yurilavinas.github.io/classes/explicabilidade.html)

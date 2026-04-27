@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explicabilidade</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+  <style>
+    :root { --primary: #00d9ff; --secondary: #a855f7; --accent: #10b981; --warning: #ffcc00; }
+    .reveal h1, .reveal h2 { color: var(--primary); text-transform: none; }
+    .reveal h3 { color: var(--secondary); text-transform: none; }
+    .reveal section { text-align: left; font-size: 0.9em; }
+    .center { text-align: center !important; }
+    .box { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; border-left: 5px solid var(--primary); margin: 15px 0; }
+    .warning-box { border-left-color: var(--warning); background: rgba(255, 204, 0, 0.05); }
+    .highlight { color: var(--warning); font-weight: bold; }
+    .formula { background: #111; padding: 10px; border-radius: 8px; display: inline-block; font-family: 'Courier New', monospace; color: var(--accent); }
+    .timeline { color: #888; font-size: 0.6em; font-weight: bold; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section class="center">
+  <section class="center">
+    <span class="badge">Módulo 5 - parte 1</span>
+    <h1>Explicabilidade em Inteligência Artificial</h1>
+  </section>
+
+<!-- CAPÍTULO 1 -->
+            <section class="center">
+                <h3>A Inteligência Artificial Está Transformando o Mundo</h3>
+
+                <p>
+                    Sistemas inteligentes já auxiliam decisões em
+                    <span class="highlight">saúde</span>,
+                    <span class="highlight">finanças</span>,
+                    <span class="highlight">indústria</span>,
+                    <span class="highlight">transporte</span>
+                    e em nosso cotidiano.
+                </p>
+
+                <p>
+                    Entretanto, muitos modelos modernos, especialmente redes neurais profundas,
+                    operam como verdadeiras <span class="highlight">caixas-pretas</span>:
+                    produzem excelentes resultados, mas raramente explicam
+                    como chegaram às suas conclusões.
+                </p>
+
+                <blockquote>
+                    Alta precisão sem transparência pode ser insuficiente
+                    em aplicações críticas.
+                </blockquote>
+                </section>
+
+
+            <section>
+                <h3>Por que transparência é crucial?</h3>
+
+                <ul>
+                    <li><strong>Construir confiança</strong> entre usuários, especialistas e organizações;</li>
+                    <li>Em domínios críticos, precisão sozinha não é suficiente.</li>
+                    <ul>
+                        <li>Profissionais precisam compreender o raciocínio da IA.</li>
+                        <li>Saúde, finanças e direito exigem transparência.</li>
+                    </ul>
+                    <li><strong>Detectar erros, viés e comportamentos inesperados;</strong></li>
+                    <li><strong>Atender exigências regulatórias</strong>, éticas e legais;</li>
+                    <ul>
+                        <li>Regulações como FDA e EU AI Act reforçam essa necessidade.</li>
+                    </ul>
+                    <li><strong>Permitir auditoria</strong>, validação e melhoria contínua.</li>
+                </ul>
+
+                <p>
+                    <span class="highlight">Exemplo:</span> um sistema que detecta câncer precisa justificar
+                    quais padrões histológicos levaram ao diagnóstico.
+                </p>
+            </section>
+
+            <section class="center">
+                <h3>Problema das Caixas-Pretas</h3>
+                <p>Modelos complexos oferecem alta performance, mas baixa transparência.</p>
+                <p>Isso dificulta decisões críticas em saúde, finanças e justiça.</p>
+
+                <h3>Objetivos</h3>
+                <p>Tornar previsões e comportamentos dos modelos compreensíveis para humanos.</p>
+            </section>
+
+        <section class="center">
+            <h3>Interpretabilidade ≠ Explicabilidade</h3>
+
+            <div>
+                <div>
+                    <h4>Interpretabilidade: compreensão direta</h4>
+                    <ul>
+                        <li>Entendimento direto do modelo.</li>
+                        <li>Sem ferramentas auxiliares.</li>
+                        <li>Ex.: Árvores de decisão, regressão linear.</li>
+                    </ul>
+                </div>
+                <br>
+                <div>
+                    <h4>Explicabilidade: mecanismos auxiliares de explicação</h4>
+                    <ul>
+                        <li>Explicações pós-hoc.</li>
+                        <ul>
+                            <li>Ex.: LIME, SHAP, Grad-CAM.</li>
+                        </ul>
+                        <li>Necessária para caixas-pretas.</li>
+                        
+                    </ul>
+                </div>
+            </div>
+
+            <p>
+                <strong>Redes neurais profundas</strong> geralmente são <span class="highlight">explicáveis</span>,
+                mas não <span class="highlight">interpretáveis</span>.
+            </p>
+        </section>
+
+        <section class="center">
+             <h3>Taxonomia</h3>
+            <img src="imgs/taxonomy.jpg" width="50%" height="auto">
+            <ul>
+                <li>Por design - modelos inerentemente interpretáveis, ex: regressão logística</li>
+                <li>post hoc - método de interpretabilidade após o treinamento do modelo. </li>
+                <ul>
+                    <li>Dependentes do modelo: características aprendidas por uma rede neural</li>
+                    <li>ou independentes:</li>
+                    <ul>
+                        <li>local (previsões específicas) vs global (dados)</li>
+                    </ul>
+                </ul>
+
+            </ul>
+        </section>
+
+        <section class="center">
+             <h3>Interpretável por design</h3>
+            <img src="imgs/interpretable-box.jpg" width="80%" height="auto">
+            <ul>
+                <li>Regressão linear</li>
+                <li>Árvores de decisão</li>
+                <li>Regras de decisão</li>
+                <li>Programação genética</li>
+            </ul>
+        </section>
+
+        
+
+        <section class="center">
+            <h3>Programação genética: Interpretabilidade por design</h3>
+            <img src="imgs/gp-bio_inter.png" width="60%" height="auto">
+            <ul>
+                <li>Modelos compostos por operações legíveis.</li>
+                <li>Cada passo pode ser auditado.</li>
+                <li>Permite rastrear toda a decisão.</li>
+            </ul>
+            <p>Sylvain Cussat-Blanc et al., On Interpretability in Multimodal Biomedical Image Analysis,  Genetic Programming Theory and Practice XXI.</p>
+        </section>
+
+        <section class="center">
+             <h3>Níveis de interpretabilidade</h3>
+            <ul>
+                <li>Todo o modelo</li>
+                <ul><li>Modelos pequenos, simples...</li></ul>
+                <li>Partes do modelo</li>
+                <ul><li>Coeficientes, algumas regras - decomposabilidade</li></ul>
+                <li>As saídas do modelo</li>
+                <ul><li>KNN: mostrar dados da mesma classe da entrada</li></ul>
+            </ul>
+        </section>
+
+
+        <section class="center">
+             <h3>Interpretabilidade post-hoc</h3>
+             <img src="imgs/agnostic-black-box.jpg" width="40%" height="auto">
+            <ul>
+                <li>Utilizado após o modelo é treinado</li>
+                <li>Modelo de um modelo - erro do erro?</li>
+                <ul>
+                    <li>Agnóstico ao modelo (imagem de cima)</li>
+                    <li>Específico do modelo</li>
+                </ul>
+            </ul>
+        </section>
+
+
+    <section class="center">
+        <h3>Métodos Pós-Hoc Model-Agnostic</h3>
+
+        <p>
+            Métodos <span class="highlight">model-agnostic</span> podem explicar
+            qualquer modelo de Machine Learning, independentemente
+            da arquitetura utilizada.
+        </p>
+
+        <ul>
+            <li>Aplicáveis a modelos de caixa-preta.</li>
+            <ul>
+                <li>Aplicáveis e a modelos interpretáveis por design</li>
+            </ul>
+            <li>Separados em métodos locais e globais.</li>
+            <li>Extremamente versáteis.</li>
+        </ul>
+    </section>
+
+    <!-- MÉTODOS LOCAIS -->
+    <section class="center">
+        <h3>Métodos Locais</h3>
+
+        <blockquote>
+            Explicam uma única predição.
+        </blockquote>
+
+        <p>
+            Respondem à pergunta:
+            <strong>"Por que o modelo tomou esta decisão específica?"</strong>
+        </p>
+
+        <ul>
+            <li>Foco em uma instância individual.</li>
+            <li>Ideal para auditoria e análise de casos.</li>
+            <li>Essencial em aplicações críticas.</li>
+        </ul>
+    </section>
+
+    <section class="center">
+        <h3>RISE — Randomized Input Sampling for Explanation</h3>
+
+        <p>
+            Explica decisões de modelos visuais aplicando máscaras aleatórias sobre a imagem de entrada
+            e observando como a predição é afetada.
+        </p>
+
+        <ol>
+            <li>Aplica cada máscara à imagem original.</li>
+            <li>Mede a probabilidade da ação ou classe de interesse.</li>
+            <li>Combina os resultados pela média ponderada em um mapa de saliência usando as probabilidades produzidas pelo modelo.</li>
+        </ol>
+
+        <blockquote>
+            Se ocultar uma região reduz significativamente a confiança,
+            essa região é importante para a decisão.
+        </blockquote>
+    </section>
+
+        <section class="center">
+            <h3>Exemplo - RISE</h3>
+            <img src="imgs/bowling_4.gif" width="45%" height="auto">
+ 
+            <img src="imgs/RISE_BOWLING_BEST_4.gif" width="45%" height="auto">
+            <p>Christina Berghegger et al., Analyzing Interpretable Visual Control Policy Search and Synthesis. ACM Trans. Evol. Learn. Optim., Qualis A2</p>
+        </section>
+
+        <section>
+            <h3>Técnicas para Redes Neurais</h3>
+
+            <ul>
+                <li>Grad-CAM</li>
+                <li>Saliency Maps</li>
+                <li>Concept Activation</li>
+                <li>Adversarial Examples</li>
+                <li>Influential Instances</li>
+            </ul>
+        </section>
+
+        <section class="center">
+            <h3>Grad-CAM</h3>
+
+            <p>
+                Utiliza os gradientes de qualquer conceito-alvo que chegam à camada convolucional final para destacar as regiões importantes da imagem para a previsão.
+            </p>
+        
+            <h3>Exemplos Adversariais</h3>
+
+            <p>
+                Pequenas perturbações podem
+                enganar redes neurais.
+            </p>
+
+            <ul>
+                <li>Revelam vulnerabilidades.</li>
+                <li>Importantes para robustez.</li>
+            </ul>
+
+        </section>
+
+
+        <section class="center">
+            <h3>Exemplo: Grad-CAM</h3>
+
+            <ul>
+                <li>Grad-CAM destaca regiões relevantes em imagens.</li>
+                <li>Mostra <b>onde</b> a rede olhou.</li>
+            </ul>
+
+            <img src="imgs/grad_cam_resnet18.png" width="35%" height="auto">
+            <blockquote>
+                Atenção visual não equivale a raciocínio clínico.
+            </blockquote>
+            <p>Sylvain Cussat-Blanc et al., On Interpretability in Multimodal Biomedical Image Analysis,  Genetic Programming Theory and Practice XXI.</p>
+        </section>
+
+        <section class="center">
+            <h3>Métodos Globais</h3>
+
+            <blockquote>
+                Explicam o comportamento médio do modelo.
+            </blockquote>
+
+            <p>
+                Respondem à pergunta:
+                <strong>"Como o modelo funciona em geral?"</strong>
+            </p>
+            <h3>PDP — Partial Dependence Plot</h3>
+
+            <ul>
+                <li>Mostra efeito médio de uma variável.</li>
+                <li>Marginaliza as demais variáveis.</li>
+                <li>Fácil interpretação.</li>
+            </ul>
+
+            <p>
+                Ideal para identificar tendências globais.
+            </p>
+            <img src="imgs/pdp-logistic.png" width="40%" height="auto">
+        </section>
+
+            <section class="center">
+                <h3>Interpretabilidade é Relativa</h3>
+                <p>Depende de:</p>
+                <ul>
+                    <li>Conhecimento do usuário</li>
+                    <li>Contexto da aplicação</li>
+                    <li>Nível de detalhe necessário</li>
+                </ul>
+                <br><br>
+                <h3>Desafio</h3>
+                <p>Não existe uma única definição universalmente aceita.</p>
+
+                <div class="comment">
+                    Comparar diferentes públicos: cientista de dados, médico e regulador.
+                </div>
+            </section>
+
+            <section class="center">
+                <h3>Ganhos da interpretabilidade</h3>
+                <h4>1. Verificação</h4>
+                <p>Garantir que o modelo funciona conforme esperado.</p>
+           
+                <h4>2. Aprendizado Científico</h4>
+                <p>Extrair conhecimento sobre o fenômeno estudado.</p>
+      
+                <h4>3. Descoberta de Conhecimento</h4>
+                <p>Identificar padrões desconhecidos nos dados.</p>
+            
+                <h4>4. Tomada de Decisão</h4>
+                <p>Permitir que humanos confiem e utilizem previsões com segurança.</p>
+
+                
+            </section>
+
+            <section class="center">
+            <h3>Simulatabilidade</h3>
+
+            <p>
+                Um modelo é simulável quando um humano consegue
+                reproduzir mentalmente sua decisão.
+            </p>
+
+            <ul>
+                <li>Entrada → Processamento → Saída</li>
+                <li>Sem auxílio externo.</li>
+                <li>Em tempo razoável.</li>
+            </ul>
+
+            <p>
+                Árvores pequenas são altamente simuláveis.
+                Redes profundas não são.
+            </p>
+        </section>
+
+        <section class="center">
+            <h3>Decomponibilidade</h3>
+
+            <p>
+                Capacidade de dividir o modelo em partes compreensíveis.
+            </p>
+
+            <ul>
+                <li>Funções individuais.</li>
+                <li>Fluxo de dados.</li>
+                <li>Decisões intermediárias.</li>
+            </ul>
+            
+            </section>
+
+            <section class="center">
+            <h3>Programação genética: simulabilidade e decomposabilidade</h3>
+            <img src="imgs/gp-bio_inter.png" width="60%" height="auto">
+            <ul>
+                <li>Pequeno - podemos memorizar e "processá-los"</li>
+                <li>Dois grafos de decisão - decomposabilidade</li>
+            </ul>
+        </section>
+
+        <section class="center">
+            <h3>Programação genética é interpretável por design, certo?</h3>
+            <img src="imgs/s1_500.png" width="100%" height="auto">
+
+            <img src="imgs/bowling_4.gif" width="25%" height="auto">
+ 
+            <img src="imgs/RISE_BOWLING_BEST_4.gif" width="25%" height="auto">
+        </section>
+
+        <section class="center">
+            <pre><code>
+        <span style="color: GREEN; font-weight: bold;">
+            ACTIONS = [0,1,2,3]
+        </span>
+        <span style="color: #ff4d4d; font-weight: bold;">
+            function evolved_policy_bowling(frame1, frame2, frame3, frame4)
+        </span>
+            <span class="highlight"># OUTPUT NOOP</span>
+            output_noop = reduce_ncolors(frame2)
+            <span class="highlight"># OUTPUT FIRE</span>
+            remove_top_bottom = maskfromto(frame4, exp(-1.0), 60.0)
+            exponent = vertical_argmax(remove_top_bottom) # has the player reach the top ?
+            <span class="highlight"># normally the exponent will be one if the player hasn't, 3 otherwise</span>
+            n_diff_pixel_values = reduce_ncolors(frame1)
+            details = tophat(frame4, n_diff_pixel_values,) # big Kernel => makes pins salient
+            whitest_pixel = argmax_position(details) # usually the pins
+            whitest_pixel_orig_frame1 = argmax_position(frame1) # usually the head of the player
+            dist_player_pins = dist(whitest_pixel_orig_frame1, whitest_pixel)
+            output_fire = dist_player_pins^exponent
+            <span class="highlight"># OUTPUT UP</span>
+            blackest_pixel = argmin_position(dilation(frame4))
+            constant_coordinate = (27, 84) # last pixel
+            closed_frame1 = closing(frame1)
+            player = argmax_position(closed_frame1)
+            player_vector = direction(player, constant_coordinate) # player to bottom_left
+            output_up = dist_second(player_vector, blackest_pixel) # compare horizontal coordinate for both
+            <span class="highlight"># OUTPUT DOWN</span>
+            output_down = 1.0
+            outputs = (output_noop, output_fire, output_up, output_down)
+            return ACTIONS[argmax(outputs)]
+        <span style="color: #ff4d4d; font-weight: bold;">
+            END
+        </span>
+            </code></pre>
+            <p>Christina Berghegger et al., Analyzing Interpretable Visual Control Policy Search and Synthesis. ACM Trans. Evol. Learn. Optim., Qualis A2</p>
+        </section>
+         </section>
+        <!-- REFERÊNCIAS -->
+         <section>
+        <section class="center">
+            <h2>REFERÊNCIAS</h2>
+            <p>Molnar, Christoph, Interpretable Machine Learning, https://christophm.github.io/interpretable-ml-book/</p>
+            <p>Grad-CAM https://arxiv.org/abs/1610.02391</p>
+            <p>Sylvain Cussat-Blanc et al., On Interpretability in Multimodal Biomedical Image Analysis,  Genetic Programming Theory and Practice XXI.</p>
+            <p>Christina Berghegger et al., Analyzing Interpretable Visual Control Policy Search and Synthesis. ACM Trans. Evol. Learn. Optim., Qualis A2</p>
+        </section>
+</div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({ 
+    hash: true, 
+    slideNumber: 'c/t',
+    transition: 'slide',
+    controls: true,
+    progress: true
+  });
+</script>
+
+<!-- mathjax -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+      // Make responsive
+      MathJax.Hub.Config({
+       "HTML-CSS": { linebreaks: { automatic: true } },
+       "SVG": { linebreaks: { automatic: true } },
+      });
+    </script>
+
+</body>
+</html>
