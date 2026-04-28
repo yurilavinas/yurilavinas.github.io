@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprendizado de Máquina - Supervisionado/Não supervisionado</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+  <style>
+    :root { --primary: #00d9ff; --secondary: #a855f7; --accent: #10b981; --warning: #ffcc00; }
+    .reveal h1, .reveal h2 { color: var(--primary); text-transform: none; }
+    .reveal h3 { color: var(--secondary); text-transform: none; }
+    .reveal section { text-align: left; font-size: 0.9em; }
+    .center { text-align: center !important; }
+    .box { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; border-left: 5px solid var(--primary); margin: 15px 0; }
+    .warning-box { border-left-color: var(--warning); background: rgba(255, 204, 0, 0.05); }
+    .highlight { color: var(--warning); font-weight: bold; }
+    .formula { background: #111; padding: 10px; border-radius: 8px; display: inline-block; font-family: 'Courier New', monospace; color: var(--accent); }
+    .timeline { color: #888; font-size: 0.6em; font-weight: bold; text-transform: uppercase; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section class="center">
+  <section class="center">
+    <span class="badge">Módulo 3</span>
+    <h1>Aprendizado de Máquina</h1>
+  </section>
+
+
+
+  <section class="center">
+    <h3>Ideia Central</h3>
+    <ul>
+      <li>Aprender com regularidades nos dados</li>
+      <li>Usar exemplos passados para prever o futuro</li>
+      <li>Medir similaridade entre objetos</li>
+    </ul>
+</section>
+
+
+    <section class="center">
+      <h3>Exemplo Intuitivo</h3>
+      <ul>
+        <li>Reconhecer objetos por características</li>
+        <li>Comparar com biblioteca de exemplos</li>
+        <li>Escolher o mais parecido</li>
+      </ul>
+  </section>
+
+<section class="center">
+    <h3>Diferentes Tipos de Aprendizado</h3>
+
+    <div class="box">
+        <h4>Supervisionado</h4>
+        <ul>
+            <li>
+                os pesos são ajustados minimizando o erro entre a
+                saída esperada e a saída prevista no conjunto de dados
+                de treinamento.
+            </li>
+        </ul>
+    </div>
+    <div class="box">
+        <h4>Não Supervisionado</h4>
+        <ul>
+            <li>
+                não utiliza saídas rotuladas. Os pesos são otimizados
+                com base em critérios gerais, como similaridade,
+                densidade, recompensa ou estrutura dos dados.
+            </li>
+        </ul>
+    </div>
+    
+    </section>
+
+
+
+  <section class="center">
+    <h3>Causalidade vs. Correlação</h3>
+    <div class="box warning-box">
+      "Só porque A e B acontecem juntos, não significa que A causa B."
+    </div>
+    <ul>
+      <li>Pessoas que bebem refrigerante diet costumam estar acima do peso.</li>
+      <li>O classificador pode dizer: "Pare de beber diet para emagrecer".</li>
+      <li><strong>Erro:</strong> A condição (obesidade) causou a escolha do refrigerante, não o contrário.</li>
+    </ul>
+    
+    <h3>Outras considerações</h3>
+    <ul>
+      <li>O que realmente importa no dado?</li>
+      <li>Nem todo atributo ajuda na decisão</li>
+    </ul>
+  </section>
+
+    <section class="center">
+        <img src="imgs/ML.png" width="100%" height="auto">
+</section>    
+
+</section>
+
+<section class="center">
+  <section class="center">
+          <span class="badge">Módulo 3 - parte 1</span>
+          <h1>Aprendizado Supervisionado</h1>
+  </section>    
+
+  <section class="center">
+    <h3>Plano do curso</h3>
+    <ul>
+      <li>Resumo dos conceitos básicos de aprendizado de máquina</li>
+        <ul>
+          
+          <li>Cada vez mais algoritmos</li>
+          <ul>
+            <li>Gradient Boosting</li>
+            <li>Redes neurais</li>
+          </ul>
+      </ul>
+      <li>Seleção de características</li>
+      <li>Explicabilidade</li>
+      
+    </ul>
+
+  </section>
+
+    <section class="center">
+    <h3>Avaliação</h3>
+    <ul>
+      <li>Exercícios avaliados</li>
+      <li>2 provas</li>
+      <li>2 projetos</li>
+    </ul> 
+  </section>
+    <section class="center">
+        <h3>Aprendizado supervisionado</h3>
+        <h4>Princípio</h4>
+        <div class="box">
+        <strong>Como classificar elementos?</strong>
+        </div>
+        <ul>
+        <li>Dado um conjunto de N exemplos <span class="highlight">{(xi, yi) ∈ 𝒳 × 𝒴, i = 1..N}</span>, de treinamento, busca-se uma função de previsão tal que y = f(x).
+</li>
+        <li>O aprendizado é supervisionado, pois os rótulos são conhecidos</li>
+        <li>Exemplos</li>
+          <ul>
+            <li>Classificação de imagens</li>
+            <li>Previsões: temperatura, clima, ações...</li>
+          </ul>
+        </ul>
+  </section>
+
+
+  <section class="center">
+    <h3>Regressão e classificação</h3>
+    <img src="imgs/AM_super_regresssao.png" width="50%" height="auto">
+    <img src="imgs/AM_super_classificacao.png" width="50%" height="auto">
+  </section>
+
+
+
+  <section class="center">
+    <h3>Aprendizado supervisionado</h3>
+    <ul>
+      <li>Regressão</li>
+      <ul>
+        <li>Nós falamos de regressão quando 𝒴 é um sub-conjunto de \(\mathbb{R}^d\) </li>
+        <li>Frequentemente, avaliamos os modelos ao calcular o erro quadrático: <span class="highlight"> \( (y-f(x))^2 \)</span></li>
+      </ul>
+      <li>Classificação</li>
+      <ul>
+        <li>O espaço para predição 𝒴 é um conjunto discreto</li>
+        <li>Classificação binária card(𝒴)= 2</li>
+        <li>Classificação multiclasse card(𝒴)> 2</li>
+        <li>Frequentemente, avaliamos os modelos ao calcular a acurácia</li>
+      </ul>
+    </ul>
+  </section>
+
+  <!-- <section class="center">
+        <img src="imgs/aprendizado_reg_class.png" width="50%" height="auto">
+  </section> -->
+
+
+  <section class="center">
+    <h3>Função de perda (loss)</h3>
+    <ul>
+      <li>Estimar o erro da predição f(x) em relação aos dados reais y</li>
+      <ul>
+        <li>Por convenção: <span class="highlight">\( L(y,f(x)) =
+                  \begin{cases}
+                    0 &  \text{if } y = f(x)\\
+                    > 0  & \text{if } y \neq 0
+                  \end{cases}
+                \)
+                        </span>
+        </li>
+        <li>Erro da predição esperado<span class="highlight">\(R_{true}(f) = \int_{𝒳𝗑𝒴} L(y,f(x))p(x,y)dxdy \)      </span></li>
+        <li>Objetivo: achar a função que minimiza o erro <span class="highlight">\(f* = \text{arg min}_{f \in \mathbb{H}} R_{true}(f) \)</span></li>
+    </ul>
+  </section>
+
+
+  <section class="center">
+        <h3>Erro</h3>
+        <ul>
+          <li>O erro real é impossível de ser calculado porque não sabemos a distribuição real dos dados</li>
+          <li>Usar o erro empírico, que estima a <i>loss</i> em um dataset de treinamento:</li>
+          <span class="highlight">\[
+          R_{emp} = \frac{1}{N} \Sigma_i^n L(y_i,f(x_i))
+          \]</span>
+        </ul>
+  </section>
+
+
+  <section class="center">
+        <h3>Algumas funções de <i>loss</i></h3>
+        <ul>
+        <li>Erro 0-1 (mais adequado para classificação)</li>
+        <span style="color: blue;">\[
+            L(Y,f(X)) =  \begin{cases}
+                    0 &  \text{if } y = f(x)\\
+                    1 & \text{otherwise}
+                  \end{cases}
+        \]</span>
+        <li>Erro quadrático (mais adequado para regressão)</li>
+        <span style="color: red;">\(
+            L(Y,f(X)) =  (Y-f(X))^2
+        \)</span>
+        <li>Erro l1 (erro absoluto, mais adequado para regressão)</li>
+        <span style="color: green;">\(
+            L(Y,f(X)) = | Y-f(X) |
+        \)</span>
+        <li> Erro de Hinge (mais adequado para classificação)</li>
+        <span>\(
+            L(Y,f(X)) =  max(0,1-yf(x))
+        \)</span>
+        
+        </ul>
+  </section>
+
+
+  
+  <section class="center">
+    <h3>Gráficos</h3>
+    <img src="imgs/losses.png" width="80%" height="auto">
+  </section>
+
+
+
+  <section class="center">
+    <h3>A Premissa da Similaridade</h3>
+    <p>A ideia base: <strong>"Diga-me quem são seus vizinhos e eu direi quem você é."</strong></p>
+    <p>Se um ponto desconhecido está cercado por exemplos da classe A, a hipótese mais simples é que ele também seja da classe A.</p>
+    <div class="box">
+      <strong>K-Nearest:</strong> Verificar mais de 1 vizinho (pode ser ruído), mas para os <em>K</em> mais próximos e fazemos uma votação majoritária.
+    </div>
+  </section>
+
+  <section class="center">
+    <h3>Como medir a "Vizinhança"?</h3>
+    <p>A distância entre o ponto P e o exemplo E em n dimensões:</p>
+    <div class="math">
+      d = √[ Σ (p<sub>i</sub> - e<sub>i</sub>)² ]
+    </div>
+    <ul>
+      <li>Cada característica (eixo) deve ter a mesma escala.</li>
+      <li><span class="highlight">Problema:</span> Se uma escala for 0-1 e outra 0-1000, a maior dominará o cálculo.</li>
+      <ul><li><strong>Possível solução:</strong> Z-Score ou Min-Max Scaling.</li></ul>
+      <li>A "melhor" métrica de distância varia de acordo com o problema.</li>
+      <ul>
+            <li>Euclidiana</li>
+            <li>Manhattan</li>
+            <li>Minkowski</li>
+            <li>Cosseno</li>
+        </ul>
+    </ul>
+  </section>
+
+  
+<!-- KNN -->
+  <section class="center">
+        <h3>K-Nearest Neighbors (KNN) - classificação</h3>
+        <ul>
+          <li>Calcular a distância de um ponto contra os pontos da base de dados de treinamento</li>
+          <li>Selecionar os <i>k</i> mais próximos</li>
+          <li>Calcular o número de pontos em cada uma das classes</li>
+          <li>Escolhe a classe com maior número de votos</li>
+          <li>Classificar o ponto nessa classe</li>
+        </ul>
+  </section>
+
+
+  <section class="center">
+    <h3>Resumo do funcionamento</h3>
+    <img src="imgs/knn.png" width="40%" height="auto">
+  </section>
+  
+
+<!-- KNN -->
+  <section class="center">
+        <h3>K-Nearest Neighbors (KNN) - regressão</h3>
+        <ul>
+          <li>Calcular a distância de um ponto contra os pontos da base de dados de treinamento</li>
+          <li>Selecionar os <i>k</i> mais próximos</li>
+          <li>Estimar o valor esperado pela média dos <i>k</i> pontos</li>
+        </ul>
+  </section>
+
+
+  <section class="center">
+    <h3>Resumo do funcionamento</h3>
+    <img src="imgs/knn_regressap.png" width="100%" height="auto">
+  </section>
+
+  <section class="center">
+    <h3>Métodos para regressão</h3>
+    <ul>
+      <li>Linear</li>
+      <li>Logística</li>
+      <li>Máquina de vetores de suporte (SVM,support-vector machine)</li>
+    </ul>
+  </section>
+
+  <section class="center">
+    <h3>Regressão Linear</h3>
+    <ul>
+      <li></li>
+    </ul>
+  </section>
+
+  <!-- <section class="center">
+    <h3>Regressão Logística</h3>
+    <ul>
+      <li></li>
+    </ul>
+  </section>
+
+
+  <section class="center">
+    <h3>SVM</h3>
+    <ul>
+      <li></li>
+    </ul>
+  </section> -->
+
+
+  <section class="center">
+    <h3>Métodos para classificação</h3>
+    <ul>
+      <li>Árvores de Decisão</li>
+      <li>Floresta aleatória (random forest)</li>
+    </ul>
+  </section>
+
+    
+
+  <!-- Decision Trees -->
+    <section class="center">
+        <h3>Árvores de Decisão</h3>
+        <ul>
+          <li>Explicar um valor a partir de uma série de variáveis discretas ou contínuas.</li>
+          <li>Estamos, portanto, diante de um caso muito clássico de matriz X com m observações e n
+variáveis, associada a um vetor Y a ser explicado. Os valores de Y podem ser de
+dois tipos:</li>
+        <ul>
+          <li>contínuos: árvore de regressão</li>
+          <li>qualitativos: árvore de classificação</li>
+        </ul>
+    </section>
+    
+
+  <section class="center">
+    <h3>Exemplo - iris</h3>
+    <img src="imgs/dt_iris.png" width="80%" height="auto">
+  </section> 
+
+
+  <section class="center">
+    <h3>Árvore de Decisão - iris</h3>
+    <img src="imgs/dt_iris_2.png" width="100%" height="auto">
+  </section> 
+
+
+
+  <section class="center">
+    <h3>Árvore de Decisão - construção</h3>
+    <ul>
+      <ul><p><strong>Escolher a variável de divisão:</strong> selecionando as variáveis, da
+mais discriminante à menos discriminante</p></ul>
+      <ul><p><strong>Como lidar com variáveis contínuas:</strong> “Dividir” a variável contínua para que seus valores inferiores e superiores caractarizem nós distintos.</p></ul>
+    <li><strong>Como definir o tamanho da árvore:</strong> </li>
+        <ul>
+          <p>encontrar o equilíbrio entre sobreaprendizado e árvore trivial. Processo de pós-poda.</p>
+          <p>em função des algoritmos CHAID (Chi-2), CART e C4.5 sobre o índice, do <span class="highlight">gini</span> (índice de concentração) e sobre o conceito de entropia (teoria da
+informação)</p>
+        </ul>
+    </ul>
+  </section> 
+
+    <section class="center">
+        <h3>Construção com o Gini</h3>
+       <ul>
+        <li>Cálculo do índice de Gini no conjunto completo:</li>
+        <span class="highlight">
+          \[
+        Gini(D) = 1 - \Sigma_{i-1}^k P_i^2
+        \]</span>
+        <li><span class="highlight">
+          \(
+        P_i = \frac{Nb_{classe_i}}{Nb_{lines}}
+        \)</span>: probabilidade de pertencer à classe i</li>
+        <li>O índice de Gini mede, portanto, a incerteza em
+um conjunto de dados:</li>
+            <ul>
+              <li>Se for zero, o conjunto tem só uma única classe</li>
+              <li>Quanto maior for, mais diversificado o conjunto é em termos de classes</li>
+            </ul>
+        </ul>
+    </section>
+
+    <section class="center">
+        <h3>Construção com o Gini</h3>
+        <img src="imgs/dt_gini.png" width="25%" height="auto">
+        <ul>
+          <li>Calcular o índice para o conjunto todo (successes)</li>
+          <li>P(sim)= 5/10</li>
+          <li>P(não)= ?/10</li>
+          <li>\(Gini(D)= 1 - (5/10)^2 - (5/10)^2\) = ?</li>
+        </ul>
+    </section>
+
+
+    <section class="center">
+        <h3>Construção com o Gini</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+          <img src="imgs/dt_gini.png" width="50%" height="auto">
+          <ul>
+            <li>Selecionar o atributo para a divisão</li>
+            <li>Calcular o valor Gini ponderado para cada atributo:</li>
+            <li><span class="highlight"> \( Gini_{ponderado}= \Sigma_{j=1}^k \frac{N_j}{N}Gini(j) \)</span></li>
+            <ul>
+              <li>onde \(k\) é o número de nós filhos resultante da atribuição</li>
+              <li>\(N_j\) é o número de amostras no nó filho </li>
+              <li>\(N\) é o número de amostras no nó pai </li>
+              <li>\(Gini(j)\) é  índice do nó filho \(j\) </li>
+            </ul>
+            <li>Selecione o atributo com o menor índice</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <section class="center">
+        <h3>Para o atributo "Revision time"</h3>
+        <img src="imgs/dt_gini_2.png" width="25%" height="auto">
+        <ul>
+          <li><span style="color: red;">"High": 4 - \(Gini_{high} = 1 - (2/4)^2 - (2/4)^2 = 0.5\)</span></li>
+          <li><span style="color: green;">"Medium": 3 - \(Gini_{medium} = 1 - (2/3)^2 - (1/3)^2 = 0.444\)</span></li>
+          <li><span style="color: blue;">"Low": 3 - \(Gini_{low} = 1 - (1/3)^2 - (2/3)^2 = 0.444\)</span></li>
+        </ul>
+        <p>"Revision time": \( 4/10 * 0.5 + 3/10 *0.444 + 3/10 *0.444 = 0.4664   \)</p>
+    </section>
+
+    <section class="center">
+        <h3>Para o atributo "Break time"</h3>
+        <img src="imgs/dt_gini_3.png" width="25%" height="auto">
+        <ul>
+          <li><span style="color: red;">"High": 3 - \(Gini_{high} = 1 - (3/3)^2 - (0/3)^2 = 0.\)</span></li>
+          <li><span style="color: green;">"Medium": 3 - \(Gini_{medium} = 1 - (2/3)^2 - (1/3)^2 = 0.444\)</span></li>
+          <li><span style="color: blue;">"Low": 4 - \(Gini_{low} = 1 - (0/4)^2 - (4/4)^2 = 0.\)</span></li>
+        </ul>
+        <p>"Break time": \( 3/10 * 0. + 3/10 *0.444 + 4/10 *0. = 0.1332   \)</p>
+    </section>
+
+
+
+    <section class="center">
+        <h3>Seleção de atributos - pt. 1</h3>
+        <img src="imgs/dt_gini.png" width="25%" height="auto">
+        <ul>
+            <li>"Revision time": \( 4/10 * 0.5 + 3/10 *0.444 + 3/10 *0.444 = 0.4664   \)</li>
+            <li>"Break time": \( 3/10 * 0. + 3/10 *0.444 + 4/10 *0. = 0.1332   \)</li>
+        <li>Selecionamos  "Break time", porque ele tem o valor menor. </li>
+        <ul>
+          <li>O atributo "Low": tem o menor valor, 0. e mais elementos, 4.</li>  
+        </ul>
+    </section>
+
+
+    <section class="center">
+        <h3>Seleção de atributos - pt. 2</h3>
+        
+        <ul>
+          <li>Atribuição de classes por probabilidade de valor</li>
+        </ul>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+          <img src="imgs/df_gini_4.png" width="40%" height="auto">
+          <img src="imgs/dt_gini_5.png" width="40%" height="auto">
+      </div>
+        
+    </section>
+
+
+
+    <section class="center">
+        <h3>Recomeço - "Class = No" - pt. 1</h3>
+        <img src="imgs/dt_gini_7.png" width="30%" height="auto">
+        <ul>
+          <li><span style="color: red;">"High": 2 - \(Gini_{high} = 1 - (3/2)^2 - (0/2)^2 = 0.\)</span></li>
+          <li><span style="color: green;">"Medium": 2 - \(Gini_{medium} = 1 - (2/2)^2 - (0/2)^2 = 0.\)</span></li>
+          <li><span style="color: blue;">"Low": 2 - \(Gini_{low} = 1 - (1/2)^2 - (1/2)^2 = 0.5\)</span></li>
+        </ul>
+        <li>"Revision time": \( 2/6 * 0. + 2/6 *0.444 + 2/6 *0.5 = 0.16667   \)</li>
+    </section>
+
+
+    <section class="center">
+        <h3>Recomeço - "Class = No" - pt. 2</h3>
+        <img src="imgs/dt_gini_7.png" width="30%" height="auto">
+        <ul>
+          <li><span style="color: red;">"High": 3 - \(Gini_{high} = 1 - (3/3)^2 - (0/3)^2 = 0.\)</span></li>
+          <li><span style="color: green;">"Medium": 3 - \(Gini_{medium} = 1 - (2/3)^2 - (1/3)^2 = 0.444\)</span></li>
+          <li><span style="color: blue;">"Low": 0 - \(Gini_{low} = 1 - (0/4)^2 - (4/4)^2 = 0.\)</span></li>
+        </ul>
+        <li>"Break time": \( 3/6 * 0. + 3/6 *0.444 + 0/6 *0. = 0.2222   \)</li>
+    </section>
+
+
+    <section class="center">
+        <h3>Recomeço - "Class = No" - pt. 3</h3>
+        
+        <ul>
+          <li>"Revision time": \(  0.16667  \)</li>
+            <li>"Break time": \( 0.2222   \)</li>
+        </ul>
+        <p>Agora, selecionamos "Revision time" - atributo "high"</p>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+          <img src="imgs/dt_gini_ç.png" width="50%" height="auto" alt="Decision Tree Gini 8">
+          <img src="imgs/dt_gini_6.png" width="80%" height="auto" alt="Decision Tree Gini 6">
+      </div>
+    </section>
+
+    <section class="center">
+        <h3>Prós e contras</h3>
+        
+        <ul>
+          <li><span style="color: green;">Prós: </li></span>
+          <ul>
+            <li>Facilidade de interpretação</li>
+            <li>Não é necessária normalização</li>
+            <li>Tratamento de valores ausentes</li>
+            <li>Flexibilidade com tipos de dados</li>
+            <li>Robustez contra valores atípicos</li>
+          </ul>
+            <li><span style="color: red;">Contras: </li></span>
+            <ul>
+              <li>Forte tendência ao sobreaprendizado</li>
+              <li>Instabilidade diante da variabilidade dos dados</li>
+              <li>Complexidade computacional</li>
+              <li>Sensível ao ruído</li>
+          </ul>
+        </ul>
+        
+    </section>
+
+
+
+
+
+</section>
+
+<section>
+
+
+<section class="center">
+        <span class="badge">Módulo 3 - parte 1</span>
+        <h1>Aprendizado não supervisionado</h1>
+</section>    
+
+  <section class="center">
+        <h3>Aprendizado não supervisionado</h3>
+        <h4>Princípio</h4>
+        <div class="box">
+        <strong>Como classificar elementos?</strong>
+        </div>
+        <ul>
+        <li>Apenas as especificações <span class="highlight">{xi ∈ 𝒳, i = 1..N}</span>, 
+          estão disponíveis.
+</li>
+        <li>Procuramos descrever como os dados estão organizados e extrair os subconjuntos homogêneos.</li>
+        <li>Exemplos</li>
+          <ul>
+            <li>Reconhecimento de formas</li>
+            <li>Análise espacial</li>
+            <li>Categorização de documentos</li>
+            <li>Categorização de uso (web, personalização, etc.)</li>
+          </ul>
+        </ul>
+  </section>
+
+
+  <section class="center">
+    <h3>Plano do curso</h3>
+    <ul>
+        <li>Aprendizado não supervisionado</li>
+        <li>Agrupamento (hierárquico, K-Means)</li>
+    </ul>
+    <ul>
+      <li>Redução de dimensionalidade (PCA, t-SNE)</li>
+        <ul>
+          
+      
+    </ul>
+
+  </section>
+
+    <section class="center">
+    <h3>Avaliação</h3>
+    <ul>
+      <li>Exercícios avaliados</li>
+      <li>2 provas</li>
+      <li>2 projetos</li>
+    </ul> 
+  </section>
+
+  
+  <section class="center">
+    <h3>Exemplos</h3>
+    <img src="imgs/AM_nao_images.png" width="50%" height="auto">
+    <img src="imgs/AM_nao_visu.png" width="50%" height="auto">
+  </section>
+  
+  <section class="center">
+    <h3>Agrupamento de dados</h3>
+    <ul>
+      <li>Introdução</li>
+      <ul>
+        <li>Reconhecimento de formas</li>
+        <li>Análise espacial</li>
+      </ul>
+      <li>Métodos de agrupamento de dados (clustering)</li>
+      <ul>
+        <li>Agrupamento de dados hierárquicos</li>
+        <li>K-Means</li>
+      </ul>
+      <li>Redução de dimensionalidade</li>
+      <ul>
+        <li>PCA</li>
+        <li>t-SNE</li>
+      </ul>
+    </ul>
+  </section>
+
+  <section class="center">
+    <h3>introdução</h3>
+    <ul>
+      <li>Seja um grupo de exemplos de treinamento
+         <span class="highlight"> 𝒟 = {x<sub>i</sub> &isin; &Ropf;<sup>d</sup>}<sub>i=1</sub><sup>N</sup></span></li>
+      <ul>
+        <li>Objetivo: Estruturar os dados em categorias homogêneas</li>
+        <li>Agrupar os dados em grupos de forma que os dados de um grupo
+sejam o mais semelhantes possível</li>
+      </ul>
+      <img src="imgs/clustering_ex.png" width="100%" height="auto">
+  </section>
+
+  <section class="center">
+    <h3>Aplicações</h3>
+    <ul>
+      <li>Mineração de texto</li>
+        <ul>
+          <li>Resumos</li>
+          <li>Classificação automática em pastas</li>
+        </ul>
+      <li>Mineração de grafos</li>
+        <ul>
+          <li>Subredes sociais</li>
+        </ul>
+
+      <li>Bioinformática</li>
+        <ul>
+          <li>Similaridade de genes</li>
+        </ul>
+     
+      <li>Marketing</li>
+        <ul>
+          <li>Segmentação de clientes</li>
+          <li>Perfil de usuários</li>
+        </ul>
+  
+      <li>Segmentação de imagens</li>
+        <ul>
+          <li>áreas homogêneas de uma imagem</li>
+        </ul>
+      </ul>
+  </section>
+
+  <section class="center">
+    <h3>Exemplos</h3>
+    <img src="imgs/clustering_app.png" width="60%" height="auto">
+  </section>
+
+
+  <section class="center">
+    <h3>O que é um agrupamento de dados?</h3>
+    <ul>
+      <li>Algoritmos/métodos que permitem achar enconrtar e agrupar informações similares </li>
+      <ul>
+        <li>Como definir a semelhança entre exemplos?</li>
+        <li>Como caracterizar um agrupamento?</li>
+        <li>Quantos grupos devemos encontrar?</li>
+        <li>Que algoritmo utilizar?</li>
+        <li>Como avaliar o resultado?</li>
+      </ul>
+    </ul>
+  </section>
+
+   <section class="center">
+    <h3>Métricas de similaridade</h3>
+    <ul>
+      <li>Funções de 2 paramêtros (x<sub>1</sub>,x<sub>2</sub>) que retornem um valor &Ropf;<sub>+</sub> tal que:</li>
+        <ul>
+        <li><span class="highlight">D(x<sub>1</sub>,x<sub>2</sub>) = D(x<sub>2</sub>,x<sub>1</sub>) ≥ 0</span></li>
+        <li><span class="highlight">D(x<sub>1</sub>,x<sub>2</sub>) = 0 ⟹ x<sub>1</sub>=x<sub>2</sub></span></li>
+      </ul>
+      <li>Métricas de distância entre 2 pontos x<sub>1</sub> e x<sub>2</sub>:</li>
+      <ul>
+        <li>Distância de Minskoswski:  <br>
+           <span class="highlight">D(x<sub>1</sub>,x<sub>2</sub>)<sup>q</sup> = &Sigma;<sup>d</sup><sub>j=1</sub>|x<sub>1,j</sub> - x<sub>2,j</sub> |<sup>q</sup> </span> </li>
+        <li>Distância euclidiana ao quadrado (q=2):  <br>
+          <span class="highlight">D(x<sub>1</sub>,x<sub>2</sub>)<sup>2</sup> = &Sigma;<sup>d</sup><sub>j=1</sub>|x<sub>1,j</sub> - x<sub>2,j</sub> |<sup>2</sup> =  (x<sub>1</sub> - x<sub>2</sub>)<sup>T</sup>(x<sub>1</sub> - x<sub>2</sub>) </span> </li>
+        <li>Distância de Manhattan (q=1):   <br>
+          <span class="highlight">D(x<sub>1</sub>,x<sub>2</sub>) = &Sigma;<sup>d</sup><sub>j=1</sub>|x<sub>1,j</sub> - x<sub>2,j</sub> | </span> </li>
+        
+      </ul>
+    </ul>
+  </section>
+
+  <section class="center">
+    <h3>Similaridade entre grupos</h3>
+    <ul>
+      <li>Distância D(&#119966;<sub>1</sub>,&#119966;<sub>2</sub>) entre 2 grupos &#119966;<sub>1</sub> e &#119966;<sub>2</sub>:</li>
+      <ul>
+        <li>Diâmetro mínimo (mais próximo do vizinho): <br>
+          <span class="highlight">D<sub>min</sub>(x) = min{D(x<sub>i</sub>,x<sub>j</sub>)}, x<sub>i</sub> &isin;	&#119966;<sub>1</sub>, x<sub>j</sub> &isin; &#119966;<sub>2</sub>}
+          </span> </li>
+        <li>Diâmetro máximo: <br>
+          <span class="highlight">D<sub>max</sub>(x) = max{D(x<sub>i</sub>,x<sub>j</sub>)}, x<sub>i</sub> &isin;	&#119966;<sub>1</sub>, x<sub>j</sub> &isin; &#119966;<sub>2</sub>}
+        
+      </ul>
+    </ul>
+  </section>
+
+
+  <section class="center">
+    <h3>Exemplo</h3>
+    <ul>
+      <li>Distância D(&#119966;<sub>1</sub>,&#119966;<sub>2</sub>) entre 2 grupos 
+        <span style="color: lightblue;">&#119966;<sub>1</sub></span> e <span style="color: orange;">&#119966;<sub>2</sub></span>:</li>
+      <ul>
+        <li>Distância média: <br>
+          <span style="color: green;">
+            \[D_{média}(&#119966;_1,&#119966;_2) =  \frac{
+                \sum x_i \in &#119966;_1\sum x_j \in &#119966;_2 D(x_i,x_j)
+              }{n_{1}n_{2}}\]           
+          </span>   
+        </li>
+        <li>Método de Ward: <br>
+          <span style="color: red;">
+            \[
+              D_{ward}(&#119966;_1,&#119966;_2) =  \sqrt{\frac{n_1n_2}{n_1+n_2}}D(\mu_i,\mu_2)
+            \]           
+          </span>
+      </ul>
+    </ul>
+    <img src="imgs/grupos_ex2.png" width="100%" height="auto">
+  </section>
+
+
+
+  <section class="center">
+    <h3>Características de um bom agrupamento</h3>
+    <ul>
+      <li>Minimize a inércia e maximize a distorção</li>
+      <li>Cada grupo &#119966;<sub>l</sub> tem como:</li>
+      <ul>
+        <li>Centróide: <span class="highlight">\(\mu_l = \frac{1}{n_l} \Sigma_{i \in &#119966;_l}x_i \) </span>onde \(n_l = card(&#119966;_l)\) </li>
+        <li>Inércia: <span class="highlight">\(J_l = \Sigma_{i \in &#119966;_l}D^{2} (x_i,\mu_l) \) </span> </li>
+      </ul>
+      <li>Tal </li>
+      <li>Inércia: Distância média dentro de um grupo: <br>
+         <span class="highlight">\( J_{intra} = \Sigma J_l \) </span> onde \( n_{&#119966;} = card(&#119966;) \) </li>
+      <li>Distorção: Distância entre grupos:  <span class="highlight">\( J_{inter} = \Sigma n_l D^2(\mu_l,\mu)  \) </span> onde \( \mu = \frac{1}{N}\Sigma_i x_i \) </li>
+    </ul>
+    
+  </section>
+
+  <section class="center">
+    <h3>Exemplo</h3>
+    <ul>
+      <li><span style="color: red;">Inércia</span> e <span style="color: rgb(102, 63, 180);">Distorção</span></li>
+
+    <img src="imgs/bom_cluster_ex.png" width="100%" height="auto">
+  </section>
+
+
+  <section class="center">
+    <h2>Cluster Hierárquico</h2>
+    <ul>
+      <li>Cada ponto ou grupo é agrupado ao ponto/grupo mais próximo</li>
+      <li>Algoritmo:</li>
+      <ul>
+        <li>inicialização:</li>
+        <ul>
+          <li>Cada ponto da base de dados representa um grupo (cluter)</li>
+          <li>Cada grupo é adicionado à lista de grupos \(L_{&#119966;}\)</li>
+      </ul>
+      <li>Repetir até que \(card(L_{&#119966;})=1\):</li>
+        <ul>
+          <li>Calcular a distância entre cada grupo da lista</li>
+          <li>Cada grupo é adicionado à lista de grupos</li>
+          <li>Escolher os dois grupos \(&#119966;_i\) e \(&#119966;_j\) que tenham a menor distância </li>
+          <li>Combinar os dois grupos \(&#119966;_i\) e \(&#119966;_j\) em um novo  \(&#119966;_k\)   </li>
+          <li>Retirar \(&#119966;_i\) e \(&#119966;_j\) da lista, adicionar \(&#119966;_k\) na lista  </li>
+        </ul>
+    </ul>
+  </section>
+
+  <section class="center">
+    <h3>Exemplo</h3>
+    <img src="imgs/cluster_hier.png" width="100%" height="auto">
+  </section>
+
+
+  <section class="center">
+    <h3>Exemplo interativo</h3>
+    <img src="imgs/ex_juntos.png" width="100%" height="auto">
+  </section>
+
+
+  <section class="center">
+    <h3>Passo 1</h3>
+    <img src="imgs/ex_juntos_1.png" width="100%" height="auto">
+  </section>
+
+
+  <section class="center">
+    <h3>Passo 2</h3>
+    <img src="imgs/ex_juntos_2.png" width="100%" height="auto">
+  </section>
+
+
+  <section class="center">
+    <h3>Passo 3</h3>
+    <img src="imgs/ex_juntos_3.png" width="100%" height="auto">
+  </section>
+
+
+  <section class="center">
+    <h3>Passo 4</h3>
+    <img src="imgs/ex_juntos_4.png" width="100%" height="auto">
+  </section>
+
+
+  <section class="center">
+    <h3>Passo 5</h3>
+    <img src="imgs/ex_juntos_5.png" width="100%" height="auto">
+  </section>
+
+  <section class="center">
+    <h3>Passo 6</h3>
+    <img src="imgs/ex_juntos_6.png" width="100%" height="auto">
+  </section>
+
+   <section class="center">
+    <h2>K-means</h2>
+    <ul>
+      <li>Encontrar a melhor partição de K grupos de uma base de dados</li>
+      <li>Algoritmo:</li>
+      <ul>
+        <li>inicialização:</li>
+        <ul>
+          <li>Seja uma base de dados D =\( {x_i \in \mathbb{R}^d}^{N}_{i=1}\)</li>
+          <li>Encontre os centróides \( \mu_k\) dos grupos \(&#119966;_k \) para k=1..K, K < N  </li>
+      </ul>
+      <li>Repetir até convergir:</li>
+        <ul>
+          <li>\(x_i\), i = 1..N é atribuido ao grupo  \(&#119966;_k \) cujo o centróide  \(\mu_k \) é o mais próximo</li>
+          <li>Recalcular os centróides \(\mu_k \) dos grupos  \(&#119966;_k \)  para k=1..K</li>
+        </ul>
+    </ul>
+  </section>
+
+   <section class="center">
+    <h3>Exemplo interativo</h3>
+    <ul>
+      <li>Jupyter notebook</li>
+    </ul>
+  </section>
+
+
+   <section class="center">
+    <h2>Redução de dimensionalidade</h2>
+    <ul>
+      <li>Seja \(X \in \mathbb{R}^{Nxd}\) uma base de dados (N pontos cada com <i>d</i> dimensões</li>
+      <li>Objetivos:</li>
+      <ul>
+        <li>Encontrar uma projeção de  \(X \in \mathbb{Z}\) dado <span style="color: red;">q < d</span></li>
+      </ul>
+    </ul>
+    <img src="imgs/reducao_ex.png" width="100%" height="auto">
+  </section>
+
+
+   <section class="center">
+    <h3>Utilizações - 1</h3>
+    <ul>
+      <li>Visualização de dados</li>
+      <li>Identificação de dados atípicos</li>
+      <li>Visualizar dados com suas etiquetas (labels)</li>
+    </ul>
+    <br>
+    <ul>
+      <li>Sempre há perda de informações</li>
+    </ul>
+    <img src="imgs/reducao_ex2.png" width="100%" height="auto">
+  </section>
+
+   <section class="center">
+    <h3>Utilizações - 2</h3>
+    <ul>
+      <li>Reduzir tempo de cálculo</li>
+      <li>Reduzir ruído</li>
+    </ul>
+    <br>
+    <ul>
+      <li>Sempre há perda de informações</li>
+    </ul>
+    <img src="imgs/reducao_ex3.png" width="100%" height="auto">
+  </section>
+
+   <section class="center">
+    <h3>Idéia central</h3>
+    <ul>
+      <li>Projetar dados <span class="highlight">\({x_i \in \mathbb{R}^d}$^{N}_{i=1}\) em \({z_i \in \mathbb{R}^q}$^{N}_{i=1}\)</span> preservando ao máximo:</li>
+      <ul>
+        <li>A distância entre os dados</li>
+        <li>A vizinhança (organização topológica)</li>
+      </ul>
+    </ul>
+    <br>
+    <ul>
+      <li>Existem 2 tipos de métodos:</li>
+      <ul>
+        <li>Redução linear: Análise do componente principal (PCA, em inglês)</li>
+        <li>Redução não-linear: Stochastic Neighbor Embedding (SNE)</li>
+      </ul>
+    </ul>
+  </section>
+
+
+   <section class="center">
+    <h3>PCA - Etapa 1: Normalização dos dados</h3>
+    <ul>
+      <li>Normalizar os intervalos de valores de cada uma das variáveis do conjunto de dados</li>
+        <li>Minimizar a variância das variáveis iniciais para a continuação do algoritmo</li>
+          <span class="highlight">\[
+        \{x_i \in \mathbb{R}^d\}^{N}_{i=1} \to \{x_{ij}= \frac{x_{ij}- \bar{x_j}}{\sigma_j},j=1,..,d\}
+        \]
+        </span>
+      </ul>
+    </ul>
+  </section>
+
+  <section class="center">
+    <h3>PCA - Etapa 2: cálculo da matriz de covariância</h3>
+    <ul>
+      <li>covariância entre duas variávies <span class="highlight">\(y \in \mathbb{R}^B\) e \(y \in \mathbb{R}^N\):</span></li>
+      <ul>
+        <span class="highlight">\[
+        \sigma(x,y)=\sigma(y,x)=\frac{1}{N-1} \Sigma^{N}_{i=1} (x_i - \bar{x})(y_i - \bar{y})
+        \]
+        </span>
+        <li>Matrizes de covariância de 3 variávies (x,y,z) \(\in \mathbb{R}^3 \)</li>
+        <img src="imgs/covar_3.png" width="50%" height="auto">
+        <li>Se \(\sigma(x,y) > 0\), quando X aumenta, y também aumenta</li>
+        <li>Se \(\sigma(x,y) < 0\), quando X aumenta, y diminui</li>  
+      </ul>
+      
+    </ul>
+  </section>
+
+
+  <section class="center">
+    <h3>PCA - Etapa 3: cálculo dos vetores e valores próprios</h3>
+    <ul>
+      <li>Noção de vetores e valores próprios:</li>
+      <ul>
+        <li>Conceito algébrico que permite transfomar linearmente matrizes</li>
+      <li>Achar vetores próprios \(X \in \mathbb{R}^d\) e seu valores próprios  \(\lambda \in \mathbb{R}\) tais que  \(AX = \lambda X\) dado  \( A \in \mathbb{R}^{dxd}\), uma matriz quadrada </li>
+      <li>Resolver o sistema de equações (\(A - \lambda I)X=0\) com  \(I \in \mathbb{R}^d\) a matrix identidade </li>
+      </ul>
+      
+    </ul>
+  </section>
+  
+  <section class="center">
+    <h3>PCA - Etapa 3: cálculo dos vetores e valores próprios</h3>
+    <ul>
+        <li>A aplicação à matriz de covariância permite determinar as componentes principais dos dados</li>
+        <li>Componentes principais:</li>
+      <ul>
+        <li>Construção linear das variáveis iniciais</li>
+        <li>As novas variáveis (componentes principais) são tão pouco correlacionadas quanto possível</li>
+        <li>O máximo de informações das variáveis iniciais é “comprimido” nas primeiras componentes</li>
+      </ul>
+      </ul>
+    <img src="imgs/pca_visu.png" width="50%" height="auto">
+  </section>
+
+  <section class="center">
+    <h3>Exercícios</h3>
+    <ul>
+        <li>Jupyter notebook</li>
+      <ul>
+  </section>
+
+
+  <section class="center">
+    <h2>t-distributed Stochastic Neighbor Embedding (t-SNE)</h2>
+    <ul>
+        <li>Preserva as estruturas locais</li>
+        <li>Método de redução de dimensionalidade não linear</li>
+    </ul>
+    
+    <ul>
+        <li>Permite identificar padrões relevantes</li>
+        <li>Visualização de dados</li>
+        <li>Ajuda a avaliar a viabilidade da aplicação de aprendizado de máquina em dados</li>
+        <li>Observação: o UMap é um algoritmo equivalente ao t-SNE, também utilizado em visualização de dados</li>
+      <ul>
+  </section>
+
+
+  <section class="center">
+    <h3>t-SNE - Intuição</h3>
+    <ul>
+        <li>Estima a distribuição de probabilidade de vizinhança em torno de cada
+ponto</li>
+        <li>Busca minimizar as diferenças entre as distribuições de dois pontos
+para distribuí-los em um espaço 2D</li>
+        <li>O principal parâmetro do algoritmo é a perplexidade, que equivale ao
+número de vizinhos considerados (geralmente entre 5 e 50) pelo algoritmo</li>
+        <ul>
+          <li>Uma perplexidade baixa significa que o foco está nas vizinhanças locais</li>
+          <li>Uma perplexidade alta significa que o foco está nas vizinhanças mais amplas</li>
+          </ul>
+      <ul>
+  </section>
+
+  <section class="center">
+    <h3>t-SNE</h3>
+    <img src="imgs/tsne.png" width="100%" height="auto">
+  </section>
+
+</section>
+
+
+<section>
+    Referências:
+    <ul>
+        <li>https://www.each.usp.br/lauretto/cursoR2017/04-AnaliseCluster.pdf</li>
+        <li>MIT6.034 Patrick H. Winston https://ocw.mit.edu/courses/6-034-artificial-intelligence-fall-2010/</li>
+        <li>Stanford CS class CS231n: Convolutional Neural Networks for Visual Recognition http://vision.stanford.edu/teaching/cs231n</li>
+    </ul>
+</section>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({ 
+    hash: true, 
+    slideNumber: 'c/t',
+    transition: 'slide',
+    controls: true,
+    progress: true
+  });
+</script>
+
+<!-- mathjax -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+      // Make responsive
+      MathJax.Hub.Config({
+       "HTML-CSS": { linebreaks: { automatic: true } },
+       "SVG": { linebreaks: { automatic: true } },
+      });
+    </script>
+
+</body>
+</html>
+
