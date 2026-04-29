@@ -33,7 +33,7 @@
           <li>Redes Neurais Artificiais</li>
           <li>CNN</li>
           <li>RNN</li>
-          <li>Backpropagation</li>
+          <!-- <li>Backpropagation</li> -->
       </ol> 
     </section>
 
@@ -397,122 +397,56 @@ End while
 </section>
 
 <section class="center">
-    <h3>Exemplo em PyTorch</h3>
+    <h3>Batch Normalization</h3>
 
-    <pre><code class="language-python">
-""" Vanilla Dropout: Not recommended implementation (see notes below) """
-
-p = 0.5 # probability of keeping a unit active. higher = less dropout
-
-def train_step(X):
-  """ X contains the data """
-  
-  # forward pass for example 3-layer neural network
-  H1 = np.maximum(0, np.dot(W1, X) + b1)
-  U1 = np.random.rand(*H1.shape) < p # first dropout mask
-  H1 *= U1 # drop!
-  H2 = np.maximum(0, np.dot(W2, H1) + b2)
-  U2 = np.random.rand(*H2.shape) < p # second dropout mask
-  H2 *= U2 # drop!
-  out = np.dot(W3, H2) + b3
-  
-  # backward pass: compute gradients... (not shown)
-  # perform parameter update... (not shown)
-  
-def predict(X):
-  # ensembled forward pass
-  H1 = np.maximum(0, np.dot(W1, X) + b1) * p # NOTE: scale the activations
-  H2 = np.maximum(0, np.dot(W2, H1) + b2) * p # NOTE: scale the activations
-  out = np.dot(W3, H2) + b3
-    </code></pre>
-</section>
-
-<section class="center">
-    <h2>Batch Normalization</h2>
-
-    <div class="fragment">
+    <div class="">
         <p>
-            Batch Normalization (BN) é uma técnica que normaliza
+            Batch Normalization é uma técnica que normaliza
             as ativações de cada mini-batch durante o treinamento.
         </p>
     </div>
-
-    <div class="box fragment">
-        <h3>Objetivos Principais</h3>
+        
+        <ul>
+            <li>Vantagens</li>
         <ul>
             <li>Acelerar a convergência do treinamento</li>
-            <li>Permitir taxas de aprendizado maiores</li>
             <li>Reduzir sensibilidade à inicialização</li>
-            <li>Estabilizar o fluxo de gradientes</li>
-        </ul>
-    </div>
-
-    <aside class="notes">
-        BatchNorm foi introduzido por Ioffe e Szegedy em 2015
-        e tornou-se um dos componentes mais importantes
-        das arquiteturas modernas.
-    </aside>
+            <li>Redução do vanishing/exploding gradient</li>
+            <li>Maior robustez à inicialização</li>
+            <li>Efeito regularizador moderado</li>
+            <li>Melhor generalização</li>
+        </ul></ul>
 </section>
 
 <section class="center">
-    <h2>Problema: Internal Covariate Shift</h2>
+    <h3>Problema: Internal Covariate Shift</h3>
 
     <p>
         Durante o treinamento, a distribuição das ativações
         muda continuamente à medida que os pesos são atualizados.
     </p>
 
-    <div class="box fragment">
-        <h3>Consequências</h3>
         <ul>
-            <li>Treinamento mais lento</li>
-            <li>Gradientes instáveis</li>
-            <li>Maior dificuldade de convergência</li>
-            <li>Dependência crítica da inicialização</li>
+            <li>Consequências</li>
+            <ul>
+                <li>Treinamento mais lento</li>
+                <li>Gradientes instáveis</li>
+                <li>Maior dificuldade de convergência</li>
+                <li>Dependência crítica da inicialização</li>
+            </ul>
         </ul>
-    </div>
 
-    <p class="fragment">
+    <p class="">
         BatchNorm reduz esse efeito ao manter as ativações
         aproximadamente padronizadas.
     </p>
    
 </section>
 
-<section class="center">
-    <h2>Exemplo em PyTorch</h2>
-    <p class="fragment">
-        A prática recomendada é inserir BatchNorm
-        antes da função de ativação.
-    </p>
-
-    <pre><code class="language-python">
-        model = nn.Sequential(
-            nn.Linear(784, 256),
-            nn.BatchNorm1d(256),
-            nn.ReLU(),
-            nn.Linear(256, 10)
-        )
-    </code></pre>
-</section>
-
-<section class="center">
-    <h2>Vantagens</h2>
-
-    <div class="box">
-        <ul>
-            <li>Treinamento significativamente mais rápido</li>
-            <li>Redução do vanishing/exploding gradient</li>
-            <li>Maior robustez à inicialização</li>
-            <li>Efeito regularizador moderado</li>
-            <li>Melhor generalização</li>
-        </ul>
-    </div>
-</section>
 
 
 <section class="center">
-    <h2>Camadas Principais</h2>
+    <h3>Camadas Principais</h3>
     <ul>
         <li>Dense</li>
         <li>Convolution</li>
@@ -542,15 +476,15 @@ def predict(X):
         200 × 200 × 3 = 120.000
     </div>
 
-    <p class="fragment">
+    <p class="">
         Conectando-a a apenas 1.000 neurônios, seriam necessários:
     </p>
 
-    <div class="formula fragment">
+    <div class="formula ">
         120.000 × 1.000 = 120 milhões de parâmetros
     </div>
 
-    <div class="box fragment">
+    <div class="box ">
         <ul>
             <li>Consumo excessivo de memória</li>
             <li>Treinamento extremamente lento</li>
@@ -579,18 +513,18 @@ def predict(X):
 
     <div class="box">
         <ul>
-            <li class="fragment"><strong>Conectividade Local</strong></li>
-            <li class="fragment"><strong>Compartilhamento de Parâmetros</strong></li>
-            <li class="fragment"><strong>Hierarquia Espacial de Características</strong></li>
+            <li class=""><strong>Conectividade Local</strong></li>
+            <li class=""><strong>Compartilhamento de Parâmetros</strong></li>
+            <li class=""><strong>Hierarquia Espacial de Características</strong></li>
         </ul>
     </div>
 
-    <p class="fragment">
+    <p class="">
         Essas propriedades reduzem drasticamente
         a quantidade de parâmetros treináveis.
     </p>
-    <h3 class="fragment">CNN são:</h3>
-    <ul class="fragment">
+    <h3 class="">CNN são:</h3>
+    <ul class="">
         <li>Especializadas em imagens</li>
         <li>Extração automática de características</li>
         <li>Compartilhamento de pesos</li>
@@ -676,7 +610,6 @@ def predict(X):
 </section>
 
 <section style="background-color: white;">
-    <h3>Demonstração Interativa de Convolução</h3>
     <iframe
         src="./assets/conv-demo/index.html"
         width="100%"
@@ -727,24 +660,6 @@ def predict(X):
     </div>
 </section>
 
-<section class="center">
-    <h3>Exemplo em PyTorch</h3>
-
-    <pre><code class="language-python">
-nn.Sequential(
-    nn.Conv2d(3, 32, 3, padding=1),
-    nn.ReLU(),
-    nn.MaxPool2d(2),
-
-    nn.Conv2d(32, 64, 3, padding=1),
-    nn.ReLU(),
-    nn.MaxPool2d(2),
-
-    nn.Flatten(),
-    nn.Linear(64 * 8 * 8, 10)
-)
-    </code></pre>
-</section>
 
 <section class="center">
     <h3>Arquiteturas Clássicas</h3>
@@ -852,7 +767,7 @@ nn.Sequential(
 </section>
 
 <!-- Backprop-->
- <section class="center">
+ <!-- <section class="center">
     <section class="center">
         <span class="badge">Módulo 3 - parte 2</span>
         <h2>Backpropagation - Otimização dos pesos</h2>
@@ -1048,9 +963,9 @@ nn.Sequential(
           Elegante, eficiente e amplamente utilizada em backprop.
       </div>
   </section>
-</section>
+</section> -->
 
-<section>
+<section class="center">
     Referências:
     <ul>
         <li>ATAI Yuri Lavinas, Sylvain Cussat-Blanc - UCT/M2-MIAGE 2IS</li>

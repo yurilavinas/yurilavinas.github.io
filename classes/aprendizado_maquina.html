@@ -391,7 +391,8 @@
 
     <p>Encontrar os coeficientes <i>a</i> e <i>b</i> que minimizem o erro entre um alvo \(Y \in \mathbb{R}^N\) que seja linearmente dependente de um dado observacional \(X \in \mathbb{R}^{Nx1} \) independente</p>
     <span class="highlight">\(Y = aX + b\)</span>
-    <img src="imgs/regressao_linear_simples.png" width="80%" height="auto">
+    <br>
+    <img src="imgs/regressao_linear_simples.png" width="70%" height="auto">
   </section> 
 
 
@@ -417,23 +418,25 @@
         <li>Senão, classe 0</li>
     </ul>
     </ul>
-    <span class="highlight"> \[y = \frac{1}{1+e^{-x} \in [0,1]}\] </span>
-    <img src="imgs/sigmoid.jpeg" width="40%" height="auto">
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+      <span class="highlight"> \[y = \frac{1}{1+e^{-x} \in [0,1]}\] </span>
+      <img src="imgs/sigmoid.jpeg" width="40%" height="auto">
+    </div>
 </section>
 
 <section class="center">
     <h3>Regressão Logística</h3>
     <ul>
-      <li>É uma forma paramétrica de estimar uma distribuição de probabilidades P(Y| X) onde \(Y \in \mathbb{R}^N\) é o espaço a estimar e \(X \in \mathbb{R}^{Nxd}\) é o espaço de atributos  </li>
+      <li>É uma forma paramétrica de estimar probabilidades P(Y| X) onde \(Y \in \mathbb{R}^N\) é o espaço a estimar e \(X \in \mathbb{R}^{Nxd}\) é o espaço de atributos  </li>
       <li>Podem ser escritos como:</li>
-      <span class="highlight">
-        \[
+      <li><span class="highlight">
+        \(
         P(Y = 1 |X) = \frac{1}{1+exp(\beta_0+\Sigma_{i=1}^{d} \beta_i X_i)})
-      \]</span> e 
-      <span class="highlight">
-        \[
+      \)</span> e </li>
+      <li><span class="highlight">
+        \(
         P(Y = 0 |X) = \frac{exp(\beta_0+\Sigma_{i=1}^{d} \beta_i X_i}{1+exp(\beta_0+\Sigma_{i=1}^{d} \beta_i X_i)})
-      \]</span> 
+      \)</span> </li>
       <li>Os coeficientes \(\beta_i\) são otimizados para maximizar a semelhança condicional dos dados, ou seja, a probabilidade de existência de uma Observação Y na base de dados</li>
     </ul>
 </section>
@@ -452,7 +455,7 @@
         <li>1 modelo logístico para: blue vs  [green+red] </li>
         <li>1 modelo logístico para: red  vs [blue+gren]</li>
       </ul>
-      <img src="imgs/onevsall.png" width="60%" height="auto">
+      <img src="imgs/onevsall.png" width="50%" height="auto">
       <p>Obtemos uma segmentação do espaço ao combinar os diferentes modelos</p>
       
     </ul>
