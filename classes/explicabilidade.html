@@ -56,7 +56,7 @@
                 </section>
 
 
-            <section>
+            <section class="center">
                 <h3>Por que transparência é crucial?</h3>
 
                 <ul>
@@ -108,6 +108,7 @@
                         <li>Explicações pós-hoc.</li>
                         <ul>
                             <li>Ex.: LIME, SHAP, Grad-CAM.</li>
+                            <li>https://github.com/deel-ai/xplique</li>
                         </ul>
                         <li>Necessária para caixas-pretas.</li>
                         
@@ -256,7 +257,7 @@
             <p>Christina Berghegger et al., Analyzing Interpretable Visual Control Policy Search and Synthesis. ACM Trans. Evol. Learn. Optim., Qualis A2</p>
         </section>
 
-        <section>
+        <section class="center">
             <h3>Técnicas para Redes Neurais</h3>
 
             <ul>
@@ -455,8 +456,390 @@
             <p>Christina Berghegger et al., Analyzing Interpretable Visual Control Policy Search and Synthesis. ACM Trans. Evol. Learn. Optim., Qualis A2</p>
         </section>
          </section>
+
+    <section class="center">
+        <section class="center">
+            <span class="badge">Módulo 5 - parte 1</span>
+            <h1>Regressão Linear</h1>
+        </section>
+        <section class="center">
+    <h3>Regressão Linear</h3>
+
+    <p class="">
+       Utilizada para encontrar uma
+        <strong>relação linear</strong>
+        entre uma variável alvo
+        e um conjunto de atributos.
+    </p>
+
+    <h4>Objetivo</h4>
+
+    <p>
+        Modelar matematicamente a relação entre
+        as entradas e a saída.
+    </p>
+
+    <h4>Hipóteses</h4>
+
+    <ul>
+        <li class="">
+            A variável alvo deve ser uma
+            <strong>combinação linear</strong>
+            das features.
+        </li>
+
+        <li class="">
+            As variáveis explicativas devem seguir,
+            idealmente, uma distribuição normal.
+        </li>
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Tipos de Regressão Linear</h3>
+
+    <div class=" justify-center">
+        <div style="width:48%;" class=" fade-right">
+            <h4>Linear simples</h4>
+            <p>
+                Utiliza apenas
+                <strong>uma variável explicativa</strong>.
+            </p>
+
+            
+
+        </div>
+
+        <div style="width:48%;" class=" fade-left">
+            <h4>Linear múltipla</h4>
+            <p>
+                Utiliza
+                <strong>múltiplas variáveis</strong>.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+  <section class="center">
+    <h3>Regressão linear simples</h3>
+
+    <p>Encontrar os coeficientes <i>a</i> e <i>b</i> que minimizem o erro entre um alvo \(Y \in \mathbb{R}^N\) que seja linearmente dependente de um dado observacional \(X \in \mathbb{R}^{Nx1} \) independente</p>
+    <span class="highlight">\(Y = aX + b\)</span>
+    <img src="imgs/regressao_linear_simples.png" width="80%" height="auto">
+  </section> 
+
+
+  <section class="center">
+    <h3>Regressão linear múltipla</h3>
+
+    <p>Generalização da regressao linear simples para múltiplas variáveis \(X \in \mathbb{R}^{Nxd} \) </p>
+    <span class="highlight">\(Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 ... + \beta_d X_d + \epsilon \)  </span>
+    <img src="imgs/regressao_linear_simples.png" width="80%" height="auto">
+    <p>Os coeficientes \( \beta \) são obtidos por algum algoritmo de otimização, como o gradiente descendente </p>
+  </section> 
+
+
+
+  <section class="center">
+    <h3>Regressão Logística - base</h3>
+    <ul>
+      <li>Aplicação da regressão linear para a classificação binária</li>
+      <li>Utiliza uma função sigmóide (logística) para estimar a probabilidade de pertencimento a uma classe</li>
+      <ul>
+        <li>Saída entre 0 e 1</li>
+        <li>Se o valor é 0.5, classe 1</li>
+        <li>Senão, classe 0</li>
+    </ul>
+    </ul>
+    <span class="highlight"> \[y = \frac{1}{1+e^{-x} \in [0,1]}\] </span>
+    <img src="imgs/sigmoid.jpeg" width="40%" height="auto">
+</section>
+
+<section class="center">
+    <h3>Regressão Logística</h3>
+    <ul>
+      <li>É uma forma paramétrica de estimar uma distribuição de probabilidades P(Y| X) onde \(Y \in \mathbb{R}^N\) é o espaço a estimar e \(X \in \mathbb{R}^{Nxd}\) é o espaço de atributos  </li>
+      <li>Podem ser escritos como:</li>
+      <span class="highlight">
+        \[
+        P(Y = 1 |X) = \frac{1}{1+exp(\beta_0+\Sigma_{i=1}^{d} \beta_i X_i)})
+      \]</span> e 
+      <span class="highlight">
+        \[
+        P(Y = 0 |X) = \frac{exp(\beta_0+\Sigma_{i=1}^{d} \beta_i X_i}{1+exp(\beta_0+\Sigma_{i=1}^{d} \beta_i X_i)})
+      \]</span> 
+      <li>Os coeficientes \(\beta_i\) são otimizados para maximizar a semelhança condicional dos dados, ou seja, a probabilidade de existência de uma Observação Y na base de dados</li>
+    </ul>
+</section>
+
+
+<section class="center">
+    <h3>Regressão Logística - multiclasse</h3>
+    <ul>
+      <li>Estratégia "um contra todos"</li>
+      <ul>
+        <li>Achar um modelo que separe bem 1 classe das demais</li>
+      </ul>
+      <li>Separação de 3 classes "[green, blue, red]"</li>
+      <ul>
+        <li>1 modelo logístico para: green vs [blue+red] </li>
+        <li>1 modelo logístico para: blue vs  [green+red] </li>
+        <li>1 modelo logístico para: red  vs [blue+gren]</li>
+      </ul>
+      <img src="imgs/onevsall.png" width="60%" height="auto">
+      <p>Obtemos uma segmentação do espaço ao combinar os diferentes modelos</p>
+      
+    </ul>
+</section>
+
+<section class="center">
+        <h3>Prós e contras</h3>
+        
+        <ul>
+          <li><span style="color: green;">Prós: </li></span>
+          <ul>
+            <li>Facilidade de interpretação</li>
+            <li>Eficiente computacionalmente</li>
+            <li>Pouco sensível ao sobreajuste</li>
+            <li>Não necessita de normalização (transformação dos dados em pré-processamento)</li>
+          </ul>
+            <li><span style="color: red;">Contras: </li></span>
+            <ul>
+              <li>Supõe linearidade</li>
+              <li>Sensível ao desiquilibrio na quantidade de dados por classes</li>
+              <li>Performance decai a medida que os dados ficam mais complexos</li>
+              <li>Sensível a dados atípicos </li>
+          </ul>
+        </ul>
+        
+    </section>
+    </section>
+
+    <section class="center">
+        <section class="center">
+        <span class="badge">Módulo 5 - parte 1</span>
+        <h1>Árvores de decisão</h1>
+  </section>
+  <!-- Decision Trees -->
+    <section class="center">
+        <h3>Árvores de Decisão</h3>
+        <ul>
+          <li>Explicar um valor a partir de uma série de variáveis discretas ou contínuas.</li>
+          <li>Estamos, portanto, diante de um caso muito clássico de matriz X com m observações e n
+variáveis, associada a um vetor Y a ser explicado. Os valores de Y podem ser de
+dois tipos:</li>
+        <ul>
+          <li>contínuos: árvore de regressão</li>
+          <li>qualitativos: árvore de classificação</li>
+        </ul>
+    </section>
+    
+
+  <section class="center">
+    <h3>Exemplo - iris</h3>
+    <img src="imgs/dt_iris.png" width="80%" height="auto">
+  </section> 
+
+
+  <section class="center">
+    <h3>Árvore de Decisão - iris</h3>
+    <img src="imgs/dt_iris_2.png" width="100%" height="auto">
+  </section> 
+
+
+
+  <section class="center">
+    <h3>Árvore de Decisão - construção</h3>
+    <ul>
+      <ul><p><strong>Escolher a variável de divisão:</strong> selecionando as variáveis, da
+mais discriminante à menos discriminante</p></ul>
+      <ul><p><strong>Como lidar com variáveis contínuas:</strong> “Dividir” a variável contínua para que seus valores inferiores e superiores caractarizem nós distintos.</p></ul>
+    <li><strong>Como definir o tamanho da árvore:</strong> </li>
+        <ul>
+          <p>encontrar o equilíbrio entre sobreaprendizado e árvore trivial. Processo de pós-poda.</p>
+          <p>em função des algoritmos CHAID (Chi-2), CART e C4.5 sobre o índice, do <span class="highlight">gini</span> (índice de concentração) e sobre o conceito de entropia (teoria da
+informação)</p>
+        </ul>
+    </ul>
+  </section> 
+
+    <section class="center">
+        <h3>Construção com o Gini</h3>
+       <ul>
+        <li>Cálculo do índice de Gini no conjunto completo:</li>
+        <span class="highlight">
+          \[
+        Gini(D) = 1 - \Sigma_{i-1}^k P_i^2
+        \]</span>
+        <li><span class="highlight">
+          \(
+        P_i = \frac{Nb_{classe_i}}{Nb_{lines}}
+        \)</span>: probabilidade de pertencer à classe i</li>
+        <li>O índice de Gini mede, portanto, a incerteza em
+um conjunto de dados:</li>
+            <ul>
+              <li>Se for zero, o conjunto tem só uma única classe</li>
+              <li>Quanto maior for, mais diversificado o conjunto é em termos de classes</li>
+            </ul>
+        </ul>
+    </section>
+
+    <section class="center">
+        <h3>Construção com o Gini</h3>
+        <img src="imgs/dt_gini.png" width="25%" height="auto">
+        <ul>
+          <li>Calcular o índice para o conjunto todo (successes)</li>
+          <li>P(sim)= 5/10</li>
+          <li>P(não)= ?/10</li>
+          <li>\(Gini(D)= 1 - (5/10)^2 - (5/10)^2\) = ?</li>
+        </ul>
+    </section>
+
+
+    <section class="center">
+        <h3>Construção com o Gini</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+          <img src="imgs/dt_gini.png" width="50%" height="auto">
+          <ul>
+            <li>Selecionar o atributo para a divisão</li>
+            <li>Calcular o valor Gini ponderado para cada atributo:</li>
+            <li><span class="highlight"> \( Gini_{ponderado}= \Sigma_{j=1}^k \frac{N_j}{N}Gini(j) \)</span></li>
+            <ul>
+              <li>onde \(k\) é o número de nós filhos resultante da atribuição</li>
+              <li>\(N_j\) é o número de amostras no nó filho </li>
+              <li>\(N\) é o número de amostras no nó pai </li>
+              <li>\(Gini(j)\) é  índice do nó filho \(j\) </li>
+            </ul>
+            <li>Selecione o atributo com o menor índice</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <section class="center">
+        <h3>Para o atributo "Revision time"</h3>
+        <img src="imgs/dt_gini_2.png" width="25%" height="auto">
+        <ul>
+          <li><span style="color: red;">"High": 4 - \(Gini_{high} = 1 - (2/4)^2 - (2/4)^2 = 0.5\)</span></li>
+          <li><span style="color: green;">"Medium": 3 - \(Gini_{medium} = 1 - (2/3)^2 - (1/3)^2 = 0.444\)</span></li>
+          <li><span style="color: blue;">"Low": 3 - \(Gini_{low} = 1 - (1/3)^2 - (2/3)^2 = 0.444\)</span></li>
+        </ul>
+        <p>"Revision time": \( 4/10 * 0.5 + 3/10 *0.444 + 3/10 *0.444 = 0.4664   \)</p>
+    </section>
+
+    <section class="center">
+        <h3>Para o atributo "Break time"</h3>
+        <img src="imgs/dt_gini_3.png" width="25%" height="auto">
+        <ul>
+          <li><span style="color: red;">"High": 3 - \(Gini_{high} = 1 - (3/3)^2 - (0/3)^2 = 0.\)</span></li>
+          <li><span style="color: green;">"Medium": 3 - \(Gini_{medium} = 1 - (2/3)^2 - (1/3)^2 = 0.444\)</span></li>
+          <li><span style="color: blue;">"Low": 4 - \(Gini_{low} = 1 - (0/4)^2 - (4/4)^2 = 0.\)</span></li>
+        </ul>
+        <p>"Break time": \( 3/10 * 0. + 3/10 *0.444 + 4/10 *0. = 0.1332   \)</p>
+    </section>
+
+
+
+    <section class="center">
+        <h3>Seleção de atributos - pt. 1</h3>
+        <img src="imgs/dt_gini.png" width="25%" height="auto">
+        <ul>
+            <li>"Revision time": \( 4/10 * 0.5 + 3/10 *0.444 + 3/10 *0.444 = 0.4664   \)</li>
+            <li>"Break time": \( 3/10 * 0. + 3/10 *0.444 + 4/10 *0. = 0.1332   \)</li>
+        <li>Selecionamos  "Break time", porque ele tem o valor menor. </li>
+        <ul>
+          <li>O atributo "Low": tem o menor valor, 0. e mais elementos, 4.</li>  
+        </ul>
+    </section>
+
+
+    <section class="center">
+        <h3>Seleção de atributos - pt. 2</h3>
+        
+        <ul>
+          <li>Atribuição de classes por probabilidade de valor</li>
+        </ul>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+          <img src="imgs/df_gini_4.png" width="40%" height="auto">
+          <img src="imgs/dt_gini_5.png" width="40%" height="auto">
+      </div>
+        
+    </section>
+
+
+
+    <section class="center">
+        <h3>Recomeço - "Class = No" - pt. 1</h3>
+        <img src="imgs/dt_gini_7.png" width="30%" height="auto">
+        <ul>
+          <li><span style="color: red;">"High": 2 - \(Gini_{high} = 1 - (3/2)^2 - (0/2)^2 = 0.\)</span></li>
+          <li><span style="color: green;">"Medium": 2 - \(Gini_{medium} = 1 - (2/2)^2 - (0/2)^2 = 0.\)</span></li>
+          <li><span style="color: blue;">"Low": 2 - \(Gini_{low} = 1 - (1/2)^2 - (1/2)^2 = 0.5\)</span></li>
+        </ul>
+        <li>"Revision time": \( 2/6 * 0. + 2/6 *0.444 + 2/6 *0.5 = 0.16667   \)</li>
+    </section>
+
+
+    <section class="center">
+        <h3>Recomeço - "Class = No" - pt. 2</h3>
+        <img src="imgs/dt_gini_7.png" width="30%" height="auto">
+        <ul>
+          <li><span style="color: red;">"High": 3 - \(Gini_{high} = 1 - (3/3)^2 - (0/3)^2 = 0.\)</span></li>
+          <li><span style="color: green;">"Medium": 3 - \(Gini_{medium} = 1 - (2/3)^2 - (1/3)^2 = 0.444\)</span></li>
+          <li><span style="color: blue;">"Low": 0 - \(Gini_{low} = 1 - (0/4)^2 - (4/4)^2 = 0.\)</span></li>
+        </ul>
+        <li>"Break time": \( 3/6 * 0. + 3/6 *0.444 + 0/6 *0. = 0.2222   \)</li>
+    </section>
+
+
+    <section class="center">
+        <h3>Recomeço - "Class = No" - pt. 3</h3>
+        
+        <ul>
+          <li>"Revision time": \(  0.16667  \)</li>
+            <li>"Break time": \( 0.2222   \)</li>
+        </ul>
+        <p>Agora, selecionamos "Revision time" - atributo "high"</p>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+          <img src="imgs/dt_gini_ç.png" width="50%" height="auto" alt="Decision Tree Gini 8">
+          <img src="imgs/dt_gini_6.png" width="80%" height="auto" alt="Decision Tree Gini 6">
+      </div>
+    </section>
+
+    <section class="center">
+        <h3>Prós e contras</h3>
+        
+        <ul>
+          <li><span style="color: green;">Prós: </li></span>
+          <ul>
+            <li>Facilidade de interpretação</li>
+            <li>Não é necessária normalização</li>
+            <li>Tratamento de valores ausentes</li>
+            <li>Flexibilidade com tipos de dados</li>
+          </ul>
+            <li><span style="color: red;">Contras: </li></span>
+            <ul>
+              <li>Forte tendência ao sobreaprendizado</li>
+              <li>Instabilidade diante da variabilidade dos dados</li>
+              <li>Complexidade computacional</li>
+              <li>Sensível ao ruído</li>
+          </ul>
+        </ul>
+        
+    </section>
+
+    </section>
+    <section class="center">
+    <section class="center">
+        <span class="badge">Módulo 5 - parte 1</span>
+        <h1>Programação genética</h1>
+  </section>
+
+  </section>
+
         <!-- REFERÊNCIAS -->
-         <section>
+         <section class="center">
         <section class="center">
             <h2>REFERÊNCIAS</h2>
             <p>Molnar, Christoph, Interpretable Machine Learning, https://christophm.github.io/interpretable-ml-book/</p>
@@ -464,6 +847,8 @@
             <p>Sylvain Cussat-Blanc et al., On Interpretability in Multimodal Biomedical Image Analysis,  Genetic Programming Theory and Practice XXI.</p>
             <p>Christina Berghegger et al., Analyzing Interpretable Visual Control Policy Search and Synthesis. ACM Trans. Evol. Learn. Optim., Qualis A2</p>
         </section>
+
+
 </div>
 </div>
 

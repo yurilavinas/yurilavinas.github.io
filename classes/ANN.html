@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aprendizado de Máquina - ANN</title>
+  <title>Rede neurais</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <style>
     :root { --primary: #00d9ff; --secondary: #a855f7; --accent: #10b981; --warning: #ffcc00; }
     .reveal h1, .reveal h2 { color: var(--primary); text-transform: none; }
@@ -86,8 +87,9 @@
     </section>
   
     <section class="center">
-        <img src="imgs/modelo_mat.jpeg" width="60%" height="auto">
+        
         <h3>Modelo</h3>
+        <img src="imgs/modelo_mat.jpeg" width="60%" height="auto">
         <!-- <div class="formula">
             z = Σ(wᵢxᵢ) + b
             <br><br>
@@ -134,9 +136,7 @@ def forward(self, inputs):
 <section class="center">
     <h3>Sigmoid</h3>
 
-    <div class="formula">
-            σ(x) = 1 / (1 + e<sup>−x</sup>)
-    </div>
+    <span class="highlight"> \( y = \frac{1}{1+e^{-x}} \in [0,1] \) </span>
     <br><br>
     <img src="imgs/sigmoid.jpeg" width="40%" height="auto">
     <ul>
@@ -159,9 +159,8 @@ def forward(self, inputs):
 <section class="center">
     <h3>ReLU</h3>
 
-    <div class="formula">
-        f(x)=max(0,x)
-    </div>
+    <span class="highlight">  \(f(x) = max(0,x)\) </span>
+
     <br><br>
     <img src="imgs/relu.jpeg" width="40%" height="auto">
     <ul>
@@ -176,7 +175,7 @@ def forward(self, inputs):
 
     <ul>
         <li>Computacionalmente eficiente</li>
-        <li>Acelera SGD</li>
+        <li>Acelera o gradient descent</li>
         <li>Excelente desempenho prático</li>
         <li>Reduz o problema do gradiente desaparecendo</li>
     </ul>
@@ -196,16 +195,16 @@ def forward(self, inputs):
 </section>
 
 <section class="center">
-    <h3>Learning</h3>
+    <h3>Aprendizado</h3>
 <pre><code class="language-python">
 Randomly initialize the weights wi
 While TRUE
-Take a example (x,c) from S
-Calculate the output o fo the network for the input x
-Update the weights of the network as follows:
-for i in [1, n]:
-wi = wi + * (c - o) * x ɛ i
-end for
+    Take a example (x,c) from S
+    Calculate the output o fo the network for the input x
+    Update the weights of the network as follows:
+    for i in [1, n]:
+    wi = wi + * (c - o) * x ɛ i
+    end for
 End while
 </code>
 </pre>
@@ -281,18 +280,18 @@ End while
     </ul>
 </section>
 
-<section class="center">
+<!-- <section class="center">
     <h3>Rede de 2 Camadas</h3>
 
-    <div class="formula">
-        f = W₂ \, \sigma(W₁x + b₁) + b₂
-    </div>
-
+    <span class="highlight">
+       \( f = W₂ , \sigma(W₁x + b₁) + b₂\)
+    </span>
+    <br>
     <ul>
         <li>Uma camada oculta</li>
         <li>Uma camada de saída</li>
     </ul>
-</section>
+</section> -->
 
 <section class="center">
     <h3>Poder de Representação</h3>
@@ -319,9 +318,20 @@ End while
 
 </section>
 
-<section class="center">
-    <h3>Quantos Parâmetros?</h3>
 
+
+<section class="center">
+    <h3>Escolhendo Arquiteturas</h3>
+
+    <ul>
+        <li>Mais camadas → maior abstração</li>
+        <ul>
+          <li>Maior custo computacional</li>
+        </ul>
+        <li>Mais neurônios → maior capacidade</li>
+        <li>Regularização torna-se essencial</li>
+    </ul>
+    <br><br>
     <div class="formula">
         Parâmetros = Pesos + Biases
     </div>
@@ -332,29 +342,32 @@ End while
     </ul>
 </section>
 
-<section class="center">
-    <h3>Escolhendo Arquiteturas</h3>
 
-    <ul>
-        <li>Mais camadas → maior abstração</li>
-        <li>Mais neurônios → maior capacidade</li>
-        <li>Regularização torna-se essencial</li>
-    </ul>
-</section>
+    <section class="center">
+        <h3>Exemplos de arquiteturas</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+          <img src="imgs/resnet_idea.png" width="40%" height="auto">
+          <img src="imgs/Net_for_image.png" width="75%" height="auto">
+      </div>
+
+        <div class="box">
+            Quanto maior a profundidade, maior a capacidade de representação.
+        </div>
+        
+    </section>
+
 
   
   <section class="center">
-      <h3>Problemas Comuns</h3>
+      <h3>Problemas comuns</h3>
       <ul>
           <li>Vanishing Gradients</li>
           <li>Exploding Gradients</li>
           <li>Learning Rate inadequada</li>
           <li>Má inicialização</li>
       </ul>
-  </section>
-  
-<section class="center">
-    <h3>Otimizadores Modernos</h3>
+    <br><br>
+    <h4>Otimizadores Modernos</h4>
     <ul>
         <li>SGD</li>
         <li>Momentum</li>
@@ -778,7 +791,8 @@ nn.Sequential(
 </section>
 
 <section class="center">
-    <h2>LSTM e GRU</h2>
+    <h3>LSTM e Gate Recurrent Units (GRU)</h3>
+    <img src="imgs/lstm.png" width="80%" height="auto">
     <ul>
         <li>Resolvem gradientes desaparecendo</li>
         <li>Excelente para séries temporais e NLP</li>

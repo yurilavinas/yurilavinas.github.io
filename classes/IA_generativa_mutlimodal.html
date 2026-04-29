@@ -1,0 +1,857 @@
+  <!DOCTYPE html>
+   <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA generativa e multimodal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+    <style>
+      :root { --primary: #00d9ff; --secondary: #a855f7; --accent: #10b981; --warning: #ffcc00; }
+      .reveal h1, .reveal h2 { color: var(--primary); text-transform: none; }
+      .reveal h3 { color: var(--secondary); text-transform: none; }
+      .reveal section { text-align: left; font-size: 0.9em; }
+      .center { text-align: center !important; }
+      .box { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; border-left: 5px solid var(--primary); margin: 15px 0; }
+      .warning-box { border-left-color: var(--warning); background: rgba(255, 204, 0, 0.05); }
+      .highlight { color: var(--warning); font-weight: bold; }
+      .formula { background: #111; padding: 10px; border-radius: 8px; display: inline-block; font-family: 'Courier New', monospace; color: var(--accent); }
+      .timeline { color: #888; font-size: 0.6em; font-weight: bold; text-transform: uppercase; }
+    </style>
+  </head>
+  <body>
+  <div class="reveal">
+  <div class="slides">
+
+  <section class="center">
+    <section class="center">
+      <span class="badge">Módulo 5 - parte 1</span>
+      <h1>Inteligência Artificial Generativa e Multimodal</h1>
+    </section>
+
+    <section class="center">
+      <h3>Revisão</h3>
+      <ul>
+        <li>Perceptron</li>
+        <li>Multicamadas</li>
+        <li>LSTM</li>
+        <li>Autoenconders</li>
+        <li>Detecção de Imagem</li>
+      </ul>
+    </section>
+    
+    <section class="center">
+        <h3>Perceptron</h3>
+        <ul>
+            <li>Primeiro modelo funcional de rede neural</li>
+            <li>Resolve problemas linearmente separáveis</li>
+            <li>Base das redes modernas</li>
+        </ul>
+        <h3>Características</h3>
+        <ul>
+            <li>Entradas ponderadas.</li>
+            <li>Função de ativação.</li>
+            <li>Saída binária.</li>
+        </ul>
+    </section>
+
+    <section class="center">
+        
+        <h3>Modelo</h3>
+        <img src="imgs/modelo_mat.jpeg" width="60%" height="auto">
+        <!-- <div class="formula">
+            z = Σ(wᵢxᵢ) + b
+            <br><br>
+            y = f(z)
+            <br><br>
+            w ← w + α(y - ŷ)x
+        </div> -->
+          <pre><code class="language-python"></code>
+def forward(self, inputs):
+    cell_body_sum = np.sum(inputs * self.weights) + self.bias
+    activation_val = 1.0 / (1.0 + math.exp(-cell_body_sum)) # sigmoid activation function
+    return activation_val
+          </code></pre>
+    </section>
+
+    <section class="center">
+        <h3>Arquitetura Multicamadas</h3>
+        <img src="imgs/layers.png" width="60%" height="auto">
+        <ul>
+            <li>Camada de entrada</li>
+            <li>Camadas ocultas</li>
+            <li>Camada de saída</li>
+        </ul>
+        
+    </section>
+
+
+
+
+<section class="center">
+    <h3>Escolhendo Arquiteturas</h3>
+
+    <ul>
+        <li>Mais camadas → maior abstração</li>
+        <ul>
+          <li>Maior custo computacional</li>
+        </ul>
+        <li>Mais neurônios → maior capacidade</li>
+        <li>Regularização torna-se essencial</li>
+    </ul>
+    <br><br>
+    <div class="formula">
+        Parâmetros = Pesos + Biases
+    </div>
+
+    <ul>
+        <li>Mede a capacidade da rede</li>
+        <li>Redes modernas possuem milhões ou bilhões</li>
+    </ul>
+</section>
+
+
+    <section class="center">
+        <h3>Exemplos de arquiteturas</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+          <img src="imgs/resnet_idea.png" width="40%" height="auto">
+          <img src="imgs/Net_for_image.png" width="75%" height="auto">
+      </div>
+
+        <div class="box">
+            Quanto maior a profundidade, maior a capacidade de representação.
+        </div>
+        
+    </section>
+
+<section class="center">
+    <h3>LSTM e Gate Recurrent Units (GRU)</h3>
+    <img src="imgs/lstm.png" width="80%" height="auto">
+    <ul>
+        <li>Resolvem gradientes desaparecendo</li>
+        <li>Excelente para séries temporais e NLP</li>
+    </ul>
+</section>
+
+
+    <section class="center">
+      <h3>Autoenconders</h3>
+      <img src="imgs/autoenconder.png" width="80%" height="auto">
+    </section>
+    
+    <section class="center">
+        <h3>Unet</h3>
+        <!-- <div style="display: flex; gap: 20px; align-items: flex-start;"> -->
+          <img src="imgs/unet.png" width="50%" height="auto">
+          <img src="imgs/segmentation.png" width="50%" height="auto">
+      <!-- </div> -->
+    </section>
+
+    <section class="center">
+        <h3>Detecção de imagens - Yolo</h3>
+        <!-- <div style="display: flex; gap: 20px; align-items: flex-start;"> -->
+          <img src="imgs/yolo.png" width="50%" height="auto">
+          <img src="imgs/deteccao-imgs.png" width="50%" height="auto">
+      <!-- </div> -->
+    </section>
+  </section>
+
+  <!-- GAN -->
+   <section class="center">
+    <section class="center">
+      <span class="badge">Módulo 5 - parte 2</span>
+      <h1>Generative Adversarial Networks (GANs)</h1>
+      <h2>Imagens para imagens</h2>
+    </section>
+
+    <section class="center">
+      <h3>Inteligência artificial generativa</h3>
+      <ul>
+        <li>Criar conteúdo novo, baseado em padrões identificados nos conjuntos de dados de treinamento.</li>
+        <ul>
+        <li>Jogos</li>
+        <li>Texto</li>
+        <li>Vídeos</li>
+        <li>Audio</li>
+        <li>Vibe coding</li>
+      </ul>
+      </ul>
+    </section>
+
+
+    <section class="center">
+    <h3>Evolução dos Modelos Generativos</h3>
+
+      <h4>2014: Revolução na Geração de Dados</h4>
+
+      <p>Variational Autoencoders (VAE) e Generative Adversarial Networks (GANs) -  geração "realista" de dados complexos, especialmente imagens.</p>
+
+  <h4>Deep Generative Modeling</h4>
+
+      <ul>
+          <li>Geração de imagens sintéticas de alta qualidade</li>
+          <li>Aprendizado de distribuições complexas</li>
+          <li>Aplicações em arte, medicina e visão computacional</li>
+      </ul>
+      <h4>2017–2018: A Era dos Transformers</h4>
+
+      <p>Transformer - Generative Pre-trained Transformers (GPT, 2018)</p>
+</section>
+
+  <section class="center">
+      <h3>Classe de IA generativa</h3>
+       <img src="imgs/deep_gen_models.png" width="80%" height="auto">
+    </section>
+
+
+
+  <section class="center">
+      <h3>GANs na prática</h3>
+       <div style="display: flex; gap: 20px; align-items: flex-start;">
+          <img src="imgs/thisperson.png" width="50%" height="auto">
+          <img src="imgs/thisperson_fail.png" width="50%" height="auto">
+      </div>
+      <a href="https://this-person-does-not-exist.com/en" target="_blank">https://this-person-does-not-exist.com/en</a>
+    </section>
+
+
+
+  <section class="center">
+      <h3>GANs</h3>
+      <div style="display: flex; gap: 20px; align-items: flex-start;">
+          <ul>
+        <li>2 redes:</li>
+          <ol>
+            <li>Gerador: tenta gerar amostras que pareçam “reais”</li>
+            <li>Discriminador: tenta  determinar se uma amostra é “real” ou não</li>
+        </ol>
+       </ul>
+          <img src="imgs/gan_schema_2.png" width="50%" height="auto">
+      </div>
+       <p>Normalmente utilizado para a geração de imagens</p>
+       
+    </section>
+
+  <section class="center">
+      <h3>GANs - funcionamento</h3>
+      <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <ul>
+          <li>A saída da rede deve ser uma imagem</li>
+          <li>Convolução descendente</li>
+          <li>Convolução transposta ascendente</li>
+          <li>Entrada: ruído gerado aleatoriamente</li>
+       </ul>
+      <img src="imgs/gan_ark.png" width="80%" height="auto">
+       </div>
+    </section>
+
+  <section class="center">
+      <h3>Gerador/discriminador - arquitetura (images)</h3>
+      <div style="display: flex; gap: 20px; align-items: flex-start;">
+      1. <img src="imgs/unet.png" width="40%" height="auto">  
+      2. <img src="imgs/gan_cnn.png" width="65%" height="auto">
+       </div>
+       <ol>
+          <li>O gerador é normalmente uma Unet</li>
+          <li>O discriminador é normalmente uma CNN</li>
+       </ol>
+    </section>
+
+    <section class="center">
+      <h3>Treinamento</h3>
+      <ul>
+        <li>Duas funções de perda (loss)</li>
+        <ul>
+          <li>O discriminador avalia sua capacidade de distinguir as amostras reais das geradas artificialmente</li>
+          <li>O gerador avalia sua capacidade de enganar o discriminador, fazendo-o acreditar que as amostras geradas artificialmente são reais</li>
+        </ul>
+      </ul>
+      <ul>
+        <li>Treinamento</li>
+        <ul>
+          <li>Gerar um conjunto de imagens</li>
+          <li>Classificar as imagens geradas e reais</li>
+          <li>Calcular os gradientes para o discriminador e o gerador</li>
+          <li>Ajustar os pesos das duas redes</li>
+        </ul>
+    </ul>
+    </section>
+
+  
+
+</section>
+
+
+
+
+  <!-- Modelo de linguagem-->
+
+  <section class="center">
+    <section class="center">
+      <span class="badge">Módulo 5 - parte 2</span>
+      <h1>Geração de texto</h1>
+      <h2>Embendings</h2>
+      <h2>RNNs</h2>
+      <h2>Tranfomers</h2>
+      <h2>Aprendizado por transferência</h2>
+    </section>
+
+    <section class="center">
+      <h3>O que é um modelo de modelo de linguagem?</h3>
+      <ul>
+        <li>Modelo que prevê a próxima palavra em uma sequência.</li>
+        <li>Exemplo: "Eu quero um copo de ___"</li>
+        <li>Aprende probabilidade de sequências de palavras.</li>
+      </ul>
+      <img src="imgs/lang_models.png" width="50%" height="auto">
+    </section>
+
+
+    <section class="center">
+      <h3>Rede Neural para modelos de linguagem</h3>
+      <ul>
+        <li>Representações densas (embeddings)</li>
+        <li>Generalização melhor</li>
+        <li>Aprendizado de padrões complexos</li>
+        <li>Substituem contagem por aprendizado</li>
+      </ul>
+      <img src="imgs/NN_langModel.png" width="70%" height="auto">
+    </section>
+
+
+    <section class="center">
+      <h3>Medindo probabilidades</h3>
+      <p>Redes Neurais Recorrentes (RNN)</p>
+      <img src="imgs/rrn_nlp.png" width="80%" height="auto">
+    </section>
+
+    <section class="center">
+      <h3>Treinando uma RNN</h3>
+      <img src="imgs/treinando_RNN.png" width="80%" height="auto">
+    </section>
+
+    
+    <section class="center">
+      <h3>Gerando texto com uma RNN</h3>
+      <img src="imgs/gerando_txt_langModel.png" width="80%" height="auto">
+    </section>
+
+    
+    <section class="center">
+      <h3>GPT</h3>
+      <ul>
+        <li>Os GTPs fazem parte da família dos LLMs (Large Language Models)</li>
+        <ul>
+          <li>Eles se baseiam em Transformers pré-treinados em conjuntos de dados gigantescos</li>
+          <li>O princípio consiste em gerar a próxima palavra em uma sequência, estimando a distribuição das possíveis palavras seguintes</li>
+          <li>A próxima palavra é escolhida por amostragem dessa distribuição</li>
+          <li>O mecanismo de atenção é o elemento determinante dos Transformers</li>
+        </ul>
+      </ul>
+    </section>
+
+    <section class="center">
+    <h3>Mecanismo de atenção</h3>
+  <div style="display: flex; gap: 50px; align-items: flex-start;">
+    <div>
+        <ul>
+          <li>Cada palavra é projetada em três representações vetoriais </li>
+          <ul>
+            <li><span style="color: red;">Q</span>uery: O que estou procurando?</li>
+            <li><span style="color: red;">K</span>ey: O que eu ofereço?</li>
+            <li><span style="color: red;">V</span>alue: Qual informação transmitir?</li>
+          </ul>
+          <li> O mecanismo mede a importância relativa entre as palavras da sequência.</li>
+          <li> Cada palavra "olha" para todas as outras e decide em quais deve focar. </li>
+        </ul>
+      </div>
+      <img src="imgs/attention_3.png" width="40%" height="auto">
+    </div>
+</section>
+
+  <section class="center">
+      <h3>Exemplo - atenção</h3>
+      <div class="r-stack">
+        <img class="fade-in-then-out" src="imgs/attention_1.png" width="55%" height="auto">
+        <img class="fragment fade-in" src="imgs/attention_2.png" width="60%" height="auto">
+      </div>
+  </section>
+
+    <section class="center">
+      <h3>Transformers</h3>
+      <img src="imgs/transformers.png" width="40%" height="auto">
+    </section>
+
+
+    <section class="center">
+      <h3>Transformers decoder</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+          
+          <ul>
+            <li>O decodificador Transformer é uma pilha de blocos de decodificadores Transformer.</li>
+            <li>Cada bloco consiste em:</li>
+            <ul>
+              <li>Atenção</li>
+            <li>Soma e normalização</li>
+            <li>Feed-forward</li>
+            <li>Soma e normalização</li>
+            </ul>
+          </ul>
+          <img src="imgs/transf_decoder.png" width="50%" height="auto">
+      </div>
+    </section>
+
+    <section class="center">
+      <h3>Transformers encoder</h3>
+      <div style="display: flex; gap: 20px; align-items: flex-start;">
+          <ul>
+            <li>O encoder Transformer é similar ao decodificador</li>
+            <ul>
+              <li>Sem a máscara da camada de atenção</li>
+            </ul>
+          </ul>
+          <img src="imgs/transf_encoder.png" width="30%" height="auto">
+      </div>
+    </section>
+
+  
+
+  <section class="center">
+    <h3>Aprendizado por transferência</h3>
+
+    <ul>
+        <li class="">
+            Aprendizado profundo (transformers incluso) funciona muito bem, mas exige grandes volumes de dados anotados.
+        </li>
+        <li class="">
+            Na prática, esses datasets raramente estão disponíveis.
+        </li>
+        <li class="">
+            <strong>Poucos dados</strong> e <strong>poucas anotações</strong>.
+        </li>
+      </ul>
+    <br><br>
+    <h4>A Solução</h4>
+    <p class="">
+        Utilizamos <strong>Aprendizado por transferência (transfer learning)</strong>.
+    </p>
+    <ul>
+        <li class="">Treinamos um modelo em um grande dataset genérico.
+        </li>
+        <li class="">
+            Depois, ajustamos o modelo para uma tarefa específica.
+        </li>
+    </ul>
+    <p class="">
+        Isso é chamado de<strong>Fine-Tuning</strong>.
+    </p>
+  </section>
+
+  <section class="center">
+    <h3> O que é Aprendizado por transferência?</h3>
+
+    <p>Aprendizado por transferência consiste em reutilizar o conhecimento aprendido em uma tarefa para resolver outra tarefa semelhante.</p>
+    <p> Em vez de treinar um modelo do zero, aproveitamos parâmetros já aprendidos em grandes bases de dados.</p>
+
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+          <img src="imgs/cat.png" width="40%" height="auto">
+          <img src="imgs/tigre.png" width="40%" height="auto">
+      </div>
+
+</section>
+
+
+  <section class="center">
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+      <div>
+        <h3>Como funciona?</h3>
+            <ul>
+            <li>Camadas Iniciais</li>
+              <ul>
+                  <li>Detectam padrões genéricos</li>
+                  <li>Bordas</li>
+                  <li>Texturas</li>
+                  <li>Formas simples</li>
+              </ul>
+            </ul>
+            <ul>
+              <li>Camadas Profundas</li>
+              <ul>
+                  <li>Aprendem padrões específicos</li>
+                  <li>Olhos</li>
+                  <li>Pelagem</li>
+                  <li>Objetos particulares</li>
+              </ul>
+            </ul>
+
+        <p style="margin-top: 40px;">
+            Reutilizamos as primeiras camadas e ajustamos apenas as últimas para uma nova tarefa.
+        </p>
+      </div>
+      <img src="imgs/transfer_learning.png" width="50%" height="auto">
+    </div>
+    
+
+  </section>
+
+
+  <section class="center">
+    <h3>Algoritmo</h3>
+    <img src="imgs/transfer_learning_como.png" width="50%" height="auto">
+      <div>
+        <ol>
+            <li>
+                Iniciar com uma
+                <strong>rede pré-treinada</strong>.
+            </li>
+
+            <li>
+                Dividir a rede em duas partes:
+                <ul>
+                    <li><strong>Feature Extractor</strong> (camadas congeladas)</li>
+                    <li><strong>Classificador</strong> (camadas treináveis)</li>
+                </ul>
+            </li>
+
+            <li>
+                Treinar o classificador
+                com o novo conjunto de dados.
+            </li>
+
+            <li>
+                Opcionalmente, descongelar parte da rede
+                e realizar o <strong>fine-tuning</strong>
+                com uma taxa de aprendizado menor.
+            </li>
+        </ol>
+      </div>
+      
+    <!-- </div> -->
+  </section>
+</section>
+
+   <section class="center">
+    <section class="center">
+        <span class="badge">Módulo 4 - parte 2</span>
+        <h1>Aprendizado profundo multimodal</h1>
+    </section>
+
+    <section class="center">
+    <h3>O que é Multimodalidade?</h3>
+    <blockquote style="margin-top: 30px;">
+        Envolve múltiplos modos ou modalidades
+        de informação.
+    </blockquote>
+    <p>
+        Em NLP, multimodalidade significa combinar
+        <strong>texto</strong> com uma ou mais modalidades,
+        como imagens, áudio ou fala.
+    </p>
+
+    <p>
+        Neste curso, focaremos principalmente em
+        <strong>texto + imagens</strong>.
+    </p>
+</section>
+
+<section class="center">
+    <h3>Por que Multimodalidade Importa?</h3>
+
+    <ul>
+        <li>Experiência humana é naturalmente multimodal.</li>
+        <li>Internet e aplicações modernas são multimodais.</li>
+        <li>Dados multimodais carregam mais informação.</li>
+    </ul>
+
+    <p style="margin-top: 30px;">
+        A multimodalidade é uma das principais fronteiras
+        dos modelos fundacionais modernos.
+    </p>
+</section>
+
+
+<section class="center">
+    <h3>Aplicações Multimodais</h3>
+    Focando em multimodalidade texto \(/to\) imagem:
+    <ul>
+        <li>Geração por recuperação (Image Captioning): imagem ↔ texto</li>
+        <li>Geração de legenda (Image Captioning): imagem → texto</li>
+        <li>Geração de imagem: texto → imagem</li>
+        <li>Visual Question Answering (VQA): imagem + texto → resposta</li>
+        <li>Classificação multimodal imagem+texto -> texto</li>
+        <li> Complementação de informação: imagem+text -> texto</li>
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Aplicações</h3>
+
+    <p style="margin-top: 40px;">
+        Multimodalidade é uma das áreas mais ativas da IA atual,
+        embora seja considerada "a próxima grande revolução"
+        há quase uma década - gpt1, 2018.
+    </p>
+    <img src="imgs/gpt1.png" width="80%" height="auto">
+</section>
+
+<section class="center">
+    <h3>Desafios da Multimodalidade</h3>
+
+    <ul>
+        <li>Uma modalidade pode dominar as demais.</li>
+        <li>Modalidades adicionais podem introduzir ruído.</li>
+        <li>Treinar modelos de aprendizado profundo multimodais em larga escala só se tornou viável recentemente.</li>
+        <li>Construir sistemas multimodais eficazes é uma tarefa complexa.</li>
+    </ul>
+</section>
+
+
+  <section class="center">
+      <h3>GAN  para texto</h3>
+      <img src="imgs/gan_txt.png" width="70%" height="auto">
+      <p>  Uma das arquiteturas propostas é uma GAN que utiliza texto como condição:
+    </p>
+    <ul>
+        <li>A codificação do textoé fornecida tanto ao gerador quanto ao Discriminator.</li>
+        <li>Permite que a geração de imagens seja guiada pela descrição textual.</li>
+    </ul>
+</section>
+
+
+      <section class="center">
+      <h3>Texto e imagens</h3>
+      <img src="imgs/texto_to_img.png" width="50%" height="auto">
+      </ul>
+    </section>
+
+<section class="center">
+    <h3>Modelos para Image Captioning</h3>
+
+    <p>
+        O objetivo é gerar uma descrição textual para o conteúdo visual de uma imagem.
+    </p>
+
+    <p>
+        Isso exige compreender a imagem, relacionar elementos visuais e textuais e produzir uma sequência de palavras.
+    </p>
+    
+    <p>Evolução dos Modelos</p>
+
+    <ul>
+        <li>Abordagens iniciais utilizavam templates fixos.</li>
+        <li>Posteriormente, CNNs passaram a extrair características visuais.</li>
+        <li>RNNs e LSTMs tornaram-se o padrão para geração de texto.</li>
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Arquitetura Clássica</h3>
+
+    <p>
+        A imagem é codificada por uma CNN,
+        enquanto a legenda é gerada
+        sequencialmente por uma RNN ou LSTM.
+    </p>
+
+    <p>
+        Essa abordagem dominou a área durante vários anos.
+    </p>
+    
+</section>
+
+
+
+
+
+    <section class="center">
+    <h3>Image Captioning</h3>
+
+    <p>
+        Meshed-Memory Transformer (M², transformer de memória em malha - tradução livre) Proposto em 2020, o
+        <strong>Meshed-Memory Transformer</strong>
+        representa um avanço importante
+        em Image Captioning.
+    </p>
+
+    <p>
+        Seu objetivo é melhorar tanto
+        o encoder visual quanto
+        o decoder textual.
+    </p>
+    <h4>Principais Inovações</h4>
+
+    <ul>
+        <li>Representações visuais em múltiplos níveis.</li>
+        <li>Captura relações locais e globais entre regiões da imagem.</li>
+        <li>Utiliza memória persistente para armazenar conhecimento prévio.</li>
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Conectividade em Malha</h3>
+<img src="imgs/M2_img_captioning.png" width="40%" height="auto">
+    <p>
+        Um mecanismo de gating aprende
+        quanto cada nível visual
+        deve contribuir na geração da legenda.
+    </p>
+
+    <p>
+        Isso cria conexões densas entre
+        as camadas do encoder e do decoder.
+    </p>
+</section>
+
+<section class="center">
+    <h3>M² Transformer: Arquitetura Geral</h3>
+    <img src="imgs/meshed_ark.png" width="80%" height="auto">
+    <p>
+        O modelo é composto por dois módulos principais:
+    </p>
+
+    <ul>
+        <li><strong>Encoder</strong>: processa regiões da imagem.</li>
+        <li><strong>Decoder</strong>: gera a legenda palavra por palavra.</li>
+    </ul>
+
+    <p>
+        Ambos possuem múltiplas camadas empilhadas.
+    </p>
+</section>
+
+<section class="center">
+    <h3>Fluxo de Processamento</h3>
+
+    <ol>
+        <li>A imagem é dividida em regiões visuais.</li>
+        <li>O encoder aprende relações entre essas regiões.</li>
+        <li>O decoder utiliza essas representações para gerar o texto.</li>
+        <li>A legenda é produzida sequencialmente.</li>
+    </ol>
+    <p>
+        Todas as interações entre palavras
+        e regiões visuais são modeladas
+        por atenção.
+    </p>
+    <p>
+        O encoder incorpora vetores de memória
+        treináveis que armazenam
+        conhecimento prévio.
+    </p>
+
+    <p>
+        Isso permite capturar relações visuais
+        além das presentes na imagem.
+    </p>
+</section>
+
+
+<section class="center">
+    <img src="imgs/M2_exemplo.png" width="80%" height="auto">
+</section>    
+
+</section>
+    
+
+
+  </section>
+
+<section class="center">
+  <section class="center">
+    <h2>O Conceito de Difusão</h2>
+    <p>
+        A ideia de difusão tem origem na física:
+    </p>
+    <ul>
+        <li>Corresponde ao processo de difusão de partículas de um fluido em outro.</li>
+        <li>Normalmente possui caráter <strong>unidirecional</strong> — não pode ser revertido.</li>
+        <li>Sohl-Dickstein et al. (2015) mostraram que, sob certas condições, a reversão é possível.</li>
+    </ul>
+</section>
+
+<section class="center">
+    <h2>Difusão como Cadeia de Markov</h2>
+    <p>
+        Se o processo de difusão for modelado como uma cadeia de Markov com ruído gaussiano adicionado em passos consecutivos, é possível aprender a revertê-lo.
+    </p>
+    <p>
+        Esse processo reverso é exatamente como o modelo gera imagens a partir de ruído aleatório puro.
+    </p>
+</section>
+
+<section class="center">
+    <h2>Processo de Difusão Progressiva</h2>
+    <p>
+        A cadeia de Markov parte de x₀ e adiciona ruído gaussiano em t passos:
+    </p>
+    <ul>
+        <li>A distribuição no passo t é condicionada no passo anterior xt−1.</li>
+        <li>O parâmetro (1 − αt) controla a <strong>magnitude do ruído</strong> adicionado em cada passo.</li>
+        <li>Após t passos, os dados tornam-se ruído puro.</li>
+    </ul>
+</section>
+
+<section class="center">
+    <h2>Processo Reverso Aprendido</h2>
+    <p>
+        Para reconstruir xt−1 a partir de xt, o modelo aprende a estimar a distribuição dos passos anteriores:
+    </p>
+    <ul>
+        <li>A distribuição reversa é aproximada por uma <strong>gaussiana parametrizada</strong> por θ.</li>
+        <li><strong>μθ</strong>: função de média proposta por Ho et al. (2020).</li>
+        <li><strong>Σθ</strong>: função de variância aprendida.</li>
+    </ul>
+</section>
+<section class="center">
+        <h3>Exemplo</h3>
+        <img src="imgs/diffusion_ex.png" width="60%" height="auto">
+        <ul>
+          <li>Entrada de texto: ‘a red cube on top of a blue cube’ </li>
+          <li>Ramesh, A., Dhariwal, P., Nichol, A., Chu, C., and Chen, M. (2022a). Hierar-
+chical text-conditional image generation with clip latents</li></ul>
+</section>
+
+
+    
+  <section class="center">
+      Referências:
+      <ul>
+          <li> Chris Manning, CS224N, Natural Language Processing with Deep Learning - https://web.stanford.edu/class/cs224n/</li>
+          <li>https://arxiv.org/pdf/1505.04597</li>
+
+          <li>https://arxiv.org/abs/1506.02640</li>
+          <li>M2 MIAGE IDA - S1] CM Deep learning</li>
+          <li>https://en.wikipedia.org/wiki/Autoencoder#/media/File:VAE_Basic.png</li>
+          <li>https://en.wikipedia.org/wiki/Generative_adversarial_network</li>
+          <li>https://en.wikipedia.org/wiki/Generative_AI</li>
+          <li>https://web.stanford.edu/class/cs224n/slides_w26/cs224n-2026-lecture05-transformers.pdf</li>
+      </ul>
+      
+  </section>
+  </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({ 
+      hash: true, 
+      slideNumber: 'c/t',
+      transition: 'slide',
+      controls: true,
+      progress: true
+    });
+  </script>
+
+  <!-- mathjax -->
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/x-mathjax-config">
+        // Make responsive
+        MathJax.Hub.Config({
+        "HTML-CSS": { linebreaks: { automatic: true } },
+        "SVG": { linebreaks: { automatic: true } },
+        });
+      </script>
+
+  </body>
+  </html>

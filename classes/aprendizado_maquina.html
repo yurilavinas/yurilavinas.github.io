@@ -36,7 +36,7 @@
     <h3>Ideia Central</h3>
     <ul>
       <li>Aprender com regularidades nos dados</li>
-      <li>Usar exemplos passados para prever o futuro</li>
+      <li>Usar exemplos passados para estimar o futuro</li>
       <li>Medir similaridade entre objetos</li>
     </ul>
 </section>
@@ -59,7 +59,7 @@
         <ul>
             <li>
                 os pesos são ajustados minimizando o erro entre a
-                saída esperada e a saída prevista no conjunto de dados
+                saída esperada e a saída estimada no conjunto de dados
                 de treinamento.
             </li>
         </ul>
@@ -326,27 +326,159 @@
     </ul>
   </section>
 
+
   <section class="center">
     <h3>Regressão Linear</h3>
-    <ul>
-      <li></li>
-    </ul>
-  </section>
 
-  <!-- <section class="center">
-    <h3>Regressão Logística</h3>
+    <p class="">
+       Utilizada para encontrar uma
+        <strong>relação linear</strong>
+        entre uma variável alvo
+        e um conjunto de atributos.
+    </p>
+
+    <h4>Objetivo</h4>
+
+    <p>
+        Modelar matematicamente a relação entre
+        as entradas e a saída.
+    </p>
+
+    <h4>Hipóteses</h4>
+
     <ul>
-      <li></li>
+        <li class="">
+            A variável alvo deve ser uma
+            <strong>combinação linear</strong>
+            das features.
+        </li>
+
+        <li class="">
+            As variáveis explicativas devem seguir,
+            idealmente, uma distribuição normal.
+        </li>
     </ul>
-  </section>
+</section>
+
+<section class="center">
+    <h3>Tipos de Regressão Linear</h3>
+
+    <div class=" justify-center">
+        <div style="width:48%;" class=" fade-right">
+            <h4>Linear simples</h4>
+            <p>
+                Utiliza apenas
+                <strong>uma variável explicativa</strong>.
+            </p>
+
+            
+
+        </div>
+
+        <div style="width:48%;" class=" fade-left">
+            <h4>Linear múltipla</h4>
+            <p>
+                Utiliza
+                <strong>múltiplas variáveis</strong>.
+            </p>
+        </div>
+    </div>
+</section>
 
 
   <section class="center">
-    <h3>SVM</h3>
+    <h3>Regressão linear simples</h3>
+
+    <p>Encontrar os coeficientes <i>a</i> e <i>b</i> que minimizem o erro entre um alvo \(Y \in \mathbb{R}^N\) que seja linearmente dependente de um dado observacional \(X \in \mathbb{R}^{Nx1} \) independente</p>
+    <span class="highlight">\(Y = aX + b\)</span>
+    <img src="imgs/regressao_linear_simples.png" width="80%" height="auto">
+  </section> 
+
+
+  <section class="center">
+    <h3>Regressão linear múltipla</h3>
+
+    <p>Generalização da regressao linear simples para múltiplas variáveis \(X \in \mathbb{R}^{Nxd} \) </p>
+    <span class="highlight">\(Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 ... + \beta_d X_d + \epsilon \)  </span>
+    <img src="imgs/regressao_linear_simples.png" width="80%" height="auto">
+    <p>Os coeficientes \( \beta \) são obtidos por algum algoritmo de otimização, como o gradiente descendente </p>
+  </section> 
+
+
+
+  <section class="center">
+    <h3>Regressão Logística - base</h3>
     <ul>
-      <li></li>
+      <li>Aplicação da regressão linear para a classificação binária</li>
+      <li>Utiliza uma função sigmóide (logística) para estimar a probabilidade de pertencimento a uma classe</li>
+      <ul>
+        <li>Saída entre 0 e 1</li>
+        <li>Se o valor é 0.5, classe 1</li>
+        <li>Senão, classe 0</li>
     </ul>
-  </section> -->
+    </ul>
+    <span class="highlight"> \[y = \frac{1}{1+e^{-x} \in [0,1]}\] </span>
+    <img src="imgs/sigmoid.jpeg" width="40%" height="auto">
+</section>
+
+<section class="center">
+    <h3>Regressão Logística</h3>
+    <ul>
+      <li>É uma forma paramétrica de estimar uma distribuição de probabilidades P(Y| X) onde \(Y \in \mathbb{R}^N\) é o espaço a estimar e \(X \in \mathbb{R}^{Nxd}\) é o espaço de atributos  </li>
+      <li>Podem ser escritos como:</li>
+      <span class="highlight">
+        \[
+        P(Y = 1 |X) = \frac{1}{1+exp(\beta_0+\Sigma_{i=1}^{d} \beta_i X_i)})
+      \]</span> e 
+      <span class="highlight">
+        \[
+        P(Y = 0 |X) = \frac{exp(\beta_0+\Sigma_{i=1}^{d} \beta_i X_i}{1+exp(\beta_0+\Sigma_{i=1}^{d} \beta_i X_i)})
+      \]</span> 
+      <li>Os coeficientes \(\beta_i\) são otimizados para maximizar a semelhança condicional dos dados, ou seja, a probabilidade de existência de uma Observação Y na base de dados</li>
+    </ul>
+</section>
+
+
+<section class="center">
+    <h3>Regressão Logística - multiclasse</h3>
+    <ul>
+      <li>Estratégia "um contra todos"</li>
+      <ul>
+        <li>Achar um modelo que separe bem 1 classe das demais</li>
+      </ul>
+      <li>Separação de 3 classes "[green, blue, red]"</li>
+      <ul>
+        <li>1 modelo logístico para: green vs [blue+red] </li>
+        <li>1 modelo logístico para: blue vs  [green+red] </li>
+        <li>1 modelo logístico para: red  vs [blue+gren]</li>
+      </ul>
+      <img src="imgs/onevsall.png" width="60%" height="auto">
+      <p>Obtemos uma segmentação do espaço ao combinar os diferentes modelos</p>
+      
+    </ul>
+</section>
+
+<section class="center">
+        <h3>Prós e contras</h3>
+        
+        <ul>
+          <li><span style="color: green;">Prós: </li></span>
+          <ul>
+            <li>Facilidade de interpretação</li>
+            <li>Eficiente computacionalmente</li>
+            <li>Pouco sensível ao sobreajuste</li>
+            <li>Não necessita de normalização (transformação dos dados em pré-processamento)</li>
+          </ul>
+            <li><span style="color: red;">Contras: </li></span>
+            <ul>
+              <li>Supõe linearidade</li>
+              <li>Sensível ao desiquilibrio na quantidade de dados por classes</li>
+              <li>Performance decai a medida que os dados ficam mais complexos</li>
+              <li>Sensível a dados atípicos </li>
+          </ul>
+        </ul>
+        
+    </section>
 
 
   <section class="center">
@@ -555,7 +687,6 @@ um conjunto de dados:</li>
             <li>Não é necessária normalização</li>
             <li>Tratamento de valores ausentes</li>
             <li>Flexibilidade com tipos de dados</li>
-            <li>Robustez contra valores atípicos</li>
           </ul>
             <li><span style="color: red;">Contras: </li></span>
             <ul>
@@ -568,13 +699,187 @@ um conjunto de dados:</li>
         
     </section>
 
+    <!-- random forest  -->
+<section class="center">
+  <h3> Floresta aleatória (Random Forest)</h3>
+  <h4>Ensemble Learning com Árvores de Decisão</h4>
+  <p>
+    Combinação de múltiplas árvores para obter estimativa
+    mais precisas e generalizáveis.
+  </p>
+  <p>Várias árvores \(\to\) floresta...</p>
+</section>
 
+<section class="center">
+  <h3>Introdução às Métodos Ensemble</h3>
+
+  <blockquote>
+    "Se apenas um médico recomendar uma cirurgia,
+    você provavelmente procurará uma segunda opinião."
+  </blockquote>
+
+  <p class="">
+    Floresta aleatória segue exatamente esse princípio:
+    combinar vários modelos independentes.
+  </p>
+
+  <ul>
+    <li class="">Múltiplos especialistas</li>
+    <li class="">Visões complementares</li>
+    <li class="">Decisão final por consenso (agregação)</li>
+  </ul>
+</section>
+
+<section class="center">
+  <h3>Por que usar vários modelos?</h3>
+
+  <div class="r-hstack justify-center">
+    <div style="width:45%;">
+      <span style="color: red;"><p>Árvore Única</p></span>
+      <ul>
+        <li>Mais sensível à ruídos</li>
+        <li>Maior variância</li>
+        <li>Overfitting</li>
+      </ul>
+    </div>
+
+    <div style="width:45%;" class="">
+      <span style="color: green;"><p>Floresta aleatória</p></span>
+      <ul>
+        <li>Menor variância</li>
+        <li>Maior generalização</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="center">
+  <h3>Floresta aleatória (random forest)</h3>
+
+  <span style="color: green;"><p class="">Random</p></span>
+  <p class="">
+    Cada árvore é treinada usando dados e atributos selecionados aleatoriamente.
+  </p>
+  <span style="color: green;"><p>Forest</p></span>
+  <p>Conjunto de árvores de decisão.</p>
+</section>
+
+<section class="center">
+  <h3>As duas fontes de aleatoriedade</h3>
+
+      <p>Bagging</p>
+      <ul>
+        <li>Linhas aleatórias</li>
+      </ul>
+      <p>Feature Sampling</p>
+      <ul>
+        <li>Colunas aleatórias</li>
+      </ul>
+      <p>Função de agregação</p>
+      <ul>
+        <li>Classificação: voto</li>
+        <li>Regressão: média</li>
+      </ul>
+
+</section>
+
+<section class="center">
+  <h3>Algoritmo de Treinamento</h3>
+
+  <ol>
+    <li class="">Gerar uma amostra bootstrap</li>
+    <li class="">Treinar uma árvore</li>
+    <li class="">Selecionar atributos aleatórios em cada nó</li>
+    <li class="">Repetir N vezes</li>
+    <li class="">Combinar todas as árvores</li>
+  </ol>
+</section>
+
+<section class="center">
+  <h3>Exemplo - pt. 1</h3>
+    <p>Seleciona um primeiro grupo de dados aleatoriamente</p>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+      <img src="imgs/rf_ex_1.png" width="40%" height="auto">
+      <img src="imgs/rf_ex_2.png" width="40%" height="auto">
+    </div>
+</section>
+
+<section class="center">
+  <h3>Exemplo - pt. 2</h3>
+  <p>Seleciona um outro grupo de dados aleatoriamente</p>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+      <img src="imgs/rf_ex_3.png" width="40%" height="auto">
+      <img src="imgs/rf_ex_4.png" width="40%" height="auto">
+    </div>
+</section>
+
+<section class="center">
+  <h3>Exemplo #1 - voto</h3>
+  <p>Cada ávore faz a sua estimativa:</p>
+  <ul>
+    <li>Estudante com: </li>
+    <ul>
+      <li>RevisionTime = Medium</li>
+      <li>BreakTime = Medium</li>
+    </ul>
+  </ul>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+      <img src="imgs/rf_ex_2.png" width="40%" height="auto">
+      <p>Voto: YES</p>
+      <img src="imgs/rf_ex_4.png" width="40%" height="auto">
+      <p>Voto: YES</p>
+    </div>
+    <p>Classificação: Yes</p>
+</section>
+
+<section class="center">
+        <h3>Prós e contras</h3>
+        
+        <ul>
+          <li><span style="color: green;">Prós: </li></span>
+          <ul>
+            <li>Menor sobreaprendizado em comparação com árvores de decisão</li>
+            <li>Maior precisão</li>
+            <li>Gerenciamento de valores ausentes</li>
+            <li>Flexibilidade com tipos de dados</li>
+            <li>Capaz de lidar com volumes muito grandes de dados</li>
+          </ul>
+            <li><span style="color: red;">Contras: </li></span>
+            <ul>
+              <li>Complexidade computacional</li>
+              <li>Baixa interpretabilidade</li>
+              <li>Muitos hiperparâmetros</li>
+              <li>Risco de sobreaprendizado</li>
+          </ul>
+        </ul>   
+    </section>
+
+
+<section class="center">
+  <h3>Exemplo #2 - voto</h3>
+  <p>Cada ávore faz a sua estimativa:</p>
+  <ul>
+    <li>Estudante com: </li>
+    <ul>
+      <li>RevisionTime = High</li>
+      <li>BreakTime = Low</li>
+    </ul>
+  </ul>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+      <img src="imgs/rf_ex_2.png" width="40%" height="auto">
+      <p>Voto: NO</p>
+      <img src="imgs/rf_ex_4.png" width="40%" height="auto">
+      <p>Voto: YES</p>
+    </div>
+    <p>Classificação: aleatoria entre No/Yes</p>
+</section>
 
 
 
 </section>
 
-<section>
+
+<section class="center">
 
 
 <section class="center">
@@ -838,6 +1143,7 @@ sejam o mais semelhantes possível</li>
 
 
   <section class="center">
+    <!-- <div class="fragment fade-in-then-out"></div> -->
     <h3>Exemplo interativo</h3>
     <img src="imgs/ex_juntos.png" width="100%" height="auto">
   </section>
@@ -1071,12 +1377,14 @@ número de vizinhos considerados (geralmente entre 5 e 50) pelo algoritmo</li>
 </section>
 
 
-<section>
+<section class="center">
     Referências:
     <ul>
         <li>https://www.each.usp.br/lauretto/cursoR2017/04-AnaliseCluster.pdf</li>
         <li>MIT6.034 Patrick H. Winston https://ocw.mit.edu/courses/6-034-artificial-intelligence-fall-2010/</li>
         <li>Stanford CS class CS231n: Convolutional Neural Networks for Visual Recognition http://vision.stanford.edu/teaching/cs231n</li>
+        <li>[INFO - M1 MIAGE - S2] CM Intelligence artificielle</li>
+        <li>[INFO - M1 MIAGE - S2] CM Analyse et visualisation de données</li>
     </ul>
 </section>
 
