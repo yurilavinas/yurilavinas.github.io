@@ -5,12 +5,13 @@
 
   
 ### Aulas
-  1. [Representação de Conhecimento e Raciocínio em Inteligência<!-- ta ruim --> Artificial](https://yurilavinas.github.io/classes/expert_system.html)
-  2. [Buscas Heurísticas e Avançadas](https://yurilavinas.github.io/classes/buscas.html) <!-- ta ruim -->
-  3. [Aprendizado de Máquina-Supervisionado/Não Supervisionado](https://yurilavinas.github.io/classes/learning.html)
-  4. [Redes Neurais Artificiais Profundas (ANN/DL/CNN/RNN)](https://yurilavinas.github.io/classes/ANN.html)
-  5. [Processamento de Linguagem Natural (modelo de linguagem/RNN)](https://yurilavinas.github.io/classes/nlp_word_vectors.html)
-  6. Inteligência Artificial Generativa
-  7. Aprendizado Profundo Multimodal
-  8. Aprendizado Profundo e Reconhecimento e Identificação de Objetos
+  1. [Representação de Conhecimento e Raciocínio em Inteligência Artificial](https://yurilavinas.github.io/classes/Conhecimento_raciocinio_IA.html)
+  2. [Buscas Heurísticas e Avançadas](https://yurilavinas.github.io/classes/buscas.html) 
+  3. Aprendizado por Reforço!!!
+  4. [Aprendizado de Máquina-Supervisionado/Não Supervisionado](https://yurilavinas.github.io/classes/learning.html) 
+  5. [Redes Neurais Artificiais Profundas (ANN/DL/CNN/RNN)](https://yurilavinas.github.io/classes/ANN.html)
+  6. [Processamento de Linguagem Natural (modelo de linguagem/RNN)](https://yurilavinas.github.io/classes/nlp_word_vectors.html)
+  7. [Inteligência Artificial Generativa e Multimodal](https://yurilavinas.github.io/classes/IA_generativa_mutlimodal.html)
+  8. Aprendizado Profundo e Reconhecimento e Identificação de Objetos - [ANN/DL](https://yurilavinas.github.io/classes/ANN.html)
+  [+GANs](https://yurilavinas.github.io/classes/IA_generativa_mutlimodal.html)
   9. [Explicabilidade em Inteligência Artificial](https://yurilavinas.github.io/classes/explicabilidade.html)
