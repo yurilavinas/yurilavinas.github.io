@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pesquisa Arborescente — IA</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --surface: #161616;
+    --surface2: #1e1e1e;
+    --border: #2a2a2a;
+    --accent: #e8622a;
+    --accent2: #f0a060;
+    --text: #e8e4dc;
+    --text-muted: #8a8680;
+    --text-dim: #5a5650;
+    --code-bg: #1a1a1a;
+    --green: #5ba87a;
+    --blue: #5a8fbf;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* ── SLIDE CONTAINER ── */
+  .slides {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .slide {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    min-height: 540px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── SLIDE HEADER ── */
+  .slide-header {
+    padding: 28px 40px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  .slide-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+    padding-top: 4px;
+  }
+
+  .slide-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.25;
+  }
+
+  .slide-title em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+    border-radius: 2px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  /* ── SLIDE BODY ── */
+  .slide-body {
+    padding: 32px 40px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .slide-body.two-col {
+    flex-direction: row;
+    gap: 40px;
+    align-items: flex-start;
+  }
+
+  .col {
+    flex: 1;
+  }
+
+  /* ── TITLE SLIDE ── */
+  .slide-title-page {
+    background: var(--surface);
+    min-height: 540px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-title-page::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -80px;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent) 8%, transparent), transparent 70%);
+    pointer-events: none;
+  }
+
+  .course-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .main-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .main-title span {
+    color: var(--accent);
+  }
+
+  .sub-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 24px;
+    font-style: italic;
+    color: var(--text-muted);
+    margin-bottom: 48px;
+  }
+
+  .title-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .title-meta-item {
+    font-size: 13px;
+    color: var(--text-muted);
+    display: flex;
+    gap: 10px;
+  }
+
+  .title-meta-item .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    width: 60px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+
+  .divider-line {
+    width: 48px;
+    height: 2px;
+    background: var(--accent);
+    margin: 32px 0;
+  }
+
+  /* ── SECTION DIVIDER SLIDE ── */
+  .slide-section {
+    background: var(--surface);
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    gap: 24px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-section::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--accent);
+  }
+
+  .section-num {
+    font-family: 'Instrument Serif', serif;
+    font-size: 72px;
+    color: var(--text-dim);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 90px;
+    text-align: center;
+  }
+
+  .section-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .section-category {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .section-name {
+    font-family: 'Instrument Serif', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+
+  p {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  /* ── LISTS ── */
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  ul li {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    padding-left: 18px;
+    position: relative;
+  }
+
+  ul li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--text-dim);
+    font-size: 13px;
+  }
+
+  ul li strong {
+    color: var(--text);
+  }
+
+  ul.sub {
+    margin-top: 8px;
+    margin-left: 16px;
+  }
+
+  ul.sub li {
+    font-size: 14px;
+  }
+
+  ul.sub li::before {
+    content: '·';
+    color: var(--accent2);
+    font-size: 16px;
+    line-height: 1;
+    top: 1px;
+  }
+
+  /* ── DEFINITION BOX ── */
+  .def-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 3px;
+    padding: 18px 22px;
+  }
+
+  .def-box .def-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .def-box p {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  /* ── INFO CARDS ── */
+  .cards {
+    display: grid;
+    gap: 12px;
+  }
+
+  .cards.two { grid-template-columns: 1fr 1fr; }
+  .cards.three { grid-template-columns: 1fr 1fr 1fr; }
+
+  .card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 18px 20px;
+  }
+
+  .card-icon {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .card p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  /* ── CODE BLOCK ── */
+  .code-block {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 20px 24px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.75;
+    color: #c8c4bc;
+    overflow-x: auto;
+    white-space: pre;
+  }
+
+  .code-block .kw { color: #e8622a; }
+  .code-block .fn { color: #f0a060; }
+  .code-block .cm { color: #5a5650; font-style: italic; }
+  .code-block .str { color: #5ba87a; }
+  .code-block .ln { color: #3a3a3a; margin-right: 16px; user-select: none; }
+
+  .code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 24px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-bottom: none;
+    border-radius: 3px 3px 0 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  .code-header + .code-block {
+    border-radius: 0 0 3px 3px;
+  }
+
+  /* ── TABLE ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .data-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .data-table td {
+    padding: 9px 14px;
+    color: var(--text-muted);
+    border-bottom: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .data-table tr:last-child td { border-bottom: none; }
+
+  .data-table .highlight td {
+    color: var(--text);
+    background: color-mix(in srgb, var(--accent) 6%, transparent);
+  }
+
+  .data-table .td-mono {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+  }
+
+  /* ── ALGO BOX ── */
+  .algo-box {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .algo-header {
+    padding: 10px 20px;
+    background: color-mix(in srgb, var(--accent) 10%, var(--surface2));
+    border-bottom: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+  }
+
+  .algo-body {
+    padding: 16px 20px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    line-height: 1.9;
+    color: #c8c4bc;
+  }
+
+  .algo-body .line { display: flex; gap: 12px; }
+  .algo-body .ln { color: #3a3a3a; width: 20px; text-align: right; flex-shrink: 0; }
+  .algo-body .indent1 { padding-left: 20px; }
+  .algo-body .indent2 { padding-left: 40px; }
+  .algo-body .indent3 { padding-left: 60px; }
+  .algo-body .kw { color: #e8622a; }
+  .algo-body .fn { color: #f0a060; }
+  .algo-body .cm { color: #4a4a4a; font-style: italic; }
+  .algo-body .str { color: #5ba87a; }
+  .algo-body .var { color: #5a8fbf; }
+
+  /* ── DIAGRAM ── */
+  .diagram-area {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* ── TREE SVG ── */
+  svg text { font-family: 'DM Mono', monospace; }
+
+  /* ── COMPARISON TABLE ── */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .compare-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 10px 16px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .compare-table td {
+    padding: 10px 16px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+    border-bottom: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+    vertical-align: top;
+  }
+
+  .compare-table tr:last-child td { border-bottom: none; }
+
+  .compare-table .prop {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 13px;
+  }
+
+  .tag-yes {
+    display: inline-block;
+    background: color-mix(in srgb, var(--green) 15%, transparent);
+    border: 1px solid color-mix(in srgb, var(--green) 35%, transparent);
+    color: var(--green);
+    border-radius: 2px;
+    padding: 1px 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+  }
+
+  .tag-no {
+    display: inline-block;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    color: var(--accent);
+    border-radius: 2px;
+    padding: 1px 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+  }
+
+  .tag-cond {
+    display: inline-block;
+    background: color-mix(in srgb, var(--blue) 12%, transparent);
+    border: 1px solid color-mix(in srgb, var(--blue) 30%, transparent);
+    color: var(--blue);
+    border-radius: 2px;
+    padding: 1px 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+  }
+
+  /* ── NOTE BOX ── */
+  .note-box {
+    background: color-mix(in srgb, var(--blue) 8%, var(--surface2));
+    border: 1px solid color-mix(in srgb, var(--blue) 20%, var(--border));
+    border-left: 3px solid var(--blue);
+    border-radius: 3px;
+    padding: 14px 18px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .note-box .note-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  /* ── HEURISTIC TABLE ── */
+  .h-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+
+  .h-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 7px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .h-table td {
+    padding: 5px 12px;
+    color: var(--text-muted);
+    border-bottom: 1px solid color-mix(in srgb, var(--border) 40%, transparent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .h-table tr:last-child td { border-bottom: none; }
+  .h-table .accent-row td { color: var(--accent); }
+
+  /* ── FORMULA ── */
+  .formula {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 16px 24px;
+    text-align: center;
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    color: var(--text);
+  }
+
+  .formula .math-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-style: normal;
+    font-size: 10px;
+  }
+
+  /* ── NAV ── */
+  .nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    z-index: 100;
+  }
+
+  .nav-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    padding: 7px 18px;
+    border-radius: 2px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.04em;
+  }
+
+  .nav-btn:hover {
+    background: var(--surface2);
+    color: var(--text);
+    border-color: var(--accent);
+  }
+
+  .nav-indicator {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+    min-width: 80px;
+    text-align: center;
+  }
+
+  /* ── VISIBILITY ── */
+  .slide { display: none; }
+  .slide.active { display: flex; flex-direction: column; }
+  .slide-title-page { display: none; }
+  .slide-title-page.active { display: flex; flex-direction: column; }
+  .slide-section { display: none; }
+  .slide-section.active { display: flex; }
+
+  /* ── NODE TREE DIAGRAM ── */
+  .tree-svg { width: 100%; height: auto; }
+
+  /* ── MAZE ANALOGY ── */
+  .maze-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .maze-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 16px 18px;
+    position: relative;
+  }
+
+  .maze-card .step-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+
+  .maze-card .step-text {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.55;
+  }
+
+  .maze-card.active-card {
+    border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+    background: color-mix(in srgb, var(--accent) 5%, var(--surface2));
+  }
+
+  /* ── COMPLEXITY GRID ── */
+  .complexity-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .complexity-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 16px 18px;
+  }
+
+  .complexity-card .c-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+
+  .complexity-card .c-value {
+    font-family: 'Instrument Serif', serif;
+    font-size: 26px;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .complexity-card p {
+    font-size: 12.5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="slides">
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 0 — TÍTULO
+  ══════════════════════════════════════════════ -->
+  <div class="slide-title-page slide active" id="slide-0">
+    <div class="course-tag">IA · Master 1 MIAGE · 2025–2026</div>
+    <div class="main-title">Pesquisa<br><span>Arborescente</span></div>
+    <div class="sub-title">Inteligência Artificial</div>
+    <div class="divider-line"></div>
+    <div class="title-meta">
+      <div class="title-meta-item">
+        <span class="label">Docentes</span>
+        <span>Jean-Guy Mailly (FI) · Leila Moudjari (FA)</span>
+      </div>
+      <div class="title-meta-item">
+        <span class="label">TD</span>
+        <span>Audren Boulic-Bouadjio · Leila Moudjari · Paul Saves</span>
+      </div>
+      <div class="title-meta-item">
+        <span class="label">Temas</span>
+        <span>BFS · DFS · Custo Uniforme · A*</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 1 — SEÇÃO: INTRODUÇÃO
+  ══════════════════════════════════════════════ -->
+  <div class="slide-section slide" id="slide-1">
+    <div class="section-num">01</div>
+    <div class="section-info">
+      <div class="section-category">Seção</div>
+      <div class="section-name">Introdução</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 2 — O LABIRINTO
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="slide-2">
+    <div class="slide-header">
+      <div class="slide-number">02</div>
+      <div class="slide-title">Exemplo introdutório: <em>o labirinto</em></div>
+    </div>
+    <div class="slide-body two-col">
+      <div class="col" style="flex: 1.1;">
+        <p style="margin-bottom: 20px;">Imagine que você deve programar um robô que precisa encontrar a saída de um labirinto.</p>
+        <ul>
+          <li>O robô dispõe de <strong>4 ações</strong>: mover-se para cima, baixo, esquerda ou direita — desde que não haja uma parede.</li>
+          <li>O robô começa avançando em uma direção. Após alguns passos, fica <strong>bloqueado</strong>.</li>
+          <li>É necessário retroceder para encontrar outra opção.</li>
+          <li>Como a estrutura do labirinto é conhecida, podemos <strong>calcular todas as opções</strong> antes que o robô se mova.</li>
+        </ul>
+        <div class="note-box" style="margin-top: 20px;">
+          <div class="note-label">Ideia central</div>
+          Se desenvolvermos toda a árvore, podemos facilmente identificar a sequência de ações que leva à saída.
+        </div>
+      </div>
+      <div class="col" style="flex: 0.9;">
+        <div class="diagram-area" style="height: 100%;">
+          <svg viewBox="0 0 240 240" width="220" height="220">
+            <!-- Labirinto simplificado -->
+            <rect width="240" height="240" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+            <!-- Paredes externas -->
+            <rect x="20" y="20" width="200" height="200" fill="none" stroke="#5a5650" stroke-width="2"/>
+            <!-- Paredes internas -->
+            <line x1="60" y1="20" x2="60" y2="100" stroke="#5a5650" stroke-width="2"/>
+            <line x1="100" y1="60" x2="100" y2="140" stroke="#5a5650" stroke-width="2"/>
+            <line x1="60" y1="140" x2="140" y2="140" stroke="#5a5650" stroke-width="2"/>
+            <line x1="140" y1="60" x2="220" y2="60" stroke="#5a5650" stroke-width="2"/>
+            <line x1="140" y1="100" x2="220" y2="100" stroke="#5a5650" stroke-width="2"/>
+            <line x1="140" y1="100" x2="140" y2="220" stroke="#5a5650" stroke-width="2"/>
+            <line x1="60" y1="180" x2="140" y2="180" stroke="#5a5650" stroke-width="2"/>
+            <line x1="180" y1="140" x2="180" y2="220" stroke="#5a5650" stroke-width="2"/>
+            <!-- Robô (posição inicial) -->
+            <circle cx="40" cy="220" r="0" fill="none"/>
+            <rect x="28" y="208" width="24" height="20" rx="3" fill="none" stroke="#e8622a" stroke-width="1.5"/>
+            <circle cx="34" cy="215" r="2.5" fill="#e8622a" opacity="0.7"/>
+            <circle cx="46" cy="215" r="2.5" fill="#e8622a" opacity="0.7"/>
+            <!-- Seta de entrada -->
+            <line x1="4" y1="218" x2="22" y2="218" stroke="#e8622a" stroke-width="1.5" marker-end="url(#ar)"/>
+            <!-- Saída (topo direito) -->
+            <line x1="200" y1="4" x2="200" y2="20" stroke="#5ba87a" stroke-width="2"/>
+            <line x1="196" y1="8" x2="200" y2="3" stroke="#5ba87a" stroke-width="1.5"/>
+            <line x1="204" y1="8" x2="200" y2="3" stroke="#5ba87a" stroke-width="1.5"/>
+            <!-- Label saída -->
+            <text x="204" y="16" fill="#5ba87a" font-size="9" opacity="0.8">saída</text>
+            <!-- Label entrada -->
+            <text x="4" y="206" fill="#e8622a" font-size="9" opacity="0.8">início</text>
+            <defs>
+              <marker id="ar" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#e8622a"/>
+              </marker>
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 3 — ABORDAGEM GENÉRICA
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="slide-3">
+    <div class="slide-header">
+      <div class="slide-number">03</div>
+      <div class="slide-title">Uma abordagem <em>genérica</em></div>
+    </div>
+    <div class="slide-body">
+      <p>Os algoritmos que veremos são genéricos: em vez de um robô num labirinto, poderíamos resolver:</p>
+      <div class="cards three" style="margin-top: 4px;">
+        <div class="card">
+          <div class="card-icon">Jogo</div>
+          <div class="card-title">Taquin (puzzle)</div>
+          <p>Rearranjar peças numa grade 3×3 para atingir a configuração objetivo.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">Puzzle 3D</div>
+          <div class="card-title">Cubo de Rubik</div>
+          <p>Sequência de rotações para levar o cubo ao estado resolvido.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">Navegação</div>
+          <div class="card-title">Roteiro entre cidades</div>
+          <p>Encontrar o caminho de menor custo entre dois pontos num grafo.</p>
+        </div>
+      </div>
+      <div class="def-box" style="margin-top: 8px;">
+        <div class="def-label">O que precisamos</div>
+        <ul class="sub" style="margin-top: 4px;">
+          <li>Uma <strong>modelagem de estado</strong> (do mundo, do jogo, etc.)</li>
+          <li>Uma <strong>lista de ações</strong> disponíveis em cada estado</li>
+          <li>Uma <strong>função de transição</strong> que avalia os efeitos de cada ação</li>
+        </ul>
+      </div>
+      <div class="note-box">
+        <div class="note-label">Observação</div>
+        Métodos similares são usados quando não há certeza sobre os efeitos das ações (métodos probabilísticos) ou em situações com múltiplos agentes (jogos de 2 jogadores).
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 4 — SEÇÃO: PRINCÍPIO DE BASE
+  ══════════════════════════════════════════════ -->
+  <div class="slide-section slide" id="slide-4">
+    <div class="section-num">02</div>
+    <div class="section-info">
+      <div class="section-category">Seção</div>
+      <div class="section-name">Espaço de Estados e Modelagem</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 5 — ESPAÇO DE ESTADOS
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="slide-5">
+    <div class="slide-header">
+      <div class="slide-number">05</div>
+      <div class="slide-title">Espaço de <em>estados</em></div>
+    </div>
+    <div class="slide-body">
+      <p style="margin-bottom: 16px;">Modelamos um problema com os seguintes elementos:</p>
+      <div class="cards two">
+        <div class="card">
+          <div class="card-icon">Definição</div>
+          <div class="card-title">Conjunto de estados</div>
+          <p>Todos os estados possíveis do problema, incluindo um <strong>estado inicial</strong>.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">Transição</div>
+          <div class="card-title">Função de transição</div>
+          <p>Associa a cada par (estado, ação) o <strong>novo estado resultante</strong> da ação.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">Ações</div>
+          <div class="card-title">Ações disponíveis</div>
+          <p>Para cada estado, o conjunto de <strong>ações aplicáveis</strong>.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">Objetivo</div>
+          <div class="card-title">Teste de sucesso</div>
+          <p>Identifica os <strong>estados-objetivo</strong> (goal states).</p>
+        </div>
+      </div>
+      <div class="def-box" style="margin-top: 12px;">
+        <div class="def-label">Objetivo</div>
+        <p>Encontrar uma <strong>sequência de ações</strong> que leve do estado inicial a um estado-objetivo — de preferência, com <strong>custo mínimo</strong> quando uma função de custo estiver definida.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 6 — EXEMPLOS DE MODELAGEM
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="slide-6">
+    <div class="slide-header">
+      <div class="slide-number">06</div>
+      <div class="slide-title">Exemplos de <em>modelagem</em></div>
+    </div>
+    <div class="slide-body two-col">
+      <div class="col">
+        <h4>Taquin 3×3</h4>
+        <ul>
+          <li><strong>Estados:</strong> todas as grades 3×3 com {1,…,8} e uma casa vazia — 9! = 362.880 estados.</li>
+          <li><strong>Ações:</strong> mover a casa vazia para cima, baixo, esquerda ou direita.</li>
+          <li><strong>Objetivo:</strong> casas ordenadas de 1 a 8.</li>
+          <li><strong>Custo:</strong> 1 por movimento. Solução ótima máxima: 31 ações.</li>
+        </ul>
+        <div class="diagram-area" style="margin-top: 16px; padding: 16px;">
+          <svg viewBox="0 0 200 70" width="200">
+            <!-- Estado inicial -->
+            <text x="22" y="9" fill="#5a5650" font-size="7" text-anchor="middle">inicial</text>
+            <rect x="2" y="12" width="40" height="56" rx="2" fill="none" stroke="#2a2a2a" stroke-width="1"/>
+            <line x1="2" y1="30" x2="42" y2="30" stroke="#2a2a2a" stroke-width="0.7"/>
+            <line x1="2" y1="48" x2="42" y2="48" stroke="#2a2a2a" stroke-width="0.7"/>
+            <line x1="16" y1="12" x2="16" y2="68" stroke="#2a2a2a" stroke-width="0.7"/>
+            <line x1="28" y1="12" x2="28" y2="68" stroke="#2a2a2a" stroke-width="0.7"/>
+            <text x="9" y="25" fill="#c8c4bc" font-size="9" text-anchor="middle">7</text>
+            <text x="22" y="25" fill="#c8c4bc" font-size="9" text-anchor="middle">2</text>
+            <text x="35" y="25" fill="#c8c4bc" font-size="9" text-anchor="middle">4</text>
+            <text x="9" y="42" fill="#c8c4bc" font-size="9" text-anchor="middle">5</text>
+            <text x="22" y="42" fill="#8a8680" font-size="8" text-anchor="middle">_</text>
+            <text x="35" y="42" fill="#c8c4bc" font-size="9" text-anchor="middle">6</text>
+            <text x="9" y="60" fill="#c8c4bc" font-size="9" text-anchor="middle">8</text>
+            <text x="22" y="60" fill="#c8c4bc" font-size="9" text-anchor="middle">3</text>
+            <text x="35" y="60" fill="#c8c4bc" font-size="9" text-anchor="middle">1</text>
+            <!-- Seta -->
+            <text x="100" y="40" fill="#5a5650" font-size="9" text-anchor="middle">→</text>
+            <!-- Estado objetivo -->
+            <text x="168" y="9" fill="#5ba87a" font-size="7" text-anchor="middle">objetivo</text>
+            <rect x="148" y="12" width="40" height="56" rx="2" fill="none" stroke="#5ba87a" stroke-width="1" opacity="0.5"/>
+            <line x1="148" y1="30" x2="188" y2="30" stroke="#5ba87a" stroke-width="0.5" opacity="0.5"/>
+            <line x1="148" y1="48" x2="188" y2="48" stroke="#5ba87a" stroke-width="0.5" opacity="0.5"/>
+            <line x1="162" y1="12" x2="162" y2="68" stroke="#5ba87a" stroke-width="0.5" opacity="0.5"/>
+            <line x1="174" y1="12" x2="174" y2="68" stroke="#5ba87a" stroke-width="0.5" opacity="0.5"/>
+            <text x="155" y="25" fill="#5ba87a" font-size="9" text-anchor="middle">1</text>
+            <text x="168" y="25" fill="#5ba87a" font-size="9" text-anchor="middle">2</text>
+            <text x="181" y="25" fill="#5ba87a" font-size="9" text-anchor="middle">3</text>
+            <text x="155" y="42" fill="#5ba87a" font-size="9" text-anchor="middle">4</text>
+            <text x="168" y="42" fill="#5ba87a" font-size="9" text-anchor="middle">5</text>
+            <text x="181" y="42" fill="#5ba87a" font-size="9" text-anchor="middle">6</text>
+            <text x="155" y="60" fill="#5ba87a" font-size="9" text-anchor="middle">7</text>
+            <text x="168" y="60" fill="#5ba87a" font-size="9" text-anchor="middle">8</text>
+            <text x="181" y="60" fill="#8a8680" font-size="8" text-anchor="middle">_</text>
+          </svg>
+        </div>
+      </div>
+      <div class="col">
+        <h4>Viagem na Romênia</h4>
+        <ul>
+          <li><strong>Estados:</strong> a pessoa está numa cidade.</li>
+          <li><strong>Estado inicial:</strong> Lugoj.</li>
+          <li><strong>Ações:</strong> deslocar-se para uma cidade vizinha.</li>
+          <li><strong>Objetivo:</strong> chegar a Bucharest.</li>
+          <li><strong>Custo:</strong> distância entre as cidades (km).</li>
+        </ul>
+        <div class="def-box" style="margin-top: 16px;">
+          <div class="def-label">Fator de ramificação</div>
+          <p>O número máximo de ações disponíveis em qualquer estado. Determina o <strong>crescimento exponencial</strong> da árvore de busca.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 7 — IMPORTÂNCIA DA MODELAGEM
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="slide-7">
+    <div class="slide-header">
+      <div class="slide-number">07</div>
+      <div class="slide-title">A importância da <em>modelagem</em></div>
+    </div>
+    <div class="slide-body">
+      <p style="margin-bottom: 16px;">A forma de modelar o problema tem impacto direto sobre a eficiência da resolução.</p>
+      <h4>Exemplo: Missionários e Canibais</h4>
+      <div class="cards two" style="margin-top: 8px;">
+        <div class="card" style="border-color: color-mix(in srgb, var(--accent) 30%, var(--border));">
+          <div class="card-icon" style="color: var(--accent);">Versão 1 — Identidade</div>
+          <div class="card-title">Estado com identidade individual</div>
+          <p>Estado = identidade de M1, M2, M3, C1, C2, C3 em cada margem.</p>
+          <p style="margin-top: 8px; color: var(--accent);">→ <strong style="color: var(--accent);">21 ações</strong> possíveis (combinações de 1 ou 2 pessoas).</p>
+        </div>
+        <div class="card" style="border-color: color-mix(in srgb, var(--green) 30%, var(--border));">
+          <div class="card-icon" style="color: var(--green);">Versão 2 — Contagem</div>
+          <div class="card-title">Estado com número de pessoas</div>
+          <p>Estado = número de missionários e canibais em cada margem.</p>
+          <p style="margin-top: 8px; color: var(--green);">→ Apenas <strong style="color: var(--green);">5 ações</strong>. Fator de ramificação muito menor!</p>
+        </div>
+      </div>
+      <div class="note-box" style="margin-top: 12px;">
+        <div class="note-label">Princípio</div>
+        É preciso ter <strong>informação suficiente</strong> na modelagem — mas não em excesso. A identidade dos missionários e canibais é irrelevante para a solução; removê-la reduz drasticamente o espaço de busca.
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 8 — SEÇÃO: BUSCA NÃO-INFORMADA
+  ══════════════════════════════════════════════ -->
+  <div class="slide-section slide" id="slide-8">
+    <div class="section-num">03</div>
+    <div class="section-info">
+      <div class="section-category">Seção</div>
+      <div class="section-name">Busca Não-Informada</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 9 — PRINCÍPIO GERAL
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="slide-9">
+    <div class="slide-header">
+      <div class="slide-number">09</div>
+      <div class="slide-title">Princípio geral da <em>busca arborescente</em></div>
+    </div>
+    <div class="slide-body two-col">
+      <div class="col">
+        <div class="def-box" style="margin-bottom: 16px;">
+          <div class="def-label">Estrutura de um nó</div>
+          <ul class="sub" style="margin: 0;">
+            <li><strong>n.state</strong> — estado associado ao nó</li>
+            <li><strong>n.parent</strong> — nó que gerou este nó</li>
+            <li><strong>n.action</strong> — ação usada para gerar este nó</li>
+            <li><strong>n.depth</strong> — profundidade (ações desde a raiz)</li>
+            <li><strong>n.cost</strong> — custo acumulado (opcional)</li>
+          </ul>
+        </div>
+        <ul>
+          <li>Explorar estados a partir do estado inicial em estrutura de árvore.</li>
+          <li>Manter uma <strong>fronteira</strong>: lista dos próximos nós a explorar.</li>
+          <li>A cada etapa: retirar um nó da fronteira; se é o objetivo, terminar; senão, calcular seus sucessores e adicioná-los.</li>
+          <li>Controlar nós já explorados para evitar repetições (<strong>GraphSearch</strong>).</li>
+        </ul>
+        <div class="note-box" style="margin-top: 16px;">
+          <div class="note-label">Diferença entre algoritmos</div>
+          A distinção fundamental entre BFS, DFS e Custo Uniforme está na <strong>ordem em que os nós são inseridos e retirados</strong> da fronteira.
+        </div>
+      </div>
+      <div class="col">
+        <div class="diagram-area" style="height: 100%; min-height: 300px;">
+          <svg viewBox="0 0 220 260" width="200">
+            <!-- Árvore -->
+            <!-- Raiz -->
+            <circle cx="110" cy="24" r="14" fill="var(--surface)" stroke="var(--accent)" stroke-width="1.5"/>
+            <text x="110" y="28" fill="var(--accent)" font-size="9" text-anchor="middle">raiz</text>
+            <!-- Nível 1 -->
+            <line x1="100" y1="37" x2="62" y2="72" stroke="#3a3a3a" stroke-width="1"/>
+            <line x1="120" y1="37" x2="158" y2="72" stroke="#3a3a3a" stroke-width="1"/>
+            <circle cx="60" cy="82" r="13" fill="var(--surface)" stroke="#5a5650" stroke-width="1"/>
+            <text x="60" y="86" fill="#8a8680" font-size="8" text-anchor="middle">n1</text>
+            <circle cx="160" cy="82" r="13" fill="var(--surface)" stroke="#5a5650" stroke-width="1"/>
+            <text x="160" y="86" fill="#8a8680" font-size="8" text-anchor="middle">n2</text>
+            <!-- Etiquetas ação -->
+            <text x="74" y="57" fill="#4a4a4a" font-size="7" text-anchor="middle">a1</text>
+            <text x="147" y="57" fill="#4a4a4a" font-size="7" text-anchor="middle">a2</text>
+            <!-- Nível 2 esq -->
+            <line x1="50" y1="94" x2="30" y2="128" stroke="#3a3a3a" stroke-width="1"/>
+            <line x1="70" y1="94" x2="90" y2="128" stroke="#3a3a3a" stroke-width="1"/>
+            <circle cx="28" cy="138" r="12" fill="var(--surface)" stroke="#3a3a3a" stroke-width="1"/>
+            <text x="28" y="142" fill="#5a5650" font-size="7.5" text-anchor="middle">n3</text>
+            <circle cx="92" cy="138" r="12" fill="var(--surface)" stroke="#3a3a3a" stroke-width="1"/>
+            <text x="92" y="142" fill="#5a5650" font-size="7.5" text-anchor="middle">n4</text>
+            <!-- Nível 2 dir -->
+            <line x1="150" y1="94" x2="130" y2="128" stroke="#3a3a3a" stroke-width="1"/>
+            <line x1="170" y1="94" x2="190" y2="128" stroke="#3a3a3a" stroke-width="1"/>
+            <circle cx="128" cy="138" r="12" fill="var(--surface)" stroke="#3a3a3a" stroke-width="1"/>
+            <text x="128" y="142" fill="#5a5650" font-size="7.5" text-anchor="middle">n5</text>
+            <!-- Estado objetivo destacado -->
+            <circle cx="192" cy="138" r="12" fill="color-mix(in srgb, #5ba87a 15%, var(--surface))" stroke="#5ba87a" stroke-width="1.5"/>
+            <text x="192" y="136" fill="#5ba87a" font-size="7" text-anchor="middle">goal</text>
+            <text x="192" y="144" fill="#5ba87a" font-size="6" text-anchor="middle">✓</text>
+            <!-- Nível 3 parcial -->
+            <line x1="22" y1="149" x2="14" y2="178" stroke="#2a2a2a" stroke-width="0.8"/>
+            <line x1="34" y1="149" x2="42" y2="178" stroke="#2a2a2a" stroke-width="0.8"/>
+            <circle cx="13" cy="186" r="10" fill="var(--surface)" stroke="#2a2a2a" stroke-width="0.8"/>
+            <text x="13" y="189" fill="#3a3a3a" font-size="6.5" text-anchor="middle">…</text>
+            <circle cx="43" cy="186" r="10" fill="var(--surface)" stroke="#2a2a2a" stroke-width="0.8"/>
+            <text x="43" y="189" fill="#3a3a3a" font-size="6.5" text-anchor="middle">…</text>
+            <!-- Fronteira label -->
+            <rect x="4" y="205" width="212" height="22" rx="2" fill="color-mix(in srgb, var(--accent) 8%, transparent)" stroke="color-mix(in srgb, var(--accent) 20%, transparent)" stroke-width="1"/>
+            <text x="110" y="220" fill="var(--accent)" font-size="8" text-anchor="middle" font-family="DM Mono, monospace">fronteira = próximos nós a explorar</text>
+            <!-- legenda -->
+            <circle cx="20" cy="242" r="5" fill="none" stroke="var(--accent)" stroke-width="1.2"/>
+            <text x="30" y="245" fill="#8a8680" font-size="7.5">explorado</text>
+            <circle cx="90" cy="242" r="5" fill="color-mix(in srgb, #5ba87a 15%, var(--surface))" stroke="#5ba87a" stroke-width="1.2"/>
+            <text x="100" y="245" fill="#5ba87a" font-size="7.5">objetivo</text>
+            <circle cx="160" cy="242" r="5" fill="none" stroke="#3a3a3a" stroke-width="1"/>
+            <text x="170" y="245" fill="#5a5650" font-size="7.5">folha</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 10 — BFS
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="slide-10">
+    <div class="slide-header">
+      <div class="slide-number">10</div>
+      <div class="slide-title">Busca em Largura — <em>BFS</em></div>
+    </div>
+    <div class="slide-body two-col">
+      <div class="col" style="flex: 1.1;">
+        <ul style="margin-bottom: 16px;">
+          <li>Exploração <strong>nível por nível</strong>: raiz → filhos → netos → …</li>
+          <li>Fronteira funciona como uma <strong>fila (FIFO)</strong>: inserção no final, remoção no início.</li>
+        </ul>
+        <div class="algo-box" style="margin-bottom: 16px;">
+          <div class="algo-header">Algoritmo BFS</div>
+          <div class="algo-body">
+            <div class="line"><span class="ln">1</span><span><span class="kw">frontier</span> ← fila com nó raiz</span></div>
+            <div class="line"><span class="ln">2</span><span><span class="kw">while</span> frontier <span class="kw">não vazia</span>:</span></div>
+            <div class="line"><span class="ln">3</span><span class="indent1"><span class="var">n</span> ← <span class="fn">frontier.pop(0)</span> <span class="cm">// remove do início</span></span></div>
+            <div class="line"><span class="ln">4</span><span class="indent1"><span class="kw">if</span> goal(<span class="var">n</span>): <span class="kw">return</span> <span class="var">n</span></span></div>
+            <div class="line"><span class="ln">5</span><span class="indent1"><span class="kw">for</span> cada ação <span class="kw">em</span> <span class="fn">actions</span>(<span class="var">n</span>):</span></div>
+            <div class="line"><span class="ln">6</span><span class="indent2">filho ← <span class="fn">result</span>(<span class="var">n</span>, ação)</span></div>
+            <div class="line"><span class="ln">7</span><span class="indent2"><span class="kw">if</span> filho não explorado:</span></div>
+            <div class="line"><span class="ln">8</span><span class="indent3"><span class="fn">frontier.append</span>(filho)</span></div>
+          </div>
+        </div>
+        <div class="complexity-grid">
+          <div class="complexity-card">
+            <div class="c-label">Completude</div>
+            <div class="c-value"><span class="tag-yes">Sim</span></div>
+            <p style="margin-top: 6px;">Garante encontrar solução se existir.</p>
+          </div>
+          <div class="complexity-card">
+            <div class="c-label">Tempo / Espaço</div>
+            <div class="c-value" style="font-size: 20px;">O(b<sup>d</sup>)</div>
+            <p style="margin-top: 6px;">Exponencial na profundidade d.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col" style="flex: 0.9;">
+        <div class="diagram-area" style="margin-bottom: 16px;">
+          <svg viewBox="0 0 220 180" width="210">
+            <!-- BFS: colore nível por nível -->
+            <!-- Nível 0 -->
+            <circle cx="110" cy="22" r="14" fill="color-mix(in srgb, var(--accent) 20%, var(--surface2))" stroke="var(--accent)" stroke-width="1.5"/>
+            <text x="110" y="26" fill="var(--accent)" font-size="8" text-anchor="middle">1</text>
+            <!-- Nível 1 -->
+            <line x1="100" y1="35" x2="65" y2="62" stroke="#3a3a3a" stroke-width="1"/>
+            <line x1="120" y1="35" x2="155" y2="62" stroke="#3a3a3a" stroke-width="1"/>
+            <circle cx="63" cy="72" r="13" fill="color-mix(in srgb, var(--accent2) 15%, var(--surface2))" stroke="var(--accent2)" stroke-width="1.2"/>
+            <text x="63" y="76" fill="var(--accent2)" font-size="8" text-anchor="middle">2</text>
+            <circle cx="157" cy="72" r="13" fill="color-mix(in srgb, var(--accent2) 15%, var(--surface2))" stroke="var(--accent2)" stroke-width="1.2"/>
+            <text x="157" y="76" fill="var(--accent2)" font-size="8" text-anchor="middle">3</text>
+            <!-- Nível 2 -->
+            <line x1="53" y1="84" x2="28" y2="112" stroke="#2a2a2a" stroke-width="0.8"/>
+            <line x1="73" y1="84" x2="88" y2="112" stroke="#2a2a2a" stroke-width="0.8"/>
+            <line x1="147" y1="84" x2="132" y2="112" stroke="#2a2a2a" stroke-width="0.8"/>
+            <line x1="167" y1="84" x2="192" y2="112" stroke="#2a2a2a" stroke-width="0.8"/>
+            <circle cx="26" cy="121" r="11" fill="color-mix(in srgb, var(--blue) 12%, var(--surface2))" stroke="var(--blue)" stroke-width="1"/>
+            <text x="26" y="125" fill="var(--blue)" font-size="7.5" text-anchor="middle">4</text>
+            <circle cx="90" cy="121" r="11" fill="color-mix(in srgb, var(--blue) 12%, var(--surface2))" stroke="var(--blue)" stroke-width="1"/>
+            <text x="90" y="125" fill="var(--blue)" font-size="7.5" text-anchor="middle">5</text>
+            <circle cx="132" cy="121" r="11" fill="color-mix(in srgb, var(--blue) 12%, var(--surface2))" stroke="var(--blue)" stroke-width="1"/>
+            <text x="132" y="125" fill="var(--blue)" font-size="7.5" text-anchor="middle">6</text>
+            <circle cx="194" cy="121" r="11" fill="color-mix(in srgb, var(--blue) 12%, var(--surface2))" stroke="var(--blue)" stroke-width="1"/>
+            <text x="194" y="125" fill="var(--blue)" font-size="7.5" text-anchor="middle">7</text>
+            <!-- Seta direcional BFS -->
+            <path d="M 4 22 Q 4 120 26 132" fill="none" stroke="var(--accent)" stroke-width="1" stroke-dasharray="3,3" opacity="0.4"/>
+            <text x="6" y="76" fill="var(--accent)" font-size="7" opacity="0.5" transform="rotate(-90, 6, 76)">ordem BFS →</text>
+            <!-- Legenda -->
+            <rect x="20" y="150" width="12" height="8" rx="1" fill="color-mix(in srgb, var(--accent) 20%, var(--surface2))" stroke="var(--accent)" stroke-width="1"/>
+            <text x="36" y="157" fill="#8a8680" font-size="7.5">nível 0</text>
+            <rect x="70" y="150" width="12" height="8" rx="1" fill="color-mix(in srgb, var(--accent2) 15%, var(--surface2))" stroke="var(--accent2)" stroke-width="1"/>
+            <text x="86" y="157" fill="#8a8680" font-size="7.5">nível 1</text>
+            <rect x="120" y="150" width="12" height="8" rx="1" fill="color-mix(in srgb, var(--blue) 12%, var(--surface2))" stroke="var(--blue)" stroke-width="1"/>
+            <text x="136" y="157" fill="#8a8680" font-size="7.5">nível 2</text>
+          </svg>
+        </div>
+        <div class="note-box">
+          <div class="note-label">BFS na prática (b=10)</div>
+          <table class="h-table" style="margin-top: 4px;">
+            <tr><th>Prof. d</th><th>Nós</th><th>Memória</th></tr>
+            <tr><td>2</td><td>100</td><td>107 KB</td></tr>
+            <tr><td>6</td><td>10⁶</td><td>1 GB</td></tr>
+            <tr><td>10</td><td>10¹⁰</td><td>10 TB</td></tr>
+            <tr class="accent-row"><td>14</td><td>10¹⁴</td><td>99 PB</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 11 — DFS
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="slide-11">
+    <div class="slide-header">
+      <div class="slide-number">11</div>
+      <div class="slide-title">Busca em Profundidade — <em>DFS</em></div>
+    </div>
+    <div class="slide-body two-col">
+      <div class="col" style="flex: 1.1;">
+        <ul style="margin-bottom: 16px;">
+          <li>Exploração <strong>de filho em filho</strong>: raiz → 1º filho → 1º filho deste → …</li>
+          <li>Ao atingir uma folha sem sucesso, <strong>retrocede</strong> e explora o próximo irmão.</li>
+          <li>Fronteira funciona como uma <strong>pilha (LIFO)</strong>: inserção e remoção no final.</li>
+        </ul>
+        <div class="algo-box" style="margin-bottom: 16px;">
+          <div class="algo-header">Algoritmo DFS</div>
+          <div class="algo-body">
+            <div class="line"><span class="ln">1</span><span><span class="kw">frontier</span> ← pilha com nó raiz</span></div>
+            <div class="line"><span class="ln">2</span><span><span class="kw">while</span> frontier <span class="kw">não vazia</span>:</span></div>
+            <div class="line"><span class="ln">3</span><span class="indent1"><span class="var">n</span> ← <span class="fn">frontier.pop(-1)</span> <span class="cm">// remove do topo</span></span></div>
+            <div class="line"><span class="ln">4</span><span class="indent1"><span class="kw">if</span> goal(<span class="var">n</span>): <span class="kw">return</span> <span class="var">n</span></span></div>
+            <div class="line"><span class="ln">5</span><span class="indent1"><span class="kw">for</span> cada ação <span class="kw">em</span> <span class="fn">actions</span>(<span class="var">n</span>):</span></div>
+            <div class="line"><span class="ln">6</span><span class="indent2">filho ← <span class="fn">result</span>(<span class="var">n</span>, ação)</span></div>
+            <div class="line"><span class="ln">7</span><span class="indent2"><span class="kw">if</span> filho não explorado:</span></div>
+            <div class="line"><span class="ln">8</span><span class="indent3"><span class="fn">frontier.append</span>(filho)</span></div>
+          </div>
+        </div>
+        <div class="complexity-grid">
+          <div class="complexity-card">
+            <div class="c-label">Completude</div>
+            <div class="c-value"><span class="tag-cond">Cond.</span></div>
+            <p style="margin-top: 6px;">Sim se espaço finito (GraphSearch). Não em TreeSearch.</p>
+          </div>
+          <div class="complexity-card">
+            <div class="c-label">Espaço (TreeSearch)</div>
+            <div class="c-value" style="font-size: 20px;">O(b·m)</div>
+            <p style="margin-top: 6px;">Vantagem chave: memória linear na profundidade m.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col" style="flex: 0.9;">
+        <div class="diagram-area" style="margin-bottom: 16px;">
+          <svg viewBox="0 0 220 180" width="210">
+            <!-- DFS: colorido por ordem de visita -->
+            <circle cx="110" cy="22" r="14" fill="color-mix(in srgb, var(--accent) 20%, var(--surface2))" stroke="var(--accent)" stroke-width="1.5"/>
+            <text x="110" y="26" fill="var(--accent)" font-size="8" text-anchor="middle">1</text>
+            <line x1="100" y1="35" x2="65" y2="62" stroke="#3a3a3a" stroke-width="1"/>
+            <line x1="120" y1="35" x2="155" y2="62" stroke="#3a3a3a" stroke-width="1"/>
+            <!-- Filho esquerdo — visitado primeiro em DFS -->
+            <circle cx="63" cy="72" r="13" fill="color-mix(in srgb, var(--accent) 15%, var(--surface2))" stroke="var(--accent)" stroke-width="1.2"/>
+            <text x="63" y="76" fill="var(--accent)" font-size="8" text-anchor="middle">2</text>
+            <circle cx="157" cy="72" r="13" fill="var(--surface2)" stroke="#3a3a3a" stroke-width="1"/>
+            <text x="157" y="76" fill="#5a5650" font-size="8" text-anchor="middle">6</text>
+            <!-- Sub-árvore esquerda -->
+            <line x1="53" y1="84" x2="28" y2="112" stroke="#3a3a3a" stroke-width="0.8"/>
+            <line x1="73" y1="84" x2="88" y2="112" stroke="#3a3a3a" stroke-width="0.8"/>
+            <circle cx="26" cy="121" r="11" fill="color-mix(in srgb, var(--accent) 12%, var(--surface2))" stroke="var(--accent)" stroke-width="1"/>
+            <text x="26" y="125" fill="var(--accent)" font-size="7.5" text-anchor="middle">3</text>
+            <circle cx="90" cy="121" r="11" fill="var(--surface2)" stroke="#3a3a3a" stroke-width="0.8"/>
+            <text x="90" y="125" fill="#5a5650" font-size="7.5" text-anchor="middle">5</text>
+            <!-- Nível 3 esq -->
+            <line x1="19" y1="131" x2="12" y2="152" stroke="#2a2a2a" stroke-width="0.7"/>
+            <line x1="33" y1="131" x2="40" y2="152" stroke="#2a2a2a" stroke-width="0.7"/>
+            <circle cx="11" cy="159" r="9" fill="color-mix(in srgb, var(--accent) 10%, var(--surface2))" stroke="var(--accent)" stroke-width="0.8"/>
+            <text x="11" y="163" fill="var(--accent)" font-size="7" text-anchor="middle">4</text>
+            <circle cx="41" cy="159" r="9" fill="var(--surface2)" stroke="#2a2a2a" stroke-width="0.7"/>
+            <text x="41" y="163" fill="#3a3a3a" font-size="7" text-anchor="middle">…</text>
+            <!-- Sub-árvore direita (não explorada ainda) -->
+            <line x1="147" y1="84" x2="128" y2="112" stroke="#2a2a2a" stroke-width="0.7"/>
+            <line x1="167" y1="84" x2="186" y2="112" stroke="#2a2a2a" stroke-width="0.7"/>
+            <circle cx="126" cy="121" r="11" fill="var(--surface2)" stroke="#2a2a2a" stroke-width="0.7"/>
+            <text x="126" y="125" fill="#3a3a3a" font-size="7.5" text-anchor="middle">7</text>
+            <circle cx="188" cy="121" r="11" fill="var(--surface2)" stroke="#2a2a2a" stroke-width="0.7"/>
+            <text x="188" y="125" fill="#3a3a3a" font-size="7.5" text-anchor="middle">8</text>
+            <!-- seta DFS -->
+            <path d="M 110 36 Q 80 60 63 84 Q 42 108 26 133" fill="none" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="3,2" opacity="0.5"/>
+            <text x="210" y="30" fill="#5a5650" font-size="7" text-anchor="end" opacity="0.6">ordem</text>
+            <text x="210" y="38" fill="#5a5650" font-size="7" text-anchor="end" opacity="0.6">DFS ↓</text>
+          </svg>
+        </div>
+        <div class="cards two">
+          <div class="card">
+            <div class="card-icon">BFS vs DFS</div>
+            <div class="card-title">BFS</div>
+            <p>Fila · Ótimo se custo uniforme · Memória O(b<sup>d</sup>).</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">BFS vs DFS</div>
+            <div class="card-title">DFS</div>
+            <p>Pilha · Não ótimo · Memória O(b·m) em TreeSearch.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 12 — CUSTO UNIFORME
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="slide-12">
+    <div class="slide-header">
+      <div class="slide-number">12</div>
+      <div class="slide-title">Busca com <em>custo uniforme</em></div>
+    </div>
+    <div class="slide-body">
+      <p style="margin-bottom: 16px;">Quando as ações têm <strong>custos diferentes</strong>, o BFS não garante a solução ótima. A busca com custo uniforme usa uma fila de prioridade.</p>
+      <div class="cards two" style="margin-bottom: 16px;">
+        <div class="card">
+          <div class="card-icon">Custo de um nó</div>
+          <div class="card-title">c(n) — custo acumulado</div>
+          <p>Soma dos custos das ações desde a raiz até o nó n.</p>
+          <ul class="sub" style="margin-top: 8px;">
+            <li>c(raiz) = 0</li>
+            <li>c(n) = c(n.pai) + custo(n.ação)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="card-icon">Fronteira</div>
+          <div class="card-title">Fila de prioridade</div>
+          <p>Remove sempre o nó de <strong>menor custo acumulado</strong> c(n).</p>
+          <div class="note-box" style="margin-top: 10px; padding: 10px 14px;">
+            <div class="note-label">Exemplo — Romênia</div>
+            <p style="font-size: 12.5px;">Lugoj → Mehadia → Dobreta: c = 70 + 75 = 145 km</p>
+          </div>
+        </div>
+      </div>
+      <table class="compare-table">
+        <tr>
+          <th>Propriedade</th>
+          <th>BFS</th>
+          <th>DFS</th>
+          <th>Custo Uniforme</th>
+        </tr>
+        <tr>
+          <td class="prop">Completude</td>
+          <td><span class="tag-yes">Sim</span></td>
+          <td><span class="tag-cond">Cond.</span></td>
+          <td><span class="tag-yes">Sim</span></td>
+        </tr>
+        <tr>
+          <td class="prop">Optimalidade</td>
+          <td><span class="tag-cond">Se custo uniforme</span></td>
+          <td><span class="tag-no">Não</span></td>
+          <td><span class="tag-yes">Sim</span></td>
+        </tr>
+        <tr>
+          <td class="prop">Complexidade</td>
+          <td>O(b<sup>d</sup>)</td>
+          <td>O(b·m)</td>
+          <td>O(b<sup>d</sup>)</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 13 — SEÇÃO: BUSCA INFORMADA
+  ══════════════════════════════════════════════ -->
+  <div class="slide-section slide" id="slide-13">
+    <div class="section-num">04</div>
+    <div class="section-info">
+      <div class="section-category">Seção</div>
+      <div class="section-name">Busca Informada e Heurísticas</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 14 — HEURÍSTICAS
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="slide-14">
+    <div class="slide-header">
+      <div class="slide-number">14</div>
+      <div class="slide-title">Busca informada — <em>heurísticas</em></div>
+    </div>
+    <div class="slide-body">
+      <div class="def-box" style="margin-bottom: 16px;">
+        <div class="def-label">Heurística h(n)</div>
+        <p>Método aproximativo que estima o custo entre um estado qualquer e o estado-objetivo mais próximo. Usada para <strong>guiar a busca</strong> e encontrar soluções mais rapidamente.</p>
+      </div>
+      <div class="cards two" style="margin-bottom: 16px;">
+        <div class="card">
+          <div class="card-icon">Greedy</div>
+          <div class="card-title">Busca gulosa</div>
+          <p>A cada etapa, explora em prioridade o nó que <strong>minimiza h(n)</strong> — o custo heurístico até o objetivo.</p>
+          <p style="margin-top: 8px; color: var(--accent);">Rápida, mas <strong>não garante optimalidade</strong>.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">A*</div>
+          <div class="card-title">Algoritmo A*</div>
+          <p>Combina custo real e estimativa: minimiza <strong>f(n) = c(n) + h(n)</strong>.</p>
+          <p style="margin-top: 8px; color: var(--green);">Ótimo se h é <strong>admissível</strong> (nunca superestima).</p>
+        </div>
+      </div>
+      <h4>Heurísticas para o Taquin — comparação</h4>
+      <div class="cards two" style="margin-top: 8px;">
+        <div class="card">
+          <div class="card-icon">h₁</div>
+          <div class="card-title">Peças mal posicionadas</div>
+          <p>Conta o número de peças que não estão na posição correta.</p>
+          <p style="margin-top: 6px; font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text);">h₁(inicial) = 6</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">h₂</div>
+          <div class="card-title">Distância de Manhattan</div>
+          <p>Soma dos movimentos horizontais e verticais de cada peça até sua posição correta.</p>
+          <p style="margin-top: 6px; font-family: 'DM Mono', monospace; font-size: 12px; color: var(--text);">h₂(inicial) = 2+3+1+1+3+4 = 14</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 15 — A*
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="slide-15">
+    <div class="slide-header">
+      <div class="slide-number">15</div>
+      <div class="slide-title">Algoritmo <em>A*</em> — Romênia</div>
+    </div>
+    <div class="slide-body two-col">
+      <div class="col">
+        <div class="formula" style="margin-bottom: 16px;">
+          <div class="math-label" style="font-family:'DM Mono',monospace; font-size:10px; color:var(--text-dim); letter-spacing:0.1em;">Função de avaliação</div>
+          f(n) = c(n) + h(n)
+        </div>
+        <ul style="margin-bottom: 16px;">
+          <li><strong>c(n)</strong> — custo real da raiz até n (custo uniforme).</li>
+          <li><strong>h(n)</strong> — estimativa heurística de n até o objetivo.</li>
+          <li>Explora o nó que <strong>minimiza f(n)</strong> a cada etapa.</li>
+          <li>Heurística usada: distância em linha reta até Bucharest.</li>
+        </ul>
+        <div class="note-box">
+          <div class="note-label">A* — Ordem de exploração (Lugoj→Bucharest)</div>
+          <p style="font-size: 13px; line-height: 1.8;">
+            Lugoj (0+244=<strong style="color:var(--text)">244</strong>) →<br>
+            Mehadia (70+241=<strong style="color:var(--text)">311</strong>) →<br>
+            Dobreta (145+242=<strong style="color:var(--text)">387</strong>) →<br>
+            Craiova (265+160=<strong style="color:var(--text)">425</strong>) →<br>
+            Timisoara (111+329=<strong style="color:var(--text)">440</strong>) →<br>
+            Pitesti (403+98=<strong style="color:var(--text)">501</strong>) →<br>
+            Bucharest (504+0=<strong style="color:var(--accent)">504</strong>) ✓
+          </p>
+        </div>
+      </div>
+      <div class="col">
+        <h4>Comparação de desempenho — Taquin</h4>
+        <table class="data-table" style="margin-top: 8px;">
+          <tr>
+            <th>Prof. solução</th>
+            <th>IDS</th>
+            <th>A* com h₁</th>
+            <th>A* com h₂</th>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td class="td-mono">10</td>
+            <td class="td-mono">6</td>
+            <td class="td-mono">6</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td class="td-mono">680</td>
+            <td class="td-mono">20</td>
+            <td class="td-mono">18</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td class="td-mono">3.644.035</td>
+            <td class="td-mono">227</td>
+            <td class="td-mono">73</td>
+          </tr>
+          <tr>
+            <td>18</td>
+            <td class="td-mono">—</td>
+            <td class="td-mono">3.056</td>
+            <td class="td-mono">363</td>
+          </tr>
+          <tr class="highlight">
+            <td>24</td>
+            <td class="td-mono">—</td>
+            <td class="td-mono">39.135</td>
+            <td class="td-mono">1.641</td>
+          </tr>
+        </table>
+        <div class="def-box" style="margin-top: 14px;">
+          <div class="def-label">Dominância</div>
+          <p>h₂ <strong>domina</strong> h₁: para todo nó n, h₂(n) ≥ h₁(n). Uma heurística mais informada reduz drasticamente o número de nós explorados.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 16 — ADMISSIBILIDADE E PROPRIEDADES
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="slide-16">
+    <div class="slide-header">
+      <div class="slide-number">16</div>
+      <div class="slide-title">Propriedades de <em>heurísticas admissíveis</em></div>
+    </div>
+    <div class="slide-body">
+      <div class="cards three" style="margin-bottom: 16px;">
+        <div class="card">
+          <div class="card-icon">Propriedade 1</div>
+          <div class="card-title">Admissibilidade</div>
+          <p>h é admissível se <strong>nunca superestima</strong> o custo real. Garante optimalidade do A* em TreeSearch.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">Propriedade 2</div>
+          <div class="card-title">Consistência</div>
+          <p>h é consistente se satisfaz uma <strong>desigualdade triangular</strong>. Garante optimalidade em GraphSearch.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">Propriedade 3</div>
+          <div class="card-title">Dominância</div>
+          <p>h₂ domina h₁ se h₂(n) ≥ h₁(n) para todo n. A heurística dominante é <strong>sempre preferível</strong>.</p>
+        </div>
+      </div>
+      <div class="note-box" style="margin-bottom: 14px;">
+        <div class="note-label">Combinação de heurísticas</div>
+        <p>Se h e h' são admissíveis mas nenhuma domina a outra, pode-se definir h''(n) = max(h(n), h'(n)). Esta nova heurística é admissível e <strong>domina ambas</strong>.</p>
+      </div>
+      <div class="def-box">
+        <div class="def-label">Aprender uma heurística</div>
+        <p>Se não for possível projetar uma boa heurística manualmente, pode-se <strong>aprendê-la</strong> com aprendizado de máquina: (1) resolver instâncias simples; (2) extrair features relevantes; (3) treinar um modelo; (4) usar a heurística aprendida em instâncias mais difíceis com A*. Isso ilustra que os subdomínios de IA <strong>não são isolados</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 17 — EXERCÍCIO
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="slide-17">
+    <div class="slide-header">
+      <div class="slide-number">17</div>
+      <div class="slide-title"><em>Exercício</em> — O fazendeiro, o lobo, a cabra e o repolho</div>
+    </div>
+    <div class="slide-body two-col">
+      <div class="col">
+        <div class="def-box" style="margin-bottom: 16px;">
+          <div class="def-label">Enunciado</div>
+          <p>Um fazendeiro precisa atravessar um rio com um lobo, uma cabra e um repolho. O barco comporta apenas o fazendeiro e <strong>um dos três</strong> por vez. Sem vigilância do fazendeiro: o lobo come a cabra, ou a cabra come o repolho.</p>
+        </div>
+        <h4 style="margin-bottom: 10px;">Modelagem do problema</h4>
+        <ul>
+          <li><strong>Estado:</strong> posição do fazendeiro, lobo, cabra e repolho (margem esquerda ou direita).</li>
+          <li><strong>Estado inicial:</strong> todos na margem esquerda.</li>
+          <li><strong>Objetivo:</strong> todos na margem direita.</li>
+          <li><strong>Ações:</strong> o fazendeiro atravessa sozinho, ou com lobo, ou com cabra, ou com repolho.</li>
+          <li><strong>Restrição:</strong> estados ilegais (lobo+cabra ou cabra+repolho sem fazendeiro).</li>
+        </ul>
+        <div class="note-box" style="margin-top: 16px;">
+          <div class="note-label">Tarefa</div>
+          Usando BFS ou DFS, encontre uma sequência de ações que permite atravessar os três.
+        </div>
+      </div>
+      <div class="col">
+        <div class="diagram-area" style="height: 100%; min-height: 340px;">
+          <svg viewBox="0 0 220 320" width="200">
+            <!-- Margem esquerda -->
+            <rect x="2" y="30" width="60" height="260" rx="2" fill="var(--surface2)" stroke="var(--border)" stroke-width="1"/>
+            <text x="32" y="18" fill="#5a5650" font-size="8" text-anchor="middle" font-family="DM Mono, monospace">INÍCIO</text>
+            <!-- Margem direita -->
+            <rect x="158" y="30" width="60" height="260" rx="2" fill="color-mix(in srgb, var(--green) 5%, var(--surface2))" stroke="color-mix(in srgb, var(--green) 25%, var(--border))" stroke-width="1"/>
+            <text x="188" y="18" fill="#5ba87a" font-size="8" text-anchor="middle" font-family="DM Mono, monospace">OBJETIVO</text>
+            <!-- Rio -->
+            <rect x="64" y="30" width="92" height="260" fill="color-mix(in srgb, var(--blue) 6%, transparent)"/>
+            <text x="110" y="165" fill="color-mix(in srgb, var(--blue) 40%, transparent)" font-size="26" text-anchor="middle" font-family="Instrument Serif, serif" font-style="italic">rio</text>
+            <!-- Personagens à esquerda -->
+            <text x="32" y="75" font-size="20" text-anchor="middle">🧑‍🌾</text>
+            <text x="32" y="125" font-size="18" text-anchor="middle">🐺</text>
+            <text x="32" y="175" font-size="18" text-anchor="middle">🐐</text>
+            <text x="32" y="225" font-size="18" text-anchor="middle">🥬</text>
+            <!-- Labels -->
+            <text x="32" y="90" fill="#5a5650" font-size="7.5" text-anchor="middle">fazendeiro</text>
+            <text x="32" y="140" fill="#5a5650" font-size="7.5" text-anchor="middle">lobo</text>
+            <text x="32" y="190" fill="#5a5650" font-size="7.5" text-anchor="middle">cabra</text>
+            <text x="32" y="240" fill="#5a5650" font-size="7.5" text-anchor="middle">repolho</text>
+            <!-- Barco -->
+            <rect x="88" y="148" width="44" height="22" rx="3" fill="color-mix(in srgb, var(--accent2) 20%, var(--surface2))" stroke="var(--accent2)" stroke-width="1.2"/>
+            <text x="110" y="163" fill="var(--accent2)" font-size="8" text-anchor="middle" font-family="DM Mono, monospace">barco</text>
+            <!-- Seta -->
+            <path d="M 64 158 L 86 158" fill="none" stroke="var(--accent2)" stroke-width="1" marker-end="url(#arr2)"/>
+            <defs>
+              <marker id="arr2" markerWidth="5" markerHeight="5" refX="3" refY="2.5" orient="auto">
+                <path d="M0,0 L5,2.5 L0,5 Z" fill="var(--accent2)"/>
+              </marker>
+            </defs>
+            <!-- Restrições visuais -->
+            <rect x="4" y="255" width="56" height="32" rx="2" fill="color-mix(in srgb, var(--accent) 8%, transparent)" stroke="color-mix(in srgb, var(--accent) 20%, transparent)" stroke-width="1"/>
+            <text x="32" y="266" fill="var(--accent)" font-size="6.5" text-anchor="middle">⚠ lobo+cabra</text>
+            <text x="32" y="275" fill="var(--accent)" font-size="6.5" text-anchor="middle">sem vigilância</text>
+            <text x="32" y="284" fill="var(--accent)" font-size="6.5" text-anchor="middle">= ilegal</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SLIDE 18 — CONCLUSÃO / PARA ALÉM
+  ══════════════════════════════════════════════ -->
+  <div class="slide" id="slide-18">
+    <div class="slide-header">
+      <div class="slide-number">18</div>
+      <div class="slide-title">Para além — <em>extensões</em></div>
+    </div>
+    <div class="slide-body">
+      <div class="cards three">
+        <div class="card">
+          <div class="card-icon">MCTS</div>
+          <div class="card-title">Monte Carlo Tree Search</div>
+          <p>Exploração aleatória em profundidade a partir de cada nó da fronteira. A média das heurísticas das simulações guia a escolha do próximo nó.</p>
+          <p style="margin-top: 8px; color: var(--text-muted);">Muito usado em jogos estratégicos e jogos de vídeo.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">MinMax</div>
+          <div class="card-title">MinMax — jogos 2 jogadores</div>
+          <p>O jogador A maximiza sua utilidade; o jogador B a minimiza. Poda αβ evita explorar ramos irrelevantes.</p>
+          <p style="margin-top: 8px; color: var(--text-muted);">Usado no Deep Blue (xadrez, anos 1990).</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">Prob.</div>
+          <div class="card-title">Métodos probabilísticos</div>
+          <p>Quando os efeitos das ações não são certos, utilizam-se métodos probabilísticos ou de planejamento sob incerteza.</p>
+          <p style="margin-top: 8px; color: var(--text-muted);">Extensão natural da busca determinística.</p>
+        </div>
+      </div>
+      <div class="def-box" style="margin-top: 16px;">
+        <div class="def-label">Síntese</div>
+        <table class="compare-table" style="margin-top: 8px;">
+          <tr>
+            <th>Algoritmo</th>
+            <th>Fronteira</th>
+            <th>Completo</th>
+            <th>Ótimo</th>
+            <th>Complexidade</th>
+          </tr>
+          <tr>
+            <td class="prop">BFS</td>
+            <td>Fila (FIFO)</td>
+            <td><span class="tag-yes">Sim</span></td>
+            <td><span class="tag-cond">Se custo uniforme</span></td>
+            <td>O(b<sup>d</sup>)</td>
+          </tr>
+          <tr>
+            <td class="prop">DFS</td>
+            <td>Pilha (LIFO)</td>
+            <td><span class="tag-cond">Cond.</span></td>
+            <td><span class="tag-no">Não</span></td>
+            <td>O(b·m) espaço</td>
+          </tr>
+          <tr>
+            <td class="prop">Custo Uniforme</td>
+            <td>Fila prioridade (c)</td>
+            <td><span class="tag-yes">Sim</span></td>
+            <td><span class="tag-yes">Sim</span></td>
+            <td>O(b<sup>d</sup>)</td>
+          </tr>
+          <tr>
+            <td class="prop">A*</td>
+            <td>Fila prioridade (f)</td>
+            <td><span class="tag-yes">Sim</span></td>
+            <td><span class="tag-yes">Se h admissível</span></td>
+            <td>Exponencial</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── NAVEGAÇÃO ── -->
+<div class="nav-bar">
+  <button class="nav-btn" onclick="prev()">← anterior</button>
+  <span class="nav-indicator" id="nav-ind">1 / 19</span>
+  <button class="nav-btn" onclick="next()">próximo →</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide, .slide-title-page, .slide-section');
+  let current = 0;
+
+  function show(i) {
+    slides[current].classList.remove('active');
+    current = (i + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    document.getElementById('nav-ind').textContent = (current + 1) + ' / ' + slides.length;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function next() { show(current + 1); }
+  function prev() { show(current - 1); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   prev();
+  });
+</script>
+</body>
+</html>

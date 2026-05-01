@@ -1,24 +1,25 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Buscas Heurísticas e Avançadas</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
-  <style>
-    :root { --primary: #00d9ff; --secondary: #a855f7; --accent: #10b981; --warning: #ffcc00; }
-    .reveal h1, .reveal h2 { color: var(--primary); text-transform: none; }
-    .reveal h3 { color: var(--secondary); text-transform: none; }
-    .reveal section { text-align: left; font-size: 0.9em; }
-    .center { text-align: center !important; }
-    .box { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; border-left: 5px solid var(--primary); margin: 15px 0; }
-    .warning-box { border-left-color: var(--warning); background: rgba(255, 204, 0, 0.05); }
-    .highlight { color: var(--warning); font-weight: bold; }
-    .formula { background: #111; padding: 10px; border-radius: 8px; display: inline-block; font-family: 'Courier New', monospace; color: var(--accent); }
-    .timeline { color: #888; font-size: 0.6em; font-weight: bold; text-transform: uppercase; }
-  </style>
-</head>
+  <!DOCTYPE html>
+   <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busca</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+      :root { --primary: #00d9ff; --secondary: #a855f7; --accent: #10b981; --warning: #ffcc00; }
+      .reveal h1, .reveal h2 { color: var(--primary); text-transform: none; }
+      .reveal h3 { color: var(--secondary); text-transform: none; }
+      .reveal section { text-align: left; font-size: 0.9em; }
+      .center { text-align: center !important; }
+      .box { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; border-left: 5px solid var(--primary); margin: 15px 0; }
+      .warning-box { border-left-color: var(--warning); background: rgba(255, 204, 0, 0.05); }
+      .highlight { color: var(--warning); font-weight: bold; }
+      .formula { background: #111; padding: 10px; border-radius: 8px; display: inline-block; font-family: 'Courier New', monospace; color: var(--accent); }
+      .timeline { color: #888; font-size: 0.6em; font-weight: bold; text-transform: uppercase; }
+    </style>
+  </head>
 <body>
 <div class="reveal">
 <div class="slides">
@@ -26,38 +27,180 @@
     <section class="center">
         <span class="badge">Módulo 2 - parte 1</span>
         <h1>Algoritmos de Busca</h1>
+        <h2>Buscas Heurísticas e Avançadas</h2>
     </section>
 
-   <section>
-    <h1>Buscas Heurísticas e Avançadas</h1>
-    <h3>Inteligência Artificial</h3>
-    <p>Hill Climbing, Beam Search, Minimax e Alpha-Beta</p>
-    <br>
-    <p><small>Carga Horária Recomendada: 12 horas</small></p>
-    <aside class="notes">
-        Aula baseada no MIT 6.034 Artificial Intelligence.
-    </aside>
+    <section class="center">
+        <section class="center">
+            <h2>Busca em Grafos</h2>
+        </section>
+
+        <section class="center">
+            <h3>Grafos</h3>
+            <div style="display: flex; gap: 20px; align-items: flex-start;">
+                <div>
+                    <ul>
+                        <li>Um grafo consiste em um conjunto de nós conectados por arestas.</li>
+                        <ul>
+                            <!-- <li>Espaço de estados</li>
+                            <li>Nós e arestas</li> -->
+                            <!-- <li>Estado inicial</li>
+                            <li>Objetivo</li>
+                            <li>Operadores</li> -->
+                        </ul>
+                        <li>Busca é usada em diversos domínios do mundo real:</li>
+                        <ul>
+                            <li><strong>Navegação</strong>: encontrar o caminho mais curto ou rápido entre dois pontos.</li>
+                            <li><strong>Robótica</strong>: planejar trajetórias de movimento.</li>
+                            <li><strong>Resolução de puzzles</strong>: encontrar sequências de movimentos para atingir uma configuração.</li>
+                        </ul>
+                        
+                        <!-- <p>Dois algoritmos fundamentais para exploração sistemática de espaços de estados:</p>
+                        <ul>
+                            <li><strong>DFS</strong> — Busca em Profundidade</li>
+                            <li><strong>BFS</strong> — Busca em Largura</li>
+                        </ul> -->
+                        </ul>
+                </div>
+                <img src="imgs/graph.png" width="75%" height="auto">
+            </div>
+        </section>
+
+        <section class="center">
+        <h3>Nós de um grafos - pt. 1</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <ul>
+            <li>Grau: </li>
+            <ul>
+                <li>n.º de arestas conectadas</li>
+            </ul>
+            
+        </ul>
+        <img src="imgs/nos_grau.png" width="43%" height="auto">    
+        </div>
+    </section>
+
+
+        <section class="center">
+        <h3>Nós de um grafos - pt. 2</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <ul>
+            <li>Grau: </li>
+            <ul>
+                <li>De entrada (direcionado, n.º de arestas de entrada)</li>
+            </ul>
+            
+        </ul>
+        <img src="imgs/nos_in.png" width="80%" height="auto">    
+        </div>
+    </section>
+
+
+        <section class="center">
+        <h3>Nós de um grafos - pt. 3</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <ul>
+            <li>Grau: </li>
+            <ul>
+                <li>De saída (direcionado, número de arestas de saída)</li>
+            </ul>
+            
+        </ul>
+        <img src="imgs/nos_out.png" width="80%" height="auto">    
+        </div>
+    </section>
+
+
+        <section class="center">
+        <h3>Caminhos em grafos - pt. 1</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <ul>
+            <li>Caminho:</li>
+            <ul>
+                <li>Sequência de nós/arestas de um nó a outro</li>
+            </ul>
+            
+        </ul>
+        <img src="imgs/path_1.png" width="50%" height="auto">    
+        </div>
+    </section>
+        <section class="center">
+        <h3>Caminhos em grafos - pt. 2</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <ul>
+            <li>Caminho:</li>
+            <ul>
+                <li>Nó x é acessível a partir do nó y se existir um caminho de y a x</li>
+            </ul>
+            
+        </ul>
+        <img src="imgs/path_2.png" width="50%" height="auto">    
+        </div>
+    </section>
+        <section class="center">
+        <h3>Caminhos em grafos - pt. 3</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <ul>
+            <li>Caminho:</li>
+            <ul>
+                <li>Um ciclo é um caminho que começa etermina no mesmo nó</li>
+            </ul>
+            
+        </ul>
+        <img src="imgs/path_3.png" width="50%" height="auto">    
+        </div>
+    </section>
+        <section class="center">
+        <h3>Caminhos em grafos - pt. 4</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <ul>
+            <li>Caminho:</li>
+            <ul>
+                <li>Um laço é uma aresta que conecta um nó a si mesmo</li>
+            </ul>
+            
+        </ul>
+        <img class="fragment" src="imgs/path_4.png" width="50%" height="auto">    
+        </div>
+    </section>
+
+    <section class="center">
+        <h3>Buscando caminhos  entre dois vértices</h3>
+            <ul>
+                <li>Qualquer caminho (ou queremos saber se existe um caminho).</li>
+                <li>Minimizar o comprimento do caminho (número de arestas).</li>
+                <li>Minimizar o custo do caminho (soma dos pesos das arestas)</li>
+            </ul>
+            <img src="imgs/graph_cost.png" width="80%" height="auto">    
+
+    </section>
+
+    <section class="center">
+        <h3>Força bruta e Backtracking</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <ul>
+            <li>Força bruta: tentar todas as possibilidades, retornar a solução</li>
+            <li>
+                Backtracking é uma técnica algorítmica
+                que constrói uma solução passo a passo.
+            </li>
+            <ul>
+                <li>A cada etapa, o algoritmo escolhe entre
+                várias alternativas possíveis</li>
+                <ul>
+                    <li>Solução</li>
+                </ul>
+                <li> Se uma escolha não levar a uma solução válida,
+                ele retorna à decisão anterior
+                e tenta outro caminho.</li>
+            </ul>
+        </ul>
+        <img src="imgs/Backtracking.png" width="80%" height="auto">    
+        </div>
 </section>
 
-    <section>
-        <h2>1. Revisão: Busca em Grafos</h2>
-        <ul>
-            <li>Espaço de estados</li>
-            <li>Nós e arestas</li>
-            <li>Estado inicial</li>
-            <li>Objetivo</li>
-            <li>Operadores</li>
-        </ul>
-        
-        <p>Dois algoritmos fundamentais para exploração sistemática de espaços de estados:</p>
-        <ul>
-            <li><strong>DFS</strong> — Busca em Profundidade</li>
-            <li><strong>BFS</strong> — Busca em Largura</li>
-        </ul>
-    </section>
-    <section>
-    <section>
-        <h2>Busca em Profundidade (DFS)</h2>
+    <section class="center">
+        <h3>Busca em Profundidade (DFS)</h3>
         <ul>
             <li>Explora um caminho completamente antes de retroceder.</li>
             <li>Utiliza uma <strong>pilha</strong> (LIFO).</li>
@@ -66,213 +209,181 @@
         </ul>
     </section>
 
-    <section>
-        <h2>Funcionamento do DFS</h2>
-        <ol>
-            <li>Visita o nó inicial.</li>
-            <li>Seleciona um sucessor ainda não visitado.</li>
-            <li>Repete até atingir folha ou objetivo.</li>
-            <li>Retrocede (backtracking) quando necessário.</li>
-        </ol>
+    <section class="center">
+        <h3>Busca em Profundidade (DFS)</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <div>
+            <p>Funcionamento do DFS</p>
+            <ol>
+                <li>Visita o nó inicial.</li>
+                <li>Seleciona um sucessor ainda não visitado.</li>
+                <li>Repete até atingir folha ou objetivo.</li>
+                <li>Retrocede (backtracking) quando necessário.</li>
+            </ol>
+            <ul>
+                <p>Buscar caminho de a\(\to\) h, prioridade alfabética </p>
+                <li>a \(\to\) b  \(\to\)e \(\to\)f \(\to\)c \(\to\)i </li>
+                <li><span class="highlight">a \(\to\) d  \(\to\)h</span></li>
+            </ul>
+        </div>
+        <img src="imgs/dfs.png" width="80%" height="auto">    
+        </div>
     </section>
 
-    <section>
-        <h2>Pseudocódigo DFS</h2>
-<pre><code class="language-python">
-def dfs(no, visitados):
-    if no in visitados:
-        return
-
-    visitados.add(no)
-
-    if objetivo(no):
-        return no
-
-    for vizinho in no.vizinhos:
-        resultado = dfs(vizinho, visitados)
-        if resultado:
-            return resultado
-</code></pre>
-    </section>
-
-    <section>
-        <h2>Complexidade do DFS</h2>
+    <section class="center">
+        <h3>Características do DFS</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
         <ul>
-            <li><strong>Tempo:</strong> O(b<sup>m</sup>)</li>
-            <li><strong>Memória:</strong> O(bm)</li>
+            <il>O DFS garante encontrar um caminho, caso exista.</il>
+            <il>É fácil recuperar exatamente qual é o caminho (a sequência de arestas percorridas) quando o encontramos</il>
+            <ul>
+                <li>escolher - explorar - desmarcar</li>
+            </ul>
+            <li>Não é ótimo. O DFS garante encontrar um caminho, mas não necessariamente o melhor/mais curto</li>
+            <ul>
+                <li>dfs(a, i) retorna {a, b, e, f, c, i} em vez de {a, d, h, i}.</li>
+            </ul>
         </ul>
-        <p>
-            Onde:
-        </p>
-        <ul>
-            <li><strong>b</strong> = fator de ramificação</li>
-            <li><strong>m</strong> = profundidade máxima</li>
-        </ul>
+        
+        <img src="imgs/dfs.png" width="80%" height="auto">    
+        </div>
     </section>
 
-    <section>
-        <h2>Vantagens do DFS</h2>
-        <ul>
-            <li>Baixo consumo de memória.</li>
-            <li>Implementação simples.</li>
-            <li>Excelente para espaços muito profundos.</li>
-            <li>Útil em backtracking e detecção de ciclos.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Desvantagens do DFS</h2>
-        <ul>
-            <li>Não garante solução ótima.</li>
-            <li>Pode entrar em loops sem controle de visitados.</li>
-            <li>Pode explorar caminhos muito longos desnecessariamente.</li>
-            <li>Não é completo em espaços infinitos.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Aplicações do DFS</h2>
-        <ul>
-            <li>Resolução de labirintos.</li>
-            <li>Ordenação topológica.</li>
-            <li>Componentes conectados.</li>
-            <li>Problemas de backtracking.</li>
-            <li>Busca em jogos.</li>
-        </ul>
-    </section>
-    </section>
-<section>
-    <section>
-        <h2>Busca em Largura (BFS)</h2>
+    <section class="center">
+        <h3>Busca em Largura (BFS)</h3>
         <ul>
             <li>Explora todos os nós de um nível antes do próximo.</li>
             <li>Utiliza uma <strong>fila</strong> (FIFO).</li>
             <li>Encontra o caminho mais curto em grafos não ponderados.</li>
-            <li>É completa e ótima sob custo uniforme.</li>
+            <li>É completo e ótima sob custo uniforme.</li>
         </ul>
     </section>
 
-    <section>
-        <h2>Funcionamento do BFS</h2>
+    <section class="center">
+        <h3>Funcionamento do BFS</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
         <ol>
             <li>Insere o nó inicial na fila.</li>
             <li>Remove o primeiro nó.</li>
             <li>Expande seus sucessores.</li>
             <li>Repete até encontrar o objetivo.</li>
         </ol>
+        <img src="imgs/dfs.png" width="40%" height="auto">    
+        </div>
     </section>
 
-    <section>
-        <h2>Pseudocódigo BFS</h2>
-<pre><code class="language-python">
-from collections import deque
 
-def bfs(inicio):
-    fila = deque([inicio])
-    visitados = {inicio}
-
-    while fila:
-        no = fila.popleft()
-
-        if objetivo(no):
-            return no
-
-        for vizinho in no.vizinhos:
-            if vizinho not in visitados:
-                visitados.add(vizinho)
-                fila.append(vizinho)
-</code></pre>
+    <section class="center">
+        <h3>Funcionamento do BFS</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+            <div class="r-stack">
+                <div class="fragment fade-out">
+                    <ul>
+                        <li style="color:red;">Começo: {a}</li>
+                        <li style="color:blue;">Alvo: {f}</li>
+                    </ul>
+                </div>
+                <div class="fragment fade-in-then-out">
+                    <ul>
+                        <li style="color:red;">Começo: {a}</li>
+                        <li style="color:blue;">Alvo: {f}</li>
+                    </ul>
+                    <ol>
+                        <li>Empilha: {b, d}</li>
+                    </ol>
+                </div>
+                <div class="fragment fade-in-then-out">
+                <ul>
+                    <li style="color:red;">Começo: {a}</li>
+                    <li style="color:green;">Pilha: {b, d}</li>
+                    <li style="color:blue;">Alvo: {f}</li>
+                </ul>
+                <ol>
+                    <li>Desempilha {b}</li>
+                    <li>Empilha {e}</li>
+                </ol>
+                </div>
+                <div class="fragment fade-in-then-out">
+                <ul>
+                    <li style="color:red;">Começo: {a}</li>
+                    <li style="color:green;">Pilha: {d, e}</li>
+                    <li style="color:blue;">{Alvo: f}</li>
+                </ul>
+                <ol>
+                    <li>Desempilha {d}</li>
+                    <li>Empilha {g, h}</li>
+                </ol>
+                </div>
+                <div class="fragment fade-in">
+                <ul>
+                    <li style="color:red;">Começo: {a}</li>
+                    <li style="color:green;">Pilha: {e, g, h}</li>
+                    <li  style="color:blue;">{f}</li>
+                </ul>
+                <ol>
+                    <li>Desempilha {e}</li>
+                    <li>Acha {f}</li>
+                </ol>
+                </div>
+            </div>
+            <img src="imgs/dfs.png" width="35%" height="auto">    
+        </div>
     </section>
 
-    <section>
-        <h2>Complexidade do BFS</h2>
+    <section class="center">
+        <h3>Características do BFS</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
         <ul>
-            <li><strong>Tempo:</strong> O(b<sup>d</sup>)</li>
-            <li><strong>Memória:</strong> O(b<sup>d</sup>)</li>
-        </ul>
-        <p>
-            Onde:
-        </p>
-        <ul>
-            <li><strong>b</strong> = fator de ramificação</li>
-            <li><strong>d</strong> = profundidade da solução</li>
-        </ul>
+            <il>Sempre encontra o caminho mais curto (menor número de arestas).</il>
+            <il>em grafos não ponderados, encontra o caminho de custo ótimo.</il>
+            <ul>
+                <li>em grafos ponderados, nem sempre o custo é ótimo.</li>
+            </ul>
+            <li> é mais difícil reconstruir a sequência real de vértices ou arestas no caminho depois de encontrá-lo</li>
+            <ul>
+                <li>BFS explora muitos caminhos possíveis em paralelo, por isso não é fácil armazenar uma matriz/lista do caminho em andamento</li>
+            </ul>
+        </ul>  
+        </div>
     </section>
 
-    <section>
-        <h2>Vantagens do BFS</h2>
-        <ul>
-            <li>Completo.</li>
-            <li>Ótimo para custos uniformes.</li>
-            <li>Encontra a solução mais rasa.</li>
-            <li>Excelente para caminhos mínimos.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Desvantagens do BFS</h2>
-        <ul>
-            <li>Consome muita memória.</li>
-            <li>Torna-se inviável em espaços grandes.</li>
-            <li>Expansão exponencial.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Aplicações do BFS</h2>
-        <ul>
-            <li>Menor caminho em grafos.</li>
-            <li>Redes sociais.</li>
-            <li>Web crawling.</li>
-            <li>Propagação em redes.</li>
-            <li>Roteamento.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Comparação Direta</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Critério</th>
-                    <th>DFS</th>
-                    <th>BFS</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Estrutura</td>
-                    <td>Pilha</td>
-                    <td>Fila</td>
-                </tr>
-                <tr>
-                    <td>Memória</td>
-                    <td>Baixa</td>
-                    <td>Alta</td>
-                </tr>
-                <tr>
-                    <td>Ótimo</td>
-                    <td>Não</td>
-                    <td>Sim*</td>
-                </tr>
-                <tr>
-                    <td>Completo</td>
-                    <td>Limitado</td>
-                    <td>Sim</td>
-                </tr>
-            </tbody>
-        </table>
-        <p><small>* Em grafos não ponderados.</small></p>
-    </section>
+    <section class="center">
+          <h3>Comparação BFS e DFS</h3>
+        <iframe
+        src="bfs_dfs_animation.html"
+        style="
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        "
+    ></iframe>
+</section>
 
 </section>
 
-<section>
-    <section>
-        <h2>2. Heurísticas</h2>
+
+</section>
+
+<section class="center">
+    <section class="center">
+        <h2>Heurísticas</h2>
         <blockquote>
             "Uma heurística estima o quão próximo estamos da solução."
         </blockquote>
+        <ul>
+            <li>Hill Climbing</li>
+            <li>Busca A*</li>
+            <li>Computação Evolutiva</li>
+        </ul>
+    </section>
+
+    <section class="center">
+        <h3>Como elas funcionam?</h3>
         <ul>
             <li>Função h(n)</li>
             <li>Estimativa de custo restante</li>
@@ -280,373 +391,157 @@ def bfs(inicio):
         </ul>
     </section>
 
-    <section>
-        <h2>Exemplo de Heurística</h2>
-        <p>Problema das cidades:</p>
+    <section class="center">
+        <h3>Por que usar heurísticas?</h3>
+
         <ul>
-            <li>h(n) = distância em linha reta até o destino</li>
-            <li>Quanto menor, melhor</li>
+            <li class="">Problemas NP-difíceis são comuns.</li>
+            <li class="">Soluções exatas podem ser lentas demais.</li>
+            <li class="">Uma boa solução agora vale mais do que a ótima depois.</li>
+            <li class="">Aplicações reais exigem velocidade.</li>
         </ul>
     </section>
-</section>
 
-<section>
-    <section>
-        <h2>3. Hill Climbing</h2>
+    <section class="center">
+        <h3>Hill Climbing</h3>
         <ul>
             <li>Busca gulosa local</li>
             <li>Sempre escolhe o melhor vizinho</li>
             <li>Não considera caminhos alternativos</li>
         </ul>
+        <ul>
+            <p>Procedimento</p>
+            <li>enquanto houver melhoria:</li>
+            <ol>
+                <li>gerar vizinhos</li>
+                <li>escolher melhor vizinho</li>
+                <li>mover para ele</li>
+            </ol>
+        </ul>
     </section>
 
-    <section>
-        <h2>Algoritmo</h2>
-<pre><code>
-enquanto houver melhoria:
-    gerar vizinhos
-    escolher melhor vizinho
-    mover para ele
-</code></pre>
-    </section>
-
-    <section>
-        <h2>Vantagens</h2>
+    <section class="center">
+        <h3>Vantagens</h3>
         <ul>
             <li>Muito rápido</li>
             <li>Baixo consumo de memória</li>
             <li>Simples de implementar</li>
         </ul>
-    </section>
-
-    <section>
-        <h2>Problemas</h2>
         <ul>
-            <li>Máximos locais</li>
-            <li>Platôs</li>
-            <li>Cristas</li>
-            <li>Dependência do ponto inicial</li>
+        <p>Problemas</p>
+            <ul>
+                <li>Máximos locais</li>
+                <li>Platôs</li>
+                <li>Cristas</li>
+                <li>Dependência do ponto inicial</li>
+            </ul>
         </ul>
     </section>
 
-    <section>
-        <h2>Solução</h2>
+    <section class="center">
+        <h3>Solução</h3>
         <ul>
             <li>Random Restart</li>
             <li>Simulated Annealing</li>
             <li>Múltiplas inicializações</li>
+            <li>Computação evolutiva</li>
         </ul>
     </section>
 </section>
 
-<section>
-    <section>
-        <h2>4. Beam Search</h2>
-        <ul>
-            <li>Generalização da BFS</li>
-            <li>Mantém apenas os k melhores nós</li>
-            <li>k = largura do feixe</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Funcionamento</h2>
-        <ol>
-            <li>Expande todos os nós do nível atual</li>
-            <li>Ordena pela heurística</li>
-            <li>Mantém somente os melhores</li>
-        </ol>
-    </section>
-
-    <section>
-        <h2>Trade-off</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Beam Width</th>
-                    <th>Qualidade</th>
-                    <th>Custo</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Pequeno</td>
-                    <td>Média</td>
-                    <td>Baixo</td>
-                </tr>
-                <tr>
-                    <td>Grande</td>
-                    <td>Alta</td>
-                    <td>Elevado</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-</section>
-
-<section>
-    <section>
+<section class="center">
+    <section class="center">
         <h2>Busca A* (A-Star)</h2>
-        <p>
-            A* é um dos algoritmos de busca heurística mais importantes da Inteligência Artificial.
-            Ele combina o custo já percorrido com uma estimativa do custo restante.
-        </p>
-        <blockquote>
+        <p>A* é um dos algoritmos de busca heurística mais importantes da Inteligência Artificial.</p>
+        <p>Ele combina o custo já percorrido com uma estimativa do custo restante.</p>
+        
+        <ul>
+            <li class="">Busca exata quando a heurística é admissível.</li>
+            <li class="">Busca aproximada quando priorizamos velocidade.</li>
+            <li class="">Excelente equilíbrio entre custo e desempenho.</li>
+        </ul>
+        
+    </section>
+
+    <section class="center">
+    <h3>A* como Heurística</h3>
+        <span class="highlight">
             f(n) = g(n) + h(n)
-        </blockquote>
-    </section>
+        </span>
+        <p>g(n): g(n) é o custo do caminho do nó inicial até n</p>
+        <p>h(n): é uma função heurística que estima o custo do caminho mais barato de n até o destino. </p>
+</section>
 
-    <section>
-        <h2>Componentes da Função</h2>
-        <ul>
-            <li><strong>g(n)</strong>: custo real do início até o nó atual.</li>
-            <li><strong>h(n)</strong>: estimativa heurística até o objetivo.</li>
-            <li><strong>f(n)</strong>: custo total estimado.</li>
-        </ul>
-        <p>
-            O algoritmo sempre expande o nó com menor valor de <strong>f(n)</strong>.
-        </p>
-    </section>
+<section class="center">
+    <h3>Qualidade da Heurística</h3>
 
-    <section>
-        <h2>Ideia Central</h2>
-        <ul>
-            <li>Une busca de custo uniforme com heurísticas.</li>
-            <li>Balanceia exploração e direcionamento.</li>
-            <li>Reduz drasticamente o espaço de busca.</li>
-            <li>Quando a heurística é adequada, encontra a solução ótima rapidamente.</li>
-        </ul>
-    </section>
+    <table>
+        <thead>
+            <tr>
+                <th>Heurística</th>
+                <th>Resultado</th>
+                <th>Notas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="">
+                <td>h(n)=0</td>
+                <td>Dijkstra</td>
+                <td>Garante a descoberta do caminho mais curto.</td>
+            </tr>
+            <tr class="">
+                <td>h(n) \(\leq\) custo real</td>
+                <td>Ótimo e eficiente</td>
+                <td>Quanto menor for h(n), mais o A* se expande, tornando-se mais lento.</td>
+            </tr>
+            <tr class="">
+                <td>h(n) = custo real</td>
+                <td>Busca ideal</td>
+                <td>Segue o melhor caminho e nunca se desvie dele</td>
+            </tr>
+            <tr class="">
+                <td>h(n) \(\gt\) custo real</td>
+                <td>Superestima</td>
+                <td>Mais rápida, mas não ótima</td>
+            </tr>
+            <tr class="">
+                <td>h(n) >> g(n)</td>
+                <td>h(n) domina</td>
+                <td>BFS</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 
-    <section>
-        <h2>Algoritmo</h2>
+    <section class="center">
+        <h3>Algoritmo</h3>
+        <ul><li>Inserir o estado inicial na fila de prioridade.</li></ul>
+        <p>Repetir:</p>
         <ol>
-            <li>Inserir o estado inicial na fila de prioridade.</li>
-            <li>Selecionar o nó com menor <code>f(n)</code>.</li>
-            <li>Se for o objetivo, encerrar.</li>
-            <li>Expandir sucessores.</li>
-            <li>Atualizar custos e reinserir quando necessário.</li>
+            <li>Selecionar o nó com menor <span class="highlight">f(n)=g(n)+h(n)</span>.</li>
+            <ul><li>Se for o objetivo, encerrar.</li></ul>
+            
+            <li>Adicionar sucessores na fila.</li>
+            <li>Atualizar custos e reinserir nós.</li>
         </ol>
     </section>
 
-    <section>
-        <h2>Pseudocódigo</h2>
-<pre><code class="language-python">
-def a_star(inicio, objetivo):
-    aberta = PriorityQueue()
-    aberta.put((0, inicio))
-
-    g = {inicio: 0}
-    pai = {}
-
-    while not aberta.empty():
-        _, atual = aberta.get()
-
-        if atual == objetivo:
-            return reconstruir_caminho(pai, atual)
-
-        for vizinho, custo in atual.vizinhos:
-            novo_g = g[atual] + custo
-
-            if vizinho not in g or novo_g < g[vizinho]:
-                g[vizinho] = novo_g
-                f = novo_g + heuristica(vizinho)
-                aberta.put((f, vizinho))
-                pai[vizinho] = atual
-</code></pre>
+    <section class="center">
+        <h3>Exemplos - diferentes distâncias</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+            <p>Manhattan<img src="imgs/manhattan.png" width="100%" height="auto"></p>
+            <p>Diagonal<img src="imgs/diagonal.png" width="100%" height="auto"></p>
+            <p>Euclidiana<img src="imgs/euclidean.png" width="100%" height="auto"></p>
+        </div>
     </section>
 
-    <section>
-        <h2>Exemplo Prático</h2>
-        <p>Encontrar rota entre duas cidades.</p>
-        <ul>
-            <li><strong>g(n):</strong> distância percorrida.</li>
-            <li><strong>h(n):</strong> distância em linha reta.</li>
-            <li><strong>f(n):</strong> estimativa total.</li>
-        </ul>
-    </section>
+    
 
-    <section>
-        <h2>Heurística Admissível</h2>
-        <p>
-            Uma heurística é admissível quando nunca superestima o custo real.
-        </p>
-        <blockquote>
-            h(n) ≤ h*(n)
-        </blockquote>
-        <ul>
-            <li>Garantia de optimalidade.</li>
-            <li>Nunca ignora o melhor caminho.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Heurística Consistente</h2>
-        <blockquote>
-            h(n) ≤ c(n,n') + h(n')
-        </blockquote>
-        <ul>
-            <li>Satisfaz desigualdade triangular.</li>
-            <li>Evita reexpansões desnecessárias.</li>
-            <li>Melhora eficiência prática.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Optimalidade</h2>
-        <ul>
-            <li>Completo, desde que os custos sejam positivos.</li>
-            <li>Ótimo com heurística admissível.</li>
-            <li>Eficiência superior à busca de custo uniforme.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Complexidade</h2>
-        <ul>
-            <li>Pior caso: exponencial.</li>
-            <li>Depende fortemente da qualidade da heurística.</li>
-            <li>Quanto melhor a heurística, menor a expansão.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Comparação com Outros Algoritmos</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Algoritmo</th>
-                    <th>Usa h(n)</th>
-                    <th>Ótimo</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Dijkstra</td>
-                    <td>Não</td>
-                    <td>Sim</td>
-                </tr>
-                <tr>
-                    <td>Greedy Best-First</td>
-                    <td>Sim</td>
-                    <td>Não</td>
-                </tr>
-                <tr>
-                    <td>A*</td>
-                    <td>Sim</td>
-                    <td>Sim</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section>
-        <h2>Aplicações</h2>
-        <ul>
-            <li>Roteamento GPS.</li>
-            <li>Planejamento robótico.</li>
-            <li>Pathfinding em jogos.</li>
-            <li>Logística e otimização.</li>
-            <li>Planejamento automático.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Exemplo em Jogos</h2>
-        <ul>
-            <li>Movimentação de NPCs.</li>
-            <li>Navegação em mapas com obstáculos.</li>
-            <li>Busca eficiente em grids.</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Limitações</h2>
-        <ul>
-            <li>Consumo elevado de memória.</li>
-            <li>Dependência da heurística.</li>
-            <li>Pode degradar para Dijkstra.</li>
-        </ul>
-    </section>
 
 </section>
 
-<section>
-    <section>
-        <h2>6. Minimax</h2>
-        <ul>
-            <li>Escolha ótima contra adversário perfeito</li>
-            <li>Propaga valores da folha para a raiz</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Regra</h2>
-        <ul>
-            <li>MAX escolhe maior valor</li>
-            <li>MIN escolhe menor valor</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Pseudocódigo</h2>
-<pre><code>
-minimax(nó):
-    se folha:
-        retorna valor
-    se MAX:
-        retorna máximo dos filhos
-    se MIN:
-        retorna mínimo dos filhos
-</code></pre>
-    </section>
-
-    <section>
-        <h2>Complexidade</h2>
-        <p>O(b<sup>d</sup>)</p>
-        <ul>
-            <li>b = fator de ramificação</li>
-            <li>d = profundidade</li>
-        </ul>
-    </section>
-</section>
-
-<section>
-    <section>
-        <h2>7. Poda Alpha-Beta</h2>
-        <ul>
-            <li>Otimiza Minimax</li>
-            <li>Evita explorar ramos inúteis</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Parâmetros</h2>
-        <ul>
-            <li>α: melhor valor para MAX</li>
-            <li>β: melhor valor para MIN</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Critério de Corte</h2>
-        <blockquote>
-            Se α ≥ β, pode podar.
-        </blockquote>
-    </section>
-
-    <section>
-        <h2>Benefícios</h2>
-        <ul>
-            <li>Mesmo resultado do Minimax</li>
-            <li>Muito menos avaliações</li>
-            <li>Permite maior profundidade</li>
-        </ul>
-    </section>
-</section>
-
-<section>
-    <section>
+<section class="center">
+    <section class="center">
         <h2>Computação Evolutiva</h2>
         <h3>Meta-Heurísticas Inspiradas na Natureza</h3>
         <p>
@@ -656,8 +551,8 @@ minimax(nó):
         </p>
     </section>
 
-    <section>
-        <h2>O que é uma Meta-Heurística?</h2>
+    <section class="center">
+        <h3>O que é uma Meta-Heurística?</h3>
         <ul>
             <li>Estratégia geral de busca e otimização.</li>
             <li>Aplicável a uma grande variedade de problemas.</li>
@@ -669,8 +564,8 @@ minimax(nó):
         </blockquote>
     </section>
 
-    <section>
-        <h2>Principais Meta-Heurísticas</h2>
+    <section class="center">
+        <h3>Principais Meta-Heurísticas</h3>
         <ul>
             <li>Algoritmos Genéticos</li>
             <li>Simulated Annealing</li>
@@ -680,8 +575,8 @@ minimax(nó):
         </ul>
     </section>
 
-    <section>
-        <h2>Algoritmos Genéticos</h2>
+    <section class="center">
+        <h3>Algoritmos Genéticos</h3>
         <p>
             Propostos por John Holland na década de 1970, simulam a evolução
             de uma população de soluções candidatas.
@@ -695,21 +590,20 @@ minimax(nó):
         </ul>
     </section>
 
-    <section>
-        <h2>Representação dos Indivíduos</h2>
+    <section class="center">
+        <h3>Representação dos Indivíduos</h3>
         <ul>
             <li>Cada solução é um cromossomo.</li>
             <li>Pode ser binário, inteiro ou real.</li>
             <li>Genes representam variáveis do problema.</li>
         </ul>
-<pre><code>
-Exemplo:
-1011010110010101
-</code></pre>
+
+<p>Exemplo: 1011010110010101</p>
+
     </section>
 
-    <section>
-        <h2>Ciclo Evolutivo</h2>
+    <section class="center">
+        <h3>Ciclo Evolutivo</h3>
         <ol>
             <li>Inicialização da população</li>
             <li>Avaliação (fitness)</li>
@@ -721,8 +615,8 @@ Exemplo:
         </ol>
     </section>
 
-    <section>
-        <h2>Função de Fitness</h2>
+    <section class="center">
+        <h3>Função de Fitness</h3>
         <p>
             Mede a qualidade de cada indivíduo.
         </p>
@@ -735,8 +629,8 @@ Exemplo:
         </ul>
     </section>
 
-    <section>
-        <h2>Seleção</h2>
+    <section class="center">
+        <h3>Seleção</h3 >
         <ul>
             <li>Roleta (Roulette Wheel)</li>
             <li>Torneio</li>
@@ -747,15 +641,13 @@ Exemplo:
         </p>
     </section>
 
-    <section>
-        <h2>Cruzamento (Crossover)</h2>
+    <section class="center">
+        <h3>Cruzamento (Crossover)</h3>
         <p>Combina características de dois pais.</p>
-<pre><code>
-Pai 1: 110011|1010
-Pai 2: 001101|0111
-
-Filho: 1100110111
-</code></pre>
+<p>Pai 1: <span style="color:lightblue;">110011</span>|<span style="color:lightgreen;">1010</span></p>
+<p>Pai 2: <span style="color:lightblue;">001101</span>|<span style="color:lightgreen;">0111</span></p>
+<p>Filho 1: <span style="color:lightblue;">110011</span><span style="color:lightgreen;">0111</span></p>
+<p>Filho 2: <span style="color:lightgreen;">001101</span><span style="color:lightblue;">1010</span></p>
         <ul>
             <li>Ponto único</li>
             <li>Dois pontos</li>
@@ -763,14 +655,14 @@ Filho: 1100110111
         </ul>
     </section>
 
-    <section>
-        <h2>Mutação</h2>
+    <section class="center">
+        <h3>Mutação</h3>
         <p>
             Introduz diversidade genética.
         </p>
-<pre><code>
-Antes: 1100110111
-Depois:1100100111
+
+<p>Antes: 1100110111</p>
+<p>Depois:11001<span style="color:red;">0</span>0111</p>
 </code></pre>
         <ul>
             <li>Evita convergência prematura.</li>
@@ -778,8 +670,8 @@ Depois:1100100111
         </ul>
     </section>
 
-    <section>
-        <h2>Algoritmo Genético Populacional</h2>
+    <section class="center">
+        <h3>Algoritmo Genético Populacional</h3>
 <pre><code class="language-python">
 def genetic_algorithm():
     populacao = inicializar()
@@ -791,7 +683,7 @@ def genetic_algorithm():
 
         filhos = crossover(pais)
 
-        filhos = mutacao(filhos)
+        filhos = mutação(filhos)
 
         populacao = substituir(populacao, filhos)
 
@@ -799,62 +691,67 @@ def genetic_algorithm():
 </code></pre>
     </section>
 
-    <section>
-        <h2>Exemplo Prático</h2>
+    <section class="center">
+        <h3>Exemplo Prático</h3>
         <p>Maximizar:</p>
         <blockquote>
-            f(x) = x²
+            f(x) = \(\Sigma\)(x)
         </blockquote>
-        <p>com x ∈ [0, 31]</p>
+        <p>com x ∈ [-1, 1]</p>
         <ul>
-            <li>Representação binária de 5 bits</li>
-            <li>Fitness = x²</li>
+            <li>Representação: array de 5 números reais</li>
+            <li>Fitness = \(\Sigma\)(x)</li>
         </ul>
+        <ol>
+            <li>[-0.28, -1.16,-1.94, 0.86, 0.15] \(\to\) f(x)  =  -2.37</li>
+            <li>[ 0.71, -0.24, -1.58, -1.40, -0.31]  \(\to\) f(x) = -2.83</li>
+            <li class="highlight">[1.03, 0.18, 1.15, 0.60, 1.63]  \(\to\) f(x) = 4.60</li>
+            <li class="highlight">[-0.54, -0.04,  1.85, 1.24, -0.06]  \(\to\) f(x) = 2.44</li>
+            <li>[-0.10,  0.73, -0.71, -0.53,   1.18] \(\to\) f(x) = 0.57</li>
+        </ol>
     </section>
 
-    <section>
-        <h2>Evolução da População</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Geração</th>
-                    <th>Melhor Fitness</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>0</td>
-                    <td>576</td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>841</td>
-                </tr>
-                <tr>
-                    <td>20</td>
-                    <td>961</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-    <section>
-        <h2>Parâmetros Importantes</h2>
+    <section class="center">
+        <h3>Crossover e mutação</h3>
         <ul>
-            <li>Tamanho da população</li>
-            <li>Taxa de crossover</li>
-            <li>Taxa de mutação</li>
-            <li>Número de gerações</li>
-            <li>Elitismo</li>
+            <li>Crossover:</li>
+            <ul>
+                <li>Pai 1: <span style="color:lightblue;">[1.03, 0.18, 1.15, 0.60, 1.63]</span>\(\to\) f(x) = 4.60</li>
+                <li>Pai 2: <span style="color:lightgreen;">[-0.54, -0.04,  1.85, 1.24, -0.06]</span> \(\to\) f(x) = 2.44</li>
+                 <hr> 
+                <li>Filho 1: <span style="color:lightblue;">[1.03, 0.18, 1.15</span>, <span style="color:lightgreen;">1.24, -0.06]</span>  \(\to\) f(x) = 3.54</li>
+                <li>Filho 2: <span style="color:lightgreen;">[-0.54, -0.04, 1.85</span>, <span style="color:lightblue;">0.60, 1.63]</span>  \(\to\) f(x) = 3.50</li>
+            </ul>
         </ul>
-    </section>
+        <ul>
+            <li>Mutação:</li>
+        <ul>
+            <li>Filho 2: [-0.54, -0.04, 1.85, 0.60, <span style="color:red;">1.63</span>]\(\to\) f(x) = 3.50</li>
+            <li>Novo: [-0.54, -0.04, 1.85, 0.60, <span style="color:red;">2.78</span>]\(\to\) f(x) = <span class="highlight"> 4.64</span></li>
+        </ul>
+    
+</section>
+
+</section>
+
 </section>
 
 
 
-<section>
-    <h1>Fim</h1>
-    <h3>Perguntas?</h3>
+<section class="center">
+    <h1>Referências</h1>
+    <li>https://web.stanford.edu/class/archive/cs/cs106x/cs106x.1192/lectures/Lecture22/Lecture22.pdf</li>
+    https://jeffe.cs.illinois.edu/teaching/algorithms/book/02-backtracking.pdf
+    https://pt.wikipedia.org/wiki/Backtracking
+    https://web.stanford.edu/class/archive/cs/cs106x/cs106x.1192/lectures/Lecture22/Lecture22.pdf
+    https://cs.stanford.edu/people/abisee/gs.pdf
+    https://cs.stanford.edu/people/abisee/tutorial/bfsdfs.html
+        https://cs.stanford.edu/people/abisee/tutorial/astar.html
+        https://cs.stanford.edu/people/abisee/tutorial/dijkstra.html
+        https://courses.cs.washington.edu/courses/cse373/21sp/lectures/lecture17.pdf
+        https://www.redblobgames.com/pathfinding/a-star/introduction.html
+        https://ocw.mit.edu/courses/15-057-systems-optimization-spring-2003/52f5c751a872fd71c393fb1378315099_15heuristics.pdf
+        https://mat.uab.cat/~alseda/MasterOpt/AStar-Algorithm.pdf
 </section>
 
 </div>
@@ -869,5 +766,7 @@ def genetic_algorithm():
     progress: true
   });
 </script>
+
+
 </body>
 </html>

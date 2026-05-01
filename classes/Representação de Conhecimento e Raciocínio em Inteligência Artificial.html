@@ -1,0 +1,1355 @@
+  <!DOCTYPE html>
+   <html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Representação de Conhecimento e Raciocínio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+      :root { --primary: #00d9ff; --secondary: #a855f7; --accent: #10b981; --warning: #ffcc00; }
+      .reveal h1, .reveal h2 { color: var(--primary); text-transform: none; }
+      .reveal h3 { color: var(--secondary); text-transform: none; }
+      .reveal section { text-align: left; font-size: 0.9em; }
+      .center { text-align: center !important; }
+      .box { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; border-left: 5px solid var(--primary); margin: 15px 0; }
+      .warning-box { border-left-color: var(--warning); background: rgba(255, 204, 0, 0.05); }
+      .highlight { color: var(--warning); font-weight: bold; }
+      .formula { background: #111; padding: 10px; border-radius: 8px; display: inline-block; font-family: 'Courier New', monospace; color: var(--accent); }
+      .timeline { color: #888; font-size: 0.6em; font-weight: bold; text-transform: uppercase; }
+    </style>
+  </head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+    <section class="center">
+    <span class="badge">Módulo 1 - parte 1</span>
+    <h1>Representação de Conhecimento e Raciocínio em Inteligência Artificial</h1>
+  </section>
+
+
+<section class="center"> 
+    <section class="center">
+    <span class="badge">Módulo 1 - parte 2</span>
+    <h1>Árvores de busca</h1>
+  </section>
+<section class="center">
+    <h3>Exemplo: um robô em um labirinto</h3>
+
+    <ul>
+        <li>Imagine um robô que precisa encontrar a saída de um labirinto.</li>
+
+        <li>Ele pode se mover em quatro direções: cima, baixo, esquerda e direita (exceto quando há uma parede).</li>
+    
+        <li>Modelagem do problema</li>
+<!-- 
+        <ul>
+            <li>Estados: posições possíveis do robô no labirinto.</li>
+
+            <li>Ações: mover para cima, baixo, esquerda ou direita.</li>
+
+            <li>Objetivo: alcançar a célula de saída do labirinto.</li>
+        </ul>
+        <li>Que tipo de algoritmo usar?</li>
+
+        <ul>
+            <li>O problema pode ser resolvido como uma busca em espaço de estados.</li>
+
+            <li>Exemplos de algoritmos aplicáveis:</li>
+
+            <li>BFS (busca em largura) para encontrar o caminho mais curto.</li>
+
+            <li>DFS (busca em profundidade) para explorar caminhos possíveis.</li>
+
+            <li>A* para busca eficiente guiada por heurísticas (ex: distância até a saída).</li>
+        </ul>
+    </ul> -->
+
+    <img src="imgs/lab1.png" width="50%" alt="Forma Normal Conjuntiva">
+</section>
+
+<section class="center">
+    <h3>Exemplo: um robô em um labirinto</h3>
+
+
+    <img src="imgs/lab2.png" width="50%" alt="Forma Normal Conjuntiva">
+    <p>O robô pode começar indo para a direita</p>
+</section>
+
+
+<section class="center">
+    <h3>Exemplo: um robô em um labirinto</h3>
+
+
+    <img src="imgs/lab3.png" width="50%" alt="Forma Normal Conjuntiva">
+    <p>Caminho bloquado</p>
+    <p>Portanto, é preciso voltar atrás para procurar outra opção</p>
+</section>
+
+
+
+<section class="center">
+    <h3>Exemplo: um robô em um labirinto</h3>
+
+
+    <img src="imgs/lab4.png" width="50%" alt="Forma Normal Conjuntiva">
+    <p>Como conhecemos a estrutura do labirinto, podemos calcular todas essas opções antes que o robô se mova</p>
+</section>
+
+
+
+
+<section class="center">
+    <h3>Exploração da árvore de busca</h3>
+    <div style="display: flex; gap: 45px; align-items: flex-start;">
+        <div style="flex: 1;">
+        <ul>
+            <li>Se desenvolvemos toda a árvore de estados, podemos identificar a sequência de ações que leva à saída do labirinto.</li>
+        
+        <li>Existem diferentes estratégias para expandir a árvore de forma “inteligente”:</li>
+
+            <ul>
+                
+
+                <li>Objetivo 1: encontrar a solução explorando o menor número possível de estados.</li>
+
+                <li>Objetivo 2: encontrar as melhores soluções (por exemplo, com menos ações ou menor custo).</li>
+            </ul>
+        </ul>
+        </div>
+        <img src="imgs/lab5.png" width="40%" alt="Forma Normal Conjuntiva">
+    </div>
+    
+</section>
+
+<section class="center">
+    <h3>Uma abordagem genérica</h3>
+
+    <ul>
+        <li>Os algoritmos que veremos são genéricos: em vez de um robô em um labirinto, podemos resolver vários tipos de problemas: um cubo de Rubik, uma busca de rota entre duas cidades...</li>
+        
+        <li>O que precisamos modelar</li>
+
+        <ul>
+            <li>Estados: representação do mundo, jogo ou problema.</li>
+
+            <li>Ações: conjunto de ações possíveis em cada estado.</li>
+
+            <li>Transições: capacidade de calcular o efeito de uma ação no estado do mundo.</li>
+        </ul>
+        
+</section>
+
+<section class="center">
+    <h3>Idéias de base</h3>
+    <ul>
+    <li>Um problema pode ser modelado como um espaço de estados.</li>
+    <ul>
+        <li>Inclui um conjunto de estados.</li>
+
+        <ul>
+            <li>Estados: todas as configurações possíveis.</li>
+
+            <li>Ações: para cada estado, um conjunto de ações disponíveis.</li>
+
+            <li>Função de transição: associa a cada par (estado, ação) um novo estado resultante.</li>
+
+            <li>Teste de objetivo: identifica quais estados são estados finais.</li>
+        </ul>
+    </ul>
+    <li>Objetiv: encontrar uma sequência de ações que leve do estado inicial até um estado objetivo.</li>
+    
+    <li>Alguns problemas, existe uma função de custo associada a cada par (estado, ação).</li>
+
+    <ul>
+        <li>Objetivo: encontrar uma sequência de ações de custo mínimo que leve do estado inicial até um estado objetivo.</li>
+    </ul>
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Exemplo: viagem pela Romênia</h3>
+    <img src="imgs/romenia.png" width="50%" alt="Forma Normal Conjuntiva"> 
+    <!-- <div style="display: flex; gap: 45px; align-items: flex-start;">
+        <div style="flex: 1;"> -->
+        <ul>
+            <li>Estados: a pessoa está em uma cidade.</li>
+
+            <li>Estado inicial:  a pessoa está em Lugoj.</li>
+            
+            <li>Modelagem do problema</li>
+
+            <ul>
+                <li>Ações: mover-se para uma cidade vizinha.</li>
+
+                <li>Teste de objetivo: o estado objetivo é único: estar em Bucharest.</li>
+            </ul>
+            <li>Custo do problema</li>
+
+            <ul>
+                <li>Custo: a distância entre as cidades.</li>
+
+                <li>Objetivo: encontrar o caminho com menor custo total até Bucharest.</li>
+            </ul>
+        <!-- </div> -->
+        <!-- <img src="imgs/romenia.png" width="50%" alt="Forma Normal Conjuntiva"> -->
+    <!-- </div> -->
+</section>
+
+<section class="center">
+    <h3>Exemplo: jogo dos 15</h3>
+    <div style="display: flex; align-items: flex-start;">
+        <div style="flex: 1;">
+        <ul>
+            <li>Estados: todas as grades 3×3 com os números {1, …, 8} e uma casa vazia.</li>
+
+            <li>Estado inicial: uma configuração</li>
+            
+            <!-- <li>Modelagem do problema</li> -->
+
+            <!-- <ul> -->
+                <li>Ações: mover a casa vazia para cima, baixo, esquerda ou direita</li>
+
+                <li>Peças estão em ordem crescente.</li>
+            <!-- </ul> -->
+            
+            <li>Custo do problema</li>
+
+            <ul>
+                <li>Custo: cada movimento = 1.</li>
+
+                <li>Objetivo: encontrar a sequência mínima de movimentos para chegar ao estado final.</li>
+            </ul>
+        </ul>
+
+        </div>
+        <div style="flex: 1;">
+        <p>Origem:</p>
+            <img src="imgs/15_1.png" width="50%%" alt="Forma Normal Conjuntiva">
+
+        <p>Alvo:</p>
+            <img src="imgs/15_2.png" width="50%" alt="Forma Normal Conjuntiva">
+            </div>
+    </div>
+</section>
+
+<section class="center">
+    <h3>Árvore de busca</h3>
+
+    <ul>
+        <li>Na prática, não representamos todos os estados possíveis</li>
+        <ul>
+            <li>Em vez disso, construímos uma árvore de busca.</li>
+        </ul>
+    
+        <li>Nós: representam os estados.</li>
+
+        <li>Raiz:  o estado inicial.</li>
+
+        <li>A partir da raiz, exploramos os sucessores de cada nó aplicando todas as ações possíveis.</li>
+
+        <li>Folhas: estados sem sucessores (sem ações disponíveis).</li>
+
+        <li>É importante evitar reexplorar estados já visitados.</li>
+
+        <ul>
+            <li>Isso impede repetições e torna a busca mais eficiente.</li>
+        </ul>
+    </ul>
+    <img src="imgs/arvores.png" width="50%" alt="Forma Normal Conjuntiva">
+</section>
+
+<section class="center">
+    <h3>Árvore de busca - exemplo</h3>
+
+<img src="imgs/arvore_15.png" width="100%" alt="Forma Normal Conjuntiva">
+</section>
+
+<section class="center">
+    <h3>Análise da árvore de busca</h3>
+
+    <ul>
+        <li>Número total de estados: tamanho do espaço de estados possível.</li>
+
+        <li>Fator de ramificação: número de ações disponíveis em um estado (pior caso).</li>
+
+        <li>Profundidade da árvore: número de ações entre o estado inicial e um estado objetivo (pior caso).</li>
+
+        <li>Número de folhas / estados objetivo: quantos estados finais existem.</li>
+    </ul>
+    <p>Exemplo: jogo dos 15</p>
+
+    <ul>
+        <li>Número total de estados: 9! = 362.880</li>
+
+        <li>(na prática, 9!/2 pois metade dos estados não é solucionável)</li>
+
+        <li>Fator de ramificação: 4 (máximo de movimentos possíveis).</li>
+
+        <li>Profundidade da árvore: infinita se não evitarmos repetições de estados.</li>
+
+        <li>Foi demonstrado (Reinefeld, IJCAI 1993) que soluções ótimas podem exigir até 31 movimentos.</li>
+
+        <li>Número de folhas: 1 único estado objetivo.</li>
+    </ul>
+</section>
+
+<section>
+    <h3>A importância da modelagem</h3>
+    <ul>
+        <li>Os algoritmos de pesquisa em árvore são genéricos</li>
+        <li>A forma de modelar o problema é crucial e pode ter um impacto real na eficácia da resolução</li>
+        <li>Como representar o mundo?</li>
+        <li>Quais são as ações?</li>
+        <li>A modelagem influencia diretamente a complexidade do problema.</li>
+
+        <li>Uma escolha ruim pode gerar um espaço de busca muito maior do que o necessário ou impedir de resolver corretamente o problema.</li>
+    </ul>
+    
+</section>
+
+<section class="center">
+    <h3>Comparação des modelagens</h3>
+    <ul>
+        <li>Travessia do rio — versão 1</li>
+
+    <ul>
+        <li>Personagens: três missionários e três canibais.</li>
+
+        <li>Estado do mundo: identidade de cada missionário e canibal em cada lado do rio.</li>
+
+        <li>Ações disponíveis: 21 ações possíveis.</li>
+    </ul>
+
+    <li>Travessia do rio — versão 2</li>
+
+    <ul>
+        <!-- <li>A identidade dos missionários e canibais não é importante.</li> -->
+
+        <li>Estado do mundo: número de missionários e canibais em cada lado do rio.</li>
+
+        <li>Ações disponíveis: 5 ações possíveis:</li>
+    </ul>
+
+        <li>Na versão 2, o fator de ramificação é muito menor que na versão 1.</li>
+
+        <li>Se generalizarmos para k missionários e k canibais:</li>
+
+        <li>A versão 2 mantém o mesmo número de ações.</li>
+
+        <li>A versão 1 cresce conforme k aumenta.</li>
+
+
+        <li>Vídeo da solução (para curiosos):</li>
+        <ul><a target="_blank" href="https://www.youtube.com/watch?v=laLS8gHzROg">https://www.youtube.com/watch?v=laLS8gHzROg</a></ul>
+    </ul>
+</section>
+
+<section class="center">
+  <h3>Raciocínio Retroativo (Backward Chaining)</h3>
+  <ul>
+    <li>Diagramas de decisão são a base visual para o <b>Backward Chaining</b> em Sistemas Especialistas. O motor de inferência tenta "provar" o nó raiz navegando para as folhas.</li>
+
+    <li>O Processo de Redução</li>
+    <ol>
+        <li>Comece com uma meta (Hipótese).</li>
+        <li>Encontre regras cuja conclusão satisfaça a meta.</li>
+        <li>As premissas dessas regras tornam-se novas sub-metas.</li>
+        <li>Repita até encontrar fatos conhecidos (Folhas da árvore).</li>
+    </ol>
+  </ul>
+  
+</section>
+</section>
+
+
+<section class="center">
+    <section class="center">
+    <span class="badge">Módulo 1 - parte 2</span>
+    <h1>Lógica Proposicional</h1>
+  </section>
+<!-- <section class="center">
+    <h3>Espaços de Estados vs Modelagem por Variáveis</h3>
+
+    <div style="display: flex; gap: 35px; align-items: flex-start;">
+
+        <div style="flex: 1;">
+
+            <h4>Espaços de Estados</h4>
+
+            <ul>
+                <li>
+                    Representação mais natural e intuitiva do problema.
+                </li>
+
+                <li>
+                    Permitem determinar explicitamente
+                    a sequência de ações até a solução.
+                </li>
+
+                <li>
+                    O principal desafio é a explosão
+                    combinatória do número de estados.
+                </li>
+
+                <li>
+                    Exponencial com a quantidade
+                    de componentes do estado.
+                </li>
+            </ul>
+
+        </div>
+
+        <div style="flex: 1;">
+
+            <h4>Modelagem com Variáveis</h4>
+
+            <ul>
+                <li>
+                    A formulação costuma ser mais abstrata
+                    e pode ser mais complexa.
+                </li>
+
+                <li>
+                    Não exige enumerar todos
+                    os estados possíveis.
+                </li>
+
+                <li>
+                    Permite utilizar solucionadores
+                    altamente eficientes, como SAT e CSP.
+                </li>
+
+                <li>
+                    O foco deixa de ser o caminho
+                    até a solução e passa a ser
+                    apenas o estado final desejado.
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</section>
+
+<section class="center">
+    <h3>Busca em Árvore vs Programação por Restrições</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+            <div style="flex: 1;">
+                <ul>
+                    <li>
+                        Ação: preencher uma célula ainda vazia.
+                    </li>
+
+                    <li>
+                        Objetivo:
+                        <ul>
+                            <li>a grade está completamente preenchida</li>
+                            <li>não há valores repetidos em linhas</li>
+                            <li>não há valores repetidos em colunas</li>
+                            <li>não há repetições em blocos 3×3</li>
+                        </ul>
+                    </li>
+            </div>
+            <img src="imgs/sudoku.png" width="50%" alt="Forma Normal Conjuntiva">
+        </div>
+    </section>
+    <section class="center">
+        <h3>Busca em Árvore vs Programação por Restrições</h3>
+        <div style="display: flex; gap: 20px; align-items: flex-start;">
+            <div style="flex: 1;">
+                <ul>
+                    <li>
+                        O fator de ramificação é extremamente alto,
+                        especialmente em grades pouco preenchidas.
+                    </li>
+
+                    <li>
+                        Isso torna a busca direta
+                        computacionalmente muito cara.
+                    </li>
+                </ul>
+            </div>
+            <img src="imgs/sudoku.png" width="50%" alt="Forma Normal Conjuntiva">
+        </div>
+    </section>
+    <section class="center">
+        <div style="flex: 1;">
+
+            <h3>Programação por Restrições</h3>
+
+            <ul>
+                <li>
+                    Cada célula é modelada
+                    como uma variável.
+                </li>
+
+                <li>
+                    Para um Sudoku padrão,
+                    são utilizadas 81 variáveis.
+                </li>
+
+                <li>
+                    As restrições garantem que:
+                    <ul>
+                        <li>linhas tenham valores distintos;</li>
+                        <li>colunas tenham valores distintos;</li>
+                        <li>blocos 3×3 respeitem a unicidade.</li>
+                    </ul>
+                </li>
+
+                <li>
+                    Um solucionador CSP encontra rapidamente
+                    uma solução ou prova que ela não existe.
+                </li>
+            </ul>
+
+        </div>
+</section>  -->
+
+
+<section class="center">
+    <h3>Lógica Proposicional</h3>
+
+    <div style="display: flex; gap: 35px; align-items: flex-start;">
+
+        <div style="flex: 1.4;">
+
+            <ul>
+                <li>
+                    Formalismo simples
+                    para representar conhecimento e restrições.
+                </li>
+
+                <li>
+                    Uma <strong>proposição</strong> é uma afirmação
+                    que pode ser apenas verdadeira ou falsa.
+                </li>
+
+                <li>
+                    Exemplos:
+                    <ul>
+                        <li>"Está chovendo".</li>
+                        <li>"Estamos em Brasília".</li>
+                        <li>"A primeira célula contém o número 1".</li>
+                    </ul>
+                </li>
+
+                <li>
+                    Proposições podem ser combinadas usando
+                    operadores lógicos:
+                    <strong>E</strong>, <strong>OU</strong>,
+                    <strong>NÃO</strong> e <strong>IMPLICAÇÃO</strong>.
+                </li>
+
+                <li>
+                    Esse formalismo é a base de muitas técnicas
+                    de modelagem e resolução de problemas.
+                </li>
+            </ul>
+
+        </div>
+
+        <div style="flex: 1;">
+
+            <h4>Exemplos</h4>
+
+            <ul>
+                <li>
+                    Estamos em Brasília
+                    <strong>OU</strong> estamos em Paris.
+                </li>
+
+                <li>
+                    Se estamos em Brasília,
+                    <strong>então</strong> há sol.
+                </li>
+            </ul>
+
+            <p style="margin-top: 25px;">
+                As condições normalmente usadas em
+                <code>if</code> e <code>while</code>
+                são exemplos diretos de lógica proposicional.
+            </p>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="center">
+    <h3>Formalismo da Lógica Proposicional</h3>
+
+    <div style="display: flex; gap: 35px; align-items: flex-start;">
+
+        <div style="flex: 1.1;">
+
+            <ul>
+                <li>
+                    Definimos um vocabulário
+                    <strong>V = {x₁, ..., xₙ}</strong>,
+                    composto por variáveis booleanas.
+                </li>
+
+                <li>
+                    Cada variável pode assumir apenas dois valores:
+                    <ul>
+                        <li><strong>Verdadeiro</strong> (1 ou ⊤)</li>
+                        <li><strong>Falso</strong> (0 ou ⊥)</li>
+                    </ul>
+                </li>
+
+                <li>
+                    Fórmulas são construídas combinando
+                    variáveis com conectivos lógicos.
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div style="flex: 1.3;">
+
+            <h4>Conectivos Fundamentais</h4>
+
+            <ul>
+                <li><strong>Átomo:</strong> x</li>
+                <li><strong>Negação:</strong> ¬φ</li>
+                <li><strong>Conjunção:</strong> φ₁ ∧ φ₂</li>
+                <li><strong>Disjunção:</strong> φ₁ ∨ φ₂</li>
+                <li><strong>Implicação:</strong> φ₁ → φ₂</li>
+                <li><strong>Equivalência:</strong> φ₁ ↔ φ₂</li>
+            </ul>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="center">
+
+        <h3>Exemplos</h3>
+
+        <ul>
+            <li>
+                "Se estamos em Brasília, então há sol":
+                <br>
+                <strong>Brasília → sol</strong>
+            </li>
+
+            <li>
+                No Sudoku, a variável
+                \( x^{i,j}_k \)
+                representa:
+                <em>"a célula (j,k) contém o valor i"</em>.
+            </li>
+
+            <li>
+                Se a primeira célula da primeira linha contém 1,
+                então não há nenhum 1 em nenhum outra lugar dessa linha:
+                <br>
+                <strong>
+                    \( x^{1,1}_1 \to (\neg  x^{2,1}_1 \wedge ... \wedge x^{9,1}_1 ) \)
+                </strong>
+            </li>
+        </ul>
+
+</section>
+
+<section class="center">
+    <h3>Semântica e Tabelas-Verdade</h3>
+
+    <div style="display: flex; gap: 35px; align-items: flex-start;">
+
+        <div style="flex: 1.2;">
+
+            <ul>
+                <li>
+                    Semântica: atribui
+                    um valor lógico a cada variável:
+                    0 (falso) ou
+                    1 (verdadeiro).
+                </li>
+
+                <li>
+                    A partir dessas atribuições,
+                    podemos determinar o valor
+                    de qualquer fórmula.
+                </li>
+
+                <li>
+                    A <strong>tabela-verdade</strong>
+                    enumera todas as interpretações possíveis
+                    e o resultado correspondente da fórmula.
+                </li>
+
+                <li>
+                    Para <strong>n</strong> variáveis,
+                    existem exatamente
+                    <strong>2ⁿ interpretações</strong>.
+                </li>
+            </ul>
+
+            <ul>
+                <li>
+                    ¬φ é verdadeiro
+                    quando φ é falso.
+                </li>
+
+                <li>
+                    φ₁ ∧ φ₂ é verdadeiro
+                    somente quando ambos são verdadeiros.
+                </li>
+            </ul>
+
+        </div>
+
+        <div style="flex: 1;">
+
+            
+            <div>
+            <h4>Negação</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>x</th>
+                        <th>¬x</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <h4>Conjunção</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>x</th>
+                        <th>y</th>
+                        <th>x ∧ y</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <h3>Disjunção e Implicação</h3>
+
+    <div style="display: flex; gap: 30px; align-items: flex-start;">
+
+        <div style="flex: 1.1;">
+
+            <ul>
+                <li>
+                    <strong>φ₁ ∨ φ₂</strong> é verdadeiro
+                    quando pelo menos uma das fórmulas é verdadeira.
+                </li>
+
+                <li>
+                    <strong>φ₁ → φ₂</strong> é falso
+                    somente quando φ₁ é verdadeiro
+                    e φ₂ é falso.
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div style="flex: 1.4;">
+
+            <div style="display: flex; gap: 25px; justify-content: center;">
+
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>x</th>
+                                <th>y</th>
+                                <th>x ∨ y</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>0</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>1</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>x</th>
+                                <th>y</th>
+                                <th>x → y</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section>
+    <h3>Equivalência</h3>
+
+    <div style="display: flex; gap: 30px; align-items: flex-start;">
+
+        <div style="flex: 1.1;">
+
+            <ul>
+
+                <li>
+                    <strong>φ₁ ↔ φ₂</strong> é verdadeiro
+                    quando ambas possuem o mesmo valor lógico.
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div style="flex: 1.4;">
+
+            <div style="display: flex; gap: 25px; justify-content: center;">
+
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>x</th>
+                                <th>y</th>
+                                <th>x ↔ y</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>1</td><td>0</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+        <p>
+            Fórmulas complexas são avaliadas
+            combinando recursivamente essas regras.
+        </p>
+
+        <p>
+            As interpretações que tornam
+            uma fórmula verdadeira
+            são chamadas de <strong>modelos</strong>.
+        </p>
+</section>
+
+<section>
+    <h3>Equivalência da Implicação</h3>
+
+    <div style="display: flex; gap: 40px; align-items: flex-start;">
+
+        <div style="flex: 1;">
+
+            <ul>
+                <li>
+                    A implicação lógica pode ser
+                    reescrita usando apenas
+                    negação e disjunção.
+                </li>
+
+                <li class="highlight">
+                    Em particular:
+                    φ₁ → φ₂ ≡ ¬φ₁ ∨ φ₂
+                </li>
+
+                <li>
+                    Essa equivalência é fundamental
+                    na transformação de fórmulas,
+                    especialmente em solucionadores SAT.
+                </li>
+
+                <li>
+                    As duas expressões possuem
+                    exatamente os mesmos modelos.
+                </li>
+            </ul>
+
+        </div>
+
+        <div style="flex: 1.2;">
+
+            <div style="display: flex; gap: 30px; justify-content: center;">
+
+                <div>
+                    <h4>¬x ∨ y</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>x</th>
+                                <th>y</th>
+                                <th>¬x ∨ y</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <h4>x → y</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>x</th>
+                                <th>y</th>
+                                <th>x → y</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>0</td><td>1</td></tr>
+                            <tr><td>0</td><td>1</td><td>1</td></tr>
+                            <tr><td>1</td><td>0</td><td>0</td></tr>
+                            <tr><td>1</td><td>1</td><td>1</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <p style="text-align: center; margin-top: 25px;">
+                <strong>As duas tabelas são idênticas.</strong>
+            </p>
+
+        </div>
+
+    </div>
+</section>
+
+
+<section class="center">
+    <h3>Problema exemplo</h3>
+
+    
+        <p>"Em um reino antigo, o rei coloca um prisioneiro diante de duas celas, que podem conter um tigre ou uma princesa.</p>
+
+        <p>O prisioneiro deve entrar em uma cela: se houver um tigre, ele é devorado; se houver uma princesa, ele é libertado e se casa com ela.</p>
+
+        <p>Há placas nas portas com pistas, e o rei afirma que uma delas diz a verdade e a outra mente."</p>
+
+    
+
+    <p>Pistas nas portas</p>
+
+    <ul>
+        <li><span class="highlight">Dica-porta 1:</span> “Há uma princesa nesta cela e um tigre na outra.”</li>
+
+        <li><span class="highlight">Dica-porta 2:</span> “Há uma princesa em uma das celas e há um tigre em uma das celas.”</li>
+    </ul>
+    <p>Problema lógico</p>
+
+    <ul>
+        <li>Sabendo que uma frase é verdadeira e a outra é falsa, qual porta você escolheria?</li>
+    </ul>
+
+    <small> <p>Inspirado em  problema proposto por Raymond Smullyan</p></small>
+</section>
+
+<section class="center">
+    <h3>Modelagem</h3>
+    <p>Podemos modelar de diferentes formas</p>
+
+    <ul>
+        <li><span class="highlight">Variáveis:</span> t1, t2 representam “há um tigre na cela 1 / cela 2”.</li>
+
+        <li><span class="highlight">Variáveis:</span> p1, p2 representam “há uma princesa na cela 1 / cela 2”.</li>
+
+        <li><span class="highlight">Problema:</span> isso complica a resolução, pois exige 2⁴ = 16 linhas na tabela-verdade e ainda é necessário impor que não pode haver tigre e princesa na mesma cela.</li>
+   
+        <li>Podemos usar apenas t1 e t2.</li>
+
+        <li><span class="highlight">Princesa:</span> é representada por ¬t1 e ¬t2.</li>
+    </ul>
+
+    <p>Formalização das portas</p>
+
+    <ul>
+        <li>Dica-porta 1:“Há uma princesa nesta cela e um tigre na outra” <span class="highlight">ϕ= ¬t1 ∧ t2</span></li> 
+    
+        <li>Dica-porta 2:“Há uma princesa em uma cela e há um tigre em uma cela” <span class="highlight">ϕ₂ = (¬t1 ∨ ¬t2) ∧ (t1 ∨ t2)</span></li>
+    </ul>
+
+    <p>Condição lógica do problema</p>
+
+    <ul>
+        <li>Uma placa diz a verdade e a outra mente:</li>
+        <li>ϕ = ϕ₁ ↔ ¬ϕ₂</li>
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Definições lógicas do problema</h3>
+
+    <ul>
+        <li>ϕ₁ = ¬t1 ∧ t2</li>
+        <li>ϕ₂ = (¬t1 ∨ ¬t2) ∧ (t1 ∨ t2)</li>
+        <li>ϕ = ϕ₁ ↔ ¬ϕ₂</li>
+    </ul>
+
+    <table>
+        <thead>
+            <tr>
+                <th>t1</th>
+                <th>t2</th>
+                <th>ϕ₁ = ¬t1 ∧ t2</th>
+                <th>¬t1 ∨ ¬t2</th>
+                <th>t1 ∨ t2</th>
+                <th>ϕ₂</th>
+                <th>ϕ</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td>
+            </tr>
+            <tr>
+                <td>0</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td>
+            </tr>
+            <tr style="color:red;">
+                <td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td><td>1</td>
+            </tr>
+            <tr>
+                <td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="fragment" style="color:red;">único modelo onde o tigre está em uma cela e a princesa na outra</p>
+</section>
+
+<section class="center">
+    <h3>Algoritmos de raciocínio lógico e CNF</h3>
+
+    <ul>
+        <li>Forma Normal Conjuntiva (CNF): os algoritmos de lógica usam CNF (Conjunctive Normal Form).</li>
+
+        <li>Toda fórmula proposicional pode ser transformada em uma CNF equivalente (com os mesmos modelos).</li>
+    
+        <li><span class="highlight">Literal:</span> uma variável sozinha ou sua negação.</li>
+        <ul><li>Exemplos: x, ¬y (x ∨ ¬y não é um literal).</li></ul>
+        <li>Cláusula: disjunção (OU) de literais.</li>
+        <ul>
+            <li>Exemplos: ¬y, x ∨ ¬y (x ∧ ¬y não é cláusula)</li>
+            <li>Uma interpretação satisfaz uma cláusula se satisfaz pelo menos um literal (pois é uma disjunção).</li>
+        </ul>
+        <li>CNF: conjunção (E) de cláusulas.</li>
+        <ul>
+            <li>Uma fórmula CNF tem uma ou várias cláusulas ligadas por ∧.</li>
+            <li>Uma interpretação satisfaz uma CNF se satisfaz todas as cláusulas (pois é uma conjunção).</li>
+        </ul>
+
+        
+    </ul>
+</section>
+
+<section class="center">
+    <h3>SAT Solver</h3>
+
+    <ul>
+        <li>Um algoritmo que recebe uma CNF e decide se ela é satisfatível.</li>
+
+        <li>Ou seja, verifica se existe ao menos um modelo que satisfaz a fórmula.</li>
+
+        <li>Se existir, o solver também pode retornar esse modelo.</li>
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Transformação em CNF</h3>
+    <ul>
+    <li>Eliminação de dupla negação</li>
+
+    <ul>
+        <li>¬¬ϕ ≡ ϕ</li>
+    </ul>
+    <li>Leis de De Morgan</li>
+
+    <ul>
+        <li>¬(ϕ₁ ∨ ϕ₂) ≡ ¬ϕ₁ ∧ ¬ϕ₂</li>
+        <li>¬(ϕ₁ ∧ ϕ₂) ≡ ¬ϕ₁ ∨ ¬ϕ₂</li>
+    </ul>
+
+    <li>Distributividade</li>
+
+    <ul>
+        <li>ϕ₁ ∨ (ϕ₂ ∧ ϕ₃) ≡ (ϕ₁ ∨ ϕ₂) ∧ (ϕ₁ ∨ ϕ₃)</li>
+        <li>ϕ₁ ∧ (ϕ₂ ∨ ϕ₃) ≡ (ϕ₁ ∧ ϕ₂) ∨ (ϕ₁ ∧ ϕ₃)</li>
+    </ul>
+    
+    <li>Transformação para CNF</li>
+
+    <ul>
+        <li>A aplicação sucessiva dessas regras permite transformar qualquer fórmula em uma CNF equivalente.</li>
+
+        <li><span class="highlight">Atenção:</span> essa transformação pode gerar uma fórmula exponencialmente maior que a original.</li>
+
+        <li>Existe uma técnica mais avançada que mantém tamanho linear: transformação de Tseitin.</li>
+    </ul>
+    
+    <li>Validação das regras</li>
+
+    <ul>
+        <li>Essas equivalências podem ser provadas usando tabelas-verdade.</li>
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Funcionamento dos solvers SAT</h3>
+    <ul>
+        <li>DPLL: a maioria dos solvers SAT usa o algoritmo DPLL (Davis–Putnam–Logemann–Loveland).</li>
+        <li>Princípio básico do DPLL</li>
+
+        <ul>
+            <li>Escolher uma variável \(x_i\) e atribuir um valor de verdade (ex: 1).</li>
+
+            <li>Cláusulas que contêm  \(x_i\) são satisfeitas e podem ser removidas.</li>
+
+            <li>Cláusulas que contêm  \(\neg x_i\) são simplificadas:
+                <br>ex:  \(x_1\) ∨  \(x_2\) ∨  \(\neg x_i\) viram  \(x_1\) ∨  \(x_2\)
+            </li>
+        </ul>
+        
+        <li>Se surgir uma cláusula vazia (todos os literais falsos), há uma decisão incoerente \(\to\) backtracking</li>
+
+        <ul>
+            
+            <li>O algoritmo volta atrás (backtracking) e tenta \(x_i\) = 0.</li>
+
+            <li>Se 0 também gerar incoerência, a fórmula não é satisfatível (não existe modelo).</li>
+
+            <li>Caso contrário, o processo continua até atribuir valores para todas as variáveis.</li>
+        </ul>
+    </section>
+        
+    <section class="center">
+    <h3>Simplificações durante o processo</h3>
+
+        <ul>
+            <li>Propagação unitária: se existe uma cláusula unitária (ex: x ou ¬y), ela força valores nas demais cláusulas.</li>
+
+            <li>Ex: x = 1 e y = 0 são propagados automaticamente.</li>
+
+            <li>Literals puros: se uma variável aparece sempre com a mesma polaridade (ex: apenas x e nunca ¬x), pode-se atribuir valor diretamente.</li>
+
+            <li>Ex: x = 1 satisfaz todas as cláusulas onde x aparece.</li>
+        </ul>
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Relação do DPLL com busca em árvore</h3>
+    <ul>
+
+        <li>DPLL compartilha pontos em comum com a busca em árvore (tree search).</li>
+
+        <li>Estados: conjunto de variáveis com valores atribuídos ou não.</li>
+
+        <li>Ações: atribuir um valor (0 ou 1) a uma variável.</li>
+
+        <li>Estados objetivo: todas as variáveis estão atribuídas e todas as cláusulas são satisfeitas.</li>
+
+   
+        <li>Existem heurísticas para escolher variáveis de forma inteligente.</li>
+        <ul>
+            <li>Objetivo: encontrar rapidamente uma solução ou detectar inconsistências cedo.</li>
+        
+            <li>O uso de CNF torna o problema mais estruturado para o algoritmo.</li>
+        </ul>
+        <li>Técnicas como propagação unitária e eliminação de literais puros aceleram a resolução.</li>
+
+        <li>Outras otimizações mais avançadas também são usadas em solvers modernos.</li>
+
+        <li>Essas técnicas tornam o DPLL muito mais eficiente do que uma busca em árvore simples.</li>
+    </ul>
+    
+</section> 
+
+
+
+    
+</section> 
+
+<section class="center">
+ 
+    <section class="center">
+    <span class="badge">Módulo 1 - parte 2</span>
+    <h1>Sistemas Especialistas</h1>
+  </section>
+
+    <section class="center">
+      <p>Como um computador pode resolver integrais de cálculo?</p>35
+      
+      <ul>
+          <li><span class="highlight">O Problema:</span> Integrais não são resolvidas por força bruta, mas por transformações.</li>
+          <li><span class="highlight">A Estratégia: Redução (complexidade)</span> Quebrar um problema difícil em sub-problemas mais fáceis. </li>
+      </ul>
+  </section>
+
+
+   <section class="center">
+      <h3>Diagramas AND-OR</h3>
+        <p>Um diagrama de decisão é fundamentalmente uma estrutura <b>AND-OR</b> que representa a decomposição de um problema em uma árvore:</p>
+
+        <ul>
+            <li><b>Nós OR:</b> Representam diferentes métodos para resolver o mesmo problema (Se o Método A OU o Método B funcionar, o problema está resolvido).</li>
+            <li><b>Nós AND:</b> Representam sub-problemas que precisam ser resolvidos simultaneamente (Para resolver X, preciso resolver Y E Z).</li>
+        </ul>
+
+        <pre>
+        Meta Principal: Resolver Integral(f(x))
+        ├── OR: Substituição de Variável
+        └── OR: Integração por Partes
+            └── AND: Escolher 'u'
+            └── AND: Escolher 'dv'
+        </pre>
+   </section>
+
+    <section class="center">
+        Sistemas Especialistas focam em <b>lógica e símbolos</b>. A ideia é capturar o "If-Then" (Se-Então) de um especialista humano.</p>
+        
+        <ul>
+            <li><span class="highlight">O Conhecimento:</span> O mundo é descrito por fatos e regras.</li>
+            <li><span class="highlight">O Objetivo:</span> Dedução. Usar o que sabemos para derivar novas conclusões logicamente irrefutáveis dentro do sistema.</li>
+            <li>Quadro: Sistemas de Produção.</li>
+        </ul>
+    </section>
+
+    <section class="center">
+        <h2>Ideia Central</h2>
+        <ul>
+            <li>Representar o conhecimento humano via regras lógicas.</li>
+            <li>Separar o <b>Conhecimento</b> (regras) do <b>Motor de Inferência</b> (algoritmo).</li>
+            <li>Explicabilidade: O sistema pode dizer exatamente qual regra usou para chegar ao resultado.</li>
+        </ul>
+    </section>
+
+    <section class="center">
+        <h2>O Sistema de Produção</h2>
+        <p>Consiste em três componentes principais:</p>
+        <pre>
+1. Memória de Trabalho (Fatos)
+2. Base de Regras (Conhecimento: SE -> ENTÃO)
+3. Motor de Inferência (O Executor)
+        </pre>
+    </section>
+
+    <section class="center">
+        <h2>Encadeamento Progressivo (Forward Chaining)</h2>
+        <p><b>Como deduzir fatos novos?</b></p>
+        <p>O sistema parte dos fatos conhecidos e aplica as regras para adicionar novos fatos à memória até que um objetivo seja alcançado ou não haja mais regras para disparar.</p>
+        
+        <p>Exemplo de Regra:</p>
+        <pre>
+IF  'o animal tem penas' 
+THEN 'o animal é uma ave'
+        </pre>
+        
+        <p>Isso é um exemplo de <span class="highlight">Dedução Orientada a Dados</span>.</p>
+    </section>
+
+    <section class="center">
+        <h2>Encadeamento Regressivo (Backward Chaining)</h2>
+        <p>A ideia fundamental: <b>"Para provar uma hipótese, prove as premissas que a tornam verdadeira."</b></p>
+        <p>O sistema começa com uma pergunta (ex: "O animal é um pinguim?") e busca na base de regras o que seria necessário para que isso fosse verdade, transformando premissas em novos sub-objetivos.</p>
+    </section>
+
+    <section class="center">
+        <h2>Resolução de Conflitos</h2>
+        <p>O que fazer quando múltiplas regras podem ser disparadas ao mesmo tempo?</p>
+        <ul>
+            <li><b>Especificidade:</b> Regras mais complexas (mais condições) ganham de regras genéricas.</li>
+            <li><b>Recência:</b> Usar os fatos que entraram na memória por último.</li>
+            <li><b>Prioridade:</b> Ordem definida pelo especialista.</li>
+        </ul>
+    </section>
+</section>
+
+<section>
+    Referências
+    <p>https://web.stanford.edu/class/cs227/</p>
+    <li>MIT6.034 Patrick H. Winston https://ocw.mit.edu/courses/6-034-artificial-intelligence-fall-2010/</li>
+    <li>[INFO - M1 MIAGE - S2] CM Intelligence artificielle</li>
+</section>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({ 
+    hash: true, 
+    slideNumber: 'c/t',
+    transition: 'slide',
+    controls: true,
+    progress: true
+  });
+</script>
+</body>
+</html>
