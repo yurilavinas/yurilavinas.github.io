@@ -7,7 +7,7 @@
 ### Aulas
   1. [Representação de Conhecimento e Raciocínio em Inteligência Artificial](https://yurilavinas.github.io/classes/Conhecimento_raciocinio_IA.html)
   2. [Buscas Heurísticas e Avançadas](https://yurilavinas.github.io/classes/buscas.html) 
-  3. Aprendizado por Reforço!!!
+  3. [Aprendizado por Reforço](https://yurilavinas.github.io/classes/RL.html)
   4. [Aprendizado de Máquina-Supervisionado/Não Supervisionado](https://yurilavinas.github.io/classes/learning.html) 
   5. [Redes Neurais Artificiais Profundas (ANN/DL/CNN/RNN)](https://yurilavinas.github.io/classes/ANN.html)
   6. [Processamento de Linguagem Natural (modelo de linguagem/RNN)](https://yurilavinas.github.io/classes/nlp_word_vectors.html)

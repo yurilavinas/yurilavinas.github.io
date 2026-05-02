@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprendizado por Reforço</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root { --primary: #00d9ff; --secondary: #a855f7; --accent: #10b981; --warning: #ffcc00; }
+    .reveal h1, .reveal h2 { color: var(--primary); text-transform: none; }
+    .reveal h3 { color: var(--secondary); text-transform: none; }
+    .reveal section { text-align: left; font-size: 0.9em; }
+    .center { text-align: center !important; }
+    .box { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; border-left: 5px solid var(--primary); margin: 15px 0; }
+    .warning-box { border-left-color: var(--warning); background: rgba(255, 204, 0, 0.05); }
+    .highlight { color: var(--warning); font-weight: bold; }
+    .formula { background: #111; padding: 10px; border-radius: 8px; display: inline-block; font-family: 'Courier New', monospace; color: var(--accent); }
+    .timeline { color: #888; font-size: 0.6em; font-weight: bold; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+
+
+<section class="center">
+    <section class="center">
+        <span class="badge">Módulo 4 - parte 2</span>
+        <h1>Aprendizado por Reforço</h1>
+    </section>
+
+    <section class="center">
+        <h3>Introducção ao aprendizado por Reforço</h3>
+            <a href="https://www.youtube.com/watch?v=TtfQlkGwE2U" target="_blank">https://www.youtube.com/watch?v=TtfQlkGwE2U</a>
+        </section>
+    
+    <section class="center">
+    <h3>O que torna o Aprendizado por Reforço diferente?</h3>
+    <blockquote>
+        Um paradigma de aprendizado em que um agente aprende interagindo
+        com o ambiente, buscando maximizar recompensas ao longo do tempo.
+    </blockquote>
+    <ul>
+        <li>Não há supervisor, apenas um sinal de recompensa</li>
+        <ul><li>Aprender com a experiência e os dados para tomar boas decisões em situações de incerteza</li></ul>
+        <li>O tempo importa: dados sequenciais</li>
+        <li>As ações influenciam os dados futuros recebidos</li>
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Ausência de Supervisor</h3>
+    <blockquote>
+        Diferentemente do aprendizado supervisionado, não existem respostas corretas
+        fornecidas durante o treinamento.
+    </blockquote>
+    <ul>
+        <li>O agente explora o ambiente</li>
+        <li>Aprende por tentativa e erro</li>
+        <li>Descobre estratégias sozinho</li>
+        <li>Busca maximizar recompensas acumuladas</li>
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Aplicações de Sucesso</h3>
+    <ul>
+        Eficaz em tarefas de controle.
+    </ul>
+    <ul>
+        <li>Manobras acrobáticas com helicópteros</li>
+        <li>Vitória contra campeões mundiais de Backgammon</li>
+        <li>Gestão de portfólios financeiros</li>
+        <li>Controle de usinas de energia</li>
+        <li>Jogando Atari melhor que humanos</li>
+    </ul>
+</section>
+
+
+<section class="center">
+    <h3>Exemplos - controle</h3>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <img src="imgs/bipedal.gif" width="40%" height="auto">
+        <img src="imgs/bowling_4.gif" width="45%" height="auto">
+    </div>
+</section>
+
+<section class="center">
+    <h3>Exemplos - aplicações - 1</h3>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <!-- <img src="imgs/bipedal.gif" width="40%" height="auto"> -->
+        <p>https://openai.com/index/chatgpt/<br><img src="imgs/RL_gpt_2.png" width="80%" height="auto"></p>
+    </div>
+</section>
+
+
+<section class="center">
+    <h3>Exemplos - aplicações - 2</h3>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <!-- <img src="imgs/bipedal.gif" width="40%" height="auto"> -->
+        <p><a href="https://doi.org/10.1038/s41586-021-04014-z" target="_blank">Efficient and targeted COVID-19 border testing via reinforcement learning</a><br><img src="imgs/RL_covid.webp" width="80%" height="auto"></p>
+    </div>
+</section>
+
+<section class="center">
+    <h3>Recompensa</h3>
+    <ul>
+        <li>Uma recompensa \(R_t\)  é um sinal escalar de feedback</li>
+    
+        <li>Indica quão bem o agente está se saindo no instante \(t\) </li>
+        <li>Fornece uma medida imediata de desempenho</li>
+
+        <li>O trabalho do agente é maximizar a recompensa cumulativa</li>
+        <li>Busca maximizar o retorno ao longo do tempo</li>
+    </ul>
+    <blockquote>
+        O Aprendizado por Reforço é baseado na hipótese da recompensa.
+    </blockquote>
+    <p>
+        Definição: todos os objetivos podem ser descritos
+        pela maximização da recompensa cumulativa esperada.
+    </p>
+</section>
+
+<section class="center">
+    <h3>Exemplos de recompensas</h3>
+    <blockquote>
+        Diferentes tarefas utilizam recompensas específicas para guiar o aprendizado.
+    </blockquote>
+    <ul>
+        <li>Jogos: recompensa por vitória; penalidade por derrota</li>
+        <li>Portfólio: recompensa para cada dólar acumulado</li>
+        <li>Usina: recompensa por gerar energia; penalidade por exceder limites de segurança</li>
+        <li>Robô humanoide: recompensa por movimento à frente; penalidade por cair</li>
+        <li>Atari: recompensa por aumentar a pontuação; penalidade por reduzi-la</li>
+    </ul>
+        <p>Ausência de exemplos do comportamento desejado - não há dados disponíveis para uma tarefa.</p>
+        <p>Problemas de otimização de grande complexidade com resultados demorados</p>
+</section>
+
+<section class="center">
+    <h3>Sequential Decision Making</h3>
+    <blockquote>
+        Objetivo: selecionar ações para maximizar a recompensa total futura.
+    </blockquote>
+    <ul>
+        <li>Ações podem ter consequências de longo prazo</li>
+        <li>A recompensa pode ser atrasada</li>
+        <li>Pode ser melhor sacrificar recompensa imediata, em busca de maior recompensa no longo prazo</li>
+        <li>Investimentos: podem levar meses para amadurecer</li>
+        <li>Reabastecimento: pode evitar um acidente horas depois</li>
+        <li>Jogos: bloquear movimentos pode aumentar as chances de vitória</li>
+    </ul>
+</section>
+
+
+<section class="center">
+    <h3>Agentes</h3>
+        <img src="imgs/RL_1.png" width="80%" height="auto">
+</section>
+
+<section class="center">
+    <h3>Interação Agente-Ambiente</h3>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <div style="flex: 1">
+                <p>A cada passo  \(t \), agente e ambiente interagem continuamente.</p>
+            <ul>
+                <ul>Agente:
+                    <li>executa a ação \(A_t \) </li>
+                    <li>recebe a observação  \(O_t \)</li>
+                    <li>recebe a recompensa escala \(R_t \)</li>
+                 </ul>
+                 <ul>Ambiente:
+                <li>recebe a ação \(A_t \)</li>
+                <li>emite a observação  \(O_{t+1} \)</li>
+                <li>emite a recompensa escalar \(R_{t+1} \)</li>
+            </ul>
+            <p>O tempo avança a cada passo do ambiente \(t = t+1\)</p>
+        </div>
+          <img src="imgs/RL_2.png" width="40%" height="auto">
+        </div>     
+</section>
+
+<section class="center">
+    <h3>Histórico e estado</h3>
+    <p>
+        O histórico é a sequência de observações, ações e recompensas até o instante \(t\).
+    </p>
+    <p class="highlight">
+       \( H_t = O_1,R_1,A_1,...,A_{t-1},O_t,R_t    \) 
+    
+    </p>
+    <ul>
+        <li>Fluxo sensório-motor de um agente ou robô</li>
+        <li>O próximo passo depende do histórico</li>
+        <ul>
+            <li>O agente escolhe ações</li>
+            <li>O ambiente gera observações e recompensas</li>
+        </ul>
+        <li>Estado é a informação usada para determinar o que acontece em seguida</li>
+        <li >Formalmente: 
+           <span class="highlight"> \[ S_t =f(H_t) \]</span>
+        </li>
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Environment State</h3>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <div style="flex: 1">
+    <ul>
+        <li>O estado do ambiente \(S^{e}_{t} \) é a representação interna do ambiente.</li>
+        <li>Contém os dados usados para gerar a próxima observação e recompensa</li>
+        <li>Normalmente não é visível ao agente</li>
+        <li>Pode ser uma representação privada do ambiente</li>
+        <li>Mesmo quando observável, pode conter informações irrelevantes</li>
+        <li>Pode ser qualquer função de história: <span class="highlight"> \( S_{t}^{a} =f(H_t) \)</span></li>
+    </ul>
+    </div>
+        <img src="imgs/RL_3.png" width="40%" height="auto">
+    </div> 
+</section>
+
+<section class="center">
+    <h3>Informação de estado</h3>
+    Supondo que seja um Processo de decisão de Markov
+    <ul><li>Simplifica o problema - pode ser resolvido se incluirmos um pouco do histórico como parte do estado</li>
+    <li>
+        Um estado de informação contém toda a informação útil do histórico \(s_t = o_t \).
+    </li>
+    </ul>
+    Definição:
+    <p class="highlight">
+        
+        \( \mathbb{P}[S_{t+1}|S_t] = \mathbb{P}[S_{t+1}|S1,...,S_t]   \)
+    </p>
+    <ul>
+        <li>O futuro é independente do passado dado o presente</li>
+           <span class="highlight"> \( H_{1:t} \to S_t \to H_{t+1:\inf}   \)</span>
+        <li>Conhecido o estado, o histórico pode ser descartado</li>
+        <ul>
+            <li>O estado é uma estatística suficiente do futuro</li>
+        </ul>
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Ambientes totalmente vs parcialmente observáveis</h3>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <div style="flex: 1">
+        <ul>
+            <li> Ambientes totalmente observáveis:</li>
+            
+            <ul>
+                <li>Estado do agente = Estado do ambiente = Estado da informação</li>
+                <li>Formalmente: Markov Decision Process (MDP)</li>
+            </ul>
+            <li>parcialmente observáveis</li>
+            <ul>
+                <li>Formalmente: Partially Observable Markov Decision Process (POMDP)</li>
+                <li>O agente deve construir sua própria representação de estado</li>
+            </ul>
+        </ul>
+    </div>
+        <img src="imgs/RL_3.png" width="40%" height="auto">
+    </div> 
+</section>
+
+<section class="center">
+    <h3>Principais Componentes de um Agente de RL</h3>
+    <ul>
+        <li>Um agente de Aprendizado por Reforço pode incluir um ou mais destes componentes. </li>
+        <ul>
+            <li>Política: função de comportamento do agente</li>
+            <li>Função de valor de estado: quão bom é cada estado e/ou ação</li>
+            <li>Modelo: representação do ambiente pelo agente</li>
+        </ul>
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Política</h3>
+    <ul>
+        <li> A política define o comportamento do agente.</li>
+    <ul>
+        <li>É um mapeamento de estado para ação:</li>
+        <ul>
+            <li>determinística: <span class="highlight">\(a=\pi(s)\) </span></li>
+            <li>estocástica:<span class="highlight"> \(\pi(a|s) = \mathbb{P}[A_t = a|S_t=s]\)</span></li>
+        </ul>
+        
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Função de valor de estado</h3>
+    <ul>
+        É uma predição da recompensa futura.
+    <ul>
+        <li>Avalia o quão bom ou ruim é um estado</li>
+        <li>Ajuda a comparar e selecionar ações</li>
+    </ul>
+       <span class="highlight"> \( v_{\pi}(s) = \mathbb{E}_{\pi}[R_{t+1}+\gamma R_{t+2} + \gamma^{2}R_{t+3}+...|S_t=S ]     \)</span>
+    </ul>
+</section>
+
+
+<section class="center">
+    <h3>Modelo</h3>
+    <ul>
+        O modelo busca estimar o que o ambiente fará a seguir.
+    <ul>
+        <li>\(P\) prevê o próximo estado</li>
+        <li>\(R\) prevê a recompensa imediata</li>
+        <li>Captura a dinâmica do ambiente</li>
+    </ul>
+     <span class="highlight">
+        \(P^a_{ss'} = \mathbb{P}[S_{t+1}=s' |S_t=S,A_t=a]            \)
+     </span>
+     <br>
+    <span class="highlight">
+        \(R^a_s = \mathbb{E}[R_{t+1} | S_t=S, A_t=a ]  \)
+    </span>
+</section>
+
+
+
+<section class="center">
+    <h3>Exemplo - labirinto</h3>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <div style="flex: 1">
+            <ul>
+                <li>recompensas: -1 por intervalo de tempo </li>
+                <li>ações: Cima, baixo, esquerda, direita</li>
+                <li>estados: localização do agente</li>
+            </ul>
+        </div>
+        <div style="flex: 1">
+            <img src="imgs/RL_lab1.png" width="80%" height="auto"><br>
+          </div>
+        </div> 
+</section>
+    
+
+
+<section class="center">
+    <h3>Exemplo - política e função de valor de estado</h3>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <div style="flex: 1">
+            <ul>
+                <li>As setas representam a política \(\pi(s)\)  para cada estado \(s\)</li>
+            </ul>
+            <br>
+            <br>
+             <ul>
+                <li>Os valores representam \(v_\pi(s)\) para cada estado \(s\) </li>
+            </ul>
+        </div>
+        <div style="flex: 1">
+            <img src="imgs/RL_lab2.png" width="80%" height="auto"><br>
+            <img src="imgs/RL_lab3.png" width="80%" height="auto">
+          </div>
+        </div> 
+</section>
+
+
+
+<section class="center">
+    <h3>Exemplo - labirinto: modelo</h3>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <div style="flex: 1">
+            <ul>
+                <li>O agente pode ter um modelo interno do ambiente</li>
+                <li>Dinâmica: como as ações alteram o estado</li>
+                <li>Recompensas: qual a recompensa de cada estado</li>
+                <li>O modelo pode ser imperfeito</li>
+            </ul>
+            <br><br>
+            <ul>
+                <li>
+                    O layout representa o modelo de transições: \(P^a_{ss'} \)
+                </li>
+                <li>
+                    Os números representam o Reforço imediato \(R^a_s  \) para cada estado \(s\) (o mesmo para cada \(a \)  )
+                </li>
+        
+     </span>
+     
+        </div>
+        <div style="flex: 1">
+        <img src="imgs/RL_lab4.png" width="80%" height="auto"><br>
+          <img src="imgs/RL_lab1.png" width="80%" height="auto">
+        </div> 
+</section>
+
+    <section class="center">
+    <h3>Categorizando Agentes de RL</h3>
+    <p>
+        Agentes de RL podem ser classificados de acordo com os componentes que utilizam.
+    </p>
+    <ul>
+        <li>Baseado apenas em função de valor de estado</li>
+        <ul>
+            <li>Não possui política explícita</li>
+        </ul>
+        <li>Baseado apenas em política:</li>
+        <ul>
+            <li>Não utiliza função de valor de estado</li>
+        </ul>
+        <li>Actor-Critic: combina política e função de valor de estado</li>
+    </ul>
+    
+    <p>
+        Outra forma de classificação é baseada no uso de modelo do ambiente.
+    </p>
+    <ul>
+        <ul>
+            <li>Livre de modelo:</li>
+            <ul>
+                <li>Usa política e/ou value function diretamente</li>
+            </ul>
+            <li>Baseado em modelo: utiliza modelo do ambiente</li>
+            <ul>
+                
+                <li>Pode usar política e/ou função de valor de estado junto com o model</li>        
+            </ul>
+        
+        
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Aprendizado e Planejamento</h3>
+    <p>
+        Dois problemas fundamentais na tomada de decisão sequencial.
+    </p>
+    <ul>Aprendizado:
+        <ul>
+            <li> ambiente é inicialmente desconhecido</li>
+            <li>O agente interage com o ambiente e melhora sua política</li>
+        </ul>
+    </ul>
+    <ul>Planejamento: 
+        <ul>
+            <li>um modelo do ambiente é conhecido</li>
+            <li>O agente realiza computações com o modelo (sem interação externa) e melhora sua política</li>
+            outros nomes: Deliberação, Raciocínio, Introspecção, Reflexão, Pensamento, Busca
+        </ul>
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Exemplo: ação</h3>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <div style="flex: 1">
+            <ul>
+                <li>Regras do jogo são consideradas como desconhecidas</li>
+                <li>Aprende diretamente da interação com o jogo</li>
+                <li>Faça uma ação, veja a imagem e os pontos</li>
+            </ul>
+        </div>
+        <img src="imgs/atari.png" width="45%" height="auto">
+    </div>
+</section>
+
+
+<section class="center">
+    <h3>Exemplo: planejamento</h3>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <div style="flex: 1">
+        <ul>
+                O agente usa um modelo conhecido do ambiente para simular o futuro.
+
+            
+            <ul>
+                <li>As regras do jogo são conhecidas</li>
+                <li>É possível consultar o emulador</li>
+                <ul>
+                    <li>Existe um modelo perfeito dentro do “cérebro” do agente</li>
+                </ul>
+                <li>Se o agante toma a ação \(a\) no estado \(s\):</li>
+                <ul>
+                    <li>qual será o próximo estado?</li>
+                    <li>qual será a pontuação?</li>
+                </ul>
+                <li>o agente pode planejar à frente para encontrar a política ótima</li>
+                    <ul><li>busca em árvore</li></ul>
+            </ul>
+        </ul>
+        </div>
+        <img src="imgs/atari_2.png" width="35%" height="auto">
+    </div>
+</section>
+
+<section class="center">
+    <h3>Exploração</h3>
+    Um algoritmo pode focar em buscar mais informações sobre o ambiente ou otimizar a informação conhecida para maximar a recompensa
+    <ul>
+        <p>Escolha de restaurante</p>
+    
+        <ul>
+            <li>Ir ao restaurante favorito</li>
+            <li>Experimentar um restaurante novo</li>
+        </ul>
+
+        <p>Jogos</p>
+    <ul>
+        <li>Fazer a melhor jogada</li>
+        <li>Tentar uma jogada diferente</li>
+    </ul>
+</ul>
+</section>
+
+<section class="center">
+
+    <h3>Predição e controle</h3>
+    <ul>
+        <p>Predição</p>
+        <li>availar o futuro dado uma política</li>
+    
+        <p>Controle</p>
+        <li>otimizar uma política para achar a melhor</li>
+        <img src="imgs/RL_predicoes.png" width="80%" height="auto"><img 
+    </ul>
+
+
+</section>
+</section>
+
+<section class="center">
+     <section class="center">
+        <span class="badge">Módulo 4 - parte 2</span>
+        <h1>Aprendizado por Reforço</h1>
+        <h2>Processos de Decisão de Markov</h2>
+    </section>
+
+    <section class="center">
+    <h3>Introdução aos MDPs</h3>
+    <blockquote>
+        Processos de Decisão de Markov descrevem formalmente um ambiente
+        para aprendizado por reforço.
+    </blockquote>
+    <ul>
+        <li>O ambiente é totalmente observável</li>
+        <li>O estado atual caracteriza completamente o processo</li>
+        <li>Quase todos os problemas de RL podem ser formulados como MDPs</li>
+        <ul>
+            <li>Controle ótimo trata principalmente de MDPs contínuos</li>
+            <li>Problemas parcialmente observáveis podem ser convertidos em MDPs</li>
+        </ul>
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Propriedade de Markov</h3>
+    <blockquote>
+        O futuro é independente do passado dado o presente.
+    </blockquote>
+    <p class="highlight">
+        \( \mathbb{P}[S_{t+1}|S_t] = \mathbb{P}[S_{t+1}|S1,...,S_t]   \)
+        
+    </p>
+    <ul>
+        <li>Um estado é Markov se satisfaz essa propriedade</li>
+        <li>O estado captura toda a informação relevante do histórico</li>
+        <li>Uma vez conhecido o estado, o histórico pode ser descartado</li>
+        <li>O estado é uma estatística suficiente do futuro</li>
+    </ul>
+</section>
+
+<section class="center">
+    <h3>Matriz de Transição de Estados</h3>
+    <blockquote>
+        Para um estado de Markov s e um estado sucessor s′,
+        a probabilidade de transição é definida por:
+    </blockquote>
+    <span class="highlight">\(P_{ss'} = \mathbb{P}[S_{t+1}=s' |S_t=S]            \)</span>
+    <ul>
+        <li>A matriz P reúne todas as probabilidades de transição</li>
+        <li>Cada elemento representa a transição de s para s′</li>
+        <li>Linhas correspondem ao estado atual</li>
+        <li>Colunas correspondem ao próximo estado</li>
+        <li>A soma dos elementos de cada linha é igual a 1</li>
+    </ul>
+    <span class="highlight">\[
+        P =
+        \begin{array}{c}
+        \\[-1.5ex]
+        \text{de}
+        \end{array}
+        \left[
+        \begin{array}{cccc}
+        P_{11} & \cdots & \cdots & P_{1n} \\
+        \vdots & \ddots &        & \vdots \\
+        \vdots &        & \ddots & \vdots \\
+        P_{n1} & \cdots & \cdots & P_{nn}
+        \end{array}
+        \right]
+        \begin{array}{c}
+        \\[-6.5em]
+        \text{para}
+        \end{array}
+\]</span>
+</section>
+<section class="center">
+    <h3>Processo de Markov</h3>
+    <blockquote>
+        Um Processo de Markov é um processo aleatório sem memória,
+        composto por uma sequência de estados aleatórios.
+    </blockquote>
+    <ul>
+        <li>Também é chamado de Cadeia de Markov</li>
+        <ul>
+            <li>É definido pela tupla ⟨S, P⟩</li>
+            <li>S é o conjunto finito de estados</li>
+            <li>P é a matriz de probabilidades de transição</li>
+        </ul>
+    </ul>
+    <span class="highlight">\(P_{ss'} = \mathbb{P}[S_{t+1}=s' |S_t=S]            \)</span>
+</section>
+
+<section class="center"> <h3>Episódios de Exemplo</h3> <blockquote> Sequências geradas pela Cadeia de Markov do estudante, iniciando em S<sub>1</sub> = C1. </blockquote>
+<ul>
+    <li>C1 → C2 → C3 → Pass → Sleep</li>
+    <li>C1 → FB → FB → C1 → C2 → Sleep</li>
+    <li>C1 → C2 → C3 → Pub → C2 → C3 → Pass → Sleep</li>
+    <li>C1 → FB → FB → C1 → C2 → C3 → Pub → C1 → FB → FB</li>
+    <li>FB → C1 → C2 → C3 → Pub → C2 → Sleep</li>
+</ul>
+<img src="imgs/RL_markov.png" width="40%" height="auto">
+</section>
+
+<section class="center"> 
+    <h3>Matriz de transições</h3>
+\[
+P =
+\begin{array}{c|ccccccc}
+ & C1 & C2 & C3 & Pass & Pub & FB & Sleep \\ \hline
+C1    & 0   & 0.5 & 0   & 0   & 0   & 0.5 & 0 \\
+C2    & 0   & 0   & 0.8 & 0   & 0   & 0   & 0.2 \\
+C3    & 0   & 0   & 0   & 0.6 & 0.4 & 0   & 0 \\
+Pass  & 0   & 0   & 0   & 0   & 0   & 0   & 1.0 \\
+Pub   & 0.2 & 0.4 & 0.4 & 0   & 0   & 0   & 0 \\
+FB    & 0.1 & 0   & 0   & 0   & 0   & 0.9 & 0 \\
+Sleep & 0   & 0   & 0   & 0   & 0   & 0   & 1.0
+\end{array}
+\]
+<img src="imgs/RL_markov.png" width="40%" height="auto">
+</section>
+
+
+<section class="center"> 
+<h3>Processo de recompensa de Markov</h3>
+    <blockquote>
+        Um Processo de Recompensa de Markov é uma Cadeia de Markov com recompensas.
+    </blockquote>
+    <ul>
+        <li>É definido pela tupla ⟨S, P, R, γ⟩</li>
+        <li>S é o conjunto finito de estados</li>
+        <li>P é a matriz de probabilidades de transição</li>
+        <li>R é a função de recompensa</li>
+        </ul>
+            <span class="highlight"> \( R_s = \mathbb{E}_{\pi}[R_{t+1}+\gamma R_{t+2} + \gamma^{2}R_{t+3}+...|S_t=S ]     \)</span>
+        </ul>
+        <li>γ é o fator de desconto, com γ ∈ [0, 1]</li>
+        <ul>
+            <li>Perto de 0, leva a uma avalição "curta"</li>
+            <li>Perto de 1, leva a uma avalição "longa"</li>
+        </ul>
+    </ul>
+</section>
+
+
+<section class="center">
+    <h3>Por que usar desconto?</h3>
+    <blockquote>
+        A maioria dos Processos de Recompensa e Decisão de Markov utiliza fator de desconto.
+    </blockquote>
+    <ul>
+        <li>Torna a formulação matemática mais conveniente</li>
+        <li>Evita retornos infinitos em processos cíclicos</li>
+        <li>Incertezas futuras podem não estar totalmente representadas</li>
+        <li>Recompensas imediatas podem gerar mais retorno</li>
+        <li>Humanos e animais preferem recompensas imediatas</li>
+        <li>É possível usar γ = 1 quando todos os episódios terminam</li>
+    </ul>
+</section>
+
+
+<section class="center">
+    <h3>Recompensa Amostrais do estudante - MRP</h3>
+    <p>
+        \(G_1 = R_2 + \gamma R_3 + \cdots + \gamma^{T-2} R_T\)
+    </p>
+    <img src="imgs/RL_markov_2.png" width="50%" height="auto"><br>
+
+    Supondo \(\gamma = 1/2\)
+    <img src="imgs/RL_markov3.png" width="80%" height="auto"><br>
+</section>
+
+
+<section class="center">
+    <h3>Bellman Equation (MRP)</h3>
+    <blockquote>
+        Decomposição fundamental do valor em MRPs.
+    </blockquote>
+    <p>
+        \(v(s) = \mathbb{E}[R_{t+1} + \gamma v(S_{t+1}) \mid S_t = s]\)
+    </p>
+    <p>
+        \(v(s) = R_s + \gamma \sum_{s'} P_{ss'} v(s')\)
+    </p>
+
+    <h4>Complexidade Computacional</h4>
+    <blockquote>
+        Resolver diretamente não escala bem.
+    </blockquote>
+    <ul>
+        <li>Complexidade: \(O(n^3)\)</li>
+        <li>Bom apenas para MRPs pequenos</li>
+        <li>Para grandes problemas: métodos iterativos</li>
+    </ul>
+</section>
+
+
+
+</section>
+
+    <section>
+        <p>An Introduction to Reinforcement Learning, Sutton and Barto, 1998 - http://webdocs.cs.ualberta.ca/∼sutton/book/the-book.html</p>
+        </p>Algorithms for Reinforcement Learning, Szepesvari Morgan and Claypool, 2010 - http://www.ualberta.ca/∼szepesva/papers/RLAlgsInMDPs.pdf</p>
+
+    </section>
+    
+    <section>
+        <h3>Referências</h3>
+        <p>https://medium.com/@jer_zhang/a-survey-of-reinforcement-learning-techniques-for-2d-and-3d-bipedal-locomotion-2f82f455396a</p>
+        <p>https://davidstarsilver.wordpress.com/wp-content/uploads/2025/04/intro_rl.pdf</p>
+        <p>https://web.stanford.edu/class/cs234/modules.html</p>
+    </section>
+    
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({ 
+    hash: true, 
+    slideNumber: 'c/t',
+    transition: 'slide',
+    controls: true,
+    progress: true
+  });
+</script>
+
+<!-- mathjax -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+      // Make responsive
+      MathJax.Hub.Config({
+       "HTML-CSS": { linebreaks: { automatic: true } },
+       "SVG": { linebreaks: { automatic: true } },
+      });
+    </script>
+
+</body>
+</html>
+
