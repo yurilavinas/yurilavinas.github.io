@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rede neurais</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root { --primary: #00d9ff; --secondary: #a855f7; --accent: #10b981; --warning: #ffcc00; }
+    .reveal h1, .reveal h2 { color: var(--primary); text-transform: none; }
+    .reveal h3 { color: var(--secondary); text-transform: none; }
+    .reveal section { text-align: left; font-size: 0.9em; }
+    .center { text-align: center !important; }
+    .box { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; border-left: 5px solid var(--primary); margin: 15px 0; }
+    .warning-box { border-left-color: var(--warning); background: rgba(255, 204, 0, 0.05); }
+    .highlight { color: var(--warning); font-weight: bold; }
+    .formula { background: #111; padding: 10px; border-radius: 8px; display: inline-block; font-family: 'Courier New', monospace; color: var(--accent); }
+    .timeline { color: #888; font-size: 0.6em; font-weight: bold; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+
+<!-- Neural Networks -->
+    <section class="center">
+        <span class="badge">Módulo 4 - parte 2</span>
+        <h1>Redes Neurais</h1>
+        <ol>
+          <li>Redes Neurais Artificiais</li>
+          <li>Backpropagation</li>
+      </ol> 
+    </section>
+
+    <!-- Backprop -->
+<section class="center">
+    <section class="center">
+        <span class="badge">Módulo 3 - parte 2</span>
+        <h2>Backpropagation - Otimização dos pesos</h2>
+        <ul>
+            <li>Calcula gradientes.</li>
+            <li>Atualiza pesos.</li>
+            <li>Usa descida do gradiente.</li>
+        </ul>
+    </section>
+
+
+  <section class="center">
+      <h3>Por Que Otimização?</h3>
+      <div class="box">
+          Treinar uma rede neural significa encontrar os pesos que minimizam uma função de custo.
+      </div>
+      <ul>
+          <li>Milhões de parâmetros</li>
+          <li>Espaços de alta dimensionalidade</li>
+          <li>Superfícies não convexas</li>
+      </ul>
+  </section>
+
+  <section class="center">
+      <h2>O Conceito de Gradiente</h2>
+      <div class="box">
+          O gradiente aponta para a direção de maior crescimento da função.
+      </div>
+
+      :contentReference[oaicite:1]{index=1}
+  </section>
+
+  <section class="center">
+      <h2>Gradient Descent</h2>
+
+      <pre><code class="language-python">
+        # Vanilla Gradient Descent
+
+        while True:
+            weights_grad = evaluate_gradient(loss_fun, data, weights)
+            weights += -step_size * weights_grad
+        </code></pre>
+
+      <ul>
+          <li><strong>η</strong>: taxa de aprendizado</li>
+          <li>Movimento na direção oposta ao gradiente</li>
+          <li>Busca pelo mínimo da função</li>
+      </ul>
+  </section>
+
+  <section class="center">
+      <h2>Intuição Visual</h2>
+      <ul>
+          <li>Bola descendo uma montanha</li>
+          <li>O gradiente indica a inclinação local</li>
+          <li>Atualizações sucessivas convergem ao mínimo</li>
+      </ul>
+  </section>
+
+  <section class="center">
+      <h2>Expressões Simples</h2>
+
+      <div class="formula">
+          f(x,y,z) = (x + y)z
+      </div>
+
+      <ul>
+          <li>q = x + y</li>
+          <li>f = q · z</li>
+      </ul>
+
+      <p class="small">:contentReference[oaicite:3]{index=3}</p>
+  </section>
+
+  <section class="center">
+      <h2>Forward Pass</h2>
+
+      <div class="formula">
+          x = -2<br>
+          y = 5<br>
+          z = -4<br><br>
+
+          q = x + y = 3<br>
+          f = qz = -12
+      </div>
+  </section>
+
+  <section class="center">
+      <h2>Backward Pass</h2>
+
+      <div class="formula">
+          ∂f/∂z = q = 3<br>
+          ∂f/∂q = z = -4
+      </div>
+
+      <div class="box">
+          Agora propagamos para trás usando a regra da cadeia.
+      </div>
+  </section>
+
+  <section class="center">
+      <h2>Regra da Cadeia</h2>
+
+      :contentReference[oaicite:4]{index=4}
+
+      <ul>
+          <li>dq/dx = 1</li>
+          <li>df/dx = -4</li>
+          <li>df/dy = -4</li>
+      </ul>
+  </section>
+
+  <section class="center">
+      <h2>Backpropagation</h2>
+      <div class="box">
+          Propagação reversa eficiente dos gradientes através do grafo computacional.
+      </div>
+
+      <ul>
+          <li>Executa da saída para a entrada</li>
+          <li>Reutiliza cálculos</li>
+          <li>Complexidade linear</li>
+      </ul>
+  </section>
+
+  <section class="center">
+      <h2>Fluxo dos Gradientes</h2>
+      <ul>
+          <li>Sinais viajam para trás</li>
+          <li>Cada operação calcula gradientes locais</li>
+          <li>Multiplicação pela derivada local</li>
+      </ul>
+  </section>
+
+  <section class="center">
+      <h2>Portas Computacionais</h2>
+      <ul>
+          <li><strong>Soma</strong>: distribui gradiente</li>
+          <li><strong>Máximo</strong>: roteia gradiente</li>
+          <li><strong>Produto</strong>: troca entradas</li>
+      </ul>
+
+      <p class="small">:contentReference[oaicite:5]{index=5}</p>
+  </section>
+
+  <section class="center">
+      <h2>Porta Soma</h2>
+
+      :contentReference[oaicite:6]{index=6}
+
+      <ul>
+          <li>∂f/∂x = 1</li>
+          <li>∂f/∂y = 1</li>
+          <li>Gradiente é copiado para ambas entradas</li>
+      </ul>
+  </section>
+
+  <section class="center">
+      <h2>Porta Multiplicação</h2>
+
+      :contentReference[oaicite:7]{index=7}
+
+      <ul>
+          <li>∂f/∂x = y</li>
+          <li>∂f/∂y = x</li>
+      </ul>
+  </section>
+
+  <section class="center">
+      <h2>Porta Máximo</h2>
+
+      :contentReference[oaicite:8]{index=8}
+
+      <ul>
+          <li>Gradiente vai apenas para o maior valor</li>
+          <li>O outro recebe zero</li>
+      </ul>
+  </section>
+
+  <section class="center">
+      <h2>Sigmoid</h2>
+
+      :contentReference[oaicite:9]{index=9}
+
+  </section>
+
+  <section class="center">
+      <h2>Derivada da Sigmoid</h2>
+
+      :contentReference[oaicite:10]{index=10}
+
+      <div class="box">
+          Elegante, eficiente e amplamente utilizada em backprop.
+      </div>
+  </section>
+</section> 
+
+<section class="center">
+    Referências:
+    <ul>
+        <li>ATAI Yuri Lavinas, Sylvain Cussat-Blanc - UCT/M2-MIAGE 2IS</li>
+        <li>MIT6.034 Patrick H. Winston https://ocw.mit.edu/courses/6-034-artificial-intelligence-fall-2010/</li>
+        <li>Stanford CS class CS231n: Convolutional Neural Networks for Visual Recognition http://vision.stanford.edu/teaching/cs231n</li>
+    </ul>
+
+</section>
+
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({ 
+    hash: true, 
+    slideNumber: 'c/t',
+    transition: 'slide',
+    controls: true,
+    progress: true
+  });
+</script>
+
+<!-- mathjax -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+      // Make responsive
+      MathJax.Hub.Config({
+       "HTML-CSS": { linebreaks: { automatic: true } },
+       "SVG": { linebreaks: { automatic: true } },
+      });
+    </script>
+
+</body>
+</html>
+

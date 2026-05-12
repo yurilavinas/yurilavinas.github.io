@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UnB - Yuri Lavinas</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    :root { --primary: #00d9ff; --secondary: #a855f7; --accent: #10b981; --warning: #ffcc00; }
+    .reveal h1, .reveal h2 { color: var(--primary); text-transform: none; }
+    .reveal h3 { color: var(--secondary); text-transform: none; }
+    .reveal section { text-align: left; font-size: 0.9em; }
+    .center { text-align: center !important; }
+    .box { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; border-left: 5px solid var(--primary); margin: 15px 0; }
+    .warning-box { border-left-color: var(--warning); background: rgba(255, 204, 0, 0.05); }
+    .highlight { color: var(--warning); font-weight: bold; }
+    .formula { background: #111; padding: 10px; border-radius: 8px; display: inline-block; font-family: 'Courier New', monospace; color: var(--accent); }
+    .timeline { color: #888; font-size: 0.6em; font-weight: bold; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+  
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 0 — CAPA
+═══════════════════════════════════════════ -->
+<section class="center">
+  <section class="center" style="position:relative;">
+    <div class="cover-wrap">
+      <div class="cover-label">Processo Seletivo · UnB</div>
+      
+      <h1>Edital Nº 027/2026</h1>
+      <div class="cover-label">Área de conhecimento: Inteligência artificial</div>
+      <div class="accent-line"></div>
+      <h2 style="font-size:1.3em; color:var(--text); font-weight:300;">Yuri Cossich Lavinas</h2>
+      <p style="color:var(--muted); font-size:.75em; margin-top:1.2em;">
+        Professor Associado · IRIT/Université Toulouse Capitole, França
+      </p>
+    </div>
+  </section>
+
+  <!-- Índice de tempo -->
+  <section class="center">
+    <h2>O que vou apresentar</h2>
+        <h3>Trajetória</h3>
+        <h3>Pesquisa</h3>
+        <h3>Ensino e formação</h3>
+        <h3>Integração UnB</h3>
+  </section>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 1 — TRAJETÓRIA
+═══════════════════════════════════════════ -->
+<section class="center">
+  <section class="center" style="position:relative;">
+    <div class="cover-wrap">
+      <h1>Trajetória</h1>
+      <div class="accent-line"></div>
+      <p style="color:var(--muted); font-size:.8em;">Formação · Experiência · Motivação</p>
+    </div>
+  </section>
+
+  <!-- Timeline acadêmica -->
+  <section class="center">
+    <h2>A volta à UnB em 80 dias</h2>
+    <ul class="pill-list mt">
+      <li>
+        <div>
+          2009-2016: Bacharelado em Ciência da Computação UnB<br>
+          <span style="color:var(--muted); font-size:.9em;"><span class="highlight">PAS</span> / <span class="highlight">Ciência sem Fronteiras</span> · Japão (2014/2015)</span>
+        </div>
+      </li>
+      <li>
+        <div>
+          2018–2023: Mestrado e Doutorado<br>
+          <span style="color:var(--muted); font-size:.9em;">Universidade de Tsukuba, Japão · <span class="highlight">Sony CSL</span></span>
+        </div>
+      </li>
+      <li>
+        <div>
+          2023–2024: Pós-doutorado, França - INSERM (Institut National de la Santé et de la Recherche Médicale)
+        </div>
+      </li>
+      <li>
+        <div>
+          2024-hoje: Professor Associado - IRIT/Université Toulouse Capitole, França
+          <br>Co-responsável pela equipe de relações internacionais
+        </div>
+      </li>
+      <li>
+        <div>
+          2026 - futuro: UnB<br>
+          <span style="color:var(--muted); font-size:.9em;">Brasiliense, retribuir, ensinar o que aprendi, proximidade com família</span>
+        </div>
+      </li>
+    </ul>
+    <div class="timeline-bar mt"><div class="tbar-c"></div><div class="tbar-v"></div><div class="tbar-g"></div><div class="tbar-a"></div></div>
+  </section>
+
+<!-- SLIDE 1 -->
+ <section class="center">
+  <h2>Produção Científica Selecionada</h2>
+
+  <table style="width:100%; font-size:0.75em; border-collapse: collapse;">
+    <thead>
+      <tr>
+        <th style="border-bottom:1px solid #ccc; text-align:left;">Tipo</th>
+        <th style="border-bottom:1px solid #ccc; text-align:left;">Referência</th>
+        <th style="border-bottom:1px solid #ccc;">Veículo</th>
+        <th style="border-bottom:1px solid #ccc;">Qualis/Impacto</th>
+        <th style="border-bottom:1px solid #ccc;">Ano</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Periódico</td>
+        <td><i>Berghegger et al. - Analyzing Interpretable Visual Control Policy Search and Synthesis</i></td>
+        <td>ACM TELO</td>
+        <td>A2</td>
+        <td>2026</td>
+      </tr>
+      <tr>
+        <td>Periódico</td>
+        <td><i>Lavinas et al. - Multiobjective Evolutionary Component Effect on Algorithm Behavior</i></td>
+        <td>ACM TELO</td>
+        <td>A2</td>
+        <td>2024</td>
+      </tr>
+      <tr>
+        <td>Periódico</td>
+        <td><i>Lavinas et al. - Faster Convergence in Multiobjective Optimization Algorithms Based on Decomposition</i></td>
+        <td>Evolutionary Computation</td>
+        <td>A2</td>
+        <td>2022</td>
+      </tr>
+      
+      <tr>
+        <td>Conferência</td>
+        <td><i>Lavinas et al. - Component-wise Analysis of Automatically Designed Multiobjective Algorithms on Constrained Problems</i></td>
+        <td>GECCO</td>
+        <td>A1</td>
+        <td>2022</td>
+  </table>
+
+</section>
+
+
+<!-- SLIDE 2 -->
+<section class="center">
+  <h2>Artigos</h2>
+    <ul><li>2021-2026: 3-A1, 2-A3, 6 A4 - 11/20  </li>
+      <ul>
+        <small>
+        <li>2 - IEEE CEC  (Qualis: A1, h5-index: 94)</li>
+        <li>2 - GECCO (Qualis: A1, h5-index: 49)</li>
+        <li>2 - PPSN (Qualis: A3, 22)</li>
+        <li>6 - Evostar (Qualis: A4, 19)</li>
+        <li>5 (+2 revistas) - em coautoria com UnB (2014-2024)</li>
+        </small>
+      </ul>
+      </ul>
+        <ul>
+          <li>Agenda de submissões 2026–2028 - 4 por ano, 8 total:</li>
+          <ul><small>
+            <li>Conferências: <span style="color: #ffcc00;">GECCO, IEEE CEC</span>, <span style="color: green;">NeurIPS</span></li>
+            <li>Revistas: <span style="color: #ffcc00;">TELO, IEEE Nature methods (artigo em escrita)</span>, <span style="color: green;">IEEE TEC</span> </li>
+          </ul></small>
+          <p>Mais de 15 colaboradores no mundo todo: Brasil, França, Japão, Reino Unido, Estados Unidos, Itália</p>
+        </ul>
+  <!-- <small>https://www.gov.br/capes/pt-br/acesso-a-informacao/acoes-e-programas/avaliacao/sobre-a-avaliacao/areas-avaliacao/sobre-as-areas-de-avaliacao/colegio-de-ciencias-exatas-tecnologicas-e-multidisciplinar/ciencias-exatas-e-da-terra/ciencia-da-computacao</small> -->
+</section>
+
+
+
+  <!-- Prêmios e orientações — placeholder visual -->
+  <section class="center">
+    <h2>Financiamento e prêmios</h2>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+      <div>
+        <ul style="font-size:0.8em; line-height:1.4;">
+          <li>Pesquisador visitante - junto ao professor Wolfgang Banzhaf, Michigan State University, Estados Unidos</li>
+          <li>Bolsa de pesquisa SPECIES (Europa) – estágio internacional junto à professora Gabriela Ochoa, University of Stirling, Reino Unido</li>
+          <li>SonyCSL - pesquisador assistente</li>
+          <li>Bolsista MEXT (Japão) – estudante de pesquisa \(\to\)  mestrado  \(\to\) PhD</li>
+          <li>Ciência sem Fronteiras</li>
+          <li>Bolsa CNPq – iniciação científica (Brasil)</li>
+          <li>Bolsa CAPES – iniciação científica (Brasil)</li>
+        </ul>
+      </div>
+      <div>
+        <img src="imgs/diploma-quase-la.jpeg" width="80%" height="auto" alt="Diploma PhD esperando validação - última etapa 90 dias a partir 06, Maio">
+    </div>
+</section>
+
+<section class="center">
+
+    <h2>Assessoria científica</h2>
+
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+      
+      <!-- TEXT (smaller) -->
+      <div style="flex: 1;">
+        <small>
+          <ul>
+            <li><div>Revisor em revistas: SWEVO, Applied Soft Computing, IEEE TEC, Evolutionary Computation</div></li>
+            <li><div>Revisor em conferências: GECCO, CEC, PPSN, Alife, EuroGP</div></li>
+          </ul>
+          <br><br>
+          <ul>
+            <li>Organizador de Workshops: 3 GECCO e 2 entre Japão, Alemanha e França e 1 workshop internacional com UFABC</li>
+            <li>Tutorial em Programação Genética Cartesiana GECCO’26</li>
+            <li>Chair da sessão de competições: 2 GECCO e da sessão de tutoriais: 1 PPSN</li>
+            <li>Conferência evostar 2026 (https://www.evostar.org/)</li>
+            <li>Conferência TPNC 2020-2021 (https://irdta.eu/tpnc2020-2021/)</li>
+            
+          </ul>
+        </small>
+      </div>
+
+      <!-- IMAGES (larger) -->
+      <div style="flex: 1;">
+        <img src="imgs/GECCO_26_organizing_committee.png" style="width: 78%; height: auto;">
+        <img src="imgs/PPSN_26_organizing_committee.png" style="width: 80%; height: auto;">
+      </div>
+    </div>
+  </section>
+
+<!-- <section class="center">
+  <h2>Reconhecimento científico internacional</h2>
+    <div style="display: flex; gap: 10px;">
+    <div>
+      <h3>Publicações</h3>
+      <small>
+        GECCO · CEC · ACM TELO · Evolutionary Computation
+      </small>
+
+    
+      <h3>Reconhecimento</h3>
+      <small>
+        1º lugar competição GECCO 2025 - Best Paper GECCO 2025
+      <br>
+        Indicações de melhor artigo em GECCO e EvoStar
+      </small>
+
+      <h3>Assessoria científica</h3>
+      <small>
+        Chair · Tutorial · Workshops internacionais
+      </small>
+
+      <h3> Rede internacional de pesquisa</h3>
+      <small>
+        França, Reino Unido, Japão, Brasil, Estados Unidos
+      </small>
+      </div>
+      <div style="flex: 1;">
+        <img src="imgs/competition_winner.png" style="width: 100%; height: auto;">
+      </div>
+    </div>
+</section> -->
+
+
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 2 — PESQUISA
+═══════════════════════════════════════════ -->
+<section class="center">
+  <section class="center" style="position:relative;">
+    <div class="cover-wrap">
+      <h1>Pesquisa</h1>
+      <div class="accent-line"></div>
+      
+      Como construir modelos adaptativos interpretáveis capazes de auxiliar na descoberta de conhecimento?
+  <div class="card">
+
+
+  <div class="card">
+    <h3>Adaptação</h3>
+    <p>Diferentes problemas complexos</p>
+  </div>
+  
+    <h3>Interpretabilidade</h3>
+    <p>Modelos compreensíveis por especialistas</p>
+  </div>
+
+
+  <div class="card">
+    <h3>Aplicações</h3>
+    <p>Saúde · controle · modelagem ambiental</p>
+  </div>
+  </section>
+
+  
+
+
+  <section class="center">
+    <h2>Programação Genética</h2>
+    Evoluir programas automaticamente que resolvem (ou aproximadamente resolvem) problemas <br>
+    interpretável por especialistas
+    <div style="flex: 1;">
+        <img src="imgs/GP_interpretavel.png" style="width: 50%; height: auto;">
+        <img src="imgs/gp_inter_ajuda.png" style="width: 37%; height: auto;">
+      </div>
+      <small>Cortacero, K., McKenzie, B., Müller, S. et al. Evolutionary design of explainable algorithms for biomedical image segmentation. Nat Commun 14, 7112 (2023). https://doi.org/10.1038/s41467-023-42664-x</small>
+      <small>Camilo De La Torre, Giorgia Nadizar, <span class="highlight">Yuri Lavinas</span>, Hervé Luga, Dennis Wilson, and Sylvain Cussat-Blanc. 2025. Evolution of Inherently Interpretable Visual Control Policies. In Proceedings of the Genetic and Evolutionary Computation Conference (GECCO '25). Association for Computing Machinery, New York, NY, USA, 358–367. https://doi.org/10.1145/3712256.3726332</small>
+  </section>
+
+
+  <section class="center">
+    <h2>Programação Genética - controle</h2>
+    
+    <div style="flex: 1;">
+        <img src="imgs/pong.gif" style="width: 30%; height: auto;">
+        <img src="imgs/GP_interpretavel_pong.png" style="width: 60%; height: auto;">
+      </div>
+      <small>Christina Berghegger, Camilo De La Torre, Giorgia Nadizar, <span class="highlight">Yuri Lavinas</span>, David Simoncini, Hervé Luga, Dennis G. Wilson, and Sylvain Cussat-Blanc. 2026. Analyzing Interpretable Visual Control Policy Search and Synthesis. ACM TELO https://doi.org/10.1145/3799432</small>
+  </section>
+
+
+  <section class="center">
+    <h2>Programação Genética >> aprendizado profundo</h2>
+    <small>Artigo em escrita - nature methods</small>
+    <div style="flex: 1;">
+        <img src="imgs/mop_cells_2.png" style="width: 60%; height: auto;">
+        <img src="imgs/mop_perf.png" style="width: 50%; height: auto;">
+      </div>
+  </section>
+  
+  
+</section>
+
+  
+
+  
+
+
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 4 — ENSINO
+═══════════════════════════════════════════ -->
+<section class="center">
+  <section class="center" style="position:relative;">
+        <div class="cover-wrap">
+        <h1>Ensino e formação</h1>
+        <div class="accent-line"></div>
+        <!-- <p style="color:var(--muted); font-size:.8em;">Disciplinas · Metodologia · Ferramentas</p> -->
+        </div>
+    </section>
+
+    <section class="center">
+        <h2>Disciplinas ministradas</h2>
+        <div>
+            <div style="display: flex; gap: 20px; align-items: flex-start;">
+                <p>França · Japão · Brasil <br> Mais de 450h de ensino.</p>
+                <img src="imgs/aulas_chart.png" width="50%" height="auto">  <br>
+                <a href="https://yurilavinas.github.io/aulas.html" style="color:yellow;" target="_blank">Aulas</a>
+                <img src="imgs/aulas.png" width="20%" height="auto">
+            </div>
+        </div>
+        <h3>Disciplinas candidatas do bacharelado em IA:</h3>
+        <ul>
+            <li>Formação em Inteligência Artificial</li>
+            <li>Fundamentos de Aprendizado de Máquina</li>
+            <li>Redes Neurais Artificiais e Profundas</li>
+            <li>Aprendizagem Não Supervisionada</li>
+            <li>Ética em IA</li>
+        </ul>
+        
+        
+    </section>
+
+  <!-- Metodologia -->
+  <section class="center">
+    <h2>Projeto pedagógico</h2>
+    <h3>Metodologia</h3>
+    <ol class="pill-list mt">
+      <li>
+        <div>Aprendizagem baseada em projetos e problemas</div>
+      </li>
+      
+      <li>
+        <div>Acessibilidade universal — materiais, ensino e avaliações específicos</div>
+      </li>
+      
+      <li>  
+        <div>Sala invertida — aula para discussões</div>
+        <img src="imgs/youtube.png" width="40%" height="auto"><br>
+        <small><p>https://www.youtube.com/watch?v=XB9taj-RM-k</p></small>
+      </li>
+      <li>
+        
+        <div>Competições e hackathons — Kaggle, hackathons de IA</div>
+      </li>
+    </ol>
+  </section>
+
+
+  <!-- Orientações -->
+  <section class="center">
+    <h2>Formação de alunos</h2>
+
+            <div class="num">2 doutorandos em andamento</div>
+
+            <div class="num">5 mestrados orientados - 3 em andamento</div>
+
+            <div class="num">5 bancas de mestrado - 2 de graduação</div>
+            <hr>
+            <div class="num">2 projetos em mentoria/colaboração - postdoc</div>
+
+
+</section>
+
+<section class="center">
+    <h2>Alunos UnB</h2>
+    <div class="card card-cyan mt">
+      <p>
+        Oriento estudantes com foco em capacidade crítica, técnica e ética.
+        Objetivo na UnB: integrar graduação, mestrado e doutorado em projetos de pesquisa internacional.
+        <!-- <br>Quero estabalecer um processo de orientações: 
+        desde IC com bolsa PIBIC até mestrado e doutorado no Programa de Pós-Graduação em Informática (PPGI). -->
+      </p>
+    </div>
+    <div class="grid3 mt">
+      <div class="stat">
+        <div class="num" style="font-size:1.6em;">IC</div>
+        <div class="lbl">PIBIC · projetos de iniciação</div>
+      </div>
+      <div class="stat">
+        <div class="num v" style="font-size:1.6em;">MSc</div>
+        <div class="lbl">PPGI · otimização &amp; ML</div>
+      </div>
+      <div class="stat">
+        <div class="num g" style="font-size:1.6em;">PhD</div>
+        <div class="lbl">Co-tutela BR ↔ FR / JP</div>
+      </div>
+    </div>
+  </section>
+  </section>
+
+<!-- ═══════════════════════════════════════════
+     SEÇÃO 5 — INTEGRAÇÃO UnB
+═══════════════════════════════════════════ -->
+<section class="center">
+  <section class="center" style="position:relative;">
+    <div class="cover-wrap">
+      <h1>Integração<br>na UnB</h1>
+      <div class="accent-line"></div>
+      <p style="color:var(--muted); font-size:.8em;">Unidades · Laboratórios · Plano de longo prazo</p>
+    </div>
+  </section>
+
+  <!-- Laboratório -->
+  <section class="center">
+    <h2>Objetivos</h2>
+        <h3>Curto prazo</h3>
+        <ul>
+          <li>Laboratórios: LISA, LARA</li>
+          <li>Orientação de IC, mestrado e doutorado</li>
+          <li>Multidisciplinaridade: saúde, controle e meio-ambiente</li>
+        </ul>
+        <h3>Médio prazo - 5 anos</h3>
+        <ul>
+            <li>Estabelecer e liderar um grupo de pesquisa em IA interpretável</li>
+            <li>Co-tutelas Brasil-França–Japão</li>
+            <li>Projetos internacionais</li>
+        </ul>
+
+        <h3>Longo prazo</h3>
+            <ul>
+              
+              <li>IA científica para suporte e aprendizado</li>
+              <li>Contribuir com a Coordenação de Graduação e NDE.</li>
+            </ul>
+  </section>
+
+
+  <section class="center">
+    <h2>Financiamento para atingir os objetivos</h2>
+    CAPES/Cofecub, Procad,  anr e AAPG - Projetos franco-brasileiros, FAPDF, CAPES/CNPq (bolsa de produtividade, chamada universal)
+    <p class="mt" style="color:var(--muted); font-size:.78em;">
+      Colaboração ativa com Toulouse/França e Japão
+    </p>
+  </section>
+  
+  <!-- Extensão -->
+  <section class="center">
+    <h2>Extensão e semana universitária</h2>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+      <div>
+      <ol class="pill-list mt">
+        <li><div>Hackathons &amp; competições — eventos com indústria e Kaggle</div></li>
+        <li><div>Facilitar intercâmbios internacionais</div></li>
+        <li><div>Palestras sobre ética em IA para jovens, idosos e servidores públicos</div></li>
+        <li><div>Computação/IA para o ensino médio de escola públicas - meninas da computação, robótica</div></li>
+      </ol>
+      </div>
+  </section>
+
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE FINAL
+═══════════════════════════════════════════ -->
+<section class="center">
+  <div class="cover-wrap">
+    
+    <h1 style="font-size:2.6em;">Yuri Cossich Lavinas</h1>
+    <div class="accent-line"></div>
+    <div class="grid2 mt" style="max-width:600px; margin:1.2em auto 0;">
+        <p> Linha internacional de pesquisa em IA interpretável e computação evolutiva</p>
+
+        <p>pesquisa · formação · colaboração internacional · impacto social</p>
+        <div class="card card-violet" style="text-align:center;">
+            <p style="font-size:.82em;">UnB · Brasília </p>
+        </div>
+    </div>
+    <p style="color:var(--muted); font-size:.7em; margin-top:2em;">
+      Prova Oral · Processo Seletivo UnB · 2026
+    </p>
+  </div>
+</section>
+
+<!-- Por que voltar -->
+ 
+  <section class="center">
+    <h2>Por que a UnB agora?</h2>
+
+    <div class="grid2 mt">
+      <div class="card card-cyan">
+        <h3>Plano Brasileiro de IA</h3>
+        <p>Formação em Larga Escala, geração de pessoal capacitado, soberania tecnológica</p>
+      </div>
+      <div class="card card-violet">
+        <h3>Retorno de Talentos</h3>
+        <p>Mais de uma década de formação internacional</p>
+      </div>
+      <div class="card card-cyan">
+        <h3>impacto no bacharelado de IA</h3>
+        <p>Oportunidade para impactar e direcionar o curso</p>
+        <p>Participação efetiva</p>
+      </div>
+    </div>
+  </section>
+
+
+<section class="center">
+  <h2>Reconhecimento Acadêmico</h2>
+    <div style="display: flex; gap: 20px; align-items: flex-start;">
+      <div>
+        <ul style="font-size:0.8em; line-height:1.4;">
+          <li>1º lugar – competição "Interpretable Control Policies in ATARI Pong" (GECCO'25)</li>
+          <li>1º lugar – melhor artigo (GECCO 2025, machine learning)</li>
+          <li>Indicação – melhor artigo (GECCO 2022, multiobjetivo)</li>
+          <li>Indicação a melhor artigo estudantil – EvoStar 2022</li>
+          <li>2º lugar – melhor artigo estudantil (EvoStar 2022)</li>
+          <li>Indicação a melhor artigo – EvoStar 2022</li>
+        </ul>
+      </div>
+        <img src="imgs/competition_winner.png" width="80%" height="auto">
+    </div>
+</section>
+
+
+  <!-- <section class="center">
+  <h2>Meu programa científico</h2>
+
+  <div class="card card-cyan">
+    <p>
+      Investigo como construir sistemas adaptativos
+      que permaneçam interpretáveis
+      mesmo em ambientes complexos e dinâmicos.
+    </p>
+  </div>
+
+  <div class="grid2 mt">
+
+    <div class="card card-violet">
+      <h3>Pergunta central</h3>
+      <p>
+        Como equilibrar:
+      </p>
+
+      <ul>
+        <li>adaptação</li>
+        <li>generalização</li>
+        <li>interpretabilidade</li>
+      </ul>
+    </div>
+
+  </div>
+</section> -->
+  
+  <!-- Visão geral -->
+  <!-- <section class="center">
+    <h2>Interpretabilidade de sistemas adaptativos complexos</h2>
+    <p style="font-size:.82em; color:var(--muted);">
+      Meta-heurísticas para encontrar boas soluções onde métodos exatos "falham" — ambientes com múltiplos objetivos conflitantes, dados ruidosos ou dinâmicos.
+    </p>
+    <small>Problemas sem gradiente, simulações, problemas de caixa preta</small>
+    
+    <div class="grid2 mt">
+      <ol>
+        <li class="highlight">Otimização Multiobjetivo</li>
+        <li class="highlight">Programação Genética (GP)</li>
+        <li class="highlight">ATARI + GP</li>
+        <li>Paisagens de aptidão/Fitness Landscapes - entender porque algoritmos tem bom desempenho</li>
+        <li>Quality Diversity - GP para tarefas de controle (Atari)</li>
+        <li>IA Generativa  - GP+MLP para dados sitéticos de saúde - projeto em andamento com uma empresa francesa (acordo de não-divulgação)</li>
+        
+      </ol>
+    </div>
+  </section> -->
+
+  <!-- Linha 1: Multiobjetivo -->
+  <section class="center">
+    <h2>Otimização Multiobjetivo</h2>
+        <div class="card card-cyan">
+          <p>
+            Velocidade vs. precisão; acurácia vs tamanho (GP) <br>
+            Algoritmos multiobjetivo exploram esse espaço e devolvem um conjunto de soluções de compromisso — a frente de Pareto.
+          </p>
+        </div>
+        <ul class="pill-list mt">
+          <li><div>Ajuste de hiperparâmetros de modelos de ML</div></li>
+          <li><div>Visão computacional: acurácia ↔ eficiência</div></li>
+          <!-- <li><div>Colaboração com grupos no Japão e na Europa</div></li> -->
+        </ul>
+        <img src="imgs/multiobjetivo.png" style="width: 40%; height: auto;">
+        <small>https://anonymous.4open.science/api/repo/STNResults-699F/file/RE21_pareto_front.html</small>
+  </section>
+
+  <!-- Linha 2: Fitness Landscapes -->
+  <section class="center">
+    <h2>Paisagem de Aptidão <span style="color:var(--muted); font-size:.6em; font-weight:300;">(Fitness Landscapes)</span></h2>
+    <div class="card card-violet">
+      <p>
+        Antes de otimizar, convém <em>entender</em> o problema. 
+        Fitness landscapes medem a estrutura do espaço de busca: rugosidade, neutralidade — 
+        métricas que guiam a escolha do algoritmo certo para cada cenário.
+      </p>
+    </div>
+    <ul class="pill-list mt">
+      <li><div>Análise de problemas de black-box optimization</div></li>
+      <li><div>Correlação entre métricas de landscape e desempenho de algoritmos</div></li>
+    </ul>
+    <div style="flex: 1;">
+        <img src="imgs/Fitness-landscape-cartoon.png" style="width: 35%; height: auto;">
+    </div>
+  </section>
+
+  <section class="center">
+    <h2>Programação Genética cartesiana</h2>
+    <div style="flex: 1;">
+        <img src="imgs/EC.png" style="width: 35%; height: auto;">
+        <img src="imgs/CGP.png" style="width: 50%; height: auto;">
+      </div>
+  </section>
+
+
+  
+
+  <!-- Disciplinas -->
+  <section class="center">
+    <h2>O que posso lecionar</h2>
+    <div class="grid2 mt">
+      <div class="card card-cyan">
+        <h3>Núcleo obrigatório</h3>
+        <ul class="pill-list" style="margin-top:.4em;">
+          <li><div>Fundamentos de Aprendizado de Máquina</div></li>
+          <li><div>Redes Neurais Artificiais e Profundas</div></li>
+          <li><div>Aprendizagem Não Supervisionada</div></li>
+          <li><div>Ética em IA</div></li>
+        </ul>
+      </div>
+      <div class="card card-violet">
+        <h3>Ênfases (FT / IE)</h3>
+        <ul class="pill-list" style="margin-top:.4em;">
+          <li><div>Engenharia de IA (Ênfase 4 · FT)</div></li>
+          <li><div>Práticas em IA 1, 2 e 3</div></li>
+          <li><div>Projetos Integradores e TCC</div></li>
+          <li><div>Otimização e Meta-heurísticas (eletiva)</div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Metodologia -->
+  <section class="center">
+    <h2>Projeto pedagógico</h2>
+    <div class="card card-green">
+        <h3>Ferramentas:</h3>
+        <p>
+          <span>Python</span>
+          <span>PyTorch</span>
+          <span>TensorFlow</span>
+          <span>Scikit-learn</span>
+          <span>Pandas · NumPy</span>
+          <span>Git / GitHub</span>
+          <span>Jupyter · Colab</span>
+        </p>
+        <p>
+          <span>AWS · GCP · Azure</span>
+          <span>Docker</span>
+          <span>MLflow · W&amp;B</span>
+          <span>TensorBoard</span>
+          <span>Aprender (AVA · UnB)</span>
+        </p>
+      </div>
+  </section>
+  <section class="center">
+
+  <!-- Unidades -->
+  <section class="center">
+    <h2>Onde me encaixo</h2>
+    <ol class="pill-list mt">
+      <li>
+        
+        <div>
+          IE — Dep. Ciência da Computação<br>
+          <span style="color:var(--muted); font-size:.9em;">graduação Ênfase 1 (IE), PPGI,  PPCA</span>
+        </div>
+      </li>
+      <li>
+        
+        <div>
+          FT — Eng. Elétrica / Eng. Mecatrônica<br>
+          <span style="color:var(--muted); font-size:.9em;">Ênfase 4 (FT) · disciplinas de controle, automação e robótica</span>
+        </div>
+      </li>
+      <li>
+        
+        <div>
+          FCTE — Eng. Software / Eletrônica e Automação<br>
+          <span style="color:var(--muted); font-size:.9em;">Integração natural com projetos de sistemas inteligentes embarcados</span>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+
+
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    transition: 'slide'
+  });
+</script>
+
+</body>
+</html>

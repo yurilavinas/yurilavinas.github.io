@@ -1,0 +1,20 @@
+Version: 1.0
+ProjectId: 6641e596-ffb1-4f53-8728-e0797d986b3b
+
+RestoreWorkspace: Default
+SaveWorkspace: Default
+AlwaysSaveHistory: Default
+
+EnableCodeIndexing: Yes
+UseSpacesForTab: Yes
+NumSpacesForTab: 2
+Encoding: UTF-8
+
+RnwWeave: Sweave
+LaTeX: pdfLaTeX
+
+BuildType: Website
+
+PythonType: conda
+PythonVersion: 3.8.20
+PythonPath: ~/miniconda3/envs/LON_MOO/bin/python3.8

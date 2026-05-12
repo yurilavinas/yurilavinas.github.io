@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A* Search</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: sans-serif;
+      background: #f9f8f6;
+      color: #1a1a1a;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    h1 { font-size: 20px; font-weight: 500; text-align: center; }
+    p.subtitle { font-size: 13px; color: #666; text-align: center; max-width: 560px; line-height: 1.5; }
+
+    .wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      width: 100%;
+      max-width: 700px;
+    }
+
+    .panel { display: flex; flex-direction: column; gap: 8px; }
+    .panel h3 { font-size: 15px; font-weight: 500; text-align: center; }
+    .panel .note { font-size: 11px; color: #888; text-align: center; }
+
+    canvas {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      display: block;
+    }
+
+    .legend {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: #555;
+    }
+    .leg-item { display: flex; align-items: center; gap: 5px; }
+    .leg-swatch { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+
+    .controls { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    button {
+      font-size: 13px; padding: 6px 16px; border-radius: 8px;
+      border: 1px solid #ccc; background: #fff; color: #1a1a1a;
+      cursor: pointer; transition: background 0.15s;
+    }
+    button:hover { background: #f0ede8; }
+
+    .speed-row { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #555; }
+    .speed-row input { width: 100px; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      width: 100%;
+      max-width: 700px;
+    }
+    .stat-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px 14px;
+      text-align: center;
+    }
+    .stat-label { font-size: 11px; color: #888; margin-bottom: 4px; }
+    .stat-value { font-size: 20px; font-weight: 500; }
+  </style>
+</head>
+<body>
+
+  <h1>A* search</h1>
+  <p class="subtitle">
+    A* extends Dijkstra by adding a heuristic — an estimate of remaining distance to the goal.
+    It prioritises cells with low <em>f = g + h</em>, where <em>g</em> is cost so far and
+    <em>h</em> is the Manhattan distance to the goal. This focuses the search toward the goal,
+    visiting far fewer cells than Dijkstra.
+  </p>
+
+  <div class="wrap">
+    <div class="panel">
+      <h3>Dijkstra</h3>
+      <div class="note">explores in all directions equally</div>
+      <canvas id="cvDijkstra" height="260"></canvas>
+    </div>
+    <div class="panel">
+      <h3>A* (Manhattan heuristic)</h3>
+      <div class="note">guided toward the goal</div>
+      <canvas id="cvAstar" height="260"></canvas>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card">
+      <div class="stat-label">Dijkstra — cells visited</div>
+      <div class="stat-value" id="statDijk">0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">A* — cells visited</div>
+      <div class="stat-value" id="statAstar">0</div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="leg-item"><div class="leg-swatch" style="background:#378ADD"></div>start</div>
+    <div class="leg-item"><div class="leg-swatch" style="background:#E24B4A"></div>goal</div>
+    <div class="leg-item"><div class="leg-swatch" style="background:#C0DD97"></div>visited</div>
+    <div class="leg-item"><div class="leg-swatch" style="background:#FAC775"></div>frontier</div>
+    <div class="leg-item"><div class="leg-swatch" style="background:#D3D1C7"></div>wall</div>
+    <div class="leg-item"><div class="leg-swatch" style="background:#7F77DD"></div>path</div>
+  </div>
+
+  <div class="controls">
+    <button id="btnPlay">&#9654; Play</button>
+    <button id="btnStep">Step</button>
+    <button id="btnReset">Reset</button>
+  </div>
+  <div class="speed-row">
+    <span>Speed</span>
+    <input type="range" id="speed" min="1" max="10" value="5" step="1" />
+    <span id="speedLabel">5</span>
+  </div>
+
+  <script>
+    /* ── Grid config ── */
+    const COLS = 14, ROWS = 10, GAP = 1;
+    const START = { r: 4, c: 1 };
+    const GOAL  = { r: 5, c: 12 };
+
+    const WALLS = new Set([
+      "1,3","2,3","3,3","4,3","5,3","6,3",
+      "2,6","3,6","4,6","5,6","6,6","7,6","8,6",
+      "0,9","1,9","2,9","3,9","4,9","6,9","7,9","8,9"
+    ]);
+
+    const key      = (r, c) => `${r},${c}`;
+    const inBounds = (r, c) => r >= 0 && r < ROWS && c >= 0 && c < COLS;
+    const isWall   = (r, c) => WALLS.has(key(r, c));
+    const DIRS = [[0,1],[1,0],[0,-1],[-1,0]];
+
+    function neighbors(r, c) {
+      return DIRS
+        .map(([dr, dc]) => [r + dr, c + dc])
+        .filter(([nr, nc]) => inBounds(nr, nc) && !isWall(nr, nc));
+    }
+
+    /* Manhattan distance heuristic */
+    const heuristic = (r, c) => Math.abs(r - GOAL.r) + Math.abs(c - GOAL.c);
+
+    /* ── Min-heap ── */
+    class MinHeap {
+      constructor() { this.data = []; }
+      push(item) { this.data.push(item); this._bubbleUp(this.data.length - 1); }
+      pop() {
+        const top = this.data[0];
+        const last = this.data.pop();
+        if (this.data.length > 0) { this.data[0] = last; this._sinkDown(0); }
+        return top;
+      }
+      get size() { return this.data.length; }
+      _bubbleUp(i) {
+        while (i > 0) {
+          const p = Math.floor((i - 1) / 2);
+          if (this.data[p][0] <= this.data[i][0]) break;
+          [this.data[p], this.data[i]] = [this.data[i], this.data[p]]; i = p;
+        }
+      }
+      _sinkDown(i) {
+        const n = this.data.length;
+        while (true) {
+          let min = i, l = 2*i+1, r = 2*i+2;
+          if (l < n && this.data[l][0] < this.data[min][0]) min = l;
+          if (r < n && this.data[r][0] < this.data[min][0]) min = r;
+          if (min === i) break;
+          [this.data[min], this.data[i]] = [this.data[i], this.data[min]]; i = min;
+        }
+      }
+    }
+
+    /* ── Dijkstra (no heuristic) ── */
+    function makeDijkstraSteps() {
+      const dist     = new Map();
+      const cameFrom = new Map();
+      const heap     = new MinHeap();
+      const steps    = [];
+      const sk = key(START.r, START.c);
+      dist.set(sk, 0); cameFrom.set(sk, null);
+      heap.push([0, START.r, START.c]);
+
+      while (heap.size > 0) {
+        const [cost, r, c] = heap.pop();
+        const k = key(r, c);
+        if (cost > (dist.get(k) ?? Infinity)) continue;
+
+        steps.push({
+          visited:  new Map(dist),
+          frontier: heap.data.map(([, fr, fc]) => key(fr, fc)),
+          current:  k
+        });
+        if (r === GOAL.r && c === GOAL.c) break;
+
+        for (const [nr, nc] of neighbors(r, c)) {
+          const nk = key(nr, nc);
+          const newCost = cost + 1;
+          if (newCost < (dist.get(nk) ?? Infinity)) {
+            dist.set(nk, newCost);
+            cameFrom.set(nk, k);
+            heap.push([newCost, nr, nc]);
+          }
+        }
+      }
+      return { steps, cameFrom };
+    }
+
+    /* ── A* ── */
+    function makeAstarSteps() {
+      const gScore   = new Map();
+      const cameFrom = new Map();
+      const heap     = new MinHeap();
+      const steps    = [];
+      const sk = key(START.r, START.c);
+      gScore.set(sk, 0); cameFrom.set(sk, null);
+      heap.push([heuristic(START.r, START.c), START.r, START.c]);
+
+      while (heap.size > 0) {
+        const [f, r, c] = heap.pop();
+        const k = key(r, c);
+        const g = gScore.get(k) ?? Infinity;
+        if (f > g + heuristic(r, c) + 0.001) continue; /* stale entry */
+
+        steps.push({
+          visited:  new Map(gScore),
+          frontier: heap.data.map(([, fr, fc]) => key(fr, fc)),
+          current:  k
+        });
+        if (r === GOAL.r && c === GOAL.c) break;
+
+        for (const [nr, nc] of neighbors(r, c)) {
+          const nk      = key(nr, nc);
+          const newG    = g + 1;
+          if (newG < (gScore.get(nk) ?? Infinity)) {
+            gScore.set(nk, newG);
+            cameFrom.set(nk, k);
+            heap.push([newG + heuristic(nr, nc), nr, nc]);
+          }
+        }
+      }
+      return { steps, cameFrom };
+    }
+
+    function buildPath(cameFrom, goalR, goalC) {
+      const path = new Set();
+      let cur = key(goalR, goalC);
+      while (cur !== null && cur !== undefined) {
+        path.add(cur); cur = cameFrom.get(cur);
+      }
+      return path;
+    }
+
+    /* ── Pre-compute ── */
+    const dijkData = makeDijkstraSteps();
+    const astarData = makeAstarSteps();
+    const dijkPath  = buildPath(dijkData.cameFrom, GOAL.r, GOAL.c);
+    const astarPath = buildPath(astarData.cameFrom, GOAL.r, GOAL.c);
+    const maxStep   = Math.max(dijkData.steps.length, astarData.steps.length);
+
+    /* ── Animation state ── */
+    let stepIdx = 0, playing = false, animId = null, lastTime = 0;
+    const speedEl    = document.getElementById('speed');
+    const speedLabel = document.getElementById('speedLabel');
+    speedEl.addEventListener('input', () => speedLabel.textContent = speedEl.value);
+    const getDelay = () => 600 - parseInt(speedEl.value) * 50;
+
+    /* ── Draw ── */
+    function drawGrid(canvasId, stepData, path, showPath) {
+      const cv  = document.getElementById(canvasId);
+      const ctx = cv.getContext('2d');
+      const W   = cv.offsetWidth || 300;
+      cv.width  = W; cv.height = 260;
+      const cellW = (W - GAP * (COLS + 1)) / COLS;
+      const cellH = (260 - GAP * (ROWS + 1)) / ROWS;
+
+      ctx.fillStyle = '#f0ede8';
+      ctx.fillRect(0, 0, W, 260);
+
+      const { visited, frontier, current } = stepData;
+      const frontierSet = new Set(frontier);
+
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          const x = GAP + c * (cellW + GAP);
+          const y = GAP + r * (cellH + GAP);
+          const k = key(r, c);
+
+          let fill = '#EEEDFE';
+          if      (isWall(r, c))                   fill = '#D3D1C7';
+          else if (r === START.r && c === START.c)  fill = '#378ADD';
+          else if (r === GOAL.r  && c === GOAL.c)   fill = '#E24B4A';
+          else if (showPath && path.has(k))         fill = '#7F77DD';
+          else if (k === current)                   fill = '#FAC775';
+          else if (frontierSet.has(k))              fill = '#FAC775';
+          else if (visited.has(k))                  fill = '#C0DD97';
+
+          ctx.fillStyle = fill;
+          ctx.beginPath();
+          ctx.roundRect(x, y, cellW, cellH, 2);
+          ctx.fill();
+        }
+      }
+    }
+
+    function updateStats() {
+      const dIdx = Math.min(stepIdx, dijkData.steps.length - 1);
+      const aIdx = Math.min(stepIdx, astarData.steps.length - 1);
+      document.getElementById('statDijk').textContent  = dijkData.steps[dIdx].visited.size;
+      document.getElementById('statAstar').textContent = astarData.steps[aIdx].visited.size;
+    }
+
+    function render() {
+      const dIdx     = Math.min(stepIdx, dijkData.steps.length - 1);
+      const aIdx     = Math.min(stepIdx, astarData.steps.length - 1);
+      const showPath = stepIdx >= maxStep - 1;
+      drawGrid('cvDijkstra', dijkData.steps[dIdx], dijkPath, showPath);
+      drawGrid('cvAstar',    astarData.steps[aIdx], astarPath, showPath);
+      updateStats();
+    }
+
+    function step() {
+      if (stepIdx < maxStep) { stepIdx++; render(); }
+      if (stepIdx >= maxStep && playing) pause();
+    }
+
+    function tick(ts) {
+      if (!playing) return;
+      if (ts - lastTime > getDelay()) { lastTime = ts; step(); }
+      animId = requestAnimationFrame(tick);
+    }
+
+    function play() {
+      if (stepIdx >= maxStep) reset();
+      playing = true;
+      document.getElementById('btnPlay').textContent = '⏸ Pause';
+      lastTime = performance.now();
+      animId = requestAnimationFrame(tick);
+    }
+
+    function pause() {
+      playing = false;
+      cancelAnimationFrame(animId);
+      document.getElementById('btnPlay').textContent = '▶ Play';
+    }
+
+    function reset() { pause(); stepIdx = 0; render(); }
+
+    document.getElementById('btnPlay').addEventListener('click', () => playing ? pause() : play());
+    document.getElementById('btnStep').addEventListener('click', () => { pause(); step(); });
+    document.getElementById('btnReset').addEventListener('click', reset);
+    window.addEventListener('resize', render);
+
+    render();
+  </script>
+</body>
+</html>

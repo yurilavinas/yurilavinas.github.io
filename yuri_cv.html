@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Yuri Lavinas' CV page</title>
+</head>
+<body>
+
+  <header>
+    <img class="photo" src="me.jpeg" alt="A photo of myself" width="200px">
+    <h1>Hello! My name is Yuri Lavinas.</h1>
+    <nav>
+        <a href="https://www.linkedin.com" id="linkedin" target="_blank"><i class="fa fa-linkedin-square"></i></a><br>
+        <a href="https://www.github.com" id="github" target="_blank"><i class="fa fa-github"></i></a>
+    </nav>
+  </header>
+
+  <main>
+    <div id="data">
+      <div id="text">
+        <p>I'm an associate professor <em>(Maître de Conférences)</em> at the <a href="https://www.ut-capitole.fr/">Toulouse University Capitole</a>, <u>France</u>. </p>
+        
+        <details>
+          <summary>My research interests are related to Computational Intelligence, such as Evolutionary Computation and Artificial Life</summary>
+          <p> I focus on multi-objective optimization, fitness landscape and Genetic Programming. Overall, I’m interested in programs that can adapt themselves, in applications of Evolutionary Computation (black box optimization, multi-agent systems, games), as well as more speculative use of these Computational Intelligence for Artificial Life (such as the evolution of virtual creatures and the worlds where the live).</p>
+        </details><br>
+        <p>I'm originally from Brazil, where I graduated from the University of Brasilia. Then, I moved to Japan add did my master and PhD and the <a href="https://www.tsukuba.ac.jp/en/">University of Tsukuba.</a> </p>
+      </div>
+        <div id="selection">
+          <label for="genre">Choose a genre:</label><br>
+          <select name="genres" id="genres">
+            <option value="rock">Rock</option>
+            <option value="samba">Samba</option>
+            <option value="rap">RAP</option>
+            <option value="blues">Blues</option>
+          </select> 
+          <label for="artist">Artist:</label>
+          <input type="text" placeholder="Artist name" required><br><br>
+          <div id="radios">
+            <label for="Filter by">Filter by:</label>
+            <input type="radio" name="fav_language" value="Popularity">
+            <label for="Popularity">Popularity</label><br>
+            <input type="radio"  name="fav_language" value="Danceability">
+            <label for="Danceability">Danceability</label><br>
+            <input type="radio" name="fav_language" value="Energy">
+            <label for="Energy">Energy</label> 
+          </div>
+          <div class="form_artist">
+                <button type="submit" value="send">Send</button>
+             </div>
+      </div>
+    </div>
+      <h2>CV</h2>
+
+      <a href="cv_en_II.pdf" download>
+        <button>Click here to download my CV</button>
+      </a>
+  
+      <ul>
+        <li>Soft Skills</li>
+          <ol>
+            <li>Languages</li>
+            <li>Team Organization & Communication</li>
+            <li>Time management</li>
+          </ol>
+          
+        <li>Hard Skills</li>
+          <ol>
+            <li>Python</li>
+            <li>R</li>
+            <li>AI & EC</li>
+          </ol>
+      </ul>
+
+      <div class="imgs">
+        <p>
+          <img src="https://www.w3schools.com/css/img_5terre.jpg" width="200px">
+          <img src="https://www.w3schools.com/css/img_mountains.jpg" width="200px">
+          <img src="https://www.w3schools.com/css/img_lights.jpg" width="200px">
+        </p>
+      </div>
+
+      <h3>Contact Me</h3>
+      <form>
+          <label for="name">Name:</label>
+          <input type="text" placeholder="your name" required><br>
+
+          <label for="email">Email:</label>
+          <input type="email" placeholder="name@server.com" required><br>
+
+          <label for="message">Message:</label><br>
+          <textarea placeholder="What do you want to ask?" rows=5 required></textarea><br><br>
+
+          <button type="submit">Submit</button>
+      </form>
+    </main>
+  <footer>
+    <p>Copyright &#169; 2025</p>
+  </footer>
+</body>
+</html>

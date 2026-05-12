@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BFS vs DFS Animation</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: sans-serif;
+      background: #f9f8f6;
+      color: #1a1a1a;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      width: 100%;
+      max-width: 700px;
+    }
+
+    .panel {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .panel h3 {
+      font-size: 15px;
+      font-weight: 500;
+      text-align: center;
+      color: #1a1a1a;
+    }
+
+    canvas {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      display: block;
+    }
+
+    .legend {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: #555;
+    }
+
+    .leg-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .leg-swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    button {
+      font-size: 13px;
+      padding: 6px 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: #fff;
+      color: #1a1a1a;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    button:hover { background: #f0ede8; }
+
+    .speed-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .speed-row input { width: 100px; }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <div class="panel">
+      <h3>Breadth first search</h3>
+      <canvas id="cvBFS" height="260"></canvas>
+    </div>
+    <div class="panel">
+      <h3>Depth first search</h3>
+      <canvas id="cvDFS" height="260"></canvas>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="leg-item"><div class="leg-swatch" style="background:#378ADD"></div>start</div>
+    <div class="leg-item"><div class="leg-swatch" style="background:#E24B4A"></div>goal</div>
+    <div class="leg-item"><div class="leg-swatch" style="background:#C0DD97"></div>visited</div>
+    <div class="leg-item"><div class="leg-swatch" style="background:#FAC775"></div>frontier</div>
+    <div class="leg-item"><div class="leg-swatch" style="background:#D3D1C7"></div>wall</div>
+    <div class="leg-item"><div class="leg-swatch" style="background:#7F77DD"></div>path</div>
+  </div>
+
+  <div class="controls">
+    <button id="btnPlay">&#9654; Play</button>
+    <button id="btnStep">Step</button>
+    <button id="btnReset">Reset</button>
+  </div>
+
+  <div class="speed-row">
+    <span>Speed</span>
+    <input type="range" id="speed" min="1" max="10" value="5" step="1" />
+    <span id="speedLabel">5</span>
+  </div>
+
+  <script>
+    /* ── Grid config ── */
+    const COLS = 14, ROWS = 10, GAP = 1;
+    const START = { r: 4, c: 1 };
+    const GOAL  = { r: 5, c: 12 };
+
+    /* Wall coordinates as "row,col" strings */
+    const WALLS = new Set([
+      "1,3","2,3","3,3","4,3","5,3","6,3",
+      "2,6","3,6","4,6","5,6","6,6","7,6","8,6",
+      "0,9","1,9","2,9","3,9","4,9","6,9","7,9","8,9"
+    ]);
+
+    const key      = (r, c) => `${r},${c}`;
+    const inBounds = (r, c) => r >= 0 && r < ROWS && c >= 0 && c < COLS;
+    const isWall   = (r, c) => WALLS.has(key(r, c));
+
+    /* 4-directional neighbours */
+    const DIRS = [[0,1],[1,0],[0,-1],[-1,0]];
+    function neighbors(r, c) {
+      return DIRS
+        .map(([dr, dc]) => [r + dr, c + dc])
+        .filter(([nr, nc]) => inBounds(nr, nc) && !isWall(nr, nc));
+    }
+
+    /* ── BFS – queue (FIFO) ── */
+    function makeBFSSteps() {
+      const visited  = new Map();
+      const frontier = [[START.r, START.c]];
+      const steps    = [];
+      visited.set(key(START.r, START.c), null);
+
+      while (frontier.length > 0) {
+        const [r, c] = frontier.shift();          // FIFO
+        steps.push({
+          visited:  new Map(visited),
+          frontier: frontier.map(x => key(...x)),
+          current:  key(r, c)
+        });
+        if (r === GOAL.r && c === GOAL.c) break;
+        for (const [nr, nc] of neighbors(r, c)) {
+          const k = key(nr, nc);
+          if (!visited.has(k)) {
+            visited.set(k, key(r, c));
+            frontier.push([nr, nc]);
+          }
+        }
+      }
+      return { steps, cameFrom: visited };
+    }
+
+    /* ── DFS – stack (LIFO) ── */
+    function makeDFSSteps() {
+      const visited  = new Map();
+      const frontier = [[START.r, START.c]];
+      const steps    = [];
+      visited.set(key(START.r, START.c), null);
+
+      while (frontier.length > 0) {
+        const [r, c] = frontier.pop();            // LIFO
+        steps.push({
+          visited:  new Map(visited),
+          frontier: frontier.map(x => key(...x)),
+          current:  key(r, c)
+        });
+        if (r === GOAL.r && c === GOAL.c) break;
+        for (const [nr, nc] of neighbors(r, c)) {
+          const k = key(nr, nc);
+          if (!visited.has(k)) {
+            visited.set(k, key(r, c));
+            frontier.push([nr, nc]);
+          }
+        }
+      }
+      return { steps, cameFrom: visited };
+    }
+
+    /* Reconstruct path by walking cameFrom back from goal */
+    function buildPath(cameFrom, goalR, goalC) {
+      const path = new Set();
+      let cur = key(goalR, goalC);
+      while (cur !== null && cur !== undefined) {
+        path.add(cur);
+        cur = cameFrom.get(cur);
+      }
+      return path;
+    }
+
+    /* ── Pre-compute all steps ── */
+    const bfsData = makeBFSSteps();
+    const dfsData = makeDFSSteps();
+    const bfsPath = buildPath(bfsData.cameFrom, GOAL.r, GOAL.c);
+    const dfsPath = buildPath(dfsData.cameFrom, GOAL.r, GOAL.c);
+    const maxStep = Math.max(bfsData.steps.length, dfsData.steps.length);
+
+    /* ── Animation state ── */
+    let stepIdx = 0;
+    let playing = false;
+    let animId  = null;
+    let lastTime = 0;
+
+    const speedEl    = document.getElementById('speed');
+    const speedLabel = document.getElementById('speedLabel');
+    speedEl.addEventListener('input', () => speedLabel.textContent = speedEl.value);
+
+    const getDelay = () => 600 - parseInt(speedEl.value) * 50;
+
+    /* ── Draw a single grid ── */
+    function drawGrid(canvasId, stepData, path, showPath) {
+      const cv  = document.getElementById(canvasId);
+      const ctx = cv.getContext('2d');
+      const W   = cv.offsetWidth || 300;
+      cv.width  = W;
+      cv.height = 260;
+
+      const cellW = (W - GAP * (COLS + 1)) / COLS;
+      const cellH = (260 - GAP * (ROWS + 1)) / ROWS;
+
+      ctx.fillStyle = '#f0ede8';
+      ctx.fillRect(0, 0, W, 260);
+
+      const { visited, frontier, current } = stepData;
+      const frontierSet = new Set(frontier);
+
+      for (let r = 0; r < ROWS; r++) {
+        for (let c = 0; c < COLS; c++) {
+          const x = GAP + c * (cellW + GAP);
+          const y = GAP + r * (cellH + GAP);
+          const k = key(r, c);
+
+          let fill = '#EEEDFE';                        // unvisited
+          if      (isWall(r, c))                  fill = '#D3D1C7'; // wall
+          else if (r === START.r && c === START.c) fill = '#378ADD'; // start
+          else if (r === GOAL.r  && c === GOAL.c)  fill = '#E24B4A'; // goal
+          else if (showPath && path.has(k))        fill = '#7F77DD'; // path
+          else if (k === current)                  fill = '#FAC775'; // current
+          else if (frontierSet.has(k))             fill = '#FAC775'; // frontier
+          else if (visited.has(k))                 fill = '#C0DD97'; // visited
+
+          ctx.fillStyle = fill;
+          ctx.beginPath();
+          ctx.roundRect(x, y, cellW, cellH, 2);
+          ctx.fill();
+        }
+      }
+    }
+
+    function render() {
+      const bfsIdx   = Math.min(stepIdx, bfsData.steps.length - 1);
+      const dfsIdx   = Math.min(stepIdx, dfsData.steps.length - 1);
+      const showPath = stepIdx >= maxStep - 1;
+      drawGrid('cvBFS', bfsData.steps[bfsIdx], bfsPath, showPath);
+      drawGrid('cvDFS', dfsData.steps[dfsIdx], dfsPath, showPath);
+    }
+
+    function step() {
+      if (stepIdx < maxStep) { stepIdx++; render(); }
+      if (stepIdx >= maxStep && playing) pause();
+    }
+
+    function tick(ts) {
+      if (!playing) return;
+      if (ts - lastTime > getDelay()) { lastTime = ts; step(); }
+      animId = requestAnimationFrame(tick);
+    }
+
+    function play() {
+      if (stepIdx >= maxStep) reset();
+      playing = true;
+      document.getElementById('btnPlay').textContent = '⏸ Pause';
+      lastTime = performance.now();
+      animId = requestAnimationFrame(tick);
+    }
+
+    function pause() {
+      playing = false;
+      cancelAnimationFrame(animId);
+      document.getElementById('btnPlay').textContent = '▶ Play';
+    }
+
+    function reset() {
+      pause();
+      stepIdx = 0;
+      render();
+    }
+
+    document.getElementById('btnPlay').addEventListener('click', () => playing ? pause() : play());
+    document.getElementById('btnStep').addEventListener('click', () => { pause(); step(); });
+    document.getElementById('btnReset').addEventListener('click', reset);
+    window.addEventListener('resize', render);
+
+    render();
+  </script>
+</body>
+</html>
