@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modelos de linguagem</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css">
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <!-- <style>
+    
+    :root { --primary: #00d9ff; --secondary: #a855f7; --accent: #10b981; --warning: #ffcc00; }
+    .reveal h1, .reveal h2 { color: var(--primary); text-transform: none; }
+    .reveal h3 { color: var(--secondary); text-transform: none; }
+    .reveal section { text-align: left; font-size: 0.9em; }
+    .center { text-align: center !important; }
+    .box { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 12px; border-left: 5px solid var(--primary); margin: 15px 0; }
+    .warning-box { border-left-color: var(--warning); background: rgba(255, 204, 0, 0.05); }
+    .highlight { color: var(--warning); font-weight: bold; }
+    .formula { background: #111; padding: 10px; border-radius: 8px; display: inline-block; font-family: 'Courier New', monospace; color: var(--accent); }
+    .timeline { color: #888; font-size: 0.6em; font-weight: bold; text-transform: uppercase; }
+  </style> -->
+  <style>
+    html {
+        font-size: 24px; /* base controlado */
+    }
+
+    body {
+        font-size: 20px; /* padrão (16px) */
+        line-height: 1.5;
+    }
+
+    :root {
+        --primary: #00d9ff;
+        --secondary: #a855f7;
+        --accent: #10b981;
+        --warning: #ffcc00;
+    }
+
+    .reveal h1,
+    .reveal h2 {
+        color: var(--primary);
+        text-transform: none;
+    }
+
+    .reveal h3 {
+        color: var(--secondary);
+        text-transform: none;
+    }
+
+    .reveal section {
+        text-align: left;
+        font-size: 0.95rem; /* mais legível */
+    }
+
+    .center {
+        text-align: center !important;
+    }
+
+
+    .highlight {
+        color: var(--warning);
+        font-weight: bold;
+    }
+
+</style>
+</head>
+<body style="font-size: 6px;">
+<div class="reveal">
+<div class="slides">
+
+  <section class="center">
+  <section class="center">
+    <h1>Modelos de Linguagem</h1>
+    <h2>Da Estatística aos Transformers</h2>
+
+    <div>
+      <img src="imgs/Timeline_PLN.png" width="20%" height="auto">
+    </div>
+  </section>
+
+
+  <!-- ------------------------------------------------- -->
+
+
+<section class="center">
+  <h3>Modelo?</h3>
+  <ul>Um modelo é uma simplificação de um fenômeno complexo.
+    <li>Em linguagem natural:</li>
+    <ul>
+      <li>Representa padrões léxicos, sintáticos e semânticos</li>
+      <li>Não substitui a linguagem real</li>
+      <li>Ajuda na compreensão e geração de texto</li>
+    </ul>
+    </ul>
+
+  <h3>Como funciona?</h3>
+
+  <ul>
+    <li>Prediz palavras a partir do contexto</li>
+    <li>Pode completar palavras faltantes</li>
+  </ul>
+
+  <div class="formula">
+    "Vamos completar a próxima ___"
+  </div>
+
+  <p class="">
+    → palavra
+  </p>
+
+  <div class="formula ">
+    "Vamos ___ o texto ___ a próxima ___"
+  </div>
+</section>
+
+
+
+
+  <section class="center">
+  <h3>Hipótese Distribucional e Contexto</h3>
+
+  <ul>
+    <li>Palavras com contextos (palavras que aparecem próximas) semelhantes
+      tendem a ter significados semelhantes.</li>
+    <li>Usar contexto para prever palavras - modelos modernos geram vetores dinâmico - uma palavra pode ter vetores diferentes dependendo do contexto</li>
+  </ul>
+
+  <p class="">
+    Exemplo:
+    <span class="highlight">"manga"</span>
+    → fruta ou parte da roupa
+  </p>
+
+</section>
+
+  <section class="center">
+    <h3>Modelo de Linguagem</h3>
+    <div>
+      <p>
+        Estimam a probabilidade de sequências de palavras.
+      </p>
+
+      <ul>
+        <li>Predizer a próxima palavra</li>
+        <li>Gerar texto automaticamente</li>
+        <li>Capturar padrões linguísticos</li>
+        <li>Base de chatbots e LLMs modernos</li>
+      </ul>
+  </div>
+    <img src="imgs/lang_models.png" width="36%" height="auto">
+  </section>
+
+
+  <section class="center">
+    <h2>Como escolhar a próxima palavra?</h2>
+    Qual sequência você escolheria?
+    <div style="flex: 1;">
+    <img src="imgs/greedy-tree.png" width="60%" height="auto" alt="add img">
+    </div>
+  </section>
+
+  
+
+
+
+
+   <!-- <section class="center">
+  <h3>Modelos de linguagem</h3>
+
+  <div class="">
+    <ul>
+      <li><strong>Simbólico</strong> → regras e gramática</li>
+      <li><strong>Estatístico</strong> → frequência em grandes textos</li>
+      <li><strong>Neural</strong> → redes neurais aprendem padrões</li>
+    </ul>
+  </div>
+
+  <h3>Limitações</h3>
+
+  <div class="">
+    <ul>
+      <li>Simbólico → precisa de especialistas</li>
+      <li>Estatístico → precisa de muitos textos (corpus)</li>
+      <li>Neural → exige muito processamento e grandes corpora</li>
+    </ul>
+  </div>
+</section>
+ -->
+
+
+
+
+
+  <!-- ------------------------------------------------- -->
+
+
+  
+  <section class="center">
+    <h2>Modelos de Linguagem Probabilísticos</h2>
+    <ul>
+      <li>Atribuem probabilidades para sequências de palavras</li>
+      <li>Assume uma probabilidade associada à existência de uma sequência de palavras \(p_{1:i}\) <ul>probabilidade:  \(P(p_{1:i})\) </ul></li>
+    </ul>
+    <div>
+      <ul>
+       <li>Usando a regra da cadeia da probabilidade:</li>
+        <span class="highlight">
+        \( \begin{aligned}             P(p_{1:i}) = {} & P(p_1)P(p_2 | p_1)P(p_3 | p_{1:2}) \dots P(p_i | p_{1:i-1})\end{aligned} \)
+        </span>
+        <li>Multiplicações de valores pequenos podem zerar o resultado</li>
+        <span class="highlight ">\(\begin{aligned}
+        \log P(p_{1:i}) = {} & \\
+        & \log P(p_1) + \log P(p_2 | p_1) + \log P(p_3 | p_{1:2}) + \\
+        & + \dots + \log P(p_i | p_{1:i-1})
+        \end{aligned} \tag{1.2}\)</span>
+          <br>
+          <li>Probabilidade condicional - completar uma sequência de palavras com uma palavra dadas as palavras que vieram antes:</li>
+        <span class="highlight">\(P(p_i | p_1, \dots, p_{i-1})\tag{1.3}\) <br> \( P(palavra|Vamos, completar, o texto, com, a, próxima)\)</span>
+        </ul>
+      </div>
+  </section>
+
+  <section class="center">
+    <h3>Gerando texto automaticamente</h3>
+    <ul>Esse modelos (autorregressivos ou causais) podem gerar texto:
+       <ol>
+        <li>use o modelo probabilístico para escolher o próximo token</li>
+        <li>adicione o token gerado na sequência de entrada e repita</li>
+       </ol>
+    </ul>
+    <div style="flex: 1;">
+    <img src="imgs/greedy-tree.png" width="50%" height="auto" alt="add img">
+    </div>
+  </section>
+
+
+    <section class="center">
+      <h3>Maldição da dimensionalidade</h3>
+        <ul>
+          <li>modelar a distribuição conjunta de 10 palavras com um vocabulário de 100.000 palavras gera 100.000\(^{10}-1\) parâmetros</li>
+        <li>Suposição de Markov para Simplificar problema computacional. Apenas o passado mais recente é importante para o futuro: <br> <span class="highlight">\(P(p_i|p_{1..i-1}) \approx P(p_i|p_{i-1})\) </span> </li>
+        <ul>
+          
+          <li>Unigrama → 1 palavra:   \( P(palavra|próxima) \)</li>
+          <li>Bigrama → 2 palavras:  \( P(palavra|a,próxima) \)</li>
+          <li>Trigrama → 3 palavras: \( P(palavra|a,com,próxima) \)</li>
+        </ul>
+        <li>Dependências longas (em geral n é no máximo 5):</li>
+          <ul>
+            <li> mais fácil de predizer</li>
+            <li>mais rara será a sua aparição no corpora</li>
+          </ul> 
+  </section>
+
+  
+
+  <section class="center">
+    <h3>Estimando as probabilidades a partir de corpora</h3>
+    <ul>
+      <li>Utilizar um conjunto de textos</li>
+      <ul>
+        <li>Quanto maior e mais diverso - mais chance de conter muitas sequências diferentes</li>
+        <li>Quanto maior e mais diverso - mais mais demorado é o processamento</li>
+      </ul>
+      <li>Probabilidade condicional: contar palavras. <br> Para um bigrama:</li>
+      
+        <div>
+        <span class="highlight"> \(P(p_i | p_{i-1}) = \frac{c(p_{i-1}, p_i)}{c(p_{i-1})}\)</span>
+        <ul>
+          <li>onde \( c(p_{i-1}) \): quantas vezes \(p_{i-1}\) aparece antes de  \(p_i\) </li>
+      <li>onde \( c(p_{i}) \)  : quantas vezes \(p_{i-1}\) aparece no texto</li>
+        </ul>
+        </div>
+      <li>Para um 3-grama:</li>
+      <span class="highlight">\(P(p_i | p_{i-1}, p_{i-2}) = \frac{c(p_{i-2}, p_{i-1}, p_i)}{c(p_{i-2}, p_{i-1})}\)</span>
+      <li>probabilidade de palavras não vista pode ser obtida a partir da concatenação de gramas menores</li>
+    </ul>
+  </section>
+
+  <section class="center">
+    <h3>Exercício 1 — Probabilidade unigrama</h3>
+    Corpus: "o gato dorme o gato come o rato"
+    <ol>
+      <li>Conte as ocorrências de cada token.</li>
+      <li>Calcule \(P(p) = C(p) / N\), onde N = total de tokens.</li>
+      <li>Qual é P("gato") no corpus?</li>
+          <table class="fragment" style="width:70%; margin:auto; border-collapse: collapse;">
+          <thead>
+            <tr style="border-bottom: 2px solid white;">
+              <th>Token</th>
+              <th>C(p)</th>
+              <th>P(p)</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>o</td>
+              <td>3</td>
+              <td>3/8 = 0,375</td>
+            </tr>
+
+            <tr>
+              <td>gato</td>
+              <td>2</td>
+              <td class="highlight">2/8 = 0,250</td>
+            </tr>
+
+            <tr>
+              <td>dorme</td>
+              <td>1</td>
+              <td>1/8 = 0,125</td>
+            </tr>
+
+            <tr>
+              <td>come</td>
+              <td>1</td>
+              <td>1/8 = 0,125</td>
+            </tr>
+
+            <tr>
+              <td>rato</td>
+              <td>1</td>
+              <td>1/8 = 0,125</td>
+            </tr>
+          </tbody>
+        </table>
+      <li class="fragment">calcule P("o gato dorme")</li>
+      <span class="fragment">P("o") × P("gato") × P("dorme") = 3/8 × 2/8 × 1/8 = 6/512</span>
+    </ol>
+  </section>
+
+  <!-- <section class="center">
+    <h3>Exercício 2 - reforço individual</h3>
+    <p>Corpus: "o gato dorme"; "o gato come"</p>
+    Complete a tabela de bigramas:
+    <table style="width:85%; margin:auto; border-collapse: collapse;">
+    <thead>
+      <tr style="border-bottom: 2px solid white;">
+        <th>Bigrama</th>
+        <th>C(bigrama)</th>
+        <th>C(\(p_i\))</th>
+        <th>P(\(p_2\)|\(p_1\))</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>&lt;s&gt; → o</td>
+        <td>2</td>
+        <td>2</td>
+        <td>2/2 = 1,00</td>
+      </tr>
+
+      <tr>
+        <td>o → gato</td>
+        <td>2</td>
+        <td>2</td>
+        <td>2/2 = 1,00</td>
+      </tr>
+
+      <tr>
+        <td>gato → dorme</td>
+        <td>___</td>
+        <td>___</td>
+        <td>___</td>
+      </tr>
+
+      <tr>
+        <td>gato → come</td>
+        <td>___</td>
+        <td>___</td>
+        <td>___</td>
+      </tr>
+
+      <tr>
+        <td>dorme → &lt;/s&gt;</td>
+        <td>___</td>
+        <td>___</td>
+        <td>___</td>
+      </tr>
+
+      <tr>
+        <td>come → &lt;/s&gt;</td>
+        <td>___</td>
+        <td>___</td>
+        <td>___</td>
+      </tr>
+    </tbody>
+  </table>
+
+  </section> -->
+
+  <section class="center">
+  <h3>Redes Neurais</h3>
+
+    <ul>
+      <li>Ao utilizar n-gramas</li>
+      <ul>
+        <li>Dependem de sequências vistas no treinamento</li>
+        <li>Têm dificuldade com frases novas</li>
+        <li>Problema de esparsidade</li>
+      </ul>
+      <li> Como generalizar para sequências nunca vistas?</li>
+      <ul>
+        <li>Redes neurais aprendem uma função que estima probabilidades da linguagem.</li>
+        <li>Aprendem padrões automaticamente</li>
+        <li>Generalizam melhor</li>
+        <li>Podem prever sequências novas</li>
+      </ul> 
+  </ul> 
+</section>
+
+  <!-- ------------------------------------------------- -->
+<section class="center">
+      <h3>Rede Neural para modelos de linguagem</h3>
+      <ul>
+        <li>Utiliza embeddings - podem ser dinâmicos</li>
+        <li>Aprendizado de padrões complexos e palavras fora do corpus</li>
+        <li>Substitir contagem por aprendizado</li>
+      </ul>
+      <img src="imgs/NN_langModel.png" width="70%" height="auto">
+    </section>
+
+
+    <section class="center">
+      <h3>Codificação One-Hot</h3  >
+      <ul>
+        <li>Palavras como símbolos</li>
+        <li>Vetores extremamente esparsos</li>
+        <li class="highlight">manga = \([0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ]\)</li>
+        <li class="highlight">madura = \([0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 ]\)</li>
+        <li class="highlight">camisa = \([0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 ]\)</li>
+        <li>Alta dimensionalidade - um para cada palavra</li>
+        <li>Vetores extremamente esparsos</li>
+        <li>Não capturam similaridade semântica</li>
+        <li>"manga" e "madura" ficam tão distantes quanto "manga" e "gato".</li>
+      </ul>
+    </section>
+
+    <!-- <section class="center">
+      <h3>Hipótese Distribucional</h3>
+      <ul>
+        <li>Palavras em contextos semelhantes tendem a ter significados semelhantes.</li>
+        <li>Base conceitual dos embeddings (espaço vetorial de dimensão inferior)</li>
+      </ul>
+      <p class="">"As mangas podem ser classificadas de várias maneiras"</p>
+      <ul class="">
+        <li>fresca, seca, madura, rosa</li>
+        <li>longa, curta, bufante</li>
+        <li>original, baseado em livros</li>
+      </ul>
+      <p class="">https://pt.wikipedia.org/wiki/Manga</p>
+    </section> -->
+
+    <section class="center">
+      <h3>Embeddings</h3>
+      <ul>
+        <li>Construir um vetor denso para cada palavra, dado um contexto</li>
+        <!-- <li>Semelhança é calculada dado o produto escalar dos vetores</li> -->
+        <li>Pode diferir para tokens do tipo "manga" com a mesma semântica</li>
+        <li>Semântica de token próximas, vetores no espaço vetoria próximos.</li>
+        <ul>
+          <li> Embeddings associados às palavras "mãe" e "mother" podem até mesmo estar próximos no espaço vetorial</li>
+        </ul>
+      </ul>
+      <img src="imgs/wordvecs.png" width="100%" height="auto">
+    </section>
+
+    
+    <section class="center">
+      <h3>Embeddings - como calcular</h3>
+      <img src="imgs/wordvec_ex.png" width="80%" height="auto">
+      <ol>
+        <li>Calcular a função: negativo da log-verossimilhança média:<p>       
+        <span class="highlight"> \[\mathcal{J(\theta)} = -\frac{1}{T}\sum_{i=1}^{T} \sum_{\substack{-m \leq j \leq m \\ j \neq 0  }}^{T} \log P(p_{t+j} \mid p_t; \theta) \]</span>
+        <li>Usar função exponencial normalizada (softmax) para estimar probabilidades:
+          <span class="highlight"> \[ \sigma(\mathbf{z})_j = \frac{e^{z_j}}{\sum_{k=1}^{K} e^{z_k}}, \quad j = 1, \ldots, K \]</span>
+          </li>
+      </ol>
+    </section>
+
+    <section class="center">
+      <h3>Vetores de palavras - treinamento</h3>
+      <img src="imgs/treinamento_NLP.png" width="80%" height="auto">
+      <ul>
+        <li>Ajustar gradualmente os parâmetros para minimizar a função</li>
+        <li>Otimizar esses parâmetros seguindo o gradiente</li>
+        <li>Calcular todos os gradientes vetoriais</li>
+        <li>O gradiente descendente é um algoritmo para minimizar \(\mathcal{J}, \theta\):</li>
+        <ol>
+          
+          <li>Ideia: para o valor atual de \(\ \theta\), calcular o gradiente de \(\mathcal{J}, \theta\) e, em seguida, dar um pequeno passo na direção do gradiente negativo.</li> 
+          <li>Repetir.</li>
+        </ol>
+      </ul>
+    </section>
+
+    <section class="center">
+      <h3>Redes Neurais Recorrentes (RNN)</h3>
+    <ul>
+      <li>Podem processar sequências de qualquer comprimento</li>
+      <li>A computação no passo \(t\) pode, em teoria, usar informação de muitos passos anteriores</li>
+      <li>O tamanho do modelo não aumenta com tamanho da entrada</li>
+    </ul>
+      <img src="imgs/rrn_nlp.png" width="60%" height="auto">
+    </section>
+
+    <!-- <section class="center">
+      <h3>Treinando uma RNN - cálculo (forward pass)</h3>
+
+      
+    </section> -->
+
+    <section class="center">
+  <h3>Treinando um Modelo de Linguagem com RNN</h3>
+  <ul>
+    <li>Obter um grande corpus de texto — sequência de palavras <em>x</em><sup>(1)</sup>, …, <em>x</em><sup>(T)</sup></li>
+    <li>Alimentar a RNN-LM e computar a distribuição de saída ŷ<sup>(t)</sup></span> para <em>cada passo t</em></li>
+    <ul>
+      <li>Ou seja: prever a distribuição de probabilidade de <em>cada palavra</em>, dado o contexto anterior</li>
+    </ul>
+    <li>Calcular a média do negativo da log-verossimilhança média para obter a perda total do conjunto de treinamento</li>
+  </ul>
+  <img src="imgs/treinando_RNN.png" width="60%" height="auto">
+</section>
+
+    
+    <section class="center">
+      <h3>Geração de texto com RNN</h3>
+
+  <ul>
+    <li>
+      Assim como em um modelo de linguagem n-gram, uma RNN pode ser usada para gerar texto por amostragem repetida.
+    </li>
+
+    <li>
+      A saída gerada em um passo é usada como entrada no próximo passo.
+    </li>
+
+    <li>
+      Esse processo se repete sequencialmente, construindo o texto palavra por palavra.
+    </li>
+  </ul>
+      <img src="imgs/gerando_txt_langModel.png" width="60%" height="auto">
+    </section>
+
+
+    <section class="center">
+      <h3>Limitações - RNNs</h3>
+      <ul>
+        <li>Processamento sequencial lento</li>
+        <li>Dificuldade com dependências longas</li>
+        <li>Treinamento instável</li>
+        <li>Problema do Vanishing Gradient</li>
+        <li>Problema do desaparecimento do gradiente</li>
+        <ul>
+          <li>Gradientes desaparecem no tempo</li>
+          <li>Dificulta aprendizado de dependências longas</li>
+          <li>Long Short-Term Memory (LSTM) - <a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">Link</a></li>
+        </ul>    
+        <li>Gradientes crescem demais</li>
+        <li>Instabilidade numérica</li>
+        <li>Problema do desaparecimento do gradiente</li>
+        <ul>
+          <li>Escalarização</li>
+        </ul>   
+      </ul>
+    </section>
+
+    <section class="center">
+      <h3>Tradução de texto</h3>
+      <ul>
+        <li>2016: Google Translate usa Tradução por redes neurais </li>
+        <li>Modelo sequence-to-sequence (seq2seq): arquitetura Encoder-Decoder</li>
+        <li>Encoder RNN: modelo que representa a sentença de entrada</li>
+        <ul>
+          <li>Vetor de contexto: representa toda a sentença de origem</li>
+        </ul>
+    
+        <li>Decoder RNN: é outro modelo de conectada à saída do encoder</li>
+        <ul>
+          <li>Gera a sentença de saída passo a passo</li>
+        </ul>
+      </ul>
+
+      <img src="imgs/seq2seq.png" width="60%" height="auto">
+    </section>
+
+    
+  
+
+  <section class="center">
+      <h3>GPT</h3>
+      <ul>
+        <li>Os GTPs fazem parte da família dos LLMs (Large Language Models)</li>
+        <ul>
+          <li>Eles se baseiam em Transformers pré-treinados em conjuntos de dados gigantescos</li>
+          <li>O princípio consiste em gerar a próxima palavra em uma sequência, estimando a distribuição das possíveis palavras seguintes</li>
+          <li>A próxima palavra é escolhida por amostragem dessa distribuição</li>
+          <li>O mecanismo de atenção é o elemento determinante dos Transformers</li>
+        </ul>
+      </ul>
+    </section>
+
+    <section class="center">
+    <h3>Mecanismo de atenção</h3>
+  <div style="display: flex; gap: 50px; align-items: flex-start;">
+    <div>
+        <ul>
+          <li>Cada palavra é projetada em três representações vetoriais </li>
+          <ul>
+            <li><span style="color: red;">Q</span>uery: O que estou procurando?</li>
+            <li><span style="color: red;">K</span>ey: O que eu ofereço?</li>
+            <li><span style="color: red;">V</span>alue: Qual informação transmitir?</li>
+          </ul>
+          <li> O mecanismo mede a importância relativa entre as palavras da sequência.</li>
+          <li> Cada palavra "olha" para todas as outras e decide em quais deve focar. </li>
+        </ul>
+      </div>
+      <img src="imgs/attention_3.png" width="40%" height="auto">
+    </div>
+</section>
+
+
+  <section class="center">
+  <h3>Atenção</h3>
+
+  <div style="display: flex; align-items: flex-start; gap: 20px;">
+
+    <div style="flex: 1; text-align: left;">
+      <ul>
+              <li>Ideia central: focar em uma parte específica da sequência de entrada.</li>
+
+              <li>Scores de atenção: produto escalar para calcular os scores de atenção e softmax para transformar os scores em uma distribuição de probabilidade</li>
+
+              <li>Saída da atenção: contém informações dos estados ocultos que receberam maior atenção.</li>
+
+              <li>Uso no decoder: concatenar a saída da atenção com o estado oculto do decoder e então usar isso para calcular ŷ₁ como antes.</li>
+
+              <li>Mecanismo adicional: a saída da atenção do passo anterior também é alimentada no decoder (junto com a entrada usual do decoder).</li>
+
+            </ul>
+    </div>
+
+    <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+        <div class="r-stack"> 
+          <img class="fade-in-then-out" src="imgs/attention_1.png" width="85%" height="auto">
+          <img class="fragment fade-in" src="imgs/attention_2.png" width="90%" height="auto">
+      </div> 
+    </div>
+
+  </div>
+</section>
+
+  <section class="center">
+  <h3>Transformers</h3>
+
+  <div style="display: flex; align-items: flex-start; gap: 20px;">
+
+    <div style="flex: 1; text-align: left;">
+      <ul>
+        <li>O decodificador (decoder) é uma pilha de blocos de decodificadores Transformer.</li>
+        <li>Cada bloco consiste em:</li>
+        <ul>
+          <li>Atenção</li>
+          <li>Soma e normalização</li>
+          <li>Feed-forward</li>
+          <li>Soma e normalização</li>
+        </ul>
+      </ul>
+
+      <ul>
+        <li>O encoder é similar ao decodificador</li>
+        <ul>
+          <li>Sem a máscara da camada de atenção</li>
+        </ul>
+      </ul>
+    </div>
+
+    <div style="flex: 1; display: flex; justify-content: center; align-items: center;">
+      <img src="imgs/transformers.png" width="80%" height="auto">
+    </div>
+
+  </div>
+</section>
+
+
+    
+  <section class="center">
+      Referências:
+      <ul>
+          <li> Chris Manning, CS224N, Natural Language Processing with Deep Learning - https://web.stanford.edu/class/cs224n/</li>
+          <li>https://web.stanford.edu/class/cs224n/slides_w26/cs224n-2026-lecture05-transformers.pdf</li>
+          <li>Processamento de Linguagem Natural Conceitos, Técnicas e Aplicações em Português - https://brasileiraspln.ufscar.br/livro-pln-4ed/</li>
+      </ul>
+      
+  </section>
+  </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({ 
+      hash: true, 
+      slideNumber: 'c/t',
+      transition: 'slide',
+      controls: true,
+      progress: true
+    });
+  </script>
+
+  <!-- mathjax -->
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/x-mathjax-config">
+        // Make responsive
+        MathJax.Hub.Config({
+        "HTML-CSS": { linebreaks: { automatic: true } },
+        "SVG": { linebreaks: { automatic: true } },
+        });
+      </script>
+
+  </body>
+  </html>
