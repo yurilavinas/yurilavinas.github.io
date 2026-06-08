@@ -77,21 +77,21 @@ https://doi.org/10.1162/evco_a_00306 [Preprint.](https://arxiv.org/abs/2112.1193
 
 ## 2021
 
-1. Felipe Vaz, *Yuri Lavinas*, Claus Aranha, Marcelo Ladeira. **"Exploring Constraint Handling Techniques in Real-world Problems on MOEA/D with Limited Budget of Evaluations"**, 2021 Evolutionary Multi-Criterion Optimization (EMO), doi: https://doi.org/10.1007/978-3-030-72062-9_44 [Preprint.](https://arxiv.org/pdf/2011.09722.pdf)
+1. Felipe Vaz, *Yuri Lavinas*, Claus Aranha, Marcelo Ladeira. **Exploring Constraint Handling Techniques in Real-world Problems on MOEA/D with Limited Budget of Evaluations**, 2021 Evolutionary Multi-Criterion Optimization (EMO), doi: https://doi.org/10.1007/978-3-030-72062-9_44 [Preprint.](https://arxiv.org/pdf/2011.09722.pdf)
 
 - [Watch EMO 2021 presentation video on YouTube.](https://youtu.be/wOA0BnX51QI)
 
-2. *Yuri Lavinas*, Abe Mitsu Teru, Yuta Kobayashi, and Claus Aranha. **"MOEA/D with Adaptative Number of Weight Vectors"**, In Theory and Practice of Natural Computing, pp. 134-146, Cham, 2021. Springer International Publishing, doi: https://doi.org/10.1007/978-3-030-90425-8_7. [Preprint.](https://arxiv.org/pdf/2109.05741.pdf)
+2. *Yuri Lavinas*, Abe Mitsu Teru, Yuta Kobayashi, and Claus Aranha. **MOEA/D with Adaptative Number of Weight Vectors***, In Theory and Practice of Natural Computing, pp. 134-146, Cham, 2021. Springer International Publishing, doi: https://doi.org/10.1007/978-3-030-90425-8_7. [Preprint.](https://arxiv.org/pdf/2109.05741.pdf)
 
 -----
 
 ## 2020 
 
-1. *Yuri Lavinas*, C. Aranha, M. Ladeira and F. Campelo, **"MOEA/D with Random Partial Update Strategy,"** 2020 IEEE Congress on Evolutionary Computation (CEC), Glasgow, United Kingdom, 2020, pp. 1-8, doi: https://doi.org/10.1109/CEC48606.2020.9185527. [Preprint.](https://arxiv.org/abs/2001.06980)
+1. *Yuri Lavinas*, C. Aranha, M. Ladeira and F. Campelo, **MOEA/D with Random Partial Update Strategy,*** 2020 IEEE Congress on Evolutionary Computation (CEC), Glasgow, United Kingdom, 2020, pp. 1-8, doi: https://doi.org/10.1109/CEC48606.2020.9185527. [Preprint.](https://arxiv.org/abs/2001.06980)
 
 - [Watch CEC 2020 presentation video on YouTube.](https://youtu.be/0wViMZENBq4)
 
-2. Nicolo Oreste Pinciroli Vago, *Yuri Lavinas*, Daniele Rodrigues, Felipe Moura, Sergio Cunha, Claus Aranha, and Ricardo da Silva Torres, **"INTEGRA: An Open Tool To Support Graph-Based Change Pattern Analyses In Simulated Football Matches"**, 34th International ECMS Conference on Modeling and Simulation, 2020.06 DOI: https://doi.org/10.7148/2020-0228 [Link.](http://www.scs-europe.net/dlib/2020/ecms2020acceptedpapers/0228_ocms_ecms2020_0051.pdf)
+2. Nicolo Oreste Pinciroli Vago, *Yuri Lavinas*, Daniele Rodrigues, Felipe Moura, Sergio Cunha, Claus Aranha, and Ricardo da Silva Torres, **INTEGRA: An Open Tool To Support Graph-Based Change Pattern Analyses In Simulated Football Matches***, 34th International ECMS Conference on Modeling and Simulation, 2020.06 DOI: https://doi.org/10.7148/2020-0228 [Link.](http://www.scs-europe.net/dlib/2020/ecms2020acceptedpapers/0228_ocms_ecms2020_0051.pdf)
 
 -----
 
@@ -101,40 +101,40 @@ https://doi.org/10.1162/evco_a_00306 [Preprint.](https://arxiv.org/abs/2112.1193
 
 
 ## 2019
-1. *Yuri Lavinas*, Claus Aranha, Tetsuya Sakurai, **"Using Diversity as a Priority Function for Resource Allocation on MOEA/D"**, In Genetic and Evolutionary Computation Conference Companion (GECCO '19 Companion), https://doi.org/10.1145/3319619.3321948, 2019.7 [Preprint.](papers/Using_diversity_as_a_priority_function_for_resourc.pdf)
+1. *Yuri Lavinas*, Claus Aranha, Tetsuya Sakurai, **Using Diversity as a Priority Function for Resource Allocation on MOEA/D***, In Genetic and Evolutionary Computation Conference Companion (GECCO '19 Companion), https://doi.org/10.1145/3319619.3321948, 2019.7 [Preprint.](papers/Using_diversity_as_a_priority_function_for_resourc.pdf)
 
-2. *Yuri Lavinas*, Claus Aranha, and Marcelo Ladeira. **"Improving resource allocation in MOEA/D with decision-space diversity metrics"**. In Theory and Practice of Natural Computing, pp. 134–146, Cham, 2019. Springer International Publishing, https://www.doi.org/10.1007/978-3-030-34500-6_9, 2019.12 
+2. *Yuri Lavinas*, Claus Aranha, and Marcelo Ladeira. **Improving resource allocation in MOEA/D with decision-space diversity metrics***. In Theory and Practice of Natural Computing, pp. 134–146, Cham, 2019. Springer International Publishing, https://www.doi.org/10.1007/978-3-030-34500-6_9, 2019.12 
 
 -----
 
-1. [*Yuri Lavinas*, Claus Aranha, Marcelo Ladeira, Tetsuya Sakurai, **"Resource Allocation in MOEA/D: What is important?"** Symposium of the Japanese Society of Evolutionary Computation (2019.09).](papers/what_is_important_in_ResourceAllocation.pdf)
+1. [*Yuri Lavinas*, Claus Aranha, Marcelo Ladeira, Tetsuya Sakurai, **Resource Allocation in MOEA/D: What is important?*** Symposium of the Japanese Society of Evolutionary Computation (2019.09).](papers/what_is_important_in_ResourceAllocation.pdf)
 
 
 -----
 
 ## 2018
 
-1. *Yuri Lavinas*, Claus Aranha, Tetsuya Sakurai, Marcelo Ladeira, **"Experimental Analysis of the Tournament Size on Genetic Algorithms"**, IEEE International Conference on Systems, Man and Cybernetics, pp.3647-3653, https://doi.org/10.1109/SMC.2018.00617, 2018.10. [Preprint.](https://www.researchgate.net/publication/330478320_Experimental_Analysis_of_the_Tournament_Size_on_Genetic_Algorithms)
+1. *Yuri Lavinas*, Claus Aranha, Tetsuya Sakurai, Marcelo Ladeira, **Experimental Analysis of the Tournament Size on Genetic Algorithms***, IEEE International Conference on Systems, Man and Cybernetics, pp.3647-3653, https://doi.org/10.1109/SMC.2018.00617, 2018.10. [Preprint.](https://www.researchgate.net/publication/330478320_Experimental_Analysis_of_the_Tournament_Size_on_Genetic_Algorithms)
 
 -----
 
-2. *Yuri Lavinas*, Claus Aranha, Tetsuya Sakurai, **"Resource Allocation by Diversity"** Symposium of the Japanese Society of Evolutionary Computation (2018.12)
+2. *Yuri Lavinas*, Claus Aranha, Tetsuya Sakurai, **Resource Allocation by Diversity*** Symposium of the Japanese Society of Evolutionary Computation (2018.12)
 
 
 ## 2017
 
 -----
 
-1. *Yuri Lavinas*, Claus Aranha, Marcelo Ladeira, **"Experimental Analysis of the Tournament Size on Evolutionary Algorithms"** Symposium of the Japanese Society of Evolutionary Computation (2017.12) 
+1. *Yuri Lavinas*, Claus Aranha, Marcelo Ladeira, **Experimental Analysis of the Tournament Size on Evolutionary Algorithms*** Symposium of the Japanese Society of Evolutionary Computation (2017.12) 
 
 ## 2016
 
 -----
 
-1. *Yuri Lavinas*, Marcelo Ladeira, Claus Aranha, **"Inducao de Modelo de Risco de Sismos com Tecnicas de Algoritmos Geneticos"** - 68th Annual Meeting of the Brazilian Science Society (SBC) (2016.7) (Poster, in Portuguese).
+1. *Yuri Lavinas*, Marcelo Ladeira, Claus Aranha, **Inducao de Modelo de Risco de Sismos com Tecnicas de Algoritmos Geneticos*** - 68th Annual Meeting of the Brazilian Science Society (SBC) (2016.7) (Poster, in Portuguese).
 
 ## 2014
 
 -----
 
-1. Claus Aranha, *Yuri Cossich Lavinas*, Marcelo Ladeira and Bogdan Enescu: **"Is it possible to generate good Earthquake Risk Models using Genetic Algorithms?"**, 6th International Conference on Evolutionary Computation Theory and Applications (ECTA), https://doi.org/10.5220/0005072600490058.
+1. Claus Aranha, *Yuri Cossich Lavinas*, Marcelo Ladeira and Bogdan Enescu: **Is it possible to generate good Earthquake Risk Models using Genetic Algorithms?***, 6th International Conference on Evolutionary Computation Theory and Applications (ECTA), https://doi.org/10.5220/0005072600490058.
