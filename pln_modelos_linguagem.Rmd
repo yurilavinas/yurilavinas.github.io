@@ -1,0 +1,15 @@
+---
+title: "Syllabus"
+author: "Yuri Lavinas"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Syllabus
+2026-01-19
