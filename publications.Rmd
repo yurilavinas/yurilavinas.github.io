@@ -13,7 +13,7 @@ Publications are listed in chronological order, and the horizontal line separate
 	
 2. *Yuri Lavinas*, Nathan Haut, Sylvain Cussat-Blanc, Wolfgang Banzhaf. **Reducing Computational Overhead in Biomedical Image Segmentation via Active Learning and PCA-Based Diversity Filtering in CGP** European Conference on Genetic Programming (Part of EvoStar) 10.1007/978-3-032-23005-8_17
 	
-3. Christina Berghegger, Camilo De La Torre, Giorgia Nadizar, *Yuri Lavinas*, Hervé Luga, Dennis G Wilson, Sylvain Cussat-Blanc. **Analyzing Interpretable Visual Control Policy Search and Synthesis** https://doi.org/10.1145/3799432
+3. Christina Berghegger, Camilo De La Torre, Giorgia Nadizar, *Yuri Lavinas*, Hervé Luga, Dennis G Wilson, Sylvain Cussat-Blanc. **Analyzing Interpretable Visual Control Policy Search and Synthesis** ACM Transactions on Evolutionary Learning and Optimization. https://doi.org/10.1145/3799432
 
 ## 2025
 
@@ -47,7 +47,7 @@ Sylvain Cussat-Blanc. **Adaptive Sampling of Biomedical Images with Cartesian Ge
 Cussat-Blanc, **Multi-Modal Adaptive Graph Evolution for Program Synthesis**, Parallel Problem Solving From Nature (PPSN 2024). https://doi.org/10.1007/978-3-031-70055-2_19
 <!-- [Preprint.](papers/MAGE_PPSN_Article.pdf) -->
 
-6. *Yuri Lavinas*, Marcelo Ladeira, Gabriela Ochoa, Claus Aranha. **Multiobjective Evolutionary Component Effect on Algorithm behavior**, Multiobjective Evolutionary Component Effect on Algorithm behavior. ACM     Transactions on Evolutionary Learning and Optimization.  https://dl.acm.org/doi/10.1145/3612933
+6. *Yuri Lavinas*, Marcelo Ladeira, Gabriela Ochoa, Claus Aranha. **Multiobjective Evolutionary Component Effect on Algorithm behavior**, Multiobjective Evolutionary Component Effect on Algorithm behavior. ACM Transactions on Evolutionary Learning and Optimization.  https://dl.acm.org/doi/10.1145/3612933
 [Preprint.](papers/TELO_autodesign_RW_benchmark.pdf)
 
 ## 2023
