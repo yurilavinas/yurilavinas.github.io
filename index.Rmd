@@ -8,6 +8,7 @@
 <div style="width: 65%; float: left;">
 
 <!-- I'm currently an Assistant Professor in the Department of Computer Science [(CIC)](https://cic.unb.br/), at the University of Brasília [(UnB)](https://unb.br/).  -->
+
 From 2024 to 2026, I was a [***maître de conférences***](https://en.wikipedia.org/wiki/Academic_ranks_in_France) at the University [Toulouse Capitole](https://www.ut-capitole.fr/), France, at the Institut de Recherche en Informatique de Toulouse, [(IRIT)](https://www.ut-capitole.fr/accueil/recherche/equipes-et-structures/institut-de-recherche-en-informatique-de-toulouse-irit), and part of the [REVA team](https://www.irit.fr/en/departement/dep-hpc-simulation-optimization/reva-team/). 
 
 I did a 18 month-long postdoc research working with histopathology image analysis for cancer treatment with Genetic Programming in the [IRIT@CRCT](https://www.crct-inserm.fr/iritcrct/) group, a joint laboratory between the Cancer Research Center of Toulouse [CRCT](https://www.crct-inserm.fr/en/) and IRIT, together with prof. [Sylvain Cussat-Blanc](https://www.irit.fr/~Sylvain.Cussat-Blanc/index_en.php). 
