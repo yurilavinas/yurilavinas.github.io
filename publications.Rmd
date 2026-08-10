@@ -9,21 +9,24 @@ Publications are listed in chronological order, and the horizontal line separate
 
 ## 2026
 
-1.  Christina Berghegger, Camilo De La Torre, Sylvain Cussat-Blanc, *Yuri Lavinas*, David Simoncini. **Using Monte Carlo Tree Search to Enhance Search Space Exploration in Cartesian Genetic Programming** European Conference on Genetic Programming (Part of EvoStar) doi.org/10.1007/978-3-032-23005-8_18
+1.  Christina Berghegger, Camilo De La Torre, Sylvain Cussat-Blanc, *Yuri Lavinas*, David Simoncini. **Using Monte Carlo Tree Search to Enhance Search Space Exploration in Cartesian Genetic Programming**, European Conference on Genetic Programming (Part of EvoStar) doi.org/10.1007/978-3-032-23005-8_18
 	
-2. *Yuri Lavinas*, Nathan Haut, Sylvain Cussat-Blanc, Wolfgang Banzhaf. **Reducing Computational Overhead in Biomedical Image Segmentation via Active Learning and PCA-Based Diversity Filtering in CGP** European Conference on Genetic Programming (Part of EvoStar) 10.1007/978-3-032-23005-8_17
+2. *Yuri Lavinas*, Nathan Haut, Sylvain Cussat-Blanc, Wolfgang Banzhaf. **Reducing Computational Overhead in Biomedical Image Segmentation via Active Learning and PCA-Based Diversity Filtering in CGP**, European Conference on Genetic Programming (Part of EvoStar) 10.1007/978-3-032-23005-8_17
 	
-3. Christina Berghegger, Camilo De La Torre, Giorgia Nadizar, *Yuri Lavinas*, Hervé Luga, Dennis G Wilson, Sylvain Cussat-Blanc. **Analyzing Interpretable Visual Control Policy Search and Synthesis** ACM Transactions on Evolutionary Learning and Optimization. https://doi.org/10.1145/3799432
+3. Christina Berghegger, Camilo De La Torre, Giorgia Nadizar, *Yuri Lavinas*, Hervé Luga, Dennis G Wilson, Sylvain Cussat-Blanc. **Analyzing Interpretable Visual Control Policy Search and Synthesis**, ACM Transactions on Evolutionary Learning and Optimization. https://doi.org/10.1145/3799432
+
+4. Sylvain Cussat-Blanc, Camilo de la Torre, *Yuri Lavinas*, Hervé Luga, David Simoncini & Dennis Wilson. **On Interpretability in Multimodal Biomedical Image Analysis**, Genetic Programming Theory and Practice. https://doi.org/10.1007/978-981-95-6398-2_5
+
 
 ## 2025
 
-1. Camilo De La Torre, Sylvain Cussat-Blanc, Hervé Luga, Dennis G Wilson and *Yuri Lavinas*. **On Chromosome Crossover in Multimodal Adaptive Graph Evolution** In Proceedings of the Genetic and Evolutionary Computation Conference Companion (GECCO '25 Companion). https://doi.org/10.1145/3712255.3734323 
+1. Camilo De La Torre, Sylvain Cussat-Blanc, Hervé Luga, Dennis G Wilson and *Yuri Lavinas*. **On Chromosome Crossover in Multimodal Adaptive Graph Evolution**, In Proceedings of the Genetic and Evolutionary Computation Conference Companion (GECCO '25 Companion). https://doi.org/10.1145/3712255.3734323 
 
-2. Camilo De La Torre, Giorgia Nadizar, *Yuri Lavinas*, Hervé Luga, Dennis Wilson and Sylvain Cussat-Blanc. 2025. **Evolution of Inherently Interpretable Visual Control Policies**. Proceedings of the Genetic and Evolutionary Computation Conference.  https://doi.org/10.1145/3712256.3726332
+2. Camilo De La Torre, Giorgia Nadizar, *Yuri Lavinas*, Hervé Luga, Dennis Wilson and Sylvain Cussat-Blanc. 2025. **Evolution of Inherently Interpretable Visual Control Policies**, Proceedings of the Genetic and Evolutionary Computation Conference.  https://doi.org/10.1145/3712256.3726332
 
-3. Camilo De La Torre, Giorgia Nadizar, *Yuri Lavinas*, Robin Schwob, Camille Franchet, Hervé Luga, Dennis Wilson and Sylvain Cussat-Blanc **Evolved and Transparent Pipelines for Biomedical Image Classification**. Genetic Programming. EuroGP 2025. https://doi.org/10.1007/978-3-031-89991-1_11
+3. Camilo De La Torre, Giorgia Nadizar, *Yuri Lavinas*, Robin Schwob, Camille Franchet, Hervé Luga, Dennis Wilson and Sylvain Cussat-Blanc **Evolved and Transparent Pipelines for Biomedical Image Classification**, Genetic Programming. EuroGP 2025. https://doi.org/10.1007/978-3-031-89991-1_11
 
-4. *Yuri Lavinas*, Camilo De La Torre, Kévin Cortacero, Dennis G. Wilson and Sylvain Cussat-Blanc **Interpretable Genetic Programming Models for Real-World Biomedical Images** Genetic Programming Theory and Practice XXI. Genetic and Evolutionary Computation. https://doi.org/10.1007/978-981-96-0077-9_15
+4. *Yuri Lavinas*, Camilo De La Torre, Kévin Cortacero, Dennis G. Wilson and Sylvain Cussat-Blanc **Interpretable Genetic Programming Models for Real-World Biomedical Images**, Genetic Programming Theory and Practice XXI. Genetic and Evolutionary Computation. https://doi.org/10.1007/978-981-96-0077-9_15
 
 ## 2024
 
@@ -40,7 +43,7 @@ Sylvain Cussat-Blanc. **Adaptive Sampling of Biomedical Images with Cartesian Ge
 <!-- [Preprint.](papers/Active_Learning_CGP_PPSN_24.pdf) -->
 
 4. Camilo De La Torre, Sylvain Cussat-Blanc, Dennis G Wilson, *Yuri Lavinas*
-**On Search Trajectory Networks for Graph Genetic Programming**. In Proceedings of the Companion Conference on Genetic and Evolutionary Computation (GECCO '24 Companion). https://doi.org/10.1145/3638530.3664169
+**On Search Trajectory Networks for Graph Genetic Programming**, In Proceedings of the Companion Conference on Genetic and Evolutionary Computation (GECCO '24 Companion). https://doi.org/10.1145/3638530.3664169
 
 
 5. Camilo De La Torre, *Yuri Lavinas*, Kévin Cortacero, Hervé Luga, Dennis G Wilson, Sylvain
@@ -103,7 +106,7 @@ https://doi.org/10.1162/evco_a_00306 [Preprint.](https://arxiv.org/abs/2112.1193
 ## 2019
 1. *Yuri Lavinas*, Claus Aranha, Tetsuya Sakurai, **Using Diversity as a Priority Function for Resource Allocation on MOEA/D***, In Genetic and Evolutionary Computation Conference Companion (GECCO '19 Companion), https://doi.org/10.1145/3319619.3321948, 2019.7 [Preprint.](papers/Using_diversity_as_a_priority_function_for_resourc.pdf)
 
-2. *Yuri Lavinas*, Claus Aranha, and Marcelo Ladeira. **Improving resource allocation in MOEA/D with decision-space diversity metrics***. In Theory and Practice of Natural Computing, pp. 134–146, Cham, 2019. Springer International Publishing, https://www.doi.org/10.1007/978-3-030-34500-6_9, 2019.12 
+2. *Yuri Lavinas*, Claus Aranha, and Marcelo Ladeira. **Improving resource allocation in MOEA/D with decision-space diversity metrics***, In Theory and Practice of Natural Computing, pp. 134–146, Cham, 2019. Springer International Publishing, https://www.doi.org/10.1007/978-3-030-34500-6_9, 2019.12 
 
 -----
 

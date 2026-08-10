@@ -7,26 +7,23 @@
 
 <div style="width: 65%; float: left;">
 
-I'm an associate professor at the University of [Toulouse 1 Capitole](https://www.ut-capitole.fr/), France, at the [Institut de Recherche en Informatique de Toulouse (IRIT)](https://www.ut-capitole.fr/accueil/recherche/equipes-et-structures/institut-de-recherche-en-informatique-de-toulouse-irit) and I'm part of the [REVA team](https://www.irit.fr/en/departement/dep-hpc-simulation-optimization/reva-team/). I did a postdoc research working with histopathology image analysis for cancer treatment with Genetic Programming in the [IRIT@CRCT](https://www.crct-inserm.fr/iritcrct/) group. I got my PhD degree from the University of Tsukuba, Japan. Originally, I'm from Brazil, where I did my undergraduate course, at the University of Brasilia. 
+I'm currently an Assistant Professor in the Department of Computer Science [(CIC)](https://cic.unb.br/), at the University of Brasília [(UnB)](https://unb.br/). From 2024 to 2026, I was a [***maître de conférences***](https://en.wikipedia.org/wiki/Academic_ranks_in_France) at the University [Toulouse Capitole](https://www.ut-capitole.fr/), France, at the Institut de Recherche en Informatique de Toulouse, [(IRIT)](https://www.ut-capitole.fr/accueil/recherche/equipes-et-structures/institut-de-recherche-en-informatique-de-toulouse-irit), and part of the [REVA team](https://www.irit.fr/en/departement/dep-hpc-simulation-optimization/reva-team/). 
 
-My research interests are related to Computational Intelligence, such as Evolutionary Computation and Artificial Life, with a greater focus on multi-objective optimization, fitness landscape and  Genetic Programming. Overall, I'm interested in programs that can adapt themselves, in applications of Evolutionary Computation (black box optimization, multi-agent systems, games), as well as more speculative use of these Computational Intelligence for Artificial Life ( such as the evolution of virtual creatures and the worlds where the live).
+I did a 18 month-long postdoc research working with histopathology image analysis for cancer treatment with Genetic Programming in the [IRIT@CRCT](https://www.crct-inserm.fr/iritcrct/) group, a joint laboratory between the Cancer Research Center of Toulouse [CRCT](https://www.crct-inserm.fr/en/) and IRIT, together with prof. [Sylvain Cussat-Blanc](https://www.irit.fr/~Sylvain.Cussat-Blanc/index_en.php). 
 
+I got my PhD degree from the University of Tsukuba, Japan. I was part of the [**Autoadaptation in Multi-Objective Optimization**](http://conclave.cs.tsukuba.ac.jp/research/autoadapt/) group, under Prof. [Claus Aranha](https://conclave.cs.tsukuba.ac.jp/about/) supervision. I obtained my bachelor’s degree in Computer Science from UnB in 2016, where I was supervised by prof. [Marcelo Ladeira](https://cic.unb.br/professores/92-mladeira).
 
+My research interests are related to Computational Intelligence, such as Evolutionary Computation and Artificial Life, with a greater focus on multi-objective optimization and Genetic Programming. Overall, I'm interested in programs that can adapt themselves, in applications of Evolutionary Computation (interpretability, biomedical data, games), as well as more speculative use of these Computational Intelligence for Artificial Life (such as the evolution of virtual creatures and the worlds where the live).
 
 
 ### General Information
 - Check my [Publication List.](https://yurilavinas.github.io/publications.html)
-- I was part of the [**Autoadaptation in Multi-Objective Optimization**](http://conclave.cs.tsukuba.ac.jp/research/autoadapt/) group, under Prof. Claus Aranha supervision.
-
-### Follow me
-
-- Talk to me on [Twitter](https://twitter.com/yurilavinas).
 
 - Find my papers in my [Google Scholar profile](https://scholar.google.com/citations?user=-hdeQYcAAAAJ&hl=en&oi=ao) or in my [ResearchGate profile](https://www.researchgate.net/profile/Yuri_Lavinas).
 
 - Most of my projects are on [Github](https://github.com/yurilavinas).
 
-- Send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp). You can also find my contact information at the top of the page.
+- Send me an [e-mail](mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp). You can also find my contact information at the top-right of the page.
 
 ### Scholarships 
 
