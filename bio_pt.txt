@@ -1,0 +1,7 @@
+Atualmente, sou Professor Assistente no Departamento de Ciência da Computação (CIC) da Universidade de Brasília (UnB). Entre 2024 e 2026, fui professor na Universidade Toulouse Capitole, na França, onde trabalhei no Instituto de Pesquisa em Informática de Toulouse (IRIT) como parte da equipe REVA.
+
+Também fiz um pós-doutorado de 18 meses no grupo IRIT@CRCT, trabalhando com análise de imagens de histopatologia para o tratamento do câncer usando Programação Genética. O IRIT@CRCT é um laboratório conjunto do Centro de Pesquisa do Câncer de Toulouse (CRCT) e do IRIT. Nesse período, trabalhei junto com o professor Sylvain Cussat-Blanc.
+
+Fiz meu doutorado (e mestrado) na Universidade de Tsukuba, no Japão, como parte do grupo de Adaptação Automática em Otimização Multiobjetivo, sob a orientação do professor Claus Aranha. Antes disso, concluí meu bacharelado em Ciência da Computação pela UnB, em 2016, sob a orientação do professor Marcelo Ladeira.
+
+Meus interesses de pesquisa estão ligados à Inteligência Computacional, especialmente à Computação Evolutiva e à Vida Artificial, com foco em otimização multiobjetivo e Programação Genética. De forma geral, tenho interesse em programas que conseguem se adaptar por conta própria e em aplicações de Computação Evolutiva, como interpretabilidade, dados biomédicos e jogos. Também me interessam usos mais especulativos da Inteligência Computacional para Vida Artificial, como a evolução de criaturas virtuais e dos mundos em que elas vivem.
