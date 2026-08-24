@@ -1,0 +1,3 @@
+[submodule "cic0004_apc_engcomp"]
+	path = cic0004_apc_engcomp
+	url = https://github.com/yurilavinas/cic0004_apc_engcomp.git
