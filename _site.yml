@@ -11,13 +11,13 @@ navbar:
       href: index.html
     - text: "Publications"
       href: publications.html
+    - text: "Aulas"
+      href: aulas.html
   right:
     - icon: fa-envelope
       href: mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp
     - icon: fa-google
       href: https://scholar.google.co.jp/citations?user=-hdeQYcAAAAJ&hl=en
-    - icon: fa-twitter
-      href: https://twitter.com/yurilavinas
     - icon: fa-github
       href: https://github.com/yurilavinas
 
