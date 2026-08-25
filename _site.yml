@@ -18,7 +18,7 @@ navbar:
       href: mailto:lavinas.yuri.xp@alumni.tsukuba.ac.jp
     - icon: fa-google
       href: https://scholar.google.co.jp/citations?user=-hdeQYcAAAAJ&hl=en
-    - icon: fa-duotone fa-regular fa-cup-togo
+    - icon: fa-terminal
       href: http://lattes.cnpq.br/1380714019237028
 
 collections:
