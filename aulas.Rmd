@@ -2,12 +2,23 @@
   title: "Aulas"
 
 ---
+-----
 
-
-    1. [APC-2026/2](https://yurilavinas.github.io/cic0004_apc_engcomp)
+  1. Algoritmos e Programação de Computadores
   
-    1.1 [Material complementar](https://carlacastanho.github.io/Material-de-APC/aulas.html)
+  [Material introdutório](https://yurilavinas.github.io/cic0004_apc_engcomp)
+
+ [Material complementar](https://carlacastanho.github.io/Material-de-APC/aulas.html)
+  
   
   -----
   
-    2. [ED-2026/2](https://www.ic.unicamp.br/~rafael/mc202.html)
+  2. Estruturas de dados
+  
+  [ED-2026/2](https://www.ic.unicamp.br/~rafael/mc202.html)
+  
+  -----
+  
+  3. Introdução ao Python
+    
+[Material introdutório](https://github.com/yurilavinas/prog101)
