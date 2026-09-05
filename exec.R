@@ -11,6 +11,7 @@ render_site(input = "aulas.Rmd")
 render_site(input = "publications.Rmd")
 render_site(input = "blog.Rmd")
 # render_site(input = "my_blog/visuals.Rmd")
+# render_site(input = "my_blog/visuals.Rmd")
 
 
 
