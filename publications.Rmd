@@ -19,8 +19,9 @@ Publications are listed in chronological order, and the horizontal line separate
 
 5. Christina Berghegger, Sylvain Cussat-Blanc, David Simoncini, and *Yuri Lavinas*. 2026. Study on Search Heuristics in Cartesian Genetic Programming. In Proceedings of the Genetic and Evolutionary Computation Conference Companion (GECCO '26 Companion) https://doi.org/10.1145/3795101.3805404
 
-6. Fabricio de França, Sylvain Cussat-Blanc, Paul Monsarrat, and *Yuri Lavinas*. 2026. Promoting Diversity in Cartesian Genetic Programming for Image Processing with Equality Graphs. GECCO '26 Companion https://doi.org/10.1145/3795101.3805347
+6. Fabrício Olivetti de França, Sylvain Cussat-Blanc, Paul Monsarrat, and *Yuri Lavinas*. 2026. Promoting Diversity in Cartesian Genetic Programming for Image Processing with Equality Graphs. GECCO '26 Companion https://doi.org/10.1145/3795101.3805347
 
+7. Giorgia Nadizar, *Yuri Lavinas*, Olivetti, Cussat-Blanc, Sylvain Cussat-Blanc, Dennis Wilso. **Structure vs. Constants: A Study of Coefficients in Cartesian Genetic Programming**. PPSN 2026. https://doi.org/10.1007/978-3-032-36229-2_15
 
 
 
